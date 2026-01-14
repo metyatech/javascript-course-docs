@@ -577,23 +577,18 @@ let moreTextYoso = document.querySelector(".moreText");
 let tabBtnYosos = document.querySelectorAll(".tabBtn");
 let tabPanelYosos = document.querySelectorAll(".tabPanel");
 
-let index = 0;
-
-for (let tabBtnYoso of tabBtnYosos) {
-  let myIndex = index;
-  index = index + 1;
-
-  tabBtnYoso.addEventListener("click", function () {
-    for (let btn of tabBtnYosos) {
-      btn.classList.remove("isActive");
+for (let i = 0; i < tabBtnYosos.length; i++) {
+  tabBtnYosos[i].addEventListener("click", function () {
+    for (let j = 0; j < tabBtnYosos.length; j++) {
+      tabBtnYosos[j].classList.remove("isActive");
     }
 
-    for (let panel of tabPanelYosos) {
-      panel.classList.remove("isActive");
+    for (let k = 0; k < tabPanelYosos.length; k++) {
+      tabPanelYosos[k].classList.remove("isActive");
     }
 
-    tabBtnYoso.classList.add("isActive");
-    tabPanelYosos[myIndex].classList.add("isActive");
+    tabBtnYosos[i].classList.add("isActive");
+    tabPanelYosos[i].classList.add("isActive");
   });
 }
 ```
