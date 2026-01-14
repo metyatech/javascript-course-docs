@@ -579,12 +579,12 @@ let tabPanelYosos = document.querySelectorAll(".tabPanel");
 
 for (let i = 0; i < tabBtnYosos.length; i++) {
   tabBtnYosos[i].addEventListener("click", function () {
-    for (let j = 0; j < tabBtnYosos.length; j++) {
-      tabBtnYosos[j].classList.remove("isActive");
+    for (let tabBtnYoso of tabBtnYosos) {
+      tabBtnYoso.classList.remove("isActive");
     }
 
-    for (let k = 0; k < tabPanelYosos.length; k++) {
-      tabPanelYosos[k].classList.remove("isActive");
+    for (let tabPanelYoso of tabPanelYosos) {
+      tabPanelYoso.classList.remove("isActive");
     }
 
     tabBtnYosos[i].classList.add("isActive");
