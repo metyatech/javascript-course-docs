@@ -42,7 +42,7 @@ let stateTextYoso = document.querySelector("#stateText");
 let isSubmitted = false;
 
 submitBtnYoso.addEventListener("click", function () {
-  if (isSubmitted === false) {
+  if (!isSubmitted) {
     isSubmitted = true;
     stateTextYoso.innerText = "提出済み";
     submitBtnYoso.innerText = "完了";
@@ -224,7 +224,7 @@ detailBtnYoso.addEventListener("click", function () {
 let detailBtnYoso = document.querySelector(".detailBtn");
 let detailBoxYoso = document.querySelector(".detailBox");
 
-// TODO: クリックで isVisible を付け外しする
+// TODO: クリックで isVisible クラスを付け外しする
 ```
 </CodePreview>
 
@@ -456,7 +456,8 @@ function renderPlayer() {
 
 ```css
 .moreText {
-  max-height: 3.2em;
+  line-height: 1.2;
+  max-height: 1.8em; /* 1.2 + 1.2の半分 (1行と半分くらい) */
   overflow: hidden;
 }
 
@@ -470,12 +471,12 @@ let toggleBtnYoso = document.querySelector("#toggleBtn");
 let moreTextYoso = document.querySelector(".moreText");
 
 toggleBtnYoso.addEventListener("click", function () {
-  let isOpenNow = moreTextYoso.classList.toggle("isOpen");
-
-  if (isOpenNow === true) {
-    toggleBtnYoso.innerText = "閉じる";
-  } else {
+  if (moreTextYoso.classList.contains("isOpen")) {
+    moreTextYoso.classList.remove("isOpen");
     toggleBtnYoso.innerText = "もっと見る";
+  } else {
+    moreTextYoso.classList.add("isOpen");
+    toggleBtnYoso.innerText = "閉じる";
   }
 });
 ```
@@ -500,7 +501,8 @@ toggleBtnYoso.addEventListener("click", function () {
 
 ```css
 .moreText {
-  max-height: 3.2em;
+  line-height: 1.2;
+  max-height: 1.8em; /* 1.2 + 1.2の半分 (1行と半分くらい) */
   overflow: hidden;
 }
 
@@ -513,7 +515,7 @@ toggleBtnYoso.addEventListener("click", function () {
 let toggleBtnYoso = document.querySelector("#toggleBtn");
 let moreTextYoso = document.querySelector(".moreText");
 
-// TODO: クリックで isOpen を切り替え、ボタン文字も切り替える
+// TODO: classList.contains を使って isOpen を切り替え、ボタン文字も切り替える
 ```
 </CodePreview>
 
