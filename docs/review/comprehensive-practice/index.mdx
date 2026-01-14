@@ -28,16 +28,6 @@ import { CodePreview } from "@metyatech/code-preview";
 <p id="statusText">待機</p>
 ```
 
-```css
-body {
-  font-family: system-ui, sans-serif;
-}
-
-#statusText {
-  font-weight: bold;
-}
-```
-
 ```js
 let startBtnYoso = document.querySelector("#startBtn");
 let statusTextYoso = document.querySelector("#statusText");
@@ -51,16 +41,6 @@ let statusTextYoso = document.querySelector("#statusText");
 ```html
 <button id="startBtn">開始</button>
 <p id="statusText">待機</p>
-```
-
-```css
-body {
-  font-family: system-ui, sans-serif;
-}
-
-#statusText {
-  font-weight: bold;
-}
 ```
 
 ```js
@@ -103,27 +83,6 @@ startBtnYoso.addEventListener("click", function () {
 </div>
 ```
 
-```css
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: system-ui, sans-serif;
-}
-
-button {
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-}
-
-#countText {
-  width: 30px;
-  text-align: center;
-  font-weight: bold;
-}
-```
-
 ```js
 let minusBtnYoso = document.querySelector("#minusBtn");
 let plusBtnYoso = document.querySelector("#plusBtn");
@@ -143,27 +102,6 @@ let count = 0;
   <span id="countText">0</span>
   <button id="plusBtn">+</button>
 </div>
-```
-
-```css
-.counter {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: system-ui, sans-serif;
-}
-
-button {
-  width: 40px;
-  height: 40px;
-  font-size: 18px;
-}
-
-#countText {
-  width: 30px;
-  text-align: center;
-  font-weight: bold;
-}
 ```
 
 ```js
@@ -219,9 +157,6 @@ plusBtnYoso.addEventListener("click", function () {
 ```css
 .answerBox {
   display: none;
-  margin-top: 8px;
-  padding: 10px;
-  border: solid #ccc 1px;
 }
 
 .answerBox.isOpen {
@@ -247,9 +182,6 @@ let answerBoxYoso = document.querySelector(".answerBox");
 ```css
 .answerBox {
   display: none;
-  margin-top: 8px;
-  padding: 10px;
-  border: solid #ccc 1px;
 }
 
 .answerBox.isOpen {
@@ -355,15 +287,6 @@ calcBtnYoso.addEventListener("click", function () {
 </div>
 ```
 
-```css
-.box {
-  font-family: system-ui, sans-serif;
-  display: grid;
-  gap: 10px;
-  max-width: 320px;
-}
-```
-
 ```js
 let addBtnYoso = document.querySelector("#addBtn");
 let resetBtnYoso = document.querySelector("#resetBtn");
@@ -390,15 +313,6 @@ function renderPlayer() {
   <button id="resetBtn">リセット</button>
   <p id="playerText">プレイヤー: - / ポイント: 0</p>
 </div>
-```
-
-```css
-.box {
-  font-family: system-ui, sans-serif;
-  display: grid;
-  gap: 10px;
-  max-width: 320px;
-}
 ```
 
 ```js
@@ -456,26 +370,6 @@ resetBtnYoso.addEventListener("click", function () {
 </div>
 ```
 
-```css
-.box {
-  font-family: system-ui, sans-serif;
-  display: grid;
-  gap: 10px;
-}
-
-.buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-#listText {
-  padding: 10px;
-  border: solid #ccc 1px;
-  border-radius: 6px;
-}
-```
-
 ```js
 let doubleBtnYoso = document.querySelector("#doubleBtn");
 let passBtnYoso = document.querySelector("#passBtn");
@@ -504,26 +398,6 @@ function renderScores(scores) {
   </div>
   <p id="listText">-</p>
 </div>
-```
-
-```css
-.box {
-  font-family: system-ui, sans-serif;
-  display: grid;
-  gap: 10px;
-}
-
-.buttons {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-#listText {
-  padding: 10px;
-  border: solid #ccc 1px;
-  border-radius: 6px;
-}
 ```
 
 ```js
@@ -592,22 +466,13 @@ resetBtnYoso.addEventListener("click", function () {
 ```
 
 ```css
-.card {
-  font-family: system-ui, sans-serif;
-  border: solid #ddd 1px;
-  border-radius: 8px;
-  padding: 12px;
-  max-width: 520px;
-}
-
 .moreText {
-  max-height: 48px;
+  max-height: 3.2em;
   overflow: hidden;
-  transition: max-height 0.2s;
 }
 
 .moreText.isOpen {
-  max-height: 200px;
+  max-height: none;
 }
 ```
 
@@ -634,22 +499,13 @@ let moreTextYoso = document.querySelector(".moreText");
 ```
 
 ```css
-.card {
-  font-family: system-ui, sans-serif;
-  border: solid #ddd 1px;
-  border-radius: 8px;
-  padding: 12px;
-  max-width: 520px;
-}
-
 .moreText {
-  max-height: 48px;
+  max-height: 3.2em;
   overflow: hidden;
-  transition: max-height 0.2s;
 }
 
 .moreText.isOpen {
-  max-height: 200px;
+  max-height: none;
 }
 ```
 
@@ -702,34 +558,12 @@ toggleBtnYoso.addEventListener("click", function () {
 ```
 
 ```css
-.tabs {
-  font-family: system-ui, sans-serif;
-  max-width: 520px;
-}
-
-.tabButtons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tabBtn {
-  padding: 8px 12px;
-  border: solid #ccc 1px;
-  background-color: white;
-  cursor: pointer;
-}
-
 .tabBtn.isActive {
-  border-color: #333;
   font-weight: bold;
 }
 
 .tabPanel {
   display: none;
-  padding: 12px;
-  border: solid #ccc 1px;
-  border-radius: 6px;
 }
 
 .tabPanel.isActive {
@@ -767,34 +601,12 @@ let tabPanelYosos = document.querySelectorAll(".tabPanel");
 ```
 
 ```css
-.tabs {
-  font-family: system-ui, sans-serif;
-  max-width: 520px;
-}
-
-.tabButtons {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.tabBtn {
-  padding: 8px 12px;
-  border: solid #ccc 1px;
-  background-color: white;
-  cursor: pointer;
-}
-
 .tabBtn.isActive {
-  border-color: #333;
   font-weight: bold;
 }
 
 .tabPanel {
   display: none;
-  padding: 12px;
-  border: solid #ccc 1px;
-  border-radius: 6px;
 }
 
 .tabPanel.isActive {
