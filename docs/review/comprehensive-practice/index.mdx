@@ -36,17 +36,17 @@ import { CodePreview } from "@metyatech/code-preview";
 ```
 
 ```js
+// 「申請」ボタンを取得する
 let submitBtnYoso = document.querySelector("#submitBtn");
+// 表示文字（状態）を取得する
 let stateTextYoso = document.querySelector("#stateText");
 
-let isSubmitted = false;
-
+// ボタンがクリックされたときの処理を登録する
 submitBtnYoso.addEventListener("click", function () {
-  if (!isSubmitted) {
-    isSubmitted = true;
-    stateTextYoso.innerText = "提出済み";
-    submitBtnYoso.innerText = "完了";
-  }
+  // テキストを「提出済み」にする
+  stateTextYoso.innerText = "提出済み";
+  // ボタンの文字を「完了」にする
+  submitBtnYoso.innerText = "完了";
 });
 ```
 </CodePreview>
@@ -71,6 +71,8 @@ let stateTextYoso = document.querySelector("#stateText");
 
 <Solution>
 <CodePreview sourceId="review-ex1-preview" />
+- まず `querySelector` でボタンとテキストを取得します。
+- クリック時に `innerText` を更新し、ボタンの文字も同時に更新します。
 </Solution>
 </Exercise>
 
@@ -102,26 +104,40 @@ let stateTextYoso = document.querySelector("#stateText");
 ```
 
 ```js
+// 「-」ボタンを取得する
 let minusBtnYoso = document.querySelector("#minusBtn");
+// 「+」ボタンを取得する
 let plusBtnYoso = document.querySelector("#plusBtn");
+// 数字を表示する場所を取得する
 let countTextYoso = document.querySelector("#countText");
 
+// 状態: 現在の数（最初は 0）
 let count = 0;
 
+// 画面の表示を更新する
 function updateCountText() {
+  // 数字を文字として表示する
   countTextYoso.innerText = count;
 }
 
+// 「-」ボタンがクリックされたときの処理を登録する
 minusBtnYoso.addEventListener("click", function () {
+  // 0より大きいときだけ減らす（0未満にしない）
   if (count > 0) {
+    // 現在の数を 1 減らす
     count = count - 1;
+    // 表示を更新する
     updateCountText();
   }
 });
 
+// 「+」ボタンがクリックされたときの処理を登録する
 plusBtnYoso.addEventListener("click", function () {
+  // 10より小さいときだけ増やす（10を超えない）
   if (count < 10) {
+    // 現在の数を 1 増やす
     count = count + 1;
+    // 表示を更新する
     updateCountText();
   }
 });
@@ -154,6 +170,9 @@ let count = 0;
 
 <Solution>
 <CodePreview sourceId="review-ex2-preview" />
+- `count` を「現在の数」として変数で持ちます。
+- 表示更新は `updateCountText()` にまとめ、数が変わったら毎回呼びます。
+- `if` で 0 未満・10 超えにならないようにしてから更新します。
 </Solution>
 </Exercise>
 
@@ -191,10 +210,14 @@ let count = 0;
 ```
 
 ```js
+// 「詳細を表示」ボタンを取得する
 let detailBtnYoso = document.querySelector(".detailBtn");
+// 詳細の表示エリアを取得する
 let detailBoxYoso = document.querySelector(".detailBox");
 
+// ボタンがクリックされたときの処理を登録する
 detailBtnYoso.addEventListener("click", function () {
+  // CSS側のクラスで表示/非表示を切り替える
   detailBoxYoso.classList.toggle("isVisible");
 });
 ```
@@ -230,6 +253,8 @@ let detailBoxYoso = document.querySelector(".detailBox");
 
 <Solution>
 <CodePreview sourceId="review-ex3-preview" />
+- 表示/非表示は CSS のクラス（`isVisible`）で切り替えるようにして、JavaScript はクラスを付け外しするだけにします。
+- クリックイベントの中で `classList.toggle("isVisible")` を呼ぶと、押すたびに表示状態が切り替わります。
 </Solution>
 </Exercise>
 
@@ -261,34 +286,52 @@ let detailBoxYoso = document.querySelector(".detailBox");
 ```
 
 ```js
+// 「+100円」ボタンを取得する
 let add100BtnYoso = document.querySelector("#add100Btn");
+// 「+500円」ボタンを取得する
 let add500BtnYoso = document.querySelector("#add500Btn");
+// 「リセット」ボタンを取得する
 let resetBtnYoso = document.querySelector("#resetBtn");
+// 合計を表示する場所を取得する
 let totalTextYoso = document.querySelector("#totalText");
 
+// 状態: 現在の合計（最初は 0）
 let total = 0;
 
+// 画面の表示を更新する
 function renderTotal() {
+  // 合計を画面に表示する
   totalTextYoso.innerText = "合計: " + total + "円";
 }
 
+// 引数の分だけ合計を増やして、表示を更新する
 function addAmount(amount) {
+  // 合計を増やす
   total = total + amount;
+  // 表示を更新する
   renderTotal();
 }
 
+// 最初に1回、表示を整える
 renderTotal();
 
+// 「+100円」がクリックされたときの処理を登録する
 add100BtnYoso.addEventListener("click", function () {
+  // 100円分増やす
   addAmount(100);
 });
 
+// 「+500円」がクリックされたときの処理を登録する
 add500BtnYoso.addEventListener("click", function () {
+  // 500円分増やす
   addAmount(500);
 });
 
+// 「リセット」がクリックされたときの処理を登録する
 resetBtnYoso.addEventListener("click", function () {
+  // 合計を 0 に戻す
   total = 0;
+  // 表示を更新する
   renderTotal();
 });
 ```
@@ -328,6 +371,9 @@ function addAmount(amount) {
 
 <Solution>
 <CodePreview sourceId="review-ex4-preview" />
+- 合計は `total` に入れておき、画面表示は `renderTotal()` にまとめます。
+- `addAmount(amount)` のように「増やす値」を引数で受け取ると、`+100` と `+500` を同じ処理で書けます。
+- `リセット` は `total = 0` に戻して `renderTotal()` を呼びます。
 </Solution>
 </Exercise>
 
@@ -359,29 +405,44 @@ function addAmount(amount) {
 ```
 
 ```js
+// 「+10pt」ボタンを取得する
 let addBtnYoso = document.querySelector("#addBtn");
+// 「リセット」ボタンを取得する
 let resetBtnYoso = document.querySelector("#resetBtn");
+// プレイヤー情報を表示する場所を取得する
 let playerTextYoso = document.querySelector("#playerText");
 
+// 状態をオブジェクトでまとめる
 let player = {
+  // プレイヤー名
   name: "Sato",
+  // ポイント
   point: 0,
 };
 
+// 画面の表示を更新する
 function renderPlayer() {
+  // オブジェクトの中身を使って文字を作り、画面に表示する
   playerTextYoso.innerText =
     "プレイヤー: " + player.name + " / ポイント: " + player.point;
 }
 
+// 最初に1回、表示を整える
 renderPlayer();
 
+// 「+10pt」がクリックされたときの処理を登録する
 addBtnYoso.addEventListener("click", function () {
+  // ポイントを 10 増やす
   player.point = player.point + 10;
+  // 表示を更新する
   renderPlayer();
 });
 
+// 「リセット」がクリックされたときの処理を登録する
 resetBtnYoso.addEventListener("click", function () {
+  // ポイントを 0 に戻す
   player.point = 0;
+  // 表示を更新する
   renderPlayer();
 });
 ```
@@ -420,6 +481,8 @@ function renderPlayer() {
 
 <Solution>
 <CodePreview sourceId="review-ex5-preview" />
+- `name` と `point` を 1つのオブジェクト（`player`）にまとめると、状態が増えても管理しやすくなります。
+- 表示更新は `renderPlayer()` にまとめ、値を変えたら必ず呼ぶようにします。
 </Solution>
 </Exercise>
 
@@ -467,15 +530,23 @@ function renderPlayer() {
 ```
 
 ```js
+// 「もっと見る / 閉じる」ボタンを取得する
 let toggleBtnYoso = document.querySelector("#toggleBtn");
+// 文章を表示する場所を取得する
 let moreTextYoso = document.querySelector(".moreText");
 
+// ボタンがクリックされたときの処理を登録する
 toggleBtnYoso.addEventListener("click", function () {
+  // 今の状態を見て、クラスとボタン文字を切り替える
   if (moreTextYoso.classList.contains("isOpen")) {
+    // 開いている状態なら、閉じる
     moreTextYoso.classList.remove("isOpen");
+    // ボタンの文字を「もっと見る」に戻す
     toggleBtnYoso.innerText = "もっと見る";
   } else {
+    // 閉じている状態なら、開く
     moreTextYoso.classList.add("isOpen");
+    // ボタンの文字を「閉じる」にする
     toggleBtnYoso.innerText = "閉じる";
   }
 });
@@ -521,6 +592,9 @@ let moreTextYoso = document.querySelector(".moreText");
 
 <Solution>
 <CodePreview sourceId="review-ex6-preview" />
+- CSS は「短く見せる」と「全部見せる」の 2 状態を、クラス（`isOpen`）で分けています。
+- JavaScript では `classList.contains` で状態を確認し、`add/remove` で切り替えます。
+- 状態に合わせてボタンの文字も切り替えると、ユーザーが次に何を押すか分かりやすくなります。
 </Solution>
 </Exercise>
 
@@ -574,20 +648,28 @@ let moreTextYoso = document.querySelector(".moreText");
 ```
 
 ```js
+// タブボタンをまとめて取得する
 let tabBtnYosos = document.querySelectorAll(".tabBtn");
+// タブのパネルをまとめて取得する
 let tabPanelYosos = document.querySelectorAll(".tabPanel");
 
+// ボタンとパネルは同じ順番なので、インデックスで対応付ける
 for (let i = 0; i < tabBtnYosos.length; i++) {
+  // i 番目のタブがクリックされたときの処理を登録する
   tabBtnYosos[i].addEventListener("click", function () {
+    // いったん全てのタブから active を外す
     for (let tabBtnYoso of tabBtnYosos) {
       tabBtnYoso.classList.remove("isActive");
     }
 
+    // いったん全てのパネルから active を外す
     for (let tabPanelYoso of tabPanelYosos) {
       tabPanelYoso.classList.remove("isActive");
     }
 
+    // クリックしたタブだけ active にする
     tabBtnYosos[i].classList.add("isActive");
+    // クリックしたタブに対応するパネルだけ active にする
     tabPanelYosos[i].classList.add("isActive");
   });
 }
@@ -642,5 +724,8 @@ let tabPanelYosos = document.querySelectorAll(".tabPanel");
 
 <Solution>
 <CodePreview sourceId="review-ex7-preview" />
+- ボタンとパネルは「同じ順番」で並んでいるので、インデックス（`i`）で対応付けできます。
+- クリックされたら、まず全てのタブ/パネルから `isActive` を外します。
+- 最後に、クリックされたインデックスのタブとパネルだけに `isActive` を付けて表示を切り替えます。
 </Solution>
 </Exercise>
