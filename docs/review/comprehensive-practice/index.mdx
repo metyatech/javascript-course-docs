@@ -13,12 +13,13 @@ import { CodePreview } from "@metyatech/code-preview";
 
 ---
 
-<Exercise title="演習1（クリックで1回だけテキスト変更：ガード節）">
+<Exercise title="演習1（クリックで1回だけ表示を更新）">
 
 要件:
 
-- `開始` ボタンをクリックすると、テキストが「待機」→「実行中」に変わる
-- **2 回目以降**にクリックしても、テキストは変わらない（1 回だけ反応）
+- `申請` ボタンをクリックすると、テキストが「未提出」→「提出済み」に変わる
+- 同時にボタンの文字も「完了」に変わる
+- **2 回目以降**にクリックしても、表示は変わらない（1 回だけ反応）
 
 動作プレビュー:
 
@@ -30,20 +31,21 @@ import { CodePreview } from "@metyatech/code-preview";
   previewVisible={true}
 >
 ```html
-<button id="startBtn">開始</button>
-<p id="statusText">待機</p>
+<button id="submitBtn">申請</button>
+<p id="stateText">未提出</p>
 ```
 
 ```js
-let startBtnYoso = document.querySelector("#startBtn");
-let statusTextYoso = document.querySelector("#statusText");
+let submitBtnYoso = document.querySelector("#submitBtn");
+let stateTextYoso = document.querySelector("#stateText");
 
-let isStarted = false;
+let isSubmitted = false;
 
-startBtnYoso.addEventListener("click", function () {
-  if (isStarted === false) {
-    isStarted = true;
-    statusTextYoso.innerText = "実行中";
+submitBtnYoso.addEventListener("click", function () {
+  if (isSubmitted === false) {
+    isSubmitted = true;
+    stateTextYoso.innerText = "提出済み";
+    submitBtnYoso.innerText = "完了";
   }
 });
 ```
@@ -55,15 +57,15 @@ startBtnYoso.addEventListener("click", function () {
 
 <CodePreview sourceId="review-ex1-starter">
 ```html
-<button id="startBtn">開始</button>
-<p id="statusText">待機</p>
+<button id="submitBtn">申請</button>
+<p id="stateText">未提出</p>
 ```
 
 ```js
-let startBtnYoso = document.querySelector("#startBtn");
-let statusTextYoso = document.querySelector("#statusText");
+let submitBtnYoso = document.querySelector("#submitBtn");
+let stateTextYoso = document.querySelector("#stateText");
 
-// TODO: 1回だけ反応するように実装する
+// TODO: 1回だけ反応させ、テキストとボタン文字を変える
 ```
 </CodePreview>
 
@@ -157,11 +159,11 @@ let count = 0;
 
 ---
 
-<Exercise title="演習3（表示/非表示：classList.toggle で切り替える）">
+<Exercise title="演習3（詳細の表示/非表示：classList.toggle）">
 
 要件:
 
-- 見出しをクリックすると、答えの表示/非表示が切り替わる
+- `詳細を表示` ボタンをクリックすると、詳細の表示/非表示が切り替わる
 - 切り替えは **クラスの付け外し**で行う（CSS の表示/非表示を JavaScript から直接いじらない）
 
 動作プレビュー:
@@ -174,26 +176,26 @@ let count = 0;
   previewVisible={true}
 >
 ```html
-<h3 class="questionTitle">質問</h3>
-<div class="answerBox">答え</div>
+<button class="detailBtn">詳細を表示</button>
+<div class="detailBox">詳細内容</div>
 ```
 
 ```css
-.answerBox {
+.detailBox {
   display: none;
 }
 
-.answerBox.isOpen {
+.detailBox.isVisible {
   display: block;
 }
 ```
 
 ```js
-let questionTitleYoso = document.querySelector(".questionTitle");
-let answerBoxYoso = document.querySelector(".answerBox");
+let detailBtnYoso = document.querySelector(".detailBtn");
+let detailBoxYoso = document.querySelector(".detailBox");
 
-questionTitleYoso.addEventListener("click", function () {
-  answerBoxYoso.classList.toggle("isOpen");
+detailBtnYoso.addEventListener("click", function () {
+  detailBoxYoso.classList.toggle("isVisible");
 });
 ```
 </CodePreview>
@@ -204,25 +206,25 @@ questionTitleYoso.addEventListener("click", function () {
 
 <CodePreview sourceId="review-ex3-starter">
 ```html
-<h3 class="questionTitle">質問</h3>
-<div class="answerBox">答え</div>
+<button class="detailBtn">詳細を表示</button>
+<div class="detailBox">詳細内容</div>
 ```
 
 ```css
-.answerBox {
+.detailBox {
   display: none;
 }
 
-.answerBox.isOpen {
+.detailBox.isVisible {
   display: block;
 }
 ```
 
 ```js
-let questionTitleYoso = document.querySelector(".questionTitle");
-let answerBoxYoso = document.querySelector(".answerBox");
+let detailBtnYoso = document.querySelector(".detailBtn");
+let detailBoxYoso = document.querySelector(".detailBox");
 
-// TODO: クリックで isOpen を付け外しする
+// TODO: クリックで isVisible を付け外しする
 ```
 </CodePreview>
 
