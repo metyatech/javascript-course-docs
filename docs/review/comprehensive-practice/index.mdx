@@ -6,7 +6,7 @@ sidebar_label: 総復習
 import Exercise, { Solution } from "@metyatech/exercise/client";
 import { CodePreview } from "@metyatech/code-preview";
 
-## 今日の学習はこんなところで使うよ
+## 概要
 
 このページは、これまで学んだ内容（基礎 + UI コンポーネント）をまとめて練習するための総復習ページです。
 上から順に解きながら、「要素の取得」→「イベント」→「状態の管理」→「表示の更新」という流れを復習しましょう。
@@ -50,12 +50,10 @@ let statusTextYoso = document.querySelector("#statusText");
 let isStarted = false;
 
 startBtnYoso.addEventListener("click", function () {
-  if (isStarted === true) {
-    return;
+  if (isStarted === false) {
+    isStarted = true;
+    statusTextYoso.innerText = "実行中";
   }
-
-  isStarted = true;
-  statusTextYoso.innerText = "実行中";
 });
 ```
 </CodePreview>
@@ -116,21 +114,17 @@ function updateCountText() {
 }
 
 minusBtnYoso.addEventListener("click", function () {
-  if (count <= 0) {
-    return;
+  if (count > 0) {
+    count = count - 1;
+    updateCountText();
   }
-
-  count = count - 1;
-  updateCountText();
 });
 
 plusBtnYoso.addEventListener("click", function () {
-  if (count >= 10) {
-    return;
+  if (count < 10) {
+    count = count + 1;
+    updateCountText();
   }
-
-  count = count + 1;
-  updateCountText();
 });
 ```
 </CodePreview>
@@ -203,63 +197,84 @@ questionTitleYoso.addEventListener("click", function () {
 
 ---
 
-<Exercise title="演習4（関数 + return：表示文字を作る）">
+<Exercise title="演習4（関数：引数を使って合計を増やす）">
 
 要件:
 
-- `合計を表示` ボタンを押すと、配列の合計を計算して表示する
-- 計算は `calcTotal` 関数の中で行い、**合計値を return** する
+- `+100円` を押すと、合計が 100 増える
+- `+500円` を押すと、合計が 500 増える
+- `リセット` を押すと、合計が 0 に戻る
+- 合計の更新は、引数ありの関数（例: `addAmount(100)`）を使って実装する
 
-目安: 10〜15 分
+目安: 10 分
 
 <CodePreview sourceId="review-ex4-starter">
 ```html
-<button id="calcBtn">合計を表示</button>
-<p id="resultText">まだ計算していません</p>
+<button id="add100Btn">+100円</button>
+<button id="add500Btn">+500円</button>
+<button id="resetBtn">リセット</button>
+<p id="totalText">合計: 0円</p>
 ```
 
 ```js
-let calcBtnYoso = document.querySelector("#calcBtn");
-let resultTextYoso = document.querySelector("#resultText");
+let add100BtnYoso = document.querySelector("#add100Btn");
+let add500BtnYoso = document.querySelector("#add500Btn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let totalTextYoso = document.querySelector("#totalText");
 
-let prices = [120, 300, 250, 80];
+let total = 0;
 
-function calcTotal(numbers) {
-  // TODO: numbers の合計を計算して return する
+function renderTotal() {
+  // TODO: total の値を表示する
 }
 
-calcBtnYoso.addEventListener("click", function () {
-  // TODO: calcTotal の戻り値を使って表示する
-});
+function addAmount(amount) {
+  // TODO: total を amount 分増やして renderTotal を呼ぶ
+}
+
+// TODO: それぞれのボタンで addAmount を呼ぶ / リセットする
 ```
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="review-ex4-solution">
 ```html
-<button id="calcBtn">合計を表示</button>
-<p id="resultText">まだ計算していません</p>
+<button id="add100Btn">+100円</button>
+<button id="add500Btn">+500円</button>
+<button id="resetBtn">リセット</button>
+<p id="totalText">合計: 0円</p>
 ```
 
 ```js
-let calcBtnYoso = document.querySelector("#calcBtn");
-let resultTextYoso = document.querySelector("#resultText");
+let add100BtnYoso = document.querySelector("#add100Btn");
+let add500BtnYoso = document.querySelector("#add500Btn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let totalTextYoso = document.querySelector("#totalText");
 
-let prices = [120, 300, 250, 80];
+let total = 0;
 
-function calcTotal(numbers) {
-  let total = 0;
-
-  for (let value of numbers) {
-    total = total + value;
-  }
-
-  return total;
+function renderTotal() {
+  totalTextYoso.innerText = "合計: " + total + "円";
 }
 
-calcBtnYoso.addEventListener("click", function () {
-  let totalPrice = calcTotal(prices);
-  resultTextYoso.innerText = "合計: " + totalPrice + "円";
+function addAmount(amount) {
+  total = total + amount;
+  renderTotal();
+}
+
+renderTotal();
+
+add100BtnYoso.addEventListener("click", function () {
+  addAmount(100);
+});
+
+add500BtnYoso.addEventListener("click", function () {
+  addAmount(500);
+});
+
+resetBtnYoso.addEventListener("click", function () {
+  total = 0;
+  renderTotal();
 });
 ```
 </CodePreview>
@@ -348,101 +363,7 @@ resetBtnYoso.addEventListener("click", function () {
 
 ---
 
-<Exercise title="演習6（配列メソッド：map / filter で表示を切り替える）">
-
-要件:
-
-- `2倍` を押すと、配列の数値を 2 倍した配列を作って表示する（`map`）
-- `60以上` を押すと、60 以上だけを残した配列を作って表示する（`filter`）
-- `元に戻す` を押すと、最初の配列に戻す
-
-目安: 15〜20 分
-
-<CodePreview sourceId="review-ex6-starter">
-```html
-<div class="box">
-  <div class="buttons">
-    <button id="doubleBtn">2倍</button>
-    <button id="passBtn">60以上</button>
-    <button id="resetBtn">元に戻す</button>
-  </div>
-  <p id="listText">-</p>
-</div>
-```
-
-```js
-let doubleBtnYoso = document.querySelector("#doubleBtn");
-let passBtnYoso = document.querySelector("#passBtn");
-let resetBtnYoso = document.querySelector("#resetBtn");
-let listTextYoso = document.querySelector("#listText");
-
-let originalScores = [25, 60, 73, 49, 90];
-let currentScores = originalScores;
-
-function renderScores(scores) {
-  // TODO: scores を「25, 60, ...」の形で表示する
-}
-
-// TODO: ボタンごとに map / filter / リセット を実装する
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex6-solution">
-```html
-<div class="box">
-  <div class="buttons">
-    <button id="doubleBtn">2倍</button>
-    <button id="passBtn">60以上</button>
-    <button id="resetBtn">元に戻す</button>
-  </div>
-  <p id="listText">-</p>
-</div>
-```
-
-```js
-let doubleBtnYoso = document.querySelector("#doubleBtn");
-let passBtnYoso = document.querySelector("#passBtn");
-let resetBtnYoso = document.querySelector("#resetBtn");
-let listTextYoso = document.querySelector("#listText");
-
-let originalScores = [25, 60, 73, 49, 90];
-let currentScores = originalScores;
-
-function renderScores(scores) {
-  listTextYoso.innerText = scores.join(", ");
-}
-
-renderScores(currentScores);
-
-doubleBtnYoso.addEventListener("click", function () {
-  currentScores = currentScores.map(function (value) {
-    return value * 2;
-  });
-
-  renderScores(currentScores);
-});
-
-passBtnYoso.addEventListener("click", function () {
-  currentScores = currentScores.filter(function (value) {
-    return value >= 60;
-  });
-
-  renderScores(currentScores);
-});
-
-resetBtnYoso.addEventListener("click", function () {
-  currentScores = originalScores;
-  renderScores(currentScores);
-});
-```
-</CodePreview>
-</Solution>
-</Exercise>
-
----
-
-<Exercise title="演習7（UIパターン：もっと見る / 閉じる）">
+<Exercise title="演習6（UIパターン：もっと見る / 閉じる）">
 
 要件:
 
@@ -452,7 +373,7 @@ resetBtnYoso.addEventListener("click", function () {
 
 目安: 20 分
 
-<CodePreview sourceId="review-ex7-starter">
+<CodePreview sourceId="review-ex6-starter">
 ```html
 <div class="card">
   <h3>商品説明</h3>
@@ -485,7 +406,7 @@ let moreTextYoso = document.querySelector(".moreText");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex7-solution">
+<CodePreview sourceId="review-ex6-solution">
 ```html
 <div class="card">
   <h3>商品説明</h3>
@@ -518,10 +439,9 @@ toggleBtnYoso.addEventListener("click", function () {
 
   if (isOpenNow === true) {
     toggleBtnYoso.innerText = "閉じる";
-    return;
+  } else {
+    toggleBtnYoso.innerText = "もっと見る";
   }
-
-  toggleBtnYoso.innerText = "もっと見る";
 });
 ```
 </CodePreview>
@@ -530,7 +450,7 @@ toggleBtnYoso.addEventListener("click", function () {
 
 ---
 
-<Exercise title="演習8（タブ切り替え：querySelectorAll + ループ）">
+<Exercise title="演習7（タブ切り替え：querySelectorAll + ループ）">
 
 要件:
 
@@ -540,7 +460,7 @@ toggleBtnYoso.addEventListener("click", function () {
 
 目安: 25 分
 
-<CodePreview sourceId="review-ex8-starter">
+<CodePreview sourceId="review-ex7-starter">
 ```html
 <div class="tabs">
   <div class="tabButtons">
@@ -583,7 +503,7 @@ let tabPanelYosos = document.querySelectorAll(".tabPanel");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex8-solution">
+<CodePreview sourceId="review-ex7-solution">
 ```html
 <div class="tabs">
   <div class="tabButtons">
