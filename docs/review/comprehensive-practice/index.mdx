@@ -1,0 +1,831 @@
+---
+title: 総復習
+sidebar_label: 総復習
+---
+
+import Exercise, { Solution } from "@metyatech/exercise/client";
+import { CodePreview } from "@metyatech/code-preview";
+
+## 今日の学習はこんなところで使うよ
+
+このページは、これまで学んだ内容（基礎 + UI コンポーネント）をまとめて練習するための総復習ページです。
+上から順に解きながら、「要素の取得」→「イベント」→「状態の管理」→「表示の更新」という流れを復習しましょう。
+
+---
+
+<Exercise title="演習1（クリックで1回だけテキスト変更：ガード節）">
+
+要件:
+
+- `開始` ボタンをクリックすると、テキストが「待機」→「実行中」に変わる
+- **2 回目以降**にクリックしても、テキストは変わらない（1 回だけ反応）
+
+目安: 5 分
+
+<CodePreview sourceId="review-ex1-starter">
+```html
+<button id="startBtn">開始</button>
+<p id="statusText">待機</p>
+```
+
+```css
+body {
+  font-family: system-ui, sans-serif;
+}
+
+#statusText {
+  font-weight: bold;
+}
+```
+
+```js
+let startBtnYoso = document.querySelector("#startBtn");
+let statusTextYoso = document.querySelector("#statusText");
+
+// TODO: 1回だけ反応するように実装する
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex1-solution">
+```html
+<button id="startBtn">開始</button>
+<p id="statusText">待機</p>
+```
+
+```css
+body {
+  font-family: system-ui, sans-serif;
+}
+
+#statusText {
+  font-weight: bold;
+}
+```
+
+```js
+let startBtnYoso = document.querySelector("#startBtn");
+let statusTextYoso = document.querySelector("#statusText");
+
+let isStarted = false;
+
+startBtnYoso.addEventListener("click", function () {
+  if (isStarted === true) {
+    return;
+  }
+
+  isStarted = true;
+  statusTextYoso.innerText = "実行中";
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習2（カウンター：最小/最大を守る）">
+
+要件:
+
+- `+` を押すと数値が 1 増える
+- `-` を押すと数値が 1 減る
+- 数値は **0〜10 の範囲**から出ない
+
+目安: 10 分
+
+<CodePreview sourceId="review-ex2-starter">
+```html
+<div class="counter">
+  <button id="minusBtn">-</button>
+  <span id="countText">0</span>
+  <button id="plusBtn">+</button>
+</div>
+```
+
+```css
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: system-ui, sans-serif;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+#countText {
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+```
+
+```js
+let minusBtnYoso = document.querySelector("#minusBtn");
+let plusBtnYoso = document.querySelector("#plusBtn");
+let countTextYoso = document.querySelector("#countText");
+
+let count = 0;
+
+// TODO: 0〜10 の範囲で count を増減して表示を更新する
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex2-solution">
+```html
+<div class="counter">
+  <button id="minusBtn">-</button>
+  <span id="countText">0</span>
+  <button id="plusBtn">+</button>
+</div>
+```
+
+```css
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: system-ui, sans-serif;
+}
+
+button {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+}
+
+#countText {
+  width: 30px;
+  text-align: center;
+  font-weight: bold;
+}
+```
+
+```js
+let minusBtnYoso = document.querySelector("#minusBtn");
+let plusBtnYoso = document.querySelector("#plusBtn");
+let countTextYoso = document.querySelector("#countText");
+
+let count = 0;
+
+function updateCountText() {
+  countTextYoso.innerText = String(count);
+}
+
+minusBtnYoso.addEventListener("click", function () {
+  if (count <= 0) {
+    return;
+  }
+
+  count = count - 1;
+  updateCountText();
+});
+
+plusBtnYoso.addEventListener("click", function () {
+  if (count >= 10) {
+    return;
+  }
+
+  count = count + 1;
+  updateCountText();
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習3（表示/非表示：classList.toggle で切り替える）">
+
+要件:
+
+- 見出しをクリックすると、答えの表示/非表示が切り替わる
+- 切り替えは **クラスの付け外し**で行う（CSS の表示/非表示を JavaScript から直接いじらない）
+
+目安: 10 分
+
+<CodePreview sourceId="review-ex3-starter">
+```html
+<h3 class="questionTitle">質問</h3>
+<div class="answerBox">答え</div>
+```
+
+```css
+.answerBox {
+  display: none;
+  margin-top: 8px;
+  padding: 10px;
+  border: solid #ccc 1px;
+}
+
+.answerBox.isOpen {
+  display: block;
+}
+```
+
+```js
+let questionTitleYoso = document.querySelector(".questionTitle");
+let answerBoxYoso = document.querySelector(".answerBox");
+
+// TODO: クリックで isOpen を付け外しする
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex3-solution">
+```html
+<h3 class="questionTitle">質問</h3>
+<div class="answerBox">答え</div>
+```
+
+```css
+.answerBox {
+  display: none;
+  margin-top: 8px;
+  padding: 10px;
+  border: solid #ccc 1px;
+}
+
+.answerBox.isOpen {
+  display: block;
+}
+```
+
+```js
+let questionTitleYoso = document.querySelector(".questionTitle");
+let answerBoxYoso = document.querySelector(".answerBox");
+
+questionTitleYoso.addEventListener("click", function () {
+  answerBoxYoso.classList.toggle("isOpen");
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習4（関数 + return：表示文字を作る）">
+
+要件:
+
+- `合計を表示` ボタンを押すと、配列の合計を計算して表示する
+- 計算は `calcTotal` 関数の中で行い、**合計値を return** する
+
+目安: 10〜15 分
+
+<CodePreview sourceId="review-ex4-starter">
+```html
+<button id="calcBtn">合計を表示</button>
+<p id="resultText">まだ計算していません</p>
+```
+
+```js
+let calcBtnYoso = document.querySelector("#calcBtn");
+let resultTextYoso = document.querySelector("#resultText");
+
+let prices = [120, 300, 250, 80];
+
+function calcTotal(numbers) {
+  // TODO: numbers の合計を計算して return する
+}
+
+calcBtnYoso.addEventListener("click", function () {
+  // TODO: calcTotal の戻り値を使って表示する
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex4-solution">
+```html
+<button id="calcBtn">合計を表示</button>
+<p id="resultText">まだ計算していません</p>
+```
+
+```js
+let calcBtnYoso = document.querySelector("#calcBtn");
+let resultTextYoso = document.querySelector("#resultText");
+
+let prices = [120, 300, 250, 80];
+
+function calcTotal(numbers) {
+  let total = 0;
+
+  for (let value of numbers) {
+    total = total + value;
+  }
+
+  return total;
+}
+
+calcBtnYoso.addEventListener("click", function () {
+  let totalPrice = calcTotal(prices);
+  resultTextYoso.innerText = "合計: " + totalPrice + "円";
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習5（オブジェクト：状態をまとめて管理する）">
+
+要件:
+
+- `+10pt` を押すとポイントが 10 増える
+- `リセット` を押すとポイントが 0 に戻る
+- 状態はオブジェクト（例: `player.point`）で管理する
+
+目安: 15 分
+
+<CodePreview sourceId="review-ex5-starter">
+```html
+<div class="box">
+  <button id="addBtn">+10pt</button>
+  <button id="resetBtn">リセット</button>
+  <p id="playerText">プレイヤー: - / ポイント: 0</p>
+</div>
+```
+
+```css
+.box {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  gap: 10px;
+  max-width: 320px;
+}
+```
+
+```js
+let addBtnYoso = document.querySelector("#addBtn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let playerTextYoso = document.querySelector("#playerText");
+
+let player = {
+  name: "Sato",
+  point: 0,
+};
+
+function renderPlayer() {
+  // TODO: player の内容を playerTextYoso に表示する
+}
+
+// TODO: クリックで player.point を更新して renderPlayer を呼ぶ
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex5-solution">
+```html
+<div class="box">
+  <button id="addBtn">+10pt</button>
+  <button id="resetBtn">リセット</button>
+  <p id="playerText">プレイヤー: - / ポイント: 0</p>
+</div>
+```
+
+```css
+.box {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  gap: 10px;
+  max-width: 320px;
+}
+```
+
+```js
+let addBtnYoso = document.querySelector("#addBtn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let playerTextYoso = document.querySelector("#playerText");
+
+let player = {
+  name: "Sato",
+  point: 0,
+};
+
+function renderPlayer() {
+  playerTextYoso.innerText =
+    "プレイヤー: " + player.name + " / ポイント: " + player.point;
+}
+
+renderPlayer();
+
+addBtnYoso.addEventListener("click", function () {
+  player.point = player.point + 10;
+  renderPlayer();
+});
+
+resetBtnYoso.addEventListener("click", function () {
+  player.point = 0;
+  renderPlayer();
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習6（配列メソッド：map / filter で表示を切り替える）">
+
+要件:
+
+- `2倍` を押すと、配列の数値を 2 倍した配列を作って表示する（`map`）
+- `60以上` を押すと、60 以上だけを残した配列を作って表示する（`filter`）
+- `元に戻す` を押すと、最初の配列に戻す
+
+目安: 15〜20 分
+
+<CodePreview sourceId="review-ex6-starter">
+```html
+<div class="box">
+  <div class="buttons">
+    <button id="doubleBtn">2倍</button>
+    <button id="passBtn">60以上</button>
+    <button id="resetBtn">元に戻す</button>
+  </div>
+  <p id="listText">-</p>
+</div>
+```
+
+```css
+.box {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#listText {
+  padding: 10px;
+  border: solid #ccc 1px;
+  border-radius: 6px;
+}
+```
+
+```js
+let doubleBtnYoso = document.querySelector("#doubleBtn");
+let passBtnYoso = document.querySelector("#passBtn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let listTextYoso = document.querySelector("#listText");
+
+let originalScores = [25, 60, 73, 49, 90];
+let currentScores = originalScores;
+
+function renderScores(scores) {
+  // TODO: scores を「25, 60, ...」の形で表示する
+}
+
+// TODO: ボタンごとに map / filter / リセット を実装する
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex6-solution">
+```html
+<div class="box">
+  <div class="buttons">
+    <button id="doubleBtn">2倍</button>
+    <button id="passBtn">60以上</button>
+    <button id="resetBtn">元に戻す</button>
+  </div>
+  <p id="listText">-</p>
+</div>
+```
+
+```css
+.box {
+  font-family: system-ui, sans-serif;
+  display: grid;
+  gap: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+#listText {
+  padding: 10px;
+  border: solid #ccc 1px;
+  border-radius: 6px;
+}
+```
+
+```js
+let doubleBtnYoso = document.querySelector("#doubleBtn");
+let passBtnYoso = document.querySelector("#passBtn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let listTextYoso = document.querySelector("#listText");
+
+let originalScores = [25, 60, 73, 49, 90];
+let currentScores = originalScores;
+
+function renderScores(scores) {
+  listTextYoso.innerText = scores.join(", ");
+}
+
+renderScores(currentScores);
+
+doubleBtnYoso.addEventListener("click", function () {
+  currentScores = currentScores.map(function (value) {
+    return value * 2;
+  });
+
+  renderScores(currentScores);
+});
+
+passBtnYoso.addEventListener("click", function () {
+  currentScores = currentScores.filter(function (value) {
+    return value >= 60;
+  });
+
+  renderScores(currentScores);
+});
+
+resetBtnYoso.addEventListener("click", function () {
+  currentScores = originalScores;
+  renderScores(currentScores);
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習7（UIパターン：もっと見る / 閉じる）">
+
+要件:
+
+- 最初は文章を短く表示する（高さ制限 + はみ出しは隠す）
+- `もっと見る` を押すと全文が見える
+- もう一度押すと `閉じる` になり、短い表示に戻る
+
+目安: 20 分
+
+<CodePreview sourceId="review-ex7-starter">
+```html
+<div class="card">
+  <h3>商品説明</h3>
+  <p class="moreText">
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+  </p>
+  <button id="toggleBtn">もっと見る</button>
+</div>
+```
+
+```css
+.card {
+  font-family: system-ui, sans-serif;
+  border: solid #ddd 1px;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 520px;
+}
+
+.moreText {
+  max-height: 48px;
+  overflow: hidden;
+  transition: max-height 0.2s;
+}
+
+.moreText.isOpen {
+  max-height: 200px;
+}
+```
+
+```js
+let toggleBtnYoso = document.querySelector("#toggleBtn");
+let moreTextYoso = document.querySelector(".moreText");
+
+// TODO: クリックで isOpen を切り替え、ボタン文字も切り替える
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex7-solution">
+```html
+<div class="card">
+  <h3>商品説明</h3>
+  <p class="moreText">
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+  </p>
+  <button id="toggleBtn">もっと見る</button>
+</div>
+```
+
+```css
+.card {
+  font-family: system-ui, sans-serif;
+  border: solid #ddd 1px;
+  border-radius: 8px;
+  padding: 12px;
+  max-width: 520px;
+}
+
+.moreText {
+  max-height: 48px;
+  overflow: hidden;
+  transition: max-height 0.2s;
+}
+
+.moreText.isOpen {
+  max-height: 200px;
+}
+```
+
+```js
+let toggleBtnYoso = document.querySelector("#toggleBtn");
+let moreTextYoso = document.querySelector(".moreText");
+
+toggleBtnYoso.addEventListener("click", function () {
+  let isOpenNow = moreTextYoso.classList.toggle("isOpen");
+
+  if (isOpenNow === true) {
+    toggleBtnYoso.innerText = "閉じる";
+    return;
+  }
+
+  toggleBtnYoso.innerText = "もっと見る";
+});
+```
+</CodePreview>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習8（タブ切り替え：querySelectorAll + ループ）">
+
+要件:
+
+- タブをクリックすると、対応するパネルだけが表示される
+- 「選ばれているタブ」には `isActive` クラスを付ける
+- `querySelectorAll` とループで、複数要素をまとめて扱う
+
+目安: 25 分
+
+<CodePreview sourceId="review-ex8-starter">
+```html
+<div class="tabs">
+  <div class="tabButtons">
+    <button class="tabBtn isActive">概要</button>
+    <button class="tabBtn">仕様</button>
+    <button class="tabBtn">注意</button>
+  </div>
+
+  <div class="tabPanels">
+    <div class="tabPanel isActive">概要の内容</div>
+    <div class="tabPanel">仕様の内容</div>
+    <div class="tabPanel">注意の内容</div>
+  </div>
+</div>
+```
+
+```css
+.tabs {
+  font-family: system-ui, sans-serif;
+  max-width: 520px;
+}
+
+.tabButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tabBtn {
+  padding: 8px 12px;
+  border: solid #ccc 1px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.tabBtn.isActive {
+  border-color: #333;
+  font-weight: bold;
+}
+
+.tabPanel {
+  display: none;
+  padding: 12px;
+  border: solid #ccc 1px;
+  border-radius: 6px;
+}
+
+.tabPanel.isActive {
+  display: block;
+}
+```
+
+```js
+let tabBtnYosos = document.querySelectorAll(".tabBtn");
+let tabPanelYosos = document.querySelectorAll(".tabPanel");
+
+// TODO:
+// - どのタブをクリックしたかを判定する
+// - 全てのタブ/パネルから isActive を外す
+// - 対応するタブ/パネルだけ isActive を付ける
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex8-solution">
+```html
+<div class="tabs">
+  <div class="tabButtons">
+    <button class="tabBtn isActive">概要</button>
+    <button class="tabBtn">仕様</button>
+    <button class="tabBtn">注意</button>
+  </div>
+
+  <div class="tabPanels">
+    <div class="tabPanel isActive">概要の内容</div>
+    <div class="tabPanel">仕様の内容</div>
+    <div class="tabPanel">注意の内容</div>
+  </div>
+</div>
+```
+
+```css
+.tabs {
+  font-family: system-ui, sans-serif;
+  max-width: 520px;
+}
+
+.tabButtons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tabBtn {
+  padding: 8px 12px;
+  border: solid #ccc 1px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.tabBtn.isActive {
+  border-color: #333;
+  font-weight: bold;
+}
+
+.tabPanel {
+  display: none;
+  padding: 12px;
+  border: solid #ccc 1px;
+  border-radius: 6px;
+}
+
+.tabPanel.isActive {
+  display: block;
+}
+```
+
+```js
+let tabBtnYosos = document.querySelectorAll(".tabBtn");
+let tabPanelYosos = document.querySelectorAll(".tabPanel");
+
+let index = 0;
+
+for (let tabBtnYoso of tabBtnYosos) {
+  let myIndex = index;
+  index = index + 1;
+
+  tabBtnYoso.addEventListener("click", function () {
+    for (let btn of tabBtnYosos) {
+      btn.classList.remove("isActive");
+    }
+
+    for (let panel of tabPanelYosos) {
+      panel.classList.remove("isActive");
+    }
+
+    tabBtnYoso.classList.add("isActive");
+    tabPanelYosos[myIndex].classList.add("isActive");
+  });
+}
+```
+</CodePreview>
+</Solution>
+</Exercise>

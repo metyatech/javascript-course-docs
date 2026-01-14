@@ -44,6 +44,7 @@ const sidebars: SidebarsConfig = {
         'ui-components/show-more/index',
       ],
     },
+    'review/comprehensive-practice/index',
   ],
 };
 
