@@ -20,24 +20,15 @@ import { CodePreview } from "@metyatech/code-preview";
 - `開始` ボタンをクリックすると、テキストが「待機」→「実行中」に変わる
 - **2 回目以降**にクリックしても、テキストは変わらない（1 回だけ反応）
 
-目安: 5 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex1-starter">
-```html
-<button id="startBtn">開始</button>
-<p id="statusText">待機</p>
-```
-
-```js
-let startBtnYoso = document.querySelector("#startBtn");
-let statusTextYoso = document.querySelector("#statusText");
-
-// TODO: 1回だけ反応するように実装する
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex1-solution">
+<CodePreview
+  sourceId="review-ex1-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <button id="startBtn">開始</button>
 <p id="statusText">待機</p>
@@ -57,6 +48,25 @@ startBtnYoso.addEventListener("click", function () {
 });
 ```
 </CodePreview>
+
+目安: 5 分
+
+<CodePreview sourceId="review-ex1-starter">
+```html
+<button id="startBtn">開始</button>
+<p id="statusText">待機</p>
+```
+
+```js
+let startBtnYoso = document.querySelector("#startBtn");
+let statusTextYoso = document.querySelector("#statusText");
+
+// TODO: 1回だけ反応するように実装する
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex1-preview" />
 </Solution>
 </Exercise>
 
@@ -70,30 +80,15 @@ startBtnYoso.addEventListener("click", function () {
 - `-` を押すと数値が 1 減る
 - 数値は **0〜10 の範囲**から出ない
 
-目安: 10 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex2-starter">
-```html
-<div class="counter">
-  <button id="minusBtn">-</button>
-  <span id="countText">0</span>
-  <button id="plusBtn">+</button>
-</div>
-```
-
-```js
-let minusBtnYoso = document.querySelector("#minusBtn");
-let plusBtnYoso = document.querySelector("#plusBtn");
-let countTextYoso = document.querySelector("#countText");
-
-let count = 0;
-
-// TODO: 0〜10 の範囲で count を増減して表示を更新する
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex2-solution">
+<CodePreview
+  sourceId="review-ex2-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <div class="counter">
   <button id="minusBtn">-</button>
@@ -128,6 +123,31 @@ plusBtnYoso.addEventListener("click", function () {
 });
 ```
 </CodePreview>
+
+目安: 10 分
+
+<CodePreview sourceId="review-ex2-starter">
+```html
+<div class="counter">
+  <button id="minusBtn">-</button>
+  <span id="countText">0</span>
+  <button id="plusBtn">+</button>
+</div>
+```
+
+```js
+let minusBtnYoso = document.querySelector("#minusBtn");
+let plusBtnYoso = document.querySelector("#plusBtn");
+let countTextYoso = document.querySelector("#countText");
+
+let count = 0;
+
+// TODO: 0〜10 の範囲で count を増減して表示を更新する
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex2-preview" />
 </Solution>
 </Exercise>
 
@@ -139,6 +159,40 @@ plusBtnYoso.addEventListener("click", function () {
 
 - 見出しをクリックすると、答えの表示/非表示が切り替わる
 - 切り替えは **クラスの付け外し**で行う（CSS の表示/非表示を JavaScript から直接いじらない）
+
+動作プレビュー:
+
+<CodePreview
+  sourceId="review-ex3-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<h3 class="questionTitle">質問</h3>
+<div class="answerBox">答え</div>
+```
+
+```css
+.answerBox {
+  display: none;
+}
+
+.answerBox.isOpen {
+  display: block;
+}
+```
+
+```js
+let questionTitleYoso = document.querySelector(".questionTitle");
+let answerBoxYoso = document.querySelector(".answerBox");
+
+questionTitleYoso.addEventListener("click", function () {
+  answerBoxYoso.classList.toggle("isOpen");
+});
+```
+</CodePreview>
 
 目安: 10 分
 
@@ -167,31 +221,7 @@ let answerBoxYoso = document.querySelector(".answerBox");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex3-solution">
-```html
-<h3 class="questionTitle">質問</h3>
-<div class="answerBox">答え</div>
-```
-
-```css
-.answerBox {
-  display: none;
-}
-
-.answerBox.isOpen {
-  display: block;
-}
-```
-
-```js
-let questionTitleYoso = document.querySelector(".questionTitle");
-let answerBoxYoso = document.querySelector(".answerBox");
-
-questionTitleYoso.addEventListener("click", function () {
-  answerBoxYoso.classList.toggle("isOpen");
-});
-```
-</CodePreview>
+<CodePreview sourceId="review-ex3-preview" />
 </Solution>
 </Exercise>
 
@@ -206,38 +236,15 @@ questionTitleYoso.addEventListener("click", function () {
 - `リセット` を押すと、合計が 0 に戻る
 - 合計の更新は、引数ありの関数（例: `addAmount(100)`）を使って実装する
 
-目安: 10 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex4-starter">
-```html
-<button id="add100Btn">+100円</button>
-<button id="add500Btn">+500円</button>
-<button id="resetBtn">リセット</button>
-<p id="totalText">合計: 0円</p>
-```
-
-```js
-let add100BtnYoso = document.querySelector("#add100Btn");
-let add500BtnYoso = document.querySelector("#add500Btn");
-let resetBtnYoso = document.querySelector("#resetBtn");
-let totalTextYoso = document.querySelector("#totalText");
-
-let total = 0;
-
-function renderTotal() {
-  // TODO: total の値を表示する
-}
-
-function addAmount(amount) {
-  // TODO: total を amount 分増やして renderTotal を呼ぶ
-}
-
-// TODO: それぞれのボタンで addAmount を呼ぶ / リセットする
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex4-solution">
+<CodePreview
+  sourceId="review-ex4-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <button id="add100Btn">+100円</button>
 <button id="add500Btn">+500円</button>
@@ -278,6 +285,39 @@ resetBtnYoso.addEventListener("click", function () {
 });
 ```
 </CodePreview>
+
+目安: 10 分
+
+<CodePreview sourceId="review-ex4-starter">
+```html
+<button id="add100Btn">+100円</button>
+<button id="add500Btn">+500円</button>
+<button id="resetBtn">リセット</button>
+<p id="totalText">合計: 0円</p>
+```
+
+```js
+let add100BtnYoso = document.querySelector("#add100Btn");
+let add500BtnYoso = document.querySelector("#add500Btn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let totalTextYoso = document.querySelector("#totalText");
+
+let total = 0;
+
+function renderTotal() {
+  // TODO: total の値を表示する
+}
+
+function addAmount(amount) {
+  // TODO: total を amount 分増やして renderTotal を呼ぶ
+}
+
+// TODO: それぞれのボタンで addAmount を呼ぶ / リセットする
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex4-preview" />
 </Solution>
 </Exercise>
 
@@ -291,37 +331,15 @@ resetBtnYoso.addEventListener("click", function () {
 - `リセット` を押すとポイントが 0 に戻る
 - 状態はオブジェクト（例: `player.point`）で管理する
 
-目安: 15 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex5-starter">
-```html
-<div class="box">
-  <button id="addBtn">+10pt</button>
-  <button id="resetBtn">リセット</button>
-  <p id="playerText">プレイヤー: - / ポイント: 0</p>
-</div>
-```
-
-```js
-let addBtnYoso = document.querySelector("#addBtn");
-let resetBtnYoso = document.querySelector("#resetBtn");
-let playerTextYoso = document.querySelector("#playerText");
-
-let player = {
-  name: "Sato",
-  point: 0,
-};
-
-function renderPlayer() {
-  // TODO: player の内容を playerTextYoso に表示する
-}
-
-// TODO: クリックで player.point を更新して renderPlayer を呼ぶ
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex5-solution">
+<CodePreview
+  sourceId="review-ex5-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <div class="box">
   <button id="addBtn">+10pt</button>
@@ -358,6 +376,38 @@ resetBtnYoso.addEventListener("click", function () {
 });
 ```
 </CodePreview>
+
+目安: 15 分
+
+<CodePreview sourceId="review-ex5-starter">
+```html
+<div class="box">
+  <button id="addBtn">+10pt</button>
+  <button id="resetBtn">リセット</button>
+  <p id="playerText">プレイヤー: - / ポイント: 0</p>
+</div>
+```
+
+```js
+let addBtnYoso = document.querySelector("#addBtn");
+let resetBtnYoso = document.querySelector("#resetBtn");
+let playerTextYoso = document.querySelector("#playerText");
+
+let player = {
+  name: "Sato",
+  point: 0,
+};
+
+function renderPlayer() {
+  // TODO: player の内容を playerTextYoso に表示する
+}
+
+// TODO: クリックで player.point を更新して renderPlayer を呼ぶ
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex5-preview" />
 </Solution>
 </Exercise>
 
@@ -371,42 +421,15 @@ resetBtnYoso.addEventListener("click", function () {
 - `もっと見る` を押すと全文が見える
 - もう一度押すと `閉じる` になり、短い表示に戻る
 
-目安: 20 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex6-starter">
-```html
-<div class="card">
-  <h3>商品説明</h3>
-  <p class="moreText">
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-  </p>
-  <button id="toggleBtn">もっと見る</button>
-</div>
-```
-
-```css
-.moreText {
-  max-height: 3.2em;
-  overflow: hidden;
-}
-
-.moreText.isOpen {
-  max-height: none;
-}
-```
-
-```js
-let toggleBtnYoso = document.querySelector("#toggleBtn");
-let moreTextYoso = document.querySelector(".moreText");
-
-// TODO: クリックで isOpen を切り替え、ボタン文字も切り替える
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex6-solution">
+<CodePreview
+  sourceId="review-ex6-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <div class="card">
   <h3>商品説明</h3>
@@ -445,6 +468,43 @@ toggleBtnYoso.addEventListener("click", function () {
 });
 ```
 </CodePreview>
+
+目安: 20 分
+
+<CodePreview sourceId="review-ex6-starter">
+```html
+<div class="card">
+  <h3>商品説明</h3>
+  <p class="moreText">
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+  </p>
+  <button id="toggleBtn">もっと見る</button>
+</div>
+```
+
+```css
+.moreText {
+  max-height: 3.2em;
+  overflow: hidden;
+}
+
+.moreText.isOpen {
+  max-height: none;
+}
+```
+
+```js
+let toggleBtnYoso = document.querySelector("#toggleBtn");
+let moreTextYoso = document.querySelector(".moreText");
+
+// TODO: クリックで isOpen を切り替え、ボタン文字も切り替える
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex6-preview" />
 </Solution>
 </Exercise>
 
@@ -458,52 +518,15 @@ toggleBtnYoso.addEventListener("click", function () {
 - 「選ばれているタブ」には `isActive` クラスを付ける
 - `querySelectorAll` とループで、複数要素をまとめて扱う
 
-目安: 25 分
+動作プレビュー:
 
-<CodePreview sourceId="review-ex7-starter">
-```html
-<div class="tabs">
-  <div class="tabButtons">
-    <button class="tabBtn isActive">概要</button>
-    <button class="tabBtn">仕様</button>
-    <button class="tabBtn">注意</button>
-  </div>
-
-  <div class="tabPanels">
-    <div class="tabPanel isActive">概要の内容</div>
-    <div class="tabPanel">仕様の内容</div>
-    <div class="tabPanel">注意の内容</div>
-  </div>
-</div>
-```
-
-```css
-.tabBtn.isActive {
-  font-weight: bold;
-}
-
-.tabPanel {
-  display: none;
-}
-
-.tabPanel.isActive {
-  display: block;
-}
-```
-
-```js
-let tabBtnYosos = document.querySelectorAll(".tabBtn");
-let tabPanelYosos = document.querySelectorAll(".tabPanel");
-
-// TODO:
-// - どのタブをクリックしたかを判定する
-// - 全てのタブ/パネルから isActive を外す
-// - 対応するタブ/パネルだけ isActive を付ける
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="review-ex7-solution">
+<CodePreview
+  sourceId="review-ex7-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
 ```html
 <div class="tabs">
   <div class="tabButtons">
@@ -559,5 +582,52 @@ for (let tabBtnYoso of tabBtnYosos) {
 }
 ```
 </CodePreview>
+
+目安: 25 分
+
+<CodePreview sourceId="review-ex7-starter">
+```html
+<div class="tabs">
+  <div class="tabButtons">
+    <button class="tabBtn isActive">概要</button>
+    <button class="tabBtn">仕様</button>
+    <button class="tabBtn">注意</button>
+  </div>
+
+  <div class="tabPanels">
+    <div class="tabPanel isActive">概要の内容</div>
+    <div class="tabPanel">仕様の内容</div>
+    <div class="tabPanel">注意の内容</div>
+  </div>
+</div>
+```
+
+```css
+.tabBtn.isActive {
+  font-weight: bold;
+}
+
+.tabPanel {
+  display: none;
+}
+
+.tabPanel.isActive {
+  display: block;
+}
+```
+
+```js
+let tabBtnYosos = document.querySelectorAll(".tabBtn");
+let tabPanelYosos = document.querySelectorAll(".tabPanel");
+
+// TODO:
+// - どのタブをクリックしたかを判定する
+// - 全てのタブ/パネルから isActive を外す
+// - 対応するタブ/パネルだけ isActive を付ける
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="review-ex7-preview" />
 </Solution>
 </Exercise>
