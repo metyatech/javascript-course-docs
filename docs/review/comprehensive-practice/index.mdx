@@ -24,7 +24,7 @@ import { CodePreview } from "@metyatech/code-preview";
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex1-preview"
+  sourceId="ex1"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -55,12 +55,7 @@ submitBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex1-starter">
-```html
-<button id="submitBtn">申請</button>
-<p id="stateText">未提出</p>
-```
-
+<CodePreview sourceId="ex1" share={false}>
 ```js
 let submitBtnYoso = document.querySelector("#submitBtn");
 let stateTextYoso = document.querySelector("#stateText");
@@ -70,7 +65,7 @@ let stateTextYoso = document.querySelector("#stateText");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex1-preview" />
+<CodePreview sourceId="ex1" />
 - まず `querySelector` でボタンとテキストを取得します。
 - クリック時に `innerText` を更新し、ボタンの文字も同時に更新します。
 </Solution>
@@ -89,7 +84,7 @@ let stateTextYoso = document.querySelector("#stateText");
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex2-preview"
+  sourceId="ex2"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -148,15 +143,7 @@ plusBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex2-starter">
-```html
-<div class="counter">
-  <button id="minusBtn">-</button>
-  <span id="countText">0</span>
-  <button id="plusBtn">+</button>
-</div>
-```
-
+<CodePreview sourceId="ex2" share={false}>
 ```js
 let minusBtnYoso = document.querySelector("#minusBtn");
 let plusBtnYoso = document.querySelector("#plusBtn");
@@ -169,7 +156,7 @@ let count = 0;
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex2-preview" />
+<CodePreview sourceId="ex2" />
 - `count` を「現在の数」として変数で持ちます。
 - 表示更新は `updateCountText()` にまとめ、数が変わったら毎回呼びます。
 - `if` で 0 未満・10 超えにならないようにしてから更新します。
@@ -188,7 +175,7 @@ let count = 0;
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex3-preview"
+  sourceId="ex3"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -227,22 +214,7 @@ detailBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex3-starter">
-```html
-<button class="detailBtn">詳細を表示</button>
-<div class="detailBox">詳細内容</div>
-```
-
-```css
-.detailBox {
-  display: none;
-}
-
-.detailBox.isVisible {
-  display: block;
-}
-```
-
+<CodePreview sourceId="ex3" share={false}>
 ```js
 let detailBtnYoso = document.querySelector(".detailBtn");
 let detailBoxYoso = document.querySelector(".detailBox");
@@ -252,7 +224,7 @@ let detailBoxYoso = document.querySelector(".detailBox");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex3-preview" />
+<CodePreview sourceId="ex3" />
 - 表示/非表示は CSS のクラス（`isVisible`）で切り替えるようにして、JavaScript はクラスを付け外しするだけにします。
 - クリックイベントの中で `classList.toggle("isVisible")` を呼ぶと、押すたびに表示状態が切り替わります。
 </Solution>
@@ -272,7 +244,7 @@ let detailBoxYoso = document.querySelector(".detailBox");
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex4-preview"
+  sourceId="ex4"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -341,14 +313,7 @@ resetBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex4-starter">
-```html
-<button id="add100Btn">+100円</button>
-<button id="add500Btn">+500円</button>
-<button id="resetBtn">リセット</button>
-<p id="totalText">合計: 0円</p>
-```
-
+<CodePreview sourceId="ex4" share={false}>
 ```js
 let add100BtnYoso = document.querySelector("#add100Btn");
 let add500BtnYoso = document.querySelector("#add500Btn");
@@ -370,7 +335,7 @@ function addAmount(amount) {
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex4-preview" />
+<CodePreview sourceId="ex4" />
 - 合計は `total` に入れておき、画面表示は `renderTotal()` にまとめます。
 - `addAmount(amount)` のように「増やす値」を引数で受け取ると、`+100` と `+500` を同じ処理で書けます。
 - `リセット` は `total = 0` に戻して `renderTotal()` を呼びます。
@@ -390,7 +355,7 @@ function addAmount(amount) {
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex5-preview"
+  sourceId="ex5"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -452,15 +417,7 @@ resetBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex5-starter">
-```html
-<div class="box">
-  <button id="addBtn">+10pt</button>
-  <button id="resetBtn">リセット</button>
-  <p id="playerText">プレイヤー: - / ポイント: 0</p>
-</div>
-```
-
+<CodePreview sourceId="ex5" share={false}>
 ```js
 let addBtnYoso = document.querySelector("#addBtn");
 let resetBtnYoso = document.querySelector("#resetBtn");
@@ -480,7 +437,7 @@ function renderPlayer() {
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex5-preview" />
+<CodePreview sourceId="ex5" />
 - `name` と `point` を 1つのオブジェクト（`player`）にまとめると、状態が増えても管理しやすくなります。
 - 表示更新は `renderPlayer()` にまとめ、値を変えたら必ず呼ぶようにします。
 </Solution>
@@ -499,7 +456,7 @@ function renderPlayer() {
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex6-preview"
+  sourceId="ex6"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -557,31 +514,7 @@ toggleBtnYoso.addEventListener("click", function () {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex6-starter">
-```html
-<div class="card">
-  <h3>商品説明</h3>
-  <p class="moreText">
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-  </p>
-  <button id="toggleBtn">もっと見る</button>
-</div>
-```
-
-```css
-.moreText {
-  line-height: 1.2;
-  max-height: 1.8em; /* 1.2 + 1.2の半分 (1行と半分くらい) */
-  overflow: hidden;
-}
-
-.moreText.isOpen {
-  max-height: none;
-}
-```
-
+<CodePreview sourceId="ex6" share={false}>
 ```js
 let toggleBtnYoso = document.querySelector("#toggleBtn");
 let moreTextYoso = document.querySelector(".moreText");
@@ -591,7 +524,7 @@ let moreTextYoso = document.querySelector(".moreText");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex6-preview" />
+<CodePreview sourceId="ex6" />
 - CSS は「短く見せる」と「全部見せる」の 2 状態を、クラス（`isOpen`）で分けています。
 - JavaScript では `classList.contains` で状態を確認し、`add/remove` で切り替えます。
 - 状態に合わせてボタンの文字も切り替えると、ユーザーが次に何を押すか分かりやすくなります。
@@ -611,7 +544,7 @@ let moreTextYoso = document.querySelector(".moreText");
 動作プレビュー:
 
 <CodePreview
-  sourceId="review-ex7-preview"
+  sourceId="ex7"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -680,37 +613,7 @@ for (let i = 0; i < tabBtnYosos.length; i++) {
 
 上記の動作プレビューのように動作するように、JavaScript を実装してください。
 
-<CodePreview sourceId="review-ex7-starter">
-```html
-<div class="tabs">
-  <div class="tabButtons">
-    <button class="tabBtn isActive">概要</button>
-    <button class="tabBtn">仕様</button>
-    <button class="tabBtn">注意</button>
-  </div>
-
-  <div class="tabPanels">
-    <div class="tabPanel isActive">概要の内容</div>
-    <div class="tabPanel">仕様の内容</div>
-    <div class="tabPanel">注意の内容</div>
-  </div>
-</div>
-```
-
-```css
-.tabBtn.isActive {
-  font-weight: bold;
-}
-
-.tabPanel {
-  display: none;
-}
-
-.tabPanel.isActive {
-  display: block;
-}
-```
-
+<CodePreview sourceId="ex7" share={false}>
 ```js
 let tabBtnYosos = document.querySelectorAll(".tabBtn");
 let tabPanelYosos = document.querySelectorAll(".tabPanel");
@@ -723,7 +626,7 @@ let tabPanelYosos = document.querySelectorAll(".tabPanel");
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="review-ex7-preview" />
+<CodePreview sourceId="ex7" />
 - ボタンとパネルは「同じ順番」で並んでいるので、インデックス（`i`）で対応付けできます。
 - クリックされたら、まず全てのタブ/パネルから `isActive` を外します。
 - 最後に、クリックされたインデックスのタブとパネルだけに `isActive` を付けて表示を切り替えます。
