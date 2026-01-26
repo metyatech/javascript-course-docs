@@ -1,12 +1,4 @@
-[submodule "agent-rules"]
-	path = agent-rules
-	url = https://github.com/metyatech/agent-rules.git
-	branch = main
 [submodule "agent-rules-private"]
 	path = agent-rules-private
 	url = https://github.com/metyatech/agent-rules-private.git
-	branch = main
-[submodule "agent-rules-tools"]
-	path = agent-rules-tools
-	url = https://github.com/metyatech/agent-rules-tools.git
 	branch = main
