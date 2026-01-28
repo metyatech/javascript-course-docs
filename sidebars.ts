@@ -45,6 +45,11 @@ const sidebars: SidebarsConfig = {
       ],
     },
     'review/comprehensive-practice/index',
+    {
+      type: 'category',
+      label: '資料',
+      items: ['materials/javascript-basics-supplement/index'],
+    },
   ],
 };
 

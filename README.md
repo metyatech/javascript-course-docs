@@ -46,6 +46,26 @@ npm run build
 
 This generates static content into the `build` directory.
 
+### Lint
+
+```bash
+npm run lint
+```
+
+### E2E Tests (Playwright)
+
+First-time setup (download browsers):
+
+```bash
+npx playwright install chromium
+```
+
+Run the tests:
+
+```bash
+npm run test
+```
+
 ### Deploy
 
 Using SSH:

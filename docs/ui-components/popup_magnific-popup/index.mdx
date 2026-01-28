@@ -4,6 +4,9 @@ title: ポップアップ/ダイアログ/モーダル (Magnific Popup)
 
 import Exercise, { Solution } from "@metyatech/exercise/client";
 import { CodePreview } from "@metyatech/code-preview";
+import christmasChicken from "./img/christmas_chicken.jpg";
+import christmasSnowman from "./img/christmas_snowman.jpg";
+import wholeCake from "./img/whole_cake.jpg";
 
 ## 今日の学習はこんなところで使うよ
 
@@ -88,7 +91,7 @@ $('.open-popup-link').magnificPopup({
   jsVisible={false}
   previewVisible={true}
   images={{
-    "img/christmas_chicken.jpg": require("./img/christmas_chicken.jpg")
+    "img/christmas_chicken.jpg": christmasChicken
   }}
 >
 ```html
@@ -146,7 +149,7 @@ $('.image-link').magnificPopup({
   jsVisible={false}
   previewVisible={true}
   images={{
-    "img/christmas_chicken.jpg": require("./img/christmas_chicken.jpg")
+    "img/christmas_chicken.jpg": christmasChicken
   }}
 >
 ```html
@@ -449,9 +452,9 @@ $('.video-popup').magnificPopup({
   jsVisible={false}
   previewVisible={true}
   images={{
-    "img/christmas_chicken.jpg": require("./img/christmas_chicken.jpg"),
-    "img/christmas_snowman.jpg": require("./img/christmas_snowman.jpg"),
-    "img/whole_cake.jpg": require("./img/whole_cake.jpg")
+    "img/christmas_chicken.jpg": christmasChicken,
+    "img/christmas_snowman.jpg": christmasSnowman,
+    "img/whole_cake.jpg": wholeCake
   }}
 >
 ```html

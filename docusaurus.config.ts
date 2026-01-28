@@ -39,6 +39,22 @@ const authCustomFields = Object.fromEntries(
   authEnvEntries.filter(([, value]) => typeof value === 'string' && value.trim().length > 0),
 );
 
+const commonjsJsModulesPlugin = () => ({
+  name: 'commonjs-js-modules',
+  configureWebpack() {
+    return {
+      module: {
+        rules: [
+          {
+            test: /\.js$/,
+            type: 'javascript/auto',
+          },
+        ],
+      },
+    };
+  },
+});
+
 const config: Config = {
   title: 'JavaScript',
   tagline: 'JavaScriptの基礎から実践まで',
@@ -143,6 +159,7 @@ const config: Config = {
       }
     ],
     '@metyatech/docusaurus-download-assets',
+    commonjsJsModulesPlugin,
   ],
 };
 
