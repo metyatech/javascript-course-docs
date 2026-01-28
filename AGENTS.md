@@ -7,7 +7,7 @@
 - Also provide a short, copy-pasteable command the user can run to view the diff in the same format. Use absolute paths so it works regardless of the current working directory, and scope it to the changed rule files.
 - If a diff is provided, a separate detailed summary is not required. If a diff is not possible, include a detailed summary of what changed (added/removed/modified items).
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/agent-rules-composition.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/agent-rules-composition.md
 
 # AGENTS ルール運用（合成）
 
@@ -44,7 +44,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - 各プロジェクトのルートに `AGENTS.md` を置く。
 - サブツリーに別プロジェクトがある場合のみ、そのルートに `AGENTS.md` を置く（同一プロジェクト内で重複配置しない）。
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/browser-automation.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/browser-automation.md
 
 # Browser automation (Codex)
 
@@ -52,7 +52,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - Prefer the ref-based workflow: `agent-browser open <url>` → `agent-browser snapshot -i --json` → interact using `@eN` refs → re-snapshot after changes.
 - If browser launch fails due to missing Playwright binaries, run `npx playwright install chromium` and retry.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/cli-behavior-standards.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/cli-behavior-standards.md
 
 # CLI behavior standards
 
@@ -65,7 +65,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - Provide controllable logging (`--quiet`, `--verbose`, or `--trace`) so users can diagnose failures without changing code.
 - Use deterministic exit codes (0 success, non-zero failure) and avoid silent fallbacks.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/command-execution.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/command-execution.md
 
 ## コマンド実行
 
@@ -74,7 +74,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - When running git commands that could open an editor, avoid interactive prompts by using `--no-edit` where applicable or setting `GIT_EDITOR=true` for that command.
 - When a user reports a runtime/behavioral issue with a command, reproduce the issue by running the same command (or the closest equivalent) before proposing a fix.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/distribution-and-release.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/distribution-and-release.md
 
 # 配布と公開
 
@@ -107,19 +107,18 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - For npm publishing, ask the user to run `npm publish` instead of executing it directly.
 - Before publishing, run any required prep commands (e.g., `npm install`, `npm test`, `npm pack --dry-run`) and only attempt `npm publish` once the environment is ready. If authentication errors occur, ask the user to complete the publish step.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/implementation-and-coding-standards.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/implementation-and-coding-standards.md
 
 ## 実装・技術選定
 
 - JavaScript ではなく TypeScript を標準とする（`.ts`/`.tsx`）。
 - JavaScript は、ツール都合で必要な設定ファイル等に限定する。
-- 外部依存で汎用的な解決ができる場合は積極的に採用する。内製は外部依存が適切に見つからない場合のみに限定する。
+- Prefer existing, maintained external dependencies for problems they can solve; use them proactively because they are typically better maintained and less bug-prone. Only build in-house when no suitable external option exists.
 - 対象ツール/フレームワークに公式チュートリアルや推奨される標準手法がある場合は、それを第一優先で採用する（明確な理由がある場合を除く）。
 - Use established icon libraries instead of creating custom icons or inline SVGs; do not handcraft new icons.
 - Prefer existing internet-hosted tools/libraries for reusable functionality; if none exist, externalize the shared logic into a separate repository/module and reference it via remote dependency (never local filesystem paths).
 - When building a feature that appears reusable across repositories or generally useful, explicitly assess reuse first: look for existing solutions, and if none fit, propose creating a new repository/module and publishing it with proper maintenance hygiene instead of embedding the logic in a single repo.
 - 「既存に合わせる」よりも「理想的な状態（読みやすさ・保守性・一貫性・安全性）」を優先する。
-- ただし、目的と釣り合わない大改修や無関係な改善はしない。
 - 根本原因を修正できる場合は、場当たり的なフォールバックや回避策を追加しない（ノイズ/負債化するため）。
 - When a bug originates in a dependency you control or can patch, fix the dependency first; only add app-level workarounds as a last resort after documenting why the dependency fix is not feasible.
 - 不明点や判断が分かれる点は、独断で進めず確認する。
@@ -159,14 +158,14 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - CLIのコマンド例には、必須パラメーターを必ず含める。
 - ドキュメントの例には、ユーザー固有のローカルパスや個人情報に該当する値を含めない（例: `D:\\ghws\\...` など）。
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/json-schema-validation.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/json-schema-validation.md
 
 # JSON schema validation
 
 - When defining or changing a JSON configuration specification, always create or update a JSON Schema for it.
 - Validate JSON configuration files against the schema as part of the tool's normal execution.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/languages-and-writing.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/languages-and-writing.md
 
 # Languages and writing
 
@@ -179,7 +178,7 @@ Write final responses to the user in Japanese unless the user requests otherwise
 - Unless specified otherwise, write developer-facing documentation (e.g., `README.md`), code comments, and commit messages in English.
 - Write rule modules in English.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/markdown-linking.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/markdown-linking.md
 
 # Markdown Linking Rules
 
@@ -187,7 +186,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - When a Markdown document references another local file, the link must use a
   relative path from the Markdown file.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/multi-repo-workflow.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/multi-repo-workflow.md
 
 # Multi-repo workflow
 
@@ -210,7 +209,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - 変更したリポジトリ内の手元検証を優先する（例: `npm run build`, `npm test`）。
 - 共通モジュール側の変更が利用側に影響しうる場合は、少なくとも1つの利用側リポジトリで動作確認（ビルド等）を行う。
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/publication-standards.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/publication-standards.md
 
 # Publication standards
 
@@ -222,7 +221,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - Always run dependency security checks before release and report results in the final response.
 - When creating or updating LICENSE files, set the copyright holder name to "metyatech".
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/quality-testing-and-errors.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/quality-testing-and-errors.md
 
 # 品質（テスト・検証・エラーハンドリング）
 
@@ -236,9 +235,10 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - 実行方法は各リポジトリが用意しているスクリプト/コマンドを優先する（例: `npm run build`, `npm test`）。
 - Before creating any commit, run the repository's lint, test, and build (or closest equivalents). If any are missing, add them in the same change set; if they cannot be run, state the reason and list the exact commands the user should run.
 - Enforce commit-time automation: set up a pre-commit hook (or repo-native equivalent) so lint/test/build run automatically before any commit; if the repo lacks a hook system, add one in the same change set.
-- For user-visible UI changes, verify in a real browser using agent-browser (capture a screenshot) and report the result; if that is not possible, explain why and provide manual verification steps.
+- For user-visible UI changes, verify in a real browser using agent-browser and report the result; if that is not possible, explain why and provide manual verification steps.
+- Configure test runs to avoid automatically opening a browser window; set headless or no-open options where supported.
 - 静的解析（lint / 型チェック / 静的検証）は必須とし、対象リポジトリに未整備なら同一変更セット内で追加する（必須）。
-- 追加時は既存の外部ツール/ライブラリを優先して採用する。新規依存を追加する場合は候補と影響範囲を提示し、ユーザーへ報告したうえで追加する。
+- Prefer existing, maintained external testing tools/libraries and adopt them proactively when they solve the need; avoid reinventing the wheel. If new dependencies are required, present candidates and impact to the user before adding them.
 - 実行できない場合は、その理由と、ユーザーが実行するコマンドを明記する。
 
 ## テスト
@@ -289,7 +289,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - ログは冗長にしないが、原因特定に必要なコンテキスト（識別子や入力条件）を含める。
 - 秘密情報/個人情報をログに出さない（必要ならマスク/分離する）。
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/readme-standards.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/readme-standards.md
 
 ## Documentation (README)
 
@@ -299,7 +299,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
   - Impact examples: usage/API/behavior, setup steps, dev commands, environment variables, configuration, release/deploy steps, supported versions, breaking changes.
   - Even when a README update is not needed, explain why in the final response (do not skip silently).
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/repository-hygiene-and-file-naming.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/repository-hygiene-and-file-naming.md
 
 # 生成物
 
@@ -313,7 +313,7 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 
 - 命名規則（大文字小文字、略語、区切り方）をリポジトリ内で一貫させ、混在があれば整合するようにリネームする。
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/global/user-identity-and-accounts.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/global/user-identity-and-accounts.md
 
 # User Identity and Accounts
 
@@ -323,14 +323,14 @@ Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b
 - Use the `gh` CLI to verify GitHub details when needed.
 - When publishing, cloning, adding submodules, or splitting repositories, prefer the user's "metyatech" ownership unless explicitly instructed otherwise.
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/domains/node/module-system.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/domains/node/module-system.md
 
 ## Module system (ESM)
 
 - Always set `"type": "module"` in `package.json`.
 - Prefer ESM with `.js` extensions for JavaScript config and scripts (e.g. `next.config.js` as ESM).
 
-Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/cc1329dd6a4b38c90b8e705bc5d440295aa29e2f/rules/domains/node/npm-packages.md
+Source: C:/Users/Origin/.agentsmd/cache/metyatech/agent-rules/6f6de602d1b276bcc80234cb84e0b2f3dd9b9239/rules/domains/node/npm-packages.md
 
 ## Node packages
 
