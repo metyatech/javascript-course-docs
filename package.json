@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
-    "start": "concurrently \"npm run start:docusaurus\" \"npm run server\"",
+    "start": "node scripts/start.mjs",
     "start:docusaurus": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",

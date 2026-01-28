@@ -20,6 +20,24 @@ This starts the Docusaurus dev server and `@metyatech/workspace-launch-server` (
 
 Need only the docs UI? Run `npm run start:docusaurus`. Need only the API? Run `npm run server` (internally executes the `workspace-launch-server` binary).
 
+If port 3000 is busy, pass a different port:
+
+```bash
+npm run start -- --port 3001
+```
+
+You can also set `PORT`:
+
+```bash
+# macOS/Linux
+PORT=3001 npm run start
+
+# Windows PowerShell
+$env:PORT=3001; npm run start
+```
+
+If the requested port is busy, the start script automatically selects the next available port.
+
 ### Build
 
 ```bash
