@@ -2,10 +2,10 @@
   "source": "github:metyatech/agent-rules",
   "domains": [
     "node",
-    "web"
+    "web",
+    "ghws"
   ],
   "extra": [
-    "../agent-rules-local/ghws-workspace.md",
     "agent-rules-private/rules/course-site-content-authoring.md"
   ],
   "output": "AGENTS.md"
