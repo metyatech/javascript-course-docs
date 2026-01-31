@@ -4,5 +4,9 @@
     "node",
     "web"
   ],
+  "extra": [
+    "../agent-rules-local/ghws-workspace.md",
+    "agent-rules-private/rules/course-site-content-authoring.md"
+  ],
   "output": "AGENTS.md"
 }
