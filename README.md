@@ -126,3 +126,7 @@ DOCUSAURUS_MICROSOFT_SCOPES=User.Read
 - If `REDIRECT_URI` and `POST_LOGOUT_REDIRECT_URI` are omitted, the current site URL is used (GitHub Pages: `https://<your-account>.github.io/javascript-course-docs/`).
 - For additional Graph API permissions, set comma-separated scopes in `DOCUSAURUS_MICROSOFT_SCOPES`.
 - For production, create `.env.production.local` and override redirect URIs/scopes as needed.
+
+## Overview
+This repository contains the javascript-course-docs project.
+
