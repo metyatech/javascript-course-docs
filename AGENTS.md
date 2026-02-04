@@ -376,6 +376,14 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/web/web-ui-and-testing.m
 - For cross-system integration flows, add an end-to-end test (or a contract test at the boundary). If impractical, document the limitation and get explicit user approval before skipping.
 - Use established icon libraries; do not handcraft custom icons or inline SVGs.
 
+Source: agent-rules-private/rules/course-site-metadata.md
+
+## 教材サイトのメタデータ/サイドバー
+
+- ページのタイトルは各ページの frontmatter（`title`）で定義し、`_meta.ts` では上書きしない。
+- ページを持たないフォルダ（`index.mdx` がないグルーピング用途）の表示名は、`_meta.ts` で指定する。
+- サイドバーの初期折りたたみは `theme.config.tsx` の `sidebar` 設定（`defaultMenuCollapseLevel` / `autoCollapse`）で制御し、例外が必要な場合のみ `theme.collapsed` を使う。
+
 Source: agent-rules-private/rules/course-site-content-authoring.md
 
 ## 教材サイト（本文・演習）作成ルール
