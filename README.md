@@ -1,12 +1,12 @@
 # javascript-course-docs
 
-JavaScriptコースの **教材コンテンツ専用** リポジトリです。
+Course content repository for the JavaScript course.
 
-このリポジトリ自体は Next.js アプリではありません（サイト実行基盤は別リポジトリ `metyatech/course-docs-site` で共有します）。
+This repo is **content-only** (not a Next.js app). The shared site runtime lives in `metyatech/course-docs-site`.
 
 ## Local preview
 
-`course-docs-site` を使ってプレビューします。
+Use `course-docs-site` and point it at this content repo:
 
 ```sh
 git clone https://github.com/metyatech/course-docs-site.git
@@ -17,27 +17,31 @@ COURSE_CONTENT_REPO=metyatech/javascript-course-docs npm run dev
 
 ## Deploy (Vercel)
 
-このリポジトリへの push をトリガに、Vercel の Deploy Hook を叩きます（`.github/workflows/deploy-vercel.yml`）。
+Deployment is done via GitHub Actions using the Vercel CLI (no Vercel GitHub integration).
+See `.github/workflows/deploy-vercel.yml`.
 
-必要な GitHub Actions secrets:
+Required GitHub Actions secrets:
 
-- `VERCEL_DEPLOY_HOOK_URL`
+- `VERCEL_TOKEN`
+- `VERCEL_ORG_ID`
+- `VERCEL_PROJECT_ID`
 
-## AGENTS.md
+## Project files
 
-This project uses `agent-rules`, `agent-rules-tools`, and `agent-rules-private` as git submodules.
-After cloning, initialize submodules:
+- `content/`: course pages (MDX)
+- `public/`: static files (e.g. `public/img/**`)
+- `site.config.ts`: per-course site configuration consumed by `course-docs-site`
+
+## Agent rules
+
+This repo includes `agent-rules-private` as a git submodule. Initialize it after cloning:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-Update `agent-ruleset.json` as needed and regenerate with:
+Regenerate `AGENTS.md` after editing `agent-ruleset.json`:
 
 ```bash
 compose-agentsmd
 ```
-
-## Overview
-
-This repository contains the `javascript-course-docs` course content.
