@@ -2,8 +2,6 @@ import { fileURLToPath } from 'node:url';
 import nextra from 'nextra';
 import { applyCourseAssetWebpackRules, courseMdxOptions } from '@metyatech/course-docs-platform/next';
 
-const projectRoot = fileURLToPath(new URL('.', import.meta.url));
-
 const withNextra = nextra({
   defaultShowCopyCode: true,
   search: {
@@ -23,6 +21,7 @@ const nextConfig = {
   },
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   webpack: (config, { isServer }) => {
+    const projectRoot = fileURLToPath(new URL('.', import.meta.url));
     return applyCourseAssetWebpackRules(config, { isServer, projectRoot });
   },
 };

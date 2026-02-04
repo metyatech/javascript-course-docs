@@ -1,5 +1,1 @@
-import { redirect } from 'next/navigation';
-
-export default function HomePage() {
-  redirect('/docs/intro');
-}
+export { default } from '@metyatech/course-docs-platform/next-app/home-page';

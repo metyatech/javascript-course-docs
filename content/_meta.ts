@@ -9,7 +9,8 @@ const meta = {
     display: 'hidden',
   },
   docs: '学習',
-  exams: '試験対策',
+  exams: '試験',
+  submissions: '作品',
 };
 
 export default meta;
