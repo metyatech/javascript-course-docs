@@ -3,6 +3,9 @@
 
 # Production
 /build
+/out
+/.next
+/public/_pagefind
 
 # Generated files
 .docusaurus
@@ -18,6 +21,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Playwright
+/playwright-report
+/test-results
+
+# TypeScript incremental
+*.tsbuildinfo
 
 # Workspace Launch runtime artifacts
 .workspace-launch/storage/

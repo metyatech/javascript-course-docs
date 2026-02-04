@@ -41,9 +41,12 @@ Source: github:metyatech/agent-rules@HEAD/rules/global/autonomous-operations.md
 
 - Optimize for minimal human effort; default to automation over manual steps.
 - Drive work from the desired outcome: infer acceptance criteria, choose the shortest safe path, and execute end-to-end.
-- Assume end-to-end autonomy for repository operations (issue triage, PRs, merges, releases, repo admin) unless the user restricts scope.
+- Assume end-to-end autonomy for repository operations (issue triage, PRs, direct pushes to main/master, merges, releases, repo admin) unless the user restricts scope.
+- Do not preserve backward compatibility unless explicitly requested; avoid legacy aliases and compatibility shims by default.
 - When work reveals rule gaps, redundancy, or misplacement, proactively update rule modules/rulesets (including moves/renames) and regenerate AGENTS.md without waiting for explicit user requests.
+- After each task, run a brief retrospective; if you notice avoidable mistakes, missing checks, or recurring back-and-forth, encode the fix as a rule update and regenerate AGENTS.md.
 - When something is unclear, investigate to resolve it; do not proceed with unresolved material uncertainty. If still unclear, ask and include what you checked.
+- Do not proceed based on assumptions or guesses without explicit user approval; hypotheses may be discussed but must not drive action.
 - Ask only blocking questions; for non-material ambiguities, pick the lowest-risk option, state the assumption, and proceed.
 - Make decisions explicit when they affect scope, risk, cost, or irreversibility.
 - Prefer asynchronous, low-friction control channels (GitHub Issues/PR comments) unless a repository mandates another.
@@ -90,20 +93,37 @@ Source: github:metyatech/agent-rules@HEAD/rules/global/quality-testing-and-error
 
 - Quality (correctness, safety, robustness, verifiability) takes priority over speed or convenience.
 
+## Definition of done
+
+- Do not claim "fixed"/"done" unless it is verified by reproducing the issue and/or running the relevant checks.
+- For code changes, treat "relevant checks" as the repo's full lint/typecheck/test/build suite (prefer CI results).
+- Prefer a green baseline: if relevant checks fail before you change anything, report it and get explicit user approval before proceeding.
+- If you cannot reproduce/verify, do not guess a fix; request missing info or create a failing regression test.
+- Always report verification: list the exact commands/steps run and their outcome; if anything is unverified, state why and how to verify.
+
 ## Verification
 
-- Run the smallest relevant set of lint/typecheck/test/build checks using repo-standard commands.
-- Before committing code changes, run lint/test/build; if any are missing, add them in the same change set.
-- Ensure commit-time automation (pre-commit or repo-native) runs lint/test/build for code changes when feasible.
-- If required checks cannot be run, explain why and list the exact commands for the user.
+- Run the repo's full lint/typecheck/test/build checks using repo-standard commands.
+- If you are unsure what constitutes the full suite, run the repo's default verify/CI commands rather than guessing.
+- Before committing code changes, run the full suite; if a relevant check is missing and feasible to add, add it in the same change set.
+- Enforce via CI: run the full suite on pull requests and on pushes to the default branch; if no CI harness exists, add one using repo-standard commands.
+- Configure required status checks on the default branch when you have permission; otherwise report the limitation.
+- Do not rely on smoke-only gating or scheduled-only full runs for correctness; merges must require the full suite.
+- Ensure commit-time automation (pre-commit or repo-native) runs the full suite when feasible.
+- If required checks cannot be run, treat it as an exception: explain why, provide exact commands/steps, and get explicit user approval before proceeding.
+- Never disable checks, weaken assertions, loosen types, or add retries solely to make checks pass.
 
 ## Tests (behavior changes)
 
-- Follow test-first: add/update tests and observe failure before implementing fixes.
+- Follow test-first: add/update tests, observe failure, implement the fix, then observe pass.
+- For bug fixes, add a regression test that fails before the fix at the level where the bug occurs (unit/integration/E2E).
 - Add/update automated tests for behavior changes and regression coverage.
-- Cover success, failure, boundary, invalid input, and key state transitions; include representative concurrency/retry/recovery when relevant.
+- Cover success, failure, boundary, invalid input, and key state transitions (including first-run/cold-start vs subsequent-run behavior when relevant); include representative concurrency/retry/recovery when relevant.
 - Keep tests deterministic; minimize time/random/external I/O; inject when needed.
 - For deterministic output files, use full-content snapshot/golden tests.
+- Prefer making nondeterministic failures reproducible over adding sleeps/retries; do not mask flakiness.
+- For integration boundaries (network/DB/external services/UI flows), add an integration/E2E/contract test that exercises the boundary; avoid unit-only coverage for integration bugs.
+- For non-trivial changes, create a small test matrix (scenarios × inputs × states) and cover the highest-risk combinations; document intentional gaps.
 
 ## Exceptions
 
@@ -115,6 +135,7 @@ Source: github:metyatech/agent-rules@HEAD/rules/global/quality-testing-and-error
 - Error messages must reflect actual state and include relevant input context.
 - Validate config and external inputs at boundaries; fail with actionable guidance.
 - Log minimally but with diagnostic context; never log secrets or personal data.
+- Remove temporary debugging/instrumentation before the final patch.
 
 Source: github:metyatech/agent-rules@HEAD/rules/global/user-identity-and-accounts.md
 
@@ -133,6 +154,7 @@ Source: github:metyatech/agent-rules@HEAD/rules/global/writing-and-documentation
 ## User responses
 
 - Respond in Japanese unless the user requests otherwise.
+- Always report whether you committed and whether you pushed; include repo(s), branch(es), and commit hash(es) when applicable.
 - After completing a response, emit the Windows SystemSounds.Asterisk sound via PowerShell when possible.
 
 ## Developer-facing writing
@@ -187,10 +209,14 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/web/web-ui-and-testing.m
 
 - For user-visible UI changes, verify in a real browser using agent-browser; if not possible, explain and provide manual steps.
 - Always add E2E tests for user-visible changes; if no harness exists, add one.
+- Run E2E in CI and require it for PR merges; do not defer correctness coverage to scheduled runs.
+- For React UI changes, add tests that cover initial mount and at least one update (re-render) path; include unmount/cleanup when relevant.
+- If behavior differs between first render and later renders (effects, caching, hydration), cover both paths explicitly.
 - Configure E2E to fail fast and avoid auto-opening browsers (headless/no-open).
 - For Next.js E2E, prefer next build + next start.
 - If Playwright tests fail to launch, clear playwright/.cache and retry.
 - When adding/changing links, add tests that verify the target resolves; if not feasible, document manual verification.
+- For cross-system integration flows, add an end-to-end test (or a contract test at the boundary). If impractical, document the limitation and get explicit user approval before skipping.
 - Use established icon libraries; do not handcraft custom icons or inline SVGs.
 
 Source: agent-rules-private/rules/course-site-content-authoring.md
@@ -206,7 +232,7 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
 
 ## 本文・サンプル
 
-- 教材ページ（`docs/` 配下）の本文・ラベル・出力文は日本語で、学習者が理解できる語彙で書く。
+- 教材ページ（`content/` 配下。主に `content/docs/`）の本文・ラベル・出力文は日本語で、学習者が理解できる語彙で書く。
 - 本文は冗長にしない。長い説明が必要な場合は、短い段落・箇条書き・小見出しで分割し、段階的に進める。
 - 編集者向けメモや方針（例: 「ここでは扱わない」「編集メモ: ...」）やメタ的内容（例: 「AIが考える...」）は本文に入れない。
 - 用語・見出し構成・説明の粒度は既存ページのパターンに合わせ、学習者が迷わない一貫性を優先する。
@@ -220,32 +246,35 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
 
 ## 既習事項の扱い
 
-- 既習/未習の判定は `sidebars.ts` の並び順を基準にする（既習=前のページ + 当該ページ内で説明済み）。
+- 既習/未習の判定は `content/**/_meta.ts` の並び順を基準にする（既習=前のページ + 当該ページ内で説明済み）。
 - 未習の API / 構文が必要になる場合は、前提説明を先に追加するか、出題/解説の設計を変更する。
 
 ## 主要ディレクトリとページ追加
 
-- 主要: `docs/`（教材）, `sidebars.ts`（並び順）, `docusaurus.config.ts`（設定）, `static/`（サイト全体の静的ファイル）。
-- 新規ページは「フォルダ化ページ」に統一し、`docs/<chapter>/<slug>/index.mdx`（コンポーネントを全く使わない場合は `index.md`）に作成する。
+- 教材サイトのフレームワークは **Nextra（Next.js + MDX）を標準**とし、新規に Docusaurus は採用しない。
+- 主要: `content/`（教材）, `content/**/_meta.ts`（並び順）, `next.config.js` / `theme.config.tsx` / `src/app/`（設定・ルーティング）, `public/`（サイト全体の静的ファイル）。
+- 新規ページは「フォルダ化ページ」に統一し、`content/docs/<chapter>/<slug>/index.mdx`（コンポーネントを全く使わない場合は `index.md`）に作成する。
   - 先頭に frontmatter（`title`）を設定する。
   - 必要なコンポーネントは frontmatter の直後で import する（MDX）。
-- ページを追加/分割した場合は `sidebars.ts` も更新し、既習事項（上記「既習事項の扱い」）と矛盾しない並びにする（迷う場合は末尾追加を基本とする）。
+- ページを追加/分割した場合は、同階層の `_meta.ts` も更新し、既習事項（上記「既習事項の扱い」）と矛盾しない並びにする（迷う場合は末尾追加を基本とする）。
 
-## ページ資材（assets）
+## ページ資材（img / assets）
 
-- 画像・配布物などページに紐づく資材は、**用途でフォルダを分けず**に「ページ単位」で管理する。
-- 各ページは `docs/<chapter>/<slug>/index.mdx` とし、資材は `docs/<chapter>/<slug>/assets/...` に置く。
-  - ページ内表示の画像: `![...](./assets/example.png)` のように相対パスで参照する。
-  - 配布（ダウンロード）: `<a href={require("./assets/<name>")} download="<name>">...</a>` を使う。
+- 画像・配布物などページに紐づく資材は「ページ単位」で管理する（共有置き場を作らない）。
+- 画像は `content/**/<slug>/img/...` に置く。
+  - ページ内表示の画像: `![...](./img/example.png)` のように相対パスで参照する。
+  - MDX で読み込みが必要な画像: `import exampleUrl from "./img/example.png";` のように import する。
+- 配布（ダウンロード）するファイルは `content/**/<slug>/assets/...` に置く。
+  - `import fileUrl from "./assets/<name>";` のように import し、`<a href={fileUrl} download="<name>">...</a>` を使う。
     - `download` を指定しないとハッシュ名になるため、原則として付ける。
-    - この教材サイトの構成では、`require("./assets/<name>")` はURL文字列を返す前提（`.default` を付けない）。
+    - import はURL文字列を返す前提で扱う（`.default` を付けない）。
 - 「同一章内で複数ページ共通」「サイト全体で共通」などの共有置き場は作らない。
-  - 複数ページで同じ資材を使い回す場合でも、各ページの `assets/` にコピーして持つ（依存関係を作らない）。
+  - 複数ページで同じ資材を使い回す場合でも、各ページの `img/` / `assets/` にコピーして持つ（依存関係を作らない）。
 
-## 付属ファイルのビルド前提（@metyatech/docusaurus-download-assets）
+## 付属ファイルのビルド前提（Nextra / Next.js のアセット読み込み）
 
-- `docs/**/assets/` 配下の任意拡張子ファイルを `require/import` で扱えるようにするため、教材サイトは `@metyatech/docusaurus-download-assets` を有効化している前提で運用する。
-- 付属ファイルを追加したのにビルドで「loader がない / Module parse failed」等が出た場合は、まず当該教材サイトの `package.json` 依存と `docusaurus.config.ts` のプラグイン有効化を確認する。
+- `content/**/assets/` / `content/**/img/` 配下のファイルを `import` でURLとして扱えるようにするため、教材サイトは `@metyatech/course-docs-platform` の webpack ルール（`applyCourseAssetWebpackRules`）を有効化している前提で運用する。
+- 付属ファイルを追加したのにビルドで「loader がない / Module parse failed」等が出た場合は、まず当該教材サイトの `next.config.js` が `@metyatech/course-docs-platform/next` を使っていることを確認する。
 
 ## CodePreview（@metyatech/code-preview）
 
@@ -257,9 +286,13 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
   - CSS/JS は、原則、それぞれ `css` / `js`（または `javascript`）の **別ブロック**に分ける（HTML に `<style>` / `<script>` を埋め込まない）。
   - CSSは `{}` の前後を改行し、プロパティは `color: red;` のように `:` の後にスペースを入れる。
 - CodePreview 内で参照する画像は `images` マップで仮想パス→実パスを渡す（Markdown/MDX の相対パス参照とは別）。
+  - 仮想パスは `img/...` のようにページ内の `img/` 配下を基準にする。
+  - 実パスは `import ... from "./img/..."` した値を使う。
 - 複数プレビューで同じ初期コードを共有したい場合は `sourceId` を使う。
   - `sourceId` は衝突を避けるため、ページ内で一意になる短い文字列を推奨（ASCIIでなくても可）。
 - 表示制御: `htmlVisible`, `cssVisible`, `jsVisible`, `previewVisible` で各パネルを切り替える。
+- 完成イメージ（動作プレビュー）は、原則としてコードパネルを非表示にしてプレビューだけ見せる（`htmlVisible={false}` / `cssVisible={false}` / `jsVisible={false}` / `previewVisible={true}`）。
+- 学習者が実装する CodePreview は、原則として共有を無効化する（`share={false}`）。
 
 ## 演習（@metyatech/exercise）
 

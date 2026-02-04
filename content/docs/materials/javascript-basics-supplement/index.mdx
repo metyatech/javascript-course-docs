@@ -1,0 +1,217 @@
+---
+title: JavaScript基礎の補足資料
+---
+
+# JavaScript基礎の補足資料
+
+## JavaScript 基礎の補足トピック
+
+- **const 宣言**
+  - let の仲間
+- **switch 文**
+  - if の仲間
+- **while 文**（break, continue 文）
+  - for の仲間
+- **配列操作の関数**（concat, every, fill, filter, find, includes, indexOf, join, map, pop, push, reduce, reverse, shift, slice, some, sort, unshift, …）
+- **文字列操作の関数**（charAt, includes, indexOf, padStart, padEnd, repeat, replace, search, slice, split, substring, trim）
+- **正規表現**
+- **アロー関数式**
+  - 関数の仲間
+- **クラス・インスタンス・オブジェクト指向プログラミング**
+- **タイマー**（setTimeout, setInterval）
+- **日付**（Date）
+- **ダウンロード**（Fetch API）
+- **データの保存**（Web Storage）
+- **外部ライブラリ**（jQuery）
+
+## 今後 Web 開発関連で学ぶこと
+
+### TypeScript
+
+**JavaScript** に多数の機能を追加してより便利にしたプログラミング言語。(厳密なスーパーセット)
+JavaScript の書き方でそのまま書いても動作する。
+昨今 **JavaScript** ではなく **TypeScript** で開発するところも多い。
+(ブラウザでは結局 JavaScript しか動作しないので) **JavaScript** に変換して実行する。(トランスパイル)
+
+TypeScript の例
+
+```ts
+// TypeScript: 型を明示できる
+function add(a: number, b: number): number {
+    return a + b;
+}
+
+let x: number = 10;
+let y: number = 5;
+
+// x = "こんにちは"; // ← エラーになる（型が違う）
+
+console.log(add(x, y)); // 15
+
+// 配列の型も指定できる
+let numbers: number[] = [1, 2, 3];
+// numbers.push("4"); // ← エラーになる（型が違う）
+
+console.log(numbers);
+```
+
+### ブラウザで動作する系
+
+- まずはこちらを確認する：
+  [JavaScript を学ぶと何ができるのか](../../basics/introduction#javascript-%E3%82%92%E5%AD%A6%E3%81%B6%E3%81%A8%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE%E3%81%8B)
+
+#### Webアプリの「構造」の違い
+
+##### シングルページアプリケーション（SPA）
+- HTMLは基本的に1つ
+- 画面の切り替えは JavaScript が行う
+- ページ遷移しているように見えるが、実際は同一ページ内の更新
+
+- 例）
+  Facebook、X、YouTube、Teams（Web版）、
+  Gmail、Google Drive / Document / Spreadsheet / Slide / Calendar、
+  Microsoft 365 for the Web
+
+##### マルチページアプリケーション（MPA）
+- HTMLが複数存在する
+- 画面の切り替えをHTMLの切り替えで行う
+- 昔からある「一般的なWebサイト」の構造
+
+---
+
+###### SPA を作るときに使う主な技術
+- **フロントエンドフレームワーク**
+  - React（81.1%）
+    - Facebook, X, TikTok, Microsoft 365 for the Web, Netflix, Spotify, Twitch
+  - Vue.js（50.9%）
+    - Google Document / Spreadsheet / Slide, CyberAgent, Apple SwiftUI Tutorial
+  - Angular（50.1%）
+    - BMW ディーラー検索
+  - Svelte（26.1%）
+
+###### フロントエンドフレームワークを補助するツール
+- **メタフレームワーク**
+  - Next.js（54%）
+    - React をベースに、アプリとして作りやすくする
+    - 利用例：Nike, メルカリ, U-NEXT, ZOZOTOWN, 出前館, Walmart
+  - Nuxt（22.6%）
+    - Vue.js をベースに、アプリとして作りやすくする
+
+###### 出典データ
+- [State of JS 2024](https://2024.stateofjs.com/ja-JP/)
+---
+
+#### MPA を作る方法（いくつかある）
+
+##### 1. 素のHTML / CSS / JavaScript + バックエンド
+- 小規模・シンプルなサイトならこれで十分
+- 共通部分（ヘッダー・フッターなど）はコピペになりやすい
+- 例：[SIWのHP]
+
+##### 2. 従来型 Webアプリケーションフレームワーク
+- サーバー側で HTML を組み立てて返す
+- 共通レイアウトや処理をまとめて管理できる
+- 複雑なサイトでは必須になることが多い
+
+###### 主な「従来型 Webアプリケーションフレームワーク」
+- Laravel（PHP言語）
+  - 利用例：asics walking
+- Django（Python言語）
+  - 利用例：YouTube, Instagram, Udemy, Spotify, Dropbox
+- Spring（Java言語）
+  - 利用例：サイボウズ, AliExpress
+- Ruby on Rails（Ruby言語）
+  - 利用例：クックパッド, 食べログ, タイミー, コインチェック, マネーフォワード
+- 参考：https://whatweuse.dev/, https://builtwith.com/ja/, https://www.wappalyzer.com/
+
+## 生成AIとは
+
+**生成AI**
+
+- **生成AI**とは？
+- テキスト、音声、画像、動画など、新しいコンテンツを生成することのできるAIのこと。
+- 例）ChatGPT, Microsoft Copilot, Gemini, Adobe Firefly, AI Overview, Midjourney
+
+## AIモデルの基本
+
+**AIモデル**
+
+- **AIモデル**
+  - 特定のタスクを実行するために設計された数学的な構造
+  - 一般的に、「入力→**AIモデル**→出力」というプロセスで動作する
+- 例）
+  - GPT (Generative Pre-trained Transformer)
+  - Gemini
+  - Claude
+  - → これらは、いずれも、入力：文章　出力：次に来るであろう単語とその確率のリスト
+
+**入力と出力の例**
+
+| 入力 | 出力 |
+| --- | --- |
+| 今日は | (天気,35%), (何を,20%), (良い, 15%), (仕事, 10%), (どうする, 10%),… |
+| 日本一 | (高い,30%), (美しい,20%), (の山,15%), (寒い,10%),… |
+| 世界で | (一番,35%), (最も,25%), (有名,15%), (広い,10%), (強い,10%),… |
+
+## AIモデル（画像生成の例）
+
+**AIモデル**
+- Stable Diffusion
+- DALL-E
+- Midjourney
+- → これらは、いずれも、入力：テキストプロンプト　出力：入力に対応する画像
+
+**入力と出力の例**
+
+| 入力 | 出力 |
+| --- | --- |
+| 埼玉 | ![埼玉の画像生成例](./img/ai-image-example-saitama.png) |
+
+## AIモデルを使ったサービス（チャット・検索）
+
+**AIモデルを使ったサービス**
+
+- AIごとに向き不向きがあるので注意して使い分けること！
+- こちらが入力した内容がAIに学習されるものもあるので、個人情報や会社の機密情報を入れるときは
+  学習に利用されない　ことを確認してから入れること
+- 基本的に、分、日、月などの単位で無料利用回数に制限があるので、注意
+- まるで本当かのようにつく自信満々の嘘（ハルシネーション）に注意
+- **会話型AIチャットボット**（広く全般的な話ができる。何かに特化している訳ではない）
+  - ChatGPT   （モデル：GPT）
+  - Claude    （モデル：Claude）
+  - Google Gemini   （モデル：Gemini）
+  - Microsoft Copilot  （モデル：GPT）
+  - DeepSeek   （モデル：DeepSeek）
+- **AI検索エンジン**
+  - Genspark  （モデル：GPT, Claude, Gemini 等複数）
+  - Felo  （モデル：複数の選択肢から選べる）
+  - Perplexity  （モデル：GPT, Claude, Gemini 等複数）
+
+## AIモデルを使ったサービス（画像・動画）
+
+**AIモデルを使ったサービス**
+- **画像生成AI**
+  - DALL-E（ChatGPT上で使える**画像生成AI**）   （モデル：DALL-E）
+  - Stable Diffusion（mage.space で簡単に使える）  （モデル：Stable Diffusion）
+  - SeaArt AI  （モデル：複数の選択肢から選べる）
+  - Adobe Firefly  （モデル：Firefly Image Model）
+  - Midjourney  （モデル：Midjourney）
+- **動画生成AI**
+  - Dream Machine  （モデル：Ray, Photon 等）
+  - InVideo   （モデル：不明）
+  - Runway   （モデル：Gen, Frames）
+  - Sora   （モデル：Sora）
+
+## AIエージェント
+
+**AIエージェント**
+
+- **AIエージェント**
+  - ユーザーの指示や目標に基づき、環境と対話し、自律的にタスクを達成しようとするAI
+- 例）
+  - lovable.dev (Webサービス)
+  - replit.com (Webサービス)
+  - Cline (VSCode 拡張機能)
+  - AgentGPT
+  - Auto-GPT
+  - Cursor (エディター) のエージェントモード

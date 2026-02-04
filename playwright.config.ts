@@ -1,19 +1,22 @@
-import { defineConfig } from "@playwright/test";
+import { defineConfig } from '@playwright/test';
+
+const e2ePort = process.env.E2E_PORT ?? '3101';
+const e2eBaseUrl = process.env.E2E_BASE_URL ?? `http://localhost:${e2ePort}`;
 
 export default defineConfig({
-  testDir: "tests/e2e",
-  timeout: 30000,
+  testDir: 'tests/e2e',
+  timeout: 60_000,
   expect: {
-    timeout: 5000,
+    timeout: 10_000,
   },
   use: {
-    baseURL: "http://localhost:3101",
-    trace: "on-first-retry",
+    baseURL: e2eBaseUrl,
+    trace: 'retain-on-failure',
   },
   webServer: {
-    command: "npm run start:docusaurus -- --port 3101 --no-open",
-    url: "http://localhost:3101/javascript-course-docs/",
-    reuseExistingServer: !process.env.CI,
-    timeout: 120000,
+    command: `npm run dev -- --port ${e2ePort}`,
+    url: e2eBaseUrl,
+    reuseExistingServer: true,
+    timeout: 120_000,
   },
 });

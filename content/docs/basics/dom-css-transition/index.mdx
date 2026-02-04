@@ -1,0 +1,1474 @@
+---
+title: JavaScriptでCSS Transitionを使ったアニメーション
+---
+
+
+## 今日の学習はこんなところで使うよ
+
+この章で学ぶCSS Transitionは、JavaScriptで要素のスタイルを変更する際に、滑らかなアニメーション効果を付けるために使います。
+ボタンのホバー効果、モーダルウィンドウの表示/非表示、メニューの開閉など、様々な場面でユーザー体験を向上させることができます。
+
+実際に使われていそうなサイトの例（代表例）:
+
+- Twitter（公開ページで「いいねボタン」をクリックすると滑らかに色が変わる）: https://twitter.com/
+  - 使われる箇所: いいねボタンのクリック → transitionで色がスムーズに変化
+- YouTube（サムネイルにマウスを乗せると滑らかに角が変化する）: https://www.youtube.com/
+  - 使われる箇所: 動画サムネイルのホバー → transitionでborder-radiusが滑らかに変化
+
+### 例1: ボタンのホバーアニメーション
+
+<CodePreview
+  htmlVisible={false}
+  jsVisible={false}
+  cssVisible={false}
+  previewVisible={true}>
+```html
+<button>マウスを乗せてね</button>
+```
+
+```css
+button {
+  padding: 15px 30px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+
+// マウスが乗ったときの処理を登録
+buttonYoso.addEventListener("mouseenter", function() {
+  // 背景色を濃い緑に変更（transitionにより0.3秒かけて滑らかに変化）
+  buttonYoso.style.backgroundColor = "#45a049";
+});
+
+// マウスが離れたときの処理を登録
+buttonYoso.addEventListener("mouseleave", function() {
+  // 背景色を元に戻す（transitionにより0.3秒かけて滑らかに変化）
+  buttonYoso.style.backgroundColor = "#4CAF50";
+});
+```
+</CodePreview>
+
+### 例2: カードの拡大アニメーション
+
+<CodePreview
+  htmlVisible={false}
+  jsVisible={false}
+  cssVisible={false}
+  previewVisible={true}>
+```html
+<div class="card">
+  <h3>商品A</h3>
+  <p>価格: ¥1,000</p>
+</div>
+```
+
+```css
+.card {
+  width: 200px;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+.card h3 {
+  margin: 0 0 10px 0;
+}
+.card p {
+  margin: 0;
+}
+```
+
+```javascript
+// card要素を取得
+let card = document.querySelector(".card");
+
+// マウスが乗ったときの処理を登録
+card.addEventListener("mouseenter", function() {
+  // 1.1倍に拡大（transitionにより0.3秒かけて滑らかに変化）
+  card.style.transform = "scale(1.1)";
+});
+
+// マウスが離れたときの処理を登録
+card.addEventListener("mouseleave", function() {
+  // 元のサイズに戻す（transitionにより0.3秒かけて滑らかに変化）
+  card.style.transform = "scale(1)";
+});
+```
+</CodePreview>
+
+---
+
+## CSS Transitionとは
+
+**CSS Transition** は、CSSプロパティの値が変化する際に、その変化を滑らかにアニメーションさせる機能です。
+JavaScriptでスタイルを変更した際、transitionが設定されていれば、変化が瞬時に起こるのではなく、指定した時間をかけて徐々に変化します。
+
+### transitionの書き方
+
+CSSで次のように記述します。
+
+```css
+セレクタ {
+  transition: プロパティ名 時間;
+}
+```
+
+例:
+```css
+div {
+  transition: background-color 0.5s;
+}
+```
+
+これで、`background-color` が変化する際に 0.5秒かけて滑らかに変化します。
+
+---
+
+## 基本的な使い方
+
+### 背景色を滑らかに変化させる
+
+<CodePreview>
+```html
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 200px;
+  height: 200px;
+  background-color: lightblue;
+  transition: background-color 0.5s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 背景色をcoralに変更（transitionにより0.5秒かけて滑らかに変化）
+  divYoso.style.backgroundColor = "coral";
+});
+```
+</CodePreview>
+
+transitionを設定しない場合、色は瞬時に変わります。設定すると、指定した時間（この例では0.5秒）をかけて徐々に変化します。
+
+---
+
+<Exercise title="演習1">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- この要素をクリックしたら、背景色を "gold" に変更する。
+     ただし、CSSで transition を設定し、1秒かけて滑らかに変化させること。 -->
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  /* ここに背景色を1秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="演習1"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- この要素をクリックしたら、背景色を "gold" に変更する。
+     ただし、CSSで transition を設定し、1秒かけて滑らかに変化させること。 -->
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  /* ここに背景色を1秒かけて滑らかに変化させるための transition を書く */
+  transition: background-color 1s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 背景色をgoldに変更（transitionにより1秒かけて滑らかに変化）
+  divYoso.style.backgroundColor = "gold";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習1"/>
+</Solution>
+</Exercise>
+
+---
+
+## 複数のプロパティにtransitionを設定する
+
+複数のプロパティを滑らかに変化させたい場合は、カンマで区切って指定します。
+
+```css
+div {
+  transition: background-color 0.5s, width 0.5s, height 0.5s;
+}
+```
+
+または、`all` を使うとすべてのプロパティに適用されます。
+
+```css
+div {
+  transition: all 0.5s;
+}
+```
+
+<CodePreview>
+```html
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 100px;
+  height: 100px;
+  background-color: skyblue;
+  transition: all 0.5s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 背景色をpinkに変更（transitionにより0.5秒かけて滑らかに変化）
+  divYoso.style.backgroundColor = "pink";
+  // 幅を200pxに変更（transitionにより0.5秒かけて滑らかに変化）
+  divYoso.style.width = "200px";
+  // 高さを200pxに変更（transitionにより0.5秒かけて滑らかに変化）
+  divYoso.style.height = "200px";
+});
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習2">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- マウスが乗ったら、幅を "250px"、高さを "250px" に変更する。
+     マウスが離れたら、幅を "150px"、高さを "150px" に戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div>マウスを乗せたり離したりしてね</div>
+```
+
+```css
+div {
+  width: 150px;
+  height: 150px;
+  background-color: lightcoral;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="演習2"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- マウスが乗ったら、幅を "250px"、高さを "250px" に変更する。
+     マウスが離れたら、幅を "150px"、高さを "150px" に戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div>マウスを乗せたり離したりしてね</div>
+```
+
+```css
+div {
+  width: 150px;
+  height: 150px;
+  background-color: lightcoral;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+  transition: all 0.3s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// マウスが乗ったときの処理を登録
+divYoso.addEventListener("mouseenter", function() {
+  // 幅と高さを250pxに変更（transitionにより0.3秒かけて滑らかに変化）
+  divYoso.style.width = "250px";
+  divYoso.style.height = "250px";
+});
+
+// マウスが離れたときの処理を登録
+divYoso.addEventListener("mouseleave", function() {
+  // 幅と高さを元の150pxに戻す（transitionにより0.3秒かけて滑らかに変化）
+  divYoso.style.width = "150px";
+  divYoso.style.height = "150px";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習2"/>
+</Solution>
+</Exercise>
+
+---
+
+## transformプロパティとtransition
+
+`transform` プロパティを使うと、要素の拡大・縮小・回転・移動などができます。
+これもtransitionと組み合わせることで滑らかなアニメーションを作れます。
+
+:::info transformの特徴
+`transform` は要素の見た目だけを変化させるプロパティです。拡大・縮小・回転・移動しても、元の位置や大きさは変わらず、他の要素の配置には影響を与えません。そのため、レイアウトを崩さずにアニメーション効果を付けることができます。
+:::
+
+### scale（拡大・縮小）
+
+```css
+transform: scale(倍率);
+```
+
+<CodePreview>
+```html
+<div>マウスを乗せたり離したりしてね</div>
+```
+
+```css
+div {
+  width: 100px;
+  height: 100px;
+  background-color: orange;
+  transition: transform 0.4s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// マウスが乗ったときの処理を登録
+divYoso.addEventListener("mouseenter", function() {
+  // 1.5倍に拡大（transitionにより0.4秒かけて滑らかに変化）
+  divYoso.style.transform = "scale(1.5)";
+});
+
+// マウスが離れたときの処理を登録
+divYoso.addEventListener("mouseleave", function() {
+  // 元のサイズに戻す（transitionにより0.4秒かけて滑らかに変化）
+  divYoso.style.transform = "scale(1)";
+});
+```
+</CodePreview>
+
+### rotate（回転）
+
+```css
+transform: rotate(角度);
+```
+
+<CodePreview>
+```html
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 100px;
+  height: 100px;
+  background-color: purple;
+  transition: transform 0.5s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 45度回転させる（transitionにより0.5秒かけて滑らかに回転）
+  divYoso.style.transform = "rotate(45deg)";
+});
+```
+</CodePreview>
+
+### translate（移動）
+
+```css
+transform: translate(X方向, Y方向);
+```
+
+<CodePreview>
+```html
+<div>クリックしてね</div>
+```
+
+```css
+div {
+  width: 80px;
+  height: 80px;
+  background-color: teal;
+  transition: transform 0.6s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 右に100px、下に50px移動（transitionにより0.6秒かけて滑らかに移動）
+  divYoso.style.transform = "translate(100px, 50px)";
+});
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- マウスが乗ったら、1.3倍に拡大する。
+     マウスが離れたら、元のサイズに戻す。
+     ただし、CSSで transition を設定し、0.4秒かけて滑らかに変化させること。 -->
+<div>マウスを乗せたり離したりしてね</div>
+```
+
+```css
+div {
+  width: 120px;
+  height: 120px;
+  background-color: dodgerblue;
+  /* ここに transform を0.4秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="演習3"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- マウスが乗ったら、1.3倍に拡大する。
+     マウスが離れたら、元のサイズに戻す。
+     ただし、CSSで transition を設定し、0.4秒かけて滑らかに変化させること。 -->
+<div>マウスを乗せたり離したりしてね</div>
+```
+
+```css
+div {
+  width: 120px;
+  height: 120px;
+  background-color: dodgerblue;
+  /* ここに transform を0.4秒かけて滑らかに変化させるための transition を書く */
+  transition: transform 0.4s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// マウスが乗ったときの処理を登録
+divYoso.addEventListener("mouseenter", function() {
+  // 1.3倍に拡大（transitionにより0.4秒かけて滑らかに変化）
+  divYoso.style.transform = "scale(1.3)";
+});
+
+// マウスが離れたときの処理を登録
+divYoso.addEventListener("mouseleave", function() {
+  // 元のサイズに戻す（transitionにより0.4秒かけて滑らかに変化）
+  divYoso.style.transform = "scale(1)";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習3"/>
+</Solution>
+</Exercise>
+
+---
+
+## opacityプロパティとtransition
+
+`opacity` プロパティは要素の透明度を指定します。transitionと組み合わせることで、フェードイン・フェードアウトのアニメーションを作れます。
+
+`opacity` の値は 0 ～ 1 の数値で指定します：
+- `0`: 完全に透明（見えない）
+- `1`: 完全に不透明（通常の状態）
+- `0.5`: 半透明
+
+<CodePreview>
+```html
+<div>クリックでフェードアウトします</div>
+```
+
+```css
+div {
+  width: 200px;
+  height: 100px;
+  background-color: mediumpurple;
+  color: white;
+  transition: opacity 0.5s;
+}
+```
+
+```javascript
+// div要素を取得
+let divYoso = document.querySelector("div");
+
+// クリックされたときの処理を登録
+divYoso.addEventListener("click", function() {
+  // 不透明度を0にする（transitionにより0.5秒かけて滑らかにフェードアウト）
+  divYoso.style.opacity = "0";
+});
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習4">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素をクリックしたら、p要素の不透明度を 0 にする（完全に透明にする）。
+     ただし、CSSで transition を設定し、1秒かけて滑らかにフェードアウトさせること。 -->
+<button>非表示</button>
+<p>このテキストが消えます</p>
+```
+
+```css
+p {
+  font-size: 20px;
+  /* ここに opacity を1秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="演習4"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素をクリックしたら、p要素の不透明度を 0 にする（完全に透明にする）。
+     ただし、CSSで transition を設定し、1秒かけて滑らかにフェードアウトさせること。 -->
+<button>非表示</button>
+<p>このテキストが消えます</p>
+```
+
+```css
+p {
+  font-size: 20px;
+  /* ここに opacity を1秒かけて滑らかに変化させるための transition を書く */
+  transition: opacity 1s;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+// p要素を取得
+let pYoso = document.querySelector("p");
+
+// ボタンがクリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // p要素の不透明度を0にする（transitionにより1秒かけて滑らかにフェードアウト）
+  pYoso.style.opacity = "0";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習4"/>
+</Solution>
+</Exercise>
+
+---
+
+## スタイルをリセットする方法
+
+JavaScriptで設定したスタイルを元に戻したい場合は、`null` を代入することでリセットできます。
+`null` を代入すると、JavaScriptで設定したスタイルが削除され、CSSで定義された元のスタイルに戻ります。
+
+```js
+// スタイルを設定
+divYoso.style.backgroundColor = "red";
+
+// スタイルをリセット（CSSで定義された元のスタイルに戻る）
+divYoso.style.backgroundColor = null;
+```
+
+<CodePreview>
+```html
+<button id="red">赤にする</button>
+<button id="reset">リセット</button>
+<div>クリックで色が変わります</div>
+```
+
+```css
+div {
+  width: 200px;
+  height: 100px;
+  background-color: lightblue;
+  transition: background-color 1s;
+  margin-top: 10px;
+}
+button {
+  margin-right: 10px;
+}
+```
+
+```javascript
+// 各要素を取得
+let redButton = document.querySelector("#red");
+let resetButton = document.querySelector("#reset");
+let divYoso = document.querySelector("div");
+
+// 「赤にする」ボタンがクリックされたときの処理を登録
+redButton.addEventListener("click", function() {
+  // 背景色を赤に変更（transitionにより1秒かけて滑らかに変化）
+  divYoso.style.backgroundColor = "red";
+});
+
+// 「リセット」ボタンがクリックされたときの処理を登録
+resetButton.addEventListener("click", function() {
+  // 背景色をリセット（CSSで定義されたlightblueに戻る）
+  divYoso.style.backgroundColor = null;
+});
+```
+</CodePreview>
+
+---
+
+## 演習-発展
+
+<Exercise title="演習-発展1（カードのホバーアニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- div.card要素にマウスが乗ったら、1.05倍に拡大し、影を付ける（box-shadow: 0 8px 16px rgba(0,0,0,0.2)）。
+     マウスが離れたら、元のサイズと元の影に戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div class="card">
+  <h3>商品カード</h3>
+  <p>マウスを乗せてみてください</p>
+</div>
+```
+
+```css
+.card {
+  width: 250px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+}
+.card h3 {
+  margin: 0 0 10px 0;
+}
+.card p {
+  margin: 0;
+  color: #666;
+}
+```
+
+<CodePreview
+  sourceId="発展演習1"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- div.card要素にマウスが乗ったら、1.05倍に拡大し、影を付ける（box-shadow: 0 8px 16px rgba(0,0,0,0.2)）。
+     マウスが離れたら、元のサイズと元の影に戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div class="card">
+  <h3>商品カード</h3>
+  <p>マウスを乗せてみてください</p>
+</div>
+```
+
+```css
+.card {
+  width: 250px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  cursor: pointer;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+  transition: all 0.3s;
+}
+.card h3 {
+  margin: 0 0 10px 0;
+}
+.card p {
+  margin: 0;
+  color: #666;
+}
+```
+
+```javascript
+// card要素を取得
+let card = document.querySelector(".card");
+
+// マウスが乗ったときの処理を登録
+card.addEventListener("mouseenter", function() {
+  // 1.05倍に拡大（transitionにより0.3秒かけて滑らかに変化）
+  card.style.transform = "scale(1.05)";
+  // 影を濃くする（transitionにより0.3秒かけて滑らかに変化）
+  card.style.boxShadow = "0 8px 16px rgba(0,0,0,0.2)";
+});
+
+// マウスが離れたときの処理を登録
+card.addEventListener("mouseleave", function() {
+  // 元のサイズに戻す（transitionにより0.3秒かけて滑らかに変化）
+  card.style.transform = null;
+  // 元の影に戻す（transitionにより0.3秒かけて滑らかに変化）
+  card.style.boxShadow = null;
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="発展演習1"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展2（ボタンのアニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素にマウスが乗ったら、背景色を "#45a049" に、5px上に移動（transform: translateY(-5px)）する。
+     マウスが離れたら、元の背景色と元の位置に戻す。
+     クリックしたら、背景色を "#2d6a2f" に変更する。
+     ただし、CSSで transition を設定し、0.2秒かけて滑らかに変化させること。 -->
+<button>送信する</button>
+```
+
+```css
+button {
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  /* ここに全てのプロパティを0.2秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="発展演習2"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素にマウスが乗ったら、背景色を "#45a049" に、5px上に移動（transform: translateY(-5px)）する。
+     マウスが離れたら、元の背景色と元の位置に戻す。
+     クリックしたら、背景色を "#2d6a2f" に変更する。
+     ただし、CSSで transition を設定し、0.2秒かけて滑らかに変化させること。 -->
+<button>送信する</button>
+```
+
+```css
+button {
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  /* ここに全てのプロパティを0.2秒かけて滑らかに変化させるための transition を書く */
+  transition: all 0.2s;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+
+// マウスが乗ったときの処理を登録
+buttonYoso.addEventListener("mouseenter", function() {
+  // 背景色を濃い緑に変更（transitionにより0.2秒かけて滑らかに変化）
+  buttonYoso.style.backgroundColor = "#45a049";
+  // 5px上に移動（transitionにより0.2秒かけて滑らかに変化）
+  buttonYoso.style.transform = "translateY(-5px)";
+});
+
+// マウスが離れたときの処理を登録
+buttonYoso.addEventListener("mouseleave", function() {
+  // 元の背景色に戻す（transitionにより0.2秒かけて滑らかに変化）
+  buttonYoso.style.backgroundColor = null;
+  // 元の位置に戻す（transitionにより0.2秒かけて滑らかに変化）
+  buttonYoso.style.transform = null;
+});
+
+// クリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // 背景色をさらに濃い緑に変更（transitionにより0.2秒かけて滑らかに変化）
+  buttonYoso.style.backgroundColor = "#2d6a2f";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="発展演習2"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展3（テキストの色変化アニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素をクリックしたら、p要素の文字色を "red" に、フォントサイズを "24px" に変更する。
+     もう一度クリックしたら、元の色とサイズに戻す。
+     ただし、CSSで transition を設定し、0.5秒かけて滑らかに変化させること。 -->
+<button>色とサイズを変更</button>
+<p>このテキストの色とサイズが変わります</p>
+```
+
+```css
+p {
+  color: #333;
+  font-size: 16px;
+  /* ここに全てのプロパティを0.5秒かけて滑らかに変化させるための transition を書く */
+}
+button {
+  margin-bottom: 10px;
+}
+```
+
+<CodePreview
+  sourceId="発展演習3"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素をクリックしたら、p要素の文字色を "red" に、フォントサイズを "24px" に変更する。
+     もう一度クリックしたら、元の色とサイズに戻す。
+     ただし、CSSで transition を設定し、0.5秒かけて滑らかに変化させること。 -->
+<button>色とサイズを変更</button>
+<p>このテキストの色とサイズが変わります</p>
+```
+
+```css
+p {
+  color: #333;
+  font-size: 16px;
+  /* ここに全てのプロパティを0.5秒かけて滑らかに変化させるための transition を書く */
+  transition: all 0.5s;
+}
+button {
+  margin-bottom: 10px;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+// p要素を取得
+let pYoso = document.querySelector("p");
+// 変更されているかどうかを管理する変数
+let isChanged = false;
+
+// ボタンがクリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // 変更されている場合
+  if (isChanged) {
+    // 元の色とサイズに戻す（transitionにより0.5秒かけて滑らかに変化）
+    pYoso.style.color = null;
+    pYoso.style.fontSize = null;
+  } else {
+    // 文字色を赤に変更（transitionにより0.5秒かけて滑らかに変化）
+    pYoso.style.color = "red";
+    // フォントサイズを24pxに変更（transitionにより0.5秒かけて滑らかに変化）
+    pYoso.style.fontSize = "24px";
+  }
+  // 変更状態を反転（true→false、false→true）
+  isChanged = !isChanged;
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="発展演習3"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展4（複数プロパティの連動アニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素をクリックしたら、div.box要素を以下のように変化させる:
+     - 幅を 300px に
+     - 高さを 300px に
+     - 背景色を "tomato" に
+     - 90度回転させる（transform: rotate(90deg)）
+     - 角丸を 50% に（完全な円にする）
+     ただし、CSSで transition を設定し、1秒かけて滑らかに変化させること。 -->
+<button>変形させる</button>
+<div class="box"></div>
+```
+
+```css
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  margin-top: 20px;
+  /* ここに全てのプロパティを1秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="発展演習4"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素をクリックしたら、div.box要素を以下のように変化させる:
+     - 幅を 300px に
+     - 高さを 300px に
+     - 背景色を "tomato" に
+     - 90度回転させる（transform: rotate(90deg)）
+     - 角丸を 50% に（完全な円にする）
+     ただし、CSSで transition を設定し、1秒かけて滑らかに変化させること。 -->
+<button>変形させる</button>
+<div class="box"></div>
+```
+
+```css
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: skyblue;
+  margin-top: 20px;
+  /* ここに全てのプロパティを1秒かけて滑らかに変化させるための transition を書く */
+  transition: all 1s;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+// box要素を取得
+let box = document.querySelector(".box");
+
+// ボタンがクリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // 幅を300pxに変更（transitionにより1秒かけて滑らかに変化）
+  box.style.width = "300px";
+  // 高さを300pxに変更（transitionにより1秒かけて滑らかに変化）
+  box.style.height = "300px";
+  // 背景色をtomatoに変更（transitionにより1秒かけて滑らかに変化）
+  box.style.backgroundColor = "tomato";
+  // 90度回転させる（transitionにより1秒かけて滑らかに変化）
+  box.style.transform = "rotate(90deg)";
+  // 角丸を50%にして完全な円にする（transitionにより1秒かけて滑らかに変化）
+  box.style.borderRadius = "50%";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="発展演習4"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展5（プログレスバーアニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素をクリックしたら、div.progress要素の幅を 100% に変更する。
+     ただし、CSSで transition を設定し、2秒かけて滑らかに変化させること。 -->
+<button>スタート</button>
+<div class="progress-container">
+  <div class="progress"></div>
+</div>
+```
+
+```css
+.progress-container {
+  width: 100%;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #4CAF50;
+  /* ここに width を2秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="発展演習5"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素をクリックしたら、div.progress要素の幅を 100% に変更する。
+     ただし、CSSで transition を設定し、2秒かけて滑らかに変化させること。 -->
+<button>スタート</button>
+<div class="progress-container">
+  <div class="progress"></div>
+</div>
+```
+
+```css
+.progress-container {
+  width: 100%;
+  height: 30px;
+  background-color: #f0f0f0;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+.progress {
+  width: 0%;
+  height: 100%;
+  background-color: #4CAF50;
+  /* ここに width を2秒かけて滑らかに変化させるための transition を書く */
+  transition: width 2s;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+// progress要素を取得
+let progress = document.querySelector(".progress");
+
+// ボタンがクリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // プログレスバーの幅を100%にする（transitionにより2秒かけて滑らかに変化）
+  progress.style.width = "100%";
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="発展演習5"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展6（カードめくりアニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- div.card要素をクリックしたら、Y軸で180度回転させる（transform: rotateY(180deg)）。
+     もう一度クリックしたら、元に戻す。
+     ただし、CSSで transition を設定し、3秒かけて滑らかに回転させること。 -->
+<div class="card">
+  <div class="card-front">表</div>
+  <div class="card-back">裏</div>
+</div>
+```
+
+```css
+.card {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  /* ここに transform を3秒かけて滑らかに変化させるための transition を書く */
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  font-size: 24px;
+  font-weight: bold;
+}
+.card-front {
+  background-color: #4CAF50;
+  color: white;
+}
+.card-back {
+  background-color: #2196F3;
+  color: white;
+  transform: rotateY(180deg);
+}
+```
+
+<CodePreview
+  sourceId="発展演習6"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- div.card要素をクリックしたら、Y軸で180度回転させる（transform: rotateY(180deg)）。
+     もう一度クリックしたら、元に戻す。
+     ただし、CSSで transition を設定し、3秒かけて滑らかに回転させること。 -->
+<div class="card">
+  <div class="card-front">表</div>
+  <div class="card-back">裏</div>
+</div>
+```
+
+```css
+.card {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  /* ここに transform を3秒かけて滑らかに変化させるための transition を書く */
+  transition: transform 3s;
+}
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  font-size: 24px;
+  font-weight: bold;
+}
+.card-front {
+  background-color: #4CAF50;
+  color: white;
+}
+.card-back {
+  background-color: #2196F3;
+  color: white;
+  transform: rotateY(180deg);
+}
+```
+
+```javascript
+// card要素を取得
+let card = document.querySelector(".card");
+// カードがめくられているかどうかを管理する変数
+let isFlipped = false;
+
+// カードがクリックされたときの処理を登録
+card.addEventListener("click", function() {
+  // カードがめくられている場合
+  if (isFlipped) {
+    // 元に戻す（transitionにより3秒かけて滑らかに回転）
+    card.style.transform = null;
+  } else {
+    // めくる（transitionにより3秒かけて滑らかに回転）
+    card.style.transform = "rotateY(180deg)";
+  }
+  // めくり状態を反転（true→false、false→true）
+  isFlipped = !isFlipped;
+});
+```
+</CodePreview>
+
+:::info ヒント
+`!` 演算子を使うと、true と false を反転できます。  
+`isFlipped = !isFlipped` は、isFlipped が true なら false に、false なら true にします。
+:::
+
+<Solution>
+<CodePreview sourceId="発展演習6"/>
+</Solution>
+</Exercise>
+
+---
+
+## 複数の要素を取得する（querySelectorAll）
+
+これまで `document.querySelector(セレクタ)` を使って1つの要素を取得してきましたが、**同じクラス名やタグ名を持つ複数の要素**に対して同じ処理を行いたい場合があります。
+
+そのような場合は `document.querySelectorAll(セレクタ)` を使います。
+
+### querySelectorAll の基本
+
+```js
+let boxes = document.querySelectorAll(".box");
+```
+
+この命令は、**クラス名が `box` の要素をすべて取得**します。  
+取得した結果は**配列のようなもの**で、`boxes[0]`、`boxes[1]`、`boxes[2]`... のように各要素にアクセスできます。
+
+### 複数の要素に同じ処理を適用する（for...of）
+
+複数の要素に対して同じ処理を行うには、**for...of** を使います。
+
+```js
+// クラス名が box の要素をすべて取得
+let boxes = document.querySelectorAll(".box");
+
+// 各要素に対してクリックイベントを設定
+for (let box of boxes) {
+  box.addEventListener("click", function() {
+    box.style.backgroundColor = "skyblue"; // クリックした要素の背景色を変更
+  });
+}
+```
+
+このように、**取得したすべての要素に対して同じ処理**を適用できます。
+
+---
+
+<Exercise title="演習-発展7（複数カードのフェードインアニメーション）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- button要素をクリックしたら、全ての div.card要素の不透明度を 1 に変更する。
+     ただし、CSSで transition を設定し、0.5秒かけて滑らかに変化させること。 -->
+<button>カードを表示</button>
+<div class="card-container">
+  <div class="card">カード1</div>
+  <div class="card">カード2</div>
+  <div class="card">カード3</div>
+  <div class="card">カード4</div>
+</div>
+```
+
+```css
+.card-container {
+  margin-top: 20px;
+}
+.card {
+  width: 150px;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  opacity: 0;
+  /* ここに opacity を0.5秒かけて滑らかに変化させるための transition を書く */
+}
+button {
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+```
+
+<CodePreview
+  sourceId="発展演習7"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- button要素をクリックしたら、全ての div.card要素の不透明度を 1 に変更する。
+     ただし、CSSで transition を設定し、0.5秒かけて滑らかに変化させること。 -->
+<button>カードを表示</button>
+<div class="card-container">
+  <div class="card">カード1</div>
+  <div class="card">カード2</div>
+  <div class="card">カード3</div>
+  <div class="card">カード4</div>
+</div>
+```
+
+```css
+.card-container {
+  margin-top: 20px;
+}
+.card {
+  width: 150px;
+  padding: 20px;
+  margin: 10px 0;
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  opacity: 0;
+  /* ここに opacity を0.5秒かけて滑らかに変化させるための transition を書く */
+  transition: opacity 0.5s;
+}
+button {
+  padding: 10px 20px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+```
+
+```javascript
+// button要素を取得
+let buttonYoso = document.querySelector("button");
+// 全てのカード要素を取得
+let cards = document.querySelectorAll(".card");
+
+// ボタンがクリックされたときの処理を登録
+buttonYoso.addEventListener("click", function() {
+  // 各カードの不透明度を1にする
+  for (let card of cards) {
+    // 不透明度を1にする（transitionにより0.5秒かけて滑らかにフェードイン）
+    card.style.opacity = "1";
+  }
+});
+```
+</CodePreview>
+
+:::info ヒント
+`querySelectorAll` で全てのカード要素を取得し、`for...of` で各カードに対して不透明度を変更しましょう。
+:::
+
+<Solution>
+<CodePreview sourceId="発展演習7"/>
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展8（画像ギャラリーのズーム効果）">
+**body内が** 次のようになっているHTMLファイルに対し、JavaScriptとCSSで次の動作を実装せよ。
+
+```html
+<!-- 各 div.image要素にマウスが乗ったら、1.2倍に拡大し、z-indexを 10 にする。
+     マウスが離れたら、元のサイズと元のz-indexに戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div class="gallery">
+  <div class="image" style="background-color: #ff6b6b;"></div>
+  <div class="image" style="background-color: #4ecdc4;"></div>
+  <div class="image" style="background-color: #45b7d1;"></div>
+  <div class="image" style="background-color: #f9ca24;"></div>
+</div>
+```
+
+```css
+.image {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+}
+```
+
+<CodePreview
+  sourceId="発展演習8"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<!-- 各 div.image要素にマウスが乗ったら、1.2倍に拡大し、z-indexを 10 にする。
+     マウスが離れたら、元のサイズと元のz-indexに戻す。
+     ただし、CSSで transition を設定し、0.3秒かけて滑らかに変化させること。 -->
+<div class="gallery">
+  <div class="image" style="background-color: #ff6b6b;"></div>
+  <div class="image" style="background-color: #4ecdc4;"></div>
+  <div class="image" style="background-color: #45b7d1;"></div>
+  <div class="image" style="background-color: #f9ca24;"></div>
+</div>
+```
+
+```css
+.image {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 5px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  /* ここに全てのプロパティを0.3秒かけて滑らかに変化させるための transition を書く */
+  transition: all 0.3s;
+}
+```
+
+```javascript
+// 全ての画像要素を取得
+let images = document.querySelectorAll(".image");
+
+// 各画像要素に対してイベントを設定
+for (let image of images) {
+  // マウスが乗ったときの処理を登録
+  image.addEventListener("mouseenter", function() {
+    // 1.2倍に拡大（transitionにより0.3秒かけて滑らかに変化）
+    image.style.transform = "scale(1.2)";
+    // z-indexを10にして手前に表示
+    image.style.zIndex = "10";
+  });
+
+  // マウスが離れたときの処理を登録
+  image.addEventListener("mouseleave", function() {
+    // 元のサイズに戻す（transitionにより0.3秒かけて滑らかに変化）
+    image.style.transform = null;
+    // 元のz-indexに戻す
+    image.style.zIndex = null;
+  });
+}
+```
+</CodePreview>
+
+:::info ヒント
+上で学んだ `querySelectorAll` と `for...of` を使って、すべての画像要素に対してイベントを設定しましょう。
+:::
+
+<Solution>
+<CodePreview sourceId="発展演習8"/>
+</Solution>
+</Exercise>
+

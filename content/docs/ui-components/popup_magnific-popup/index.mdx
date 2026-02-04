@@ -1,0 +1,553 @@
+---
+title: ポップアップ/ダイアログ/モーダル (Magnific Popup)
+---
+
+import christmasChicken from "./img/christmas_chicken.jpg";
+import christmasSnowman from "./img/christmas_snowman.jpg";
+import wholeCake from "./img/whole_cake.jpg";
+
+## 今日の学習はこんなところで使うよ
+
+今日は、ポップアップ（ダイアログ/モーダル）を実装してみましょう。
+実際のウェブサイトでは、「お知らせの表示」「詳細情報の表示」「入力フォーム」「確認ダイアログ」などで広く使われています。
+
+実際に使われていそうなサイトの例（代表例）:
+
+- X (旧Twitter)（ポスト作成）: https://x.com/
+  - 使われる箇所: 「ポストする」ボタンをクリック → モーダルで投稿フォームが表示
+- Google ドライブ（新規フォルダ作成）: https://drive.google.com/
+  - 使われる箇所: 「新規」→「新しいフォルダ」をクリック → モーダルでフォルダ名入力フォームが表示
+
+以下は、完成イメージです。「ポップアップを開く」ボタンをクリックすると、ポップアップが表示されます。
+
+<CodePreview
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}>
+```html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<a class="open-popup-link" href="#popup-content">ポップアップを開く</a>
+
+<div id="popup-content" class="mfp-hide white-popup">
+  <h2>お知らせ</h2>
+  <p>これはポップアップの内容です。</p>
+  <p>背景をクリックすると、閉じることができます。</p>
+</div>
+```
+
+```css
+.white-popup {
+  background: white;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+```
+
+```javascript
+$('.open-popup-link').magnificPopup({
+  type: 'inline',
+  closeBtnInside: true,
+  midClick: true,
+});
+```
+</CodePreview>
+
+---
+
+## この章の進め方（ライブラリを使ってみよう）
+
+ポップアップは、純粋な HTML、CSS、JavaScript だけで比較的簡単に作れますが、今回は、**「ライブラリ」** を使ってみましょう。
+
+実務では、誰かが作ってくれたものを借りて使って、目的を達成するということがよくあります。
+今日は、この「誰かが作ってくれたライブラリ」をドキュメントを見ながら使うという体験をしましょう。
+
+今回使用するライブラリは「Magnific Popup」という、ポップアップを簡単に実装できる jQuery プラグインです。
+
+ベースは jQuery となるため、jQuery の基本的な扱いは、[以前 jQuery を学習した際の内容](../accordion-menu_jquery-slidetoggle)を思い出してみてください。
+
+- まず公式サイトをざっと眺める: https://dimsemenov.com/plugins/magnific-popup/
+- 検索キーワード例:
+  - 「Magnific Popup 使い方」,「Magnific Popup 始め方」
+  - 「Magnific Popup 画像」
+
+以下の演習は、Magnific Popup の使い方を自分で調べて解いてください。
+
+---
+
+<Exercise title="演習1（テキストリンクから画像ポップアップ）">
+テキストのリンクをクリックすると、画像がポップアップで表示されるものを作成して下さい。
+
+<CodePreview
+  sourceId="演習1_テキストリンク画像"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  images={{
+    "img/christmas_chicken.jpg": christmasChicken
+  }}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<a class="image-link" href="img/christmas_chicken.jpg">画像を見る</a>
+```
+
+```javascript
+$('.image-link').magnificPopup({
+  type: 'image',
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習1_テキストリンク画像"/>
+
+**解説**:
+
+**1. HTMLの準備**
+- `<a>` タグの `href` 属性に、表示したい画像のパスを指定します
+- リンクテキストは「画像を見る」など、分かりやすい文言にしましょう
+- クラス名（`class="image-link"`）は、JavaScriptで要素を特定するために使います
+
+**2. JavaScriptの設定**
+```javascript
+$('.image-link').magnificPopup({
+  type: 'image',
+});
+```
+- `$('.image-link')`: クラス名が `image-link` の要素を選択（jQuery記法）
+- `.magnificPopup()`: Magnific Popupを適用するメソッド
+- `type: 'image'`: 画像をポップアップ表示するモードに設定
+
+**3. ポイント**
+- CSSは一切書かなくても、ライブラリが自動的に見栄えの良いポップアップを作成してくれます
+- `href` に指定した画像が、ポップアップで拡大表示されます
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習2（画像クリックでポップアップ）">
+サムネイル画像をクリックすると、同じ画像が大きくポップアップで表示されるものを作成して下さい。
+
+<CodePreview
+  sourceId="演習2_画像ポップアップ"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  images={{
+    "img/christmas_chicken.jpg": christmasChicken
+  }}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<a class="image-popup" href="img/christmas_chicken.jpg">
+  <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+</a>
+```
+
+```javascript
+$('.image-popup').magnificPopup({
+  type: 'image',
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習2_画像ポップアップ"/>
+
+**解説**:
+
+**1. HTMLの構造**
+```html
+<a class="image-popup" href="img/christmas_chicken.jpg">
+  <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+</a>
+```
+- `<a>` タグで画像を囲むことで、画像自体をクリック可能にします
+- `href`: ポップアップで表示する画像のパス（拡大表示用）
+- `<img src>`: ページ上に表示する小さいサムネイル画像
+- `width="200"`: サムネイルのサイズを指定（小さく表示）
+
+**2. JavaScriptの設定**
+```javascript
+$('.image-popup').magnificPopup({
+  type: 'image',
+});
+```
+- 画像をクリックすると、`href` に指定した画像が大きくポップアップ表示されます
+
+**3. ポイント**
+- サムネイル画像とポップアップ画像を同じパスにすることで、シンプルな実装が可能です
+- 実務では、サムネイル用の軽量な画像と、ポップアップ用の高画質画像を別々に用意することもあります
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習3（テキストコンテンツのポップアップ）">
+リンクをクリックすると、テキストがポップアップで表示されるものを作成して下さい。
+
+<CodePreview
+  sourceId="演習3_テキスト"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<a class="open-popup" href="#content">詳細を見る</a>
+
+<div id="content" class="mfp-hide">
+  <p>これはポップアップで表示されるテキストです。</p>
+</div>
+```
+
+```javascript
+$('.open-popup').magnificPopup({
+  type: 'inline',
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習3_テキスト"/>
+
+**解説**:
+
+**1. HTMLの準備**
+```html
+<a class="open-popup" href="#content">詳細を見る</a>
+
+<div id="content" class="mfp-hide">
+  <p>これはポップアップで表示されるテキストです。</p>
+</div>
+```
+- `href="#content"`: ポップアップで表示する要素のIDを `#` 付きで指定
+- `<div id="content">`: ポップアップとして表示したいコンテンツ
+- `class="mfp-hide"`: Magnific Popup専用のクラス。通常時はこの要素を非表示にします
+
+**2. JavaScriptの設定**
+```javascript
+$('.open-popup').magnificPopup({
+  type: 'inline',
+});
+```
+- `type: 'inline'`: ページ内に既に存在するHTML要素をポップアップとして表示するモード
+- 画像ではなく、テキストやフォームなどのHTMLコンテンツを表示する場合に使います
+
+**3. 動作の流れ**
+1. 通常時: `mfp-hide` により、`#content` の要素は画面に表示されません
+2. リンクをクリック: Magnific Popupが `#content` をポップアップ表示します
+3. 閉じる: 背景クリックまたは×ボタンで閉じると、再び非表示になります
+
+**4. ポイント**
+- この方法を使えば、複雑なHTMLコンテンツもポップアップで表示できます
+- お知らせ、利用規約、フォームなど、様々な用途に応用できます
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展1（モーダルウィンドウ風のポップアップ）">
+リンクをクリックすると、見た目を整えたモーダルウィンドウ風のポップアップが表示されるものを作成して下さい。
+
+<CodePreview
+  sourceId="演習発展1_モーダル"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<a class="open-modal" href="#modal-content">お知らせを見る</a>
+
+<div id="modal-content" class="mfp-hide white-popup">
+  <h2>お知らせ</h2>
+  <p>これはモーダルウィンドウ風のポップアップです。</p>
+  <p>背景をクリックすると閉じることができます。</p>
+</div>
+```
+
+```css
+.white-popup {
+  background: white;
+  padding: 30px;
+  max-width: 500px;
+  margin: 0 auto;
+  border-radius: 8px;
+}
+.white-popup h2 {
+  margin-top: 0;
+}
+```
+
+```javascript
+$('.open-modal').magnificPopup({
+  type: 'inline',
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習発展1_モーダル"/>
+
+**解説**:
+
+**1. HTMLの構造**
+```html
+<a class="open-modal" href="#modal-content">お知らせを見る</a>
+
+<div id="modal-content" class="mfp-hide white-popup">
+  <h2>お知らせ</h2>
+  <p>これはモーダルウィンドウ風のポップアップです。</p>
+  <p>背景をクリックすると閉じることができます。</p>
+</div>
+```
+- `class="mfp-hide white-popup"`: 2つのクラスを指定
+  - `mfp-hide`: Magnific Popup用（非表示にする）
+  - `white-popup`: 自分で作成するスタイル用のクラス
+
+**2. CSSでデザインを整える**
+```css
+.white-popup {
+  background: white;        /* 白い背景 */
+  padding: 30px;            /* 内側の余白 */
+  max-width: 500px;         /* 最大幅を制限 */
+  margin: 0 auto;           /* 中央揃え */
+  border-radius: 8px;       /* 角を丸くする */
+}
+.white-popup h2 {
+  margin-top: 0;            /* 見出しの上の余白を削除 */
+}
+```
+
+**3. JavaScriptの設定**
+```javascript
+$('.open-modal').magnificPopup({
+  type: 'inline',
+});
+```
+- 演習3と同じ仕組みですが、CSSで見た目を大幅にカスタマイズしています
+
+**4. ポイント**
+- Magnific Popupは機能を提供し、デザインは自分で自由にカスタマイズできます
+- この方法で、自社サイトのデザインに合わせたポップアップを作成できます
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展2（YouTube動画のポップアップ）">
+リンクをクリックすると、YouTube動画がポップアップで表示されるものを作成して下さい。
+
+<CodePreview
+  sourceId="演習発展2_YouTube"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">動画を見る</a>
+```
+
+```css
+
+```
+
+```javascript
+$('.video-popup').magnificPopup({
+  type: 'iframe',
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習発展2_YouTube"/>
+
+**解説**:
+
+**1. HTMLの準備**
+```html
+<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">動画を見る</a>
+```
+- `href`: YouTube動画の通常のURLをそのまま指定します
+- 特別な埋め込みコードに変換する必要はありません
+
+**2. JavaScriptの設定**
+```javascript
+$('.video-popup').magnificPopup({
+  type: 'iframe',
+});
+```
+- `type: 'iframe'`: iframeを使ってコンテンツを埋め込むモード
+- YouTubeやVimeoなどの動画サービスに対応しています
+
+**3. 内部の動作**
+1. Magnific Popupが、YouTubeのURLを検出します
+2. 自動的に埋め込み用のiframeコードに変換します
+   - 例: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+   - → `https://www.youtube.com/embed/dQw4w9WgXcQ` に変換
+3. ポップアップ内でiframeとして動画を表示します
+
+**4. ポイント**
+- YouTubeのURLをコピーして貼り付けるだけで動作します
+- Vimeoなど、他の動画サービスにも対応しています
+- レスポンシブ対応で、スマホでも適切なサイズで表示されます
+
+**5. 応用例**
+- 商品紹介動画
+- チュートリアル動画
+- プロモーション動画
+など、動画コンテンツをサイトにスマートに組み込めます
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展3（画像ギャラリー）">
+複数の画像をギャラリーとして表示し、ポップアップ内で左右の矢印で画像を切り替えられるようにして下さい。
+
+<CodePreview
+  sourceId="演習発展3_ギャラリー"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  images={{
+    "img/christmas_chicken.jpg": christmasChicken,
+    "img/christmas_snowman.jpg": christmasSnowman,
+    "img/whole_cake.jpg": wholeCake
+  }}
+>
+```html
+<!-- これを head 内に入れて -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<!-- これを body 内に入れて -->
+<div class="gallery">
+  <a href="img/christmas_chicken.jpg">
+    <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+  </a>
+  <a href="img/christmas_snowman.jpg">
+    <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+  </a>
+  <a href="img/whole_cake.jpg">
+    <img src="img/whole_cake.jpg" width="150" alt="画像3">
+  </a>
+</div>
+```
+
+```javascript
+$('.gallery').magnificPopup({
+  delegate: 'a',
+  type: 'image',
+  gallery: {
+    enabled: true,
+  },
+});
+```
+</CodePreview>
+
+<Solution>
+<CodePreview sourceId="演習発展3_ギャラリー"/>
+
+**解説**:
+
+**1. HTMLの構造**
+```html
+<div class="gallery">
+  <a href="img/christmas_chicken.jpg">
+    <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+  </a>
+  <a href="img/christmas_snowman.jpg">
+    <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+  </a>
+  <a href="img/whole_cake.jpg">
+    <img src="img/whole_cake.jpg" width="150" alt="画像3">
+  </a>
+</div>
+```
+- 親要素 `<div class="gallery">` で複数の画像リンクをグループ化します
+- 各画像は `<a>` タグで囲み、`href` に拡大表示用の画像パスを指定します
+
+**2. JavaScriptの設定**
+```javascript
+$('.gallery').magnificPopup({
+  delegate: 'a',            // どの子要素をトリガーにするか
+  type: 'image',            // 画像ポップアップモード
+  gallery: {
+    enabled: true,          // ギャラリーモードを有効化
+  },
+});
+```
+
+**3. 重要なオプションの説明**
+
+**`delegate: 'a'`**
+- `.gallery` 自体ではなく、その中の `<a>` タグをクリック対象として指定します
+- これにより、複数の画像リンクを一つのギャラリーとしてまとめられます
+
+**`gallery: { enabled: true }`**
+- ギャラリーモードを有効にします
+- 有効にすると以下の機能が使えます:
+  - 左右の矢印ボタンで画像を切り替え
+  - キーボードの矢印キーでも操作可能
+  - 画像の番号表示（例: 1/3）
+
+**4. 動作の流れ**
+1. どれか一つの画像をクリック
+2. その画像がポップアップで表示される
+3. 左矢印（←）をクリック: 前の画像へ
+4. 右矢印（→）をクリック: 次の画像へ
+5. 最後の画像の次は、最初の画像に戻ります（ループ）
+
+**5. 実用例**
+- 商品ギャラリー（ECサイト）
+- 作品ポートフォリオ
+- 施設の写真ギャラリー
+- イベントの写真アルバム
+
+**6. ポイント**
+- ギャラリー内の画像数は自由に増やせます
+- 画像の順番は、HTML内の記述順になります
+</Solution>
+</Exercise>
+

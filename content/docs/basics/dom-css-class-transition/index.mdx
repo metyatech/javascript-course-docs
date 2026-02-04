@@ -1,0 +1,890 @@
+---
+title: クラス切り替えでCSSアニメーション
+sidebar_position: 999
+---
+
+
+## 今日の学習はこんなところで使うよ
+
+この章では、**要素に付けるクラス名をJavaScriptで切り替えて見た目を変える方法**と、
+そこに **CSS Transition** を足してアニメーションさせる方法を学びます。
+メニューの開閉、モーダルウィンドウの表示・非表示、カードの選択状態のON/OFFなど、「状態」を表すクラスを付け替えることで、見た目の変化とアニメーションをコントロールできます。
+
+まずは **transitionなしで単に見た目が切り替わるだけの例** を見て、
+「クラスをつけ外しすると、適用されるCSSが変わる」ということを確認します。
+そのあとで「同じコードにtransitionを足すと滑らかにアニメーションする」という流れで学習します。
+
+---
+
+## まずは「クラス切り替えだけ」で見た目を変える
+
+### 基本の考え方（クラス切り替え）
+
+1. **CSS側**で「通常の状態」と「変化後の状態」のスタイルを、クラスで分けて書く。
+2. **JavaScript側**で、イベントに応じてクラスを追加・削除する。
+3. 特によく使うのが `classList.toggle` で、付いていなければクラスを追加、付いていればクラスを削除できる。
+4. クラスが変わる → 適用されるCSSが変わる → 見た目がパッと切り替わる。
+
+```js
+要素.classList.toggle("クラス名"); // クラスが付いていなければ追加、付いていれば削除
+```
+
+### シンプルな例: ボックスをクリックしたら瞬時に大きくなる
+
+<CodePreview
+>
+```html
+<div class="box">クリックでサイズ変更</div>
+```
+
+```css
+.box {
+  width: 120px;
+  height: 120px;
+  background-color: skyblue;
+}
+.box.big {
+  width: 200px;
+  height: 200px;
+  background-color: deepskyblue;
+}
+```
+
+```javascript
+// boxクラスの要素を取得
+let boxYoso = document.querySelector(".box");
+
+// クリックされたときの処理を登録
+boxYoso.addEventListener("click", function() {
+  // bigクラスを付けたり外したりして切り替え
+  boxYoso.classList.toggle("big");
+});
+```
+</CodePreview>
+
+#### なぜクリックでサイズが変わるのか
+
+1. HTMLでは `div` に最初 `class="box"` だけが付いているため、CSSの `.box { ... }` の幅と高さ (120px) が適用される。
+2. JavaScriptで `boxYoso.addEventListener("click", ...)` を書くことで、クリックされた瞬間に中の処理が実行される。
+3. 処理の中で `boxYoso.classList.toggle("big")` を呼び出すと、最初は `big` クラスが付いていないので `big` クラスが追加される。
+4. 要素のクラスが `class="box big"` （box と big の2つのクラスがついているという意味（※クラスは半角スペース区切りで複数つけることができる））になると、CSSの `.box.big { ... }` で指定した幅200px・高さ200px・背景色deepskyblue が新しく適用される。
+
+つまり「イベントでクラスを付ける → そのクラス用のCSSが適用される」という流れでサイズが変化している。
+
+---
+
+<Exercise title="演習1（transitionなしでクラス切り替え）">
+
+次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
+
+**動作**: 要素をクリックすると `active` クラスが付いたり外れたりすることで見た目が切り替わる（transition は使わない）。
+
+<CodePreview
+  sourceId="演習1"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="box">クリックしてね</div>
+```
+
+```css
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: lightgray;
+}
+.box.active {
+  width: 220px;
+  height: 220px;
+  background-color: lightgreen;
+}
+```
+
+```javascript
+// boxクラスの要素を取得
+let boxYoso = document.querySelector(".box");
+
+// クリックされたときの処理を登録
+boxYoso.addEventListener("click", function() {
+  // activeクラスを付けたり外したりして切り替え
+  boxYoso.classList.toggle("active");
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習1" />
+</Solution>
+</Exercise>
+
+---
+
+## 同じコードにtransitionを足してアニメーションさせる
+
+次に、さきほどと同じ「クラスを切り替えるコード」に、CSSの `transition` を足してみます。
+
+1. CSS側で、アニメーションさせたい要素に `transition` を追加する。
+2. クラスが切り替わると、プロパティの変化がパッとではなく、指定した時間をかけて滑らかに変化する。
+
+### 例: 先ほどのボックスにtransitionを追加する
+
+<CodePreview
+>
+```html
+<div class="box">クリックでサイズ変更</div>
+```
+
+```css
+.box {
+  width: 120px;
+  height: 120px;
+  background-color: skyblue;
+  transition: all 0.3s;
+}
+.box.big {
+  width: 200px;
+  height: 200px;
+  background-color: deepskyblue;
+}
+```
+
+```javascript
+// boxクラスの要素を取得
+let boxYoso = document.querySelector(".box");
+
+// クリックされたときの処理を登録
+boxYoso.addEventListener("click", function() {
+  // bigクラスを付けたり外したりして切り替え
+  boxYoso.classList.toggle("big");
+});
+```
+</CodePreview>
+
+:::tip transition を書く場所が大事
+`transition` は両方の状態で常に残る共通クラス（例: `.box`）に書く。そこで指定すると付ける時も外す時も滑らかになる。変化側だけ（例: `.box.big`）に置くと戻りが一瞬になる。複数なら `transition: all 0.3s;`、特定なら `transition: width 0.3s, height 0.3s;`。
+:::
+
+---
+
+<Exercise title="演習2（滑らかになるようにアニメーション化）">
+
+演習1と同じように動作するが、次のプレビューのように、さらにサイズや色の変化が滑らかに見えるようにしたHTML/CSS/JavaScriptを作成せよ（幅や色は自由で良い）。
+
+**動作**: 要素をクリックすると `active` クラスが付いたり外れたりすることで見た目が切り替わり、その変化が滑らかにアニメーションする。
+
+<CodePreview
+  sourceId="演習2"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="box">クリックしてね</div>
+```
+
+```css
+.box {
+  width: 150px;
+  height: 150px;
+  background-color: lightgray;
+  transition: all 0.4s;
+}
+.box.active {
+  width: 220px;
+  height: 220px;
+  background-color: lightgreen;
+}
+```
+
+```javascript
+// boxクラスの要素を取得
+let boxYoso = document.querySelector(".box");
+
+// クリックされたときの処理を登録
+boxYoso.addEventListener("click", function() {
+  // activeクラスを付けたり外したりして切り替え
+  boxYoso.classList.toggle("active");
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習2" />
+</Solution>
+</Exercise>
+
+---
+
+## classListでクラスを操作する
+
+クラスの追加・削除には、要素の `classList` を使います。
+
+```js
+要素.classList.add("クラス名");      // クラスを追加
+要素.classList.remove("クラス名");   // クラスを削除
+要素.classList.toggle("クラス名");   // 付いていれば削除、なければ追加
+```
+
+### 例: ホバーでクラスを付け外しする
+
+<CodePreview
+>
+```html
+<div class="card">マウスを乗せてね</div>
+```
+
+```css
+.card {
+  width: 180px;
+  padding: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: all 0.3s;
+}
+.card.hovered {
+  background-color: #ffe0b2;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+```
+
+```javascript
+// cardクラスの要素を取得
+let cardYoso = document.querySelector(".card");
+
+// マウスが乗ったときの処理を登録
+cardYoso.addEventListener("mouseenter", function() {
+  // hoveredクラスを追加
+  cardYoso.classList.add("hovered");
+});
+
+// マウスが離れたときの処理を登録
+cardYoso.addEventListener("mouseleave", function() {
+  // hoveredクラスを削除
+  cardYoso.classList.remove("hovered");
+});
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3（hoverで影をつける）">
+
+次のように動作するよう、CSSとJavaScriptを書け（幅や色は自由で良い）。
+
+**動作**: カードにマウスを乗せると背景色が変わり影が付く。マウスが離れると元に戻る。変化は滑らかにアニメーションする。また、p要素のテキストも状態に応じて切り替わる。
+
+<CodePreview
+  sourceId="演習3"
+  htmlVisible={true}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="card">マウスを乗せてね</div>
+<p>ステータス: <span class="status">通常</span></p>
+```
+
+```css
+.card {
+  width: 200px;
+  height: 100px;
+  background-color: white;
+  border: 1px solid #ccc;
+  transition: all 0.3s;
+}
+.card.hovered {
+  background-color: #fff3cd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+```
+
+```javascript
+// cardクラスの要素とstatus要素を取得
+let cardYoso = document.querySelector(".card");
+let statusYoso = document.querySelector(".status");
+
+// マウスが乗ったときの処理を登録
+cardYoso.addEventListener("mouseenter", function() {
+  // hoveredクラスを追加
+  cardYoso.classList.add("hovered");
+
+  // ステータステキストを変更
+  statusYoso.innerText = "ホバー中";
+});
+
+// マウスが離れたときの処理を登録
+cardYoso.addEventListener("mouseleave", function() {
+  // hoveredクラスを削除
+  cardYoso.classList.remove("hovered");
+
+  // ステータステキストを元に戻す
+  statusYoso.innerText = "通常";
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習3" />
+</Solution>
+</Exercise>
+
+---
+
+## classList.contains で「今そのクラスが付いているか」を調べる
+
+クラスの ON/OFF を切り替えるだけなら `classList.toggle` だけで十分ですが、
+「今そのクラスが付いているかどうかで処理を分けたい」こともよくあります。
+
+そのときに使うのが `classList.contains` です。
+
+```js
+要素.classList.contains("クラス名"); // 付いていれば true、付いていなければ false
+```
+
+この戻り値（true / false）を使って、`if` 文でメッセージや見た目を切り替えることができます。
+
+### 例: 選択中なら「ON」、そうでなければ「OFF」と表示する
+
+<CodePreview
+>
+```html
+<button class="btn">ボタン</button>
+<p>状態: <span class="status">OFF</span></p>
+```
+
+```css
+.btn {
+  padding: 8px 16px;
+}
+.btn.selected {
+  background-color: lightcoral;
+}
+```
+
+```javascript
+// ボタンとステータスの要素を取得
+let btnYoso = document.querySelector(".btn");
+let statusYoso = document.querySelector(".status");
+
+// ボタンがクリックされたときの処理を登録
+btnYoso.addEventListener("click", function() {
+  // selectedクラスを付けたり外したりして切り替え
+  btnYoso.classList.toggle("selected");
+
+  // selectedクラスが付いているかどうかで表示を切り替え
+  if (btnYoso.classList.contains("selected")) {
+    statusYoso.innerText = "ON";
+  } else {
+    statusYoso.innerText = "OFF";
+  }
+});
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習4（ON/OFF表示をclassList.containsで切り替える）">
+
+次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
+
+**動作**: ボタンをクリックするたびに、見た目と「有効/無効」の表示が切り替わる。`classList.contains` を使って、ボタンが選択されているかどうかでテキストを変えること。
+
+<CodePreview
+  sourceId="演習4"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<button class="btn">通知を切り替え</button>
+<p>通知の状態: <span class="status">無効</span></p>
+```
+
+```css
+.btn {
+  padding: 8px 16px;
+}
+.btn.selected {
+  background-color: lightgreen;
+}
+```
+
+```javascript
+// ボタンとステータスの要素を取得
+let btnYoso = document.querySelector(".btn");
+let statusYoso = document.querySelector(".status");
+
+// ボタンがクリックされたときの処理を登録
+btnYoso.addEventListener("click", function() {
+  // selectedクラスを付けたり外したりして切り替え
+  btnYoso.classList.toggle("selected");
+
+  // selectedクラスが付いているかどうかで表示を切り替え
+  if (btnYoso.classList.contains("selected")) {
+    statusYoso.innerText = "有効";
+  } else {
+    statusYoso.innerText = "無効";
+  }
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習4" />
+</Solution>
+</Exercise>
+
+---
+
+## 演習-発展（実践的な例）
+
+ここからは、実際のウェブサイトでよく見かける機能を作成する演習です。
+好きなものを選んで挑戦してみましょう。
+
+---
+
+<Exercise title="演習-発展1（お気に入りボタン）">
+
+次のプレビューのように動作する、お気に入りボタンを作成せよ。
+
+**動作要件**:
+- ハートボタンをクリックすると、お気に入り状態のON/OFFが切り替わる
+- お気に入り状態では色が変わる
+- 色の変化は滑らかにアニメーションする
+- 状態に応じてテキストも「お気に入りに追加」「お気に入り済み」と切り替わる
+
+<CodePreview
+  sourceId="演習-発展1"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="favorite-btn">♥</div>
+<p class="status-text">お気に入りに追加</p>
+```
+
+```css
+.favorite-btn {
+  font-size: 32px;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+.favorite-btn.active {
+  color: #e91e63;
+}
+.status-text {
+  margin-top: 12px;
+}
+```
+
+```javascript
+// ボタンとテキスト要素を取得
+let btnYoso = document.querySelector(".favorite-btn");
+let textYoso = document.querySelector(".status-text");
+
+// ボタンがクリックされたときの処理を登録
+btnYoso.addEventListener("click", function() {
+  // activeクラスを付けたり外したりして切り替え
+  btnYoso.classList.toggle("active");
+
+  // activeクラスが付いているかどうかで表示を切り替え
+  if (btnYoso.classList.contains("active")) {
+    textYoso.innerText = "お気に入り済み";
+  } else {
+    textYoso.innerText = "お気に入りに追加";
+  }
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習-発展1" />
+
+**解説**:
+- ハートマーク(♥)をボタンとして使用しています
+- `active` クラスが付いたときに色が灰色からピンク色に変わります
+- `transition: color 0.3s;` で色の変化が滑らかにアニメーションします
+- `classList.contains` を使って状態を確認し、テキストを切り替えています
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展2（通知バナー）">
+
+次のプレビューのように動作する、通知バナーを作成せよ。
+
+**動作要件**:
+- 「通知を表示」ボタンをクリックすると、画面上部に通知バナーが表示される
+- 通知バナーの×ボタンをクリックすると、バナーが非表示になる
+- バナーの表示・非表示は滑らかにアニメーションする
+- バナーが表示されている間は、「通知を表示」ボタンは無効化される
+
+<CodePreview
+  sourceId="演習-発展2"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="notification">
+  <span>新しいメッセージが届きました</span>
+  <button class="close-btn">×</button>
+</div>
+<button class="show-btn">通知を表示</button>
+```
+
+```css
+.notification {
+  background-color: #4caf50;
+  color: white;
+  padding: 16px;
+  margin-bottom: 12px;
+  display: none;
+  transition: all 0.3s;
+}
+.notification.show {
+  display: block;
+}
+.close-btn {
+  background: white;
+  color: #4caf50;
+  border: none;
+  padding: 4px 8px;
+  margin-left: 12px;
+  cursor: pointer;
+}
+.show-btn {
+  padding: 10px 20px;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.show-btn.disabled {
+  background-color: #ccc;
+}
+```
+
+```javascript
+// 各要素を取得
+let notificationYoso = document.querySelector(".notification");
+let closeBtnYoso = document.querySelector(".close-btn");
+let showBtnYoso = document.querySelector(".show-btn");
+
+// 「通知を表示」ボタンがクリックされたときの処理
+showBtnYoso.addEventListener("click", function() {
+  // 通知にshowクラスを追加
+  notificationYoso.classList.add("show");
+
+  // ボタンを無効化
+  showBtnYoso.classList.add("disabled");
+});
+
+// 「×」ボタンがクリックされたときの処理
+closeBtnYoso.addEventListener("click", function() {
+  // 通知からshowクラスを削除
+  notificationYoso.classList.remove("show");
+
+  // ボタンを有効化
+  showBtnYoso.classList.remove("disabled");
+});
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習-発展2" />
+
+**解説**:
+- 最初は `display: none;` で非表示にし、`show` クラスが付くと `display: block;` で表示されます
+- ボタンに `disabled` クラスを付けることで見た目を変え、視覚的に無効状態を表現しています
+</Solution>
+</Exercise>
+
+---
+
+## まとめて要素を取得してループ処理する（querySelectorAll / for...of）
+
+演習-発展3 以降では、「複数の要素に同じ処理をしたい」という場面がよく出てきます。
+そのときに使うのが `document.querySelectorAll()` と `for...of` 文です。
+
+### document.querySelectorAll で複数の要素をまとめて取る
+
+`querySelector` は「1つだけ」要素を取るのに対して、`querySelectorAll` は「条件に当てはまる要素を全部まとめて」取ってきます。
+
+```js
+let cardYosos = document.querySelectorAll(".card");
+// cardYosos には .card が付いている要素が全部まとまって入る
+```
+
+ここで `cardYosos` に入るのは、配列に似た「たくさんの要素が入ったまとまり」です。
+
+### for...of で1つずつ取り出して処理する
+
+`querySelectorAll` でまとめて取ってきた要素には、`for...of` 文で「1つずつ」順番に処理を書くことができます。
+
+```js
+let cardYosos = document.querySelectorAll(".card");
+
+// cardYosos に入っている要素を1つずつ取り出して処理
+for (let cardYoso of cardYosos) {
+  // ここに1つぶんの処理を書く
+  cardYoso.addEventListener("click", function() {
+    // クリックされたカードに対する処理
+  });
+}
+```
+
+ポイント:
+
+- `for (let cardYoso of cardYosos)` と書くことで、`cardYosos` の中身を先頭から順番に `cardYoso` に取り出してくれる
+- 中かっこの中には「1つぶん」の処理だけを書けばよい（それが全部の要素に対して繰り返される）
+
+この組み合わせ（`querySelectorAll` + `for...of`）を使って、だんだん複雑なUIに挑戦していきます。
+
+---
+
+<Exercise title="演習-発展3（まずは単純なカード選択）">
+
+最初は、**単一の for...of だけ** を使ったシンプルな例に挑戦します。
+
+次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
+
+**動作要件**:
+- 3つのカードがあり、クリックすると選択状態になる
+- 選択されたカードには `selected` クラスが付き、見た目が変わる
+- もう一度クリックすると選択が解除される
+
+<CodePreview
+  sourceId="演習-発展3"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="card">カード1</div>
+<div class="card">カード2</div>
+<div class="card">カード3</div>
+```
+
+```css
+.card {
+  width: 120px;
+  height: 100px;
+  background-color: white;
+  border: 2px solid #ccc;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.card.selected {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+```
+
+```javascript
+// すべてのカード要素を取得
+let cardYosos = document.querySelectorAll(".card");
+
+// すべてのカードをループで処理
+for (let cardYoso of cardYosos) {
+  // 各カードにクリックイベントを登録
+  cardYoso.addEventListener("click", function() {
+    // selectedクラスを付けたり外したりして切り替え
+    cardYoso.classList.toggle("selected");
+  });
+}
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習-発展3" />
+
+**解説**:
+- `querySelectorAll(".card")` で3つのカードをまとめて取得しています
+- `for...of` の中では「1枚のカード」に対する処理だけを書き、toggle で選択の ON/OFF をしています
+</Solution>
+</Exercise>
+
+---
+
+<Exercise title="演習-発展4（単一 for-of でカード選択＋カウント）">
+
+次に、**単一の for...of の中で完結する** 少しだけ発展したパターンを練習します。
+
+次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
+
+**動作要件**:
+- 3つのカードがあり、クリックすると選択状態になる
+- 選択されたカードには `selected` クラスが付き、見た目が変わる
+- もう一度クリックすると選択が解除される
+- 複数のカードを同時に選択できる
+- 選択中のカード数を表示する
+
+<CodePreview
+  sourceId="演習-発展4"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="card">カード1</div>
+<div class="card">カード2</div>
+<div class="card">カード3</div>
+<p>選択中: <span class="count">0</span>枚</p>
+```
+
+```css
+.card {
+  width: 120px;
+  height: 100px;
+  background-color: white;
+  border: 2px solid #ccc;
+  margin-right: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.card.selected {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+```
+
+```javascript
+// すべてのカード要素を取得
+let cardYosos = document.querySelectorAll(".card");
+
+// カウント表示要素を取得
+let countYoso = document.querySelector(".count");
+
+// すべてのカードをループで処理
+for (let cardYoso of cardYosos) {
+  // 各カードにクリックイベントを登録
+  cardYoso.addEventListener("click", function() {
+    // selectedクラスを付けたり外したりして切り替え
+    cardYoso.classList.toggle("selected");
+
+    // 選択中のカード数をカウント
+    let selectedCount = 0;
+    for (let currentCardYoso of cardYosos) {
+      if (currentCardYoso.classList.contains("selected")) {
+        selectedCount = selectedCount + 1;
+      }
+    }
+
+    // カウントを表示
+    countYoso.innerText = selectedCount;
+  });
+}
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習-発展4" />
+
+**解説**:
+- `for...of` の外でカードのまとまりとカウント表示を取得しています
+- クリックされたときに、再び `for...of` を使って「今選択されているカードの数」を数えています
+</Solution>
+</Exercise>
+
+---
+
+ここまでで、
+
+- 「1つぶんの処理」を `for...of` の中に書く
+- 必要なら、その中で再度 `for...of` を使って「全体の状態」を数え直す
+
+という2パターンを練習しました。
+
+ここから先は、**複数の for...of や、ふつうの for 文（インデックスつき）を組み合わせないと実現しにくいパターン** に挑戦していきます。
+
+---
+
+<Exercise title="演習-発展5（アコーディオン）">
+
+次のプレビューのように動作する、アコーディオンUIを作成せよ。
+
+**動作要件**:
+- 質問をクリックすると、対応する回答が表示される
+- もう一度クリックすると回答が非表示になる
+- 複数の質問を同時に開くことができる
+
+:::tip ヒント
+要素を非表示にするには `display: none;`、表示するには `display: block;` を使う。クラスでこれを切り替えるとよい。
+:::
+
+<CodePreview
+  sourceId="演習-発展5"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+>
+```html
+<div class="faq-item">
+  <div class="question">JavaScriptとは何ですか?</div>
+  <div class="answer">JavaScriptはWebページに動きをつけるプログラミング言語です。</div>
+</div>
+<div class="faq-item">
+  <div class="question">CSSとは何ですか？</div>
+  <div class="answer">CSSはWebページの見た目を整えるための言語です。</div>
+</div>
+<div class="faq-item">
+  <div class="question">HTMLとは何ですか？</div>
+  <div class="answer">HTMLはWebページの構造を作るための言語です。</div>
+</div>
+```
+
+```css
+.faq-item {
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+}
+.question {
+  padding: 16px;
+  background-color: #f5f5f5;
+  cursor: pointer;
+}
+.answer {
+  display: none;
+  padding: 16px;
+  background-color: white;
+}
+.answer.open {
+  display: block;
+}
+```
+
+```javascript
+// すべての質問要素を取得
+let questionYosos = document.querySelectorAll(".question");
+
+// すべての回答要素を取得
+let answerYosos = document.querySelectorAll(".answer");
+
+// すべての質問をループで処理
+for (let questionYoso of questionYosos) {
+  // 各質問にクリックイベントを登録
+  questionYoso.addEventListener("click", function() {
+    // クリックされた質問に対応する回答要素を探す
+    for (let i = 0; i < questionYosos.length; i++) {
+      if (questionYosos[i] === questionYoso) {
+        // 同じ順番の位置にあるanswerを取得
+        let answerYoso = answerYosos[i];
+
+        // 回答のopenクラスを付けたり外したりして切り替え
+        answerYoso.classList.toggle("open");
+      }
+    }
+  });
+}
+```
+</CodePreview><Solution>
+<CodePreview sourceId="演習-発展5" />
+
+**解説**:
+- `display: none;` と `display: block;` で回答の表示・非表示を制御しています
+- `querySelectorAll(".question")` と `querySelectorAll(".answer")` で、それぞれ質問と回答をまとめて取得し、同じ順番の組み合わせとして対応付けています
+- クリックされた質問と同じインデックス番号の回答要素を探すために、ふつうの `for` 文を使っています
+</Solution>
+</Exercise>
+
+---

@@ -1,0 +1,16 @@
+/* Slightly softer heading colors */
+.nextra-content :is(h2, h3, h4) {
+  color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) 35%);
+}
+
+.dark .nextra-content :is(h2, h3, h4) {
+  color: hsl(var(--nextra-primary-hue) var(--nextra-primary-saturation) 75%);
+}
+
+/* Add spacing around images (excluding navbar logo/icon) */
+.nextra-content img {
+  margin: 1em 0;
+  display: block;
+  border-radius: 12px;
+  max-width: min(600px, 100%);
+}
