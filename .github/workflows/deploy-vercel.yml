@@ -26,12 +26,8 @@ jobs:
       - if: ${{ env.VERCEL_TOKEN == '' || env.VERCEL_ORG_ID == '' || env.VERCEL_PROJECT_ID == '' }}
         run: npm run build
       - if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
-      - if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --token=${{ env.VERCEL_TOKEN }}
-      - id: deploy_attempt_1
-        continue-on-error: true
-        if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token=${{ env.VERCEL_TOKEN }}
-      - if: ${{ (env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '') && steps.deploy_attempt_1.outcome == 'failure' }}
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token=${{ env.VERCEL_TOKEN }}
+        uses: metyatech/course-docs-platform/.github/actions/vercel-deploy@main
+        with:
+          token: ${{ env.VERCEL_TOKEN }}
+          environment: production
+          cli_version: ${{ env.VERCEL_CLI_VERSION }}
