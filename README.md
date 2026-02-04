@@ -1,68 +1,27 @@
 # javascript-course-docs
 
-Course site built with [Nextra](https://nextra.site/) (Next.js + MDX).
+JavaScriptコースの **教材コンテンツ専用** リポジトリです。
 
-## Requirements
+このリポジトリ自体は Next.js アプリではありません（サイト実行基盤は別リポジトリ `metyatech/course-docs-site` で共有します）。
 
-- Node.js: see `engines.node` in `package.json` (currently `>=20`)
-- Package manager: npm
+## Local preview
 
-## Setup
+`course-docs-site` を使ってプレビューします。
 
-```bash
+```sh
+git clone https://github.com/metyatech/course-docs-site.git
+cd course-docs-site
 npm install
-```
-
-## Development commands
-
-### Local development
-
-```bash
-npm run dev
-```
-
-### Build (static export)
-
-```bash
-npm run build
-```
-
-This generates a static export into `out/` and also creates the Pagefind search
-index under `out/_pagefind/` via the `postbuild` script.
-
-### Start production server
-
-```bash
-npm run start
-```
-
-### Typecheck
-
-```bash
-npm run typecheck
-```
-
-### Lint
-
-```bash
-npm run lint
-```
-
-### E2E (Playwright)
-
-```bash
-npm run test:e2e
-```
-
-If Playwright browsers are missing, install Chromium:
-
-```bash
-npx playwright install chromium
+COURSE_CONTENT_REPO=metyatech/javascript-course-docs npm run dev
 ```
 
 ## Deploy (Vercel)
 
-Deploy via GitHub Actions (`.github/workflows/deploy-vercel.yml`).
+このリポジトリへの push をトリガに、Vercel の Deploy Hook を叩きます（`.github/workflows/deploy-vercel.yml`）。
+
+必要な GitHub Actions secrets:
+
+- `VERCEL_DEPLOY_HOOK_URL`
 
 ## AGENTS.md
 
@@ -73,12 +32,12 @@ After cloning, initialize submodules:
 git submodule update --init --recursive
 ```
 
-Update `agent-ruleset.json` as needed and regenerate:
+Update `agent-ruleset.json` as needed and regenerate with:
 
 ```bash
-node agent-rules-tools/tools/compose-agents.cjs
+compose-agentsmd
 ```
 
 ## Overview
 
-This repository contains the javascript-course-docs project.
+This repository contains the `javascript-course-docs` course content.

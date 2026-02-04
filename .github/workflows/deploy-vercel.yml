@@ -1,33 +1,29 @@
-name: Deploy to Vercel
+name: Trigger Vercel deploy (content update)
 
 on:
   push:
     branches:
       - master
+    paths:
+      - "content/**"
+      - "public/**"
+      - "site.config.ts"
+      - ".github/workflows/deploy-vercel.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
-  deploy:
+  trigger:
     runs-on: ubuntu-latest
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_CLI_VERSION: 50.9.6
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: 'npm'
-      - run: npm ci
-      - if: ${{ env.VERCEL_TOKEN == '' || env.VERCEL_ORG_ID == '' || env.VERCEL_PROJECT_ID == '' }}
-        run: npm run build
-      - if: ${{ env.VERCEL_TOKEN != '' && env.VERCEL_ORG_ID != '' && env.VERCEL_PROJECT_ID != '' }}
-        uses: metyatech/course-docs-platform/.github/actions/vercel-deploy@main
-        with:
-          token: ${{ env.VERCEL_TOKEN }}
-          environment: production
-          cli_version: ${{ env.VERCEL_CLI_VERSION }}
+      - name: Trigger Vercel Deploy Hook
+        env:
+          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$VERCEL_DEPLOY_HOOK_URL" ]; then
+            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL"
+            exit 1
+          fi
+          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
