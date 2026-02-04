@@ -1,4 +1,4 @@
-name: Trigger Vercel deploy (content update)
+name: Deploy site to Vercel (content update)
 
 on:
   push:
@@ -15,15 +15,55 @@ permissions:
   contents: read
 
 jobs:
-  trigger:
+  deploy:
     runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+      VERCEL_CLI_VERSION: 50.9.6
+      COURSE_CONTENT_REPO: metyatech/javascript-course-docs
+      COURSE_CONTENT_REF: master
     steps:
-      - name: Trigger Vercel Deploy Hook
-        env:
-          VERCEL_DEPLOY_HOOK_URL: ${{ secrets.VERCEL_DEPLOY_HOOK_URL }}
+      - name: Validate secrets
         run: |
-          if [ -z "$VERCEL_DEPLOY_HOOK_URL" ]; then
-            echo "Missing secret: VERCEL_DEPLOY_HOOK_URL"
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "Missing one or more required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
             exit 1
           fi
-          curl -fsS -X POST "$VERCEL_DEPLOY_HOOK_URL"
+
+      - name: Checkout course-docs-site
+        uses: actions/checkout@v4
+        with:
+          repository: metyatech/course-docs-site
+          ref: main
+          path: site
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install
+        working-directory: site
+        run: npm ci
+
+      - name: Lint
+        working-directory: site
+        run: npm run lint
+
+      - name: Vercel pull
+        working-directory: site
+        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Vercel build
+        working-directory: site
+        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --token=${{ env.VERCEL_TOKEN }}
+
+      - name: Vercel deploy (retry once)
+        working-directory: site
+        run: |
+          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token=${{ env.VERCEL_TOKEN }} || \
+          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token=${{ env.VERCEL_TOKEN }}
