@@ -391,6 +391,15 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
   - 概要 → `overview` / overview
   - 試験対策 → `preparation` / preparation
 
+## 試験対策問題 / 小テスト（markdown-question-spec 原本）
+
+- 試験対策問題（将来的な小テスト含む）の**原本はプレーンな Markdown（`.md`）**で管理する。
+  - 形式は `markdown-to-qti/docs/markdown-question-spec.md` に準拠する（この仕様自体は変更しない）。
+  - 1問=1ファイルで、`content/exams/.../<kind>/questions/q1.md` のように `questions/` 配下へ置く。
+- Course Docs Site での表示は、原本 Markdown をそのまま出さず、サイト側の変換で `<Exercise>` / `<Solution>` に整形して表示する（原本は Markdown ツールチェーン互換のまま維持する）。
+- 「本試験では」などの見出しは **仕様の拡張ではなく表示側の慣習**として扱う。
+  - 表示上の扱いは `course-docs-platform/docs/markdown-question-spec-course-docs-rendering.md` を参照する。
+
 ## ページ資材（img / assets）
 
 - 画像・配布物などページに紐づく資材は「ページ単位」で管理する（共有置き場を作らない）。
@@ -457,6 +466,19 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
 2. **既出演習内容の確認**: 同一ページ内および過去ページで既に出題された演習内容を確認する。「表面的な違い」ではなく「本質的な違い（学習ポイント・解法パターン）」があるかで判断する。
 3. **本質的重複の判定**: 同じイベント・同じ操作パターン・同じ学習ポイントの組み合わせは「本質的に同じ」とみなす。異なる観点（状態管理、複数イベント、条件分岐、累積変化、複数要素連動など）を持つ問題を作る。
 4. **実現可能性確認**: 既習事項のみで解けることを確認する。未習事項が必要／冗長な繰り返しだけになる場合は再設計する。
+
+## 試験対策問題 / 小テスト（問題形式の統一）
+
+- 試験対策問題・小テストの「原本」は、`markdown-to-qti` の `Markdown Question Format`（`docs/markdown-question-spec.md`）に準拠したプレーンな Markdown（`.md`）として管理する。
+  - 1問=1ファイル、frontmatter なし、見出し構成（`#` / `## Type` / `## Prompt` / ...）を崩さない。
+- 原本ファイルは、表示用ページ（`index.mdx`）とは分離し、ページ直下の `questions/` 配下に置く。
+  - 例: `content/exams/.../preparation/questions/q1.md`
+- 表示用ページ（`index.mdx`）では、`import Q1 from './questions/q1.md'` のように読み込み、`<Q1 />` で表示する。
+- サイト表示では `@metyatech/course-docs-platform` が `questions/` 配下の問題Markdownを `<Exercise>` / `<Solution>` に自動変換して表示する。
+  - `## Type` が `cloze` の場合、原本の `{{answer}}` は表示時に `${answer}` に変換され、穴埋め（`enableBlanks`）として扱われる（コードブロック内も含む）。
+  - 「本試験では」は `## Prompt` 内に `### 本試験では` を置いて書く（表示は `tip`）。
+  - 採点基準・配点は `## Scoring` に `- <points>: <criterion>` の箇条書きで書く（表示は `info`）。
+- `questions/` フォルダはサイドバーに出さない（同階層の `_meta.ts` で `questions: { display: 'hidden' }` を指定する）。
 
 ## テスト・試験（評価問題）
 
@@ -638,6 +660,17 @@ The goal is to keep the system DRY and minimize duplicated “site runtime” co
 - Do not store secrets in a content repo:
   - `.env.local` is local-only and belongs in `course-docs-site` (and is gitignored).
 
+### Local development and switching courses
+
+- Always preview locally via `metyatech/course-docs-site` (never by adding app code to a content repo).
+- Prefer a local directory for course content while editing:
+  - Set `COURSE_CONTENT_DIR=../javascript-course-docs` (or `../programming-course-docs`) in `course-docs-site/.env.course.local`.
+  - Run `npm run dev` (or `npm run build`) in `course-docs-site`.
+- Switching `COURSE_CONTENT_DIR` is a supported workflow:
+  - The dev launcher restarts on env change and keeps the originally chosen port.
+  - `scripts/sync-course-content.mjs` clears `.next` automatically when the course source changes to prevent stale Next.js artifacts.
+  - Do not rely on manual “delete `.next`” instructions; treat stale artifacts as a runtime defect and fix the runtime.
+
 ### Student works hosting rules
 
 - Do not store `student-works` binaries in a course content repo.
@@ -652,3 +685,10 @@ The goal is to keep the system DRY and minimize duplicated “site runtime” co
 - Deploy via GitHub Actions using the Vercel CLI:
   - Secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`.
   - The workflow should checkout `metyatech/course-docs-site` and build/deploy it.
+
+### Specs vs. site rendering conventions
+
+- Keep generic, tool-agnostic specs in their dedicated repositories.
+  - Example: the plain Markdown question format lives in `markdown-to-qti` (`docs/markdown-question-spec.md`).
+- Do **not** add Course Docs Site-specific presentation concepts (e.g. “本試験では”) to generic specs.
+  - Document such items as **site rendering conventions** in `course-docs-platform` (and reference them from the course authoring rules).
