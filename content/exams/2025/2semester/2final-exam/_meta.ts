@@ -1,5 +1,7 @@
 const meta = {
-  '2025': '2025',
+  overview: {},
+  preparation: {},
 };
 
 export default meta;
+

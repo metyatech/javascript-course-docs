@@ -1,5 +1,6 @@
 const meta = {
-  '2025': '2025',
+  '2semester': '後期',
 };
 
 export default meta;
+

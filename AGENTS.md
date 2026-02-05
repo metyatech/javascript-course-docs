@@ -41,7 +41,7 @@ Source: github:metyatech/agent-rules@HEAD/rules/global/autonomous-operations.md
 
 - Optimize for minimal human effort; default to automation over manual steps.
 - Drive work from the desired outcome: infer acceptance criteria, choose the shortest safe path, and execute end-to-end.
-- Assume end-to-end autonomy for repository operations (issue triage, PRs, direct pushes to main/master, merges, releases, repo admin) unless the user restricts scope.
+- Assume end-to-end autonomy for repository operations (issue triage, PRs, direct pushes to main/master, merges, releases, repo admin) only within repositories under the user's control (e.g., owned by metyatech or where the user has explicit maintainer/push authority), unless the user restricts scope; for third-party repos, require explicit user request before any of these operations.
 - Do not preserve backward compatibility unless explicitly requested; avoid legacy aliases and compatibility shims by default.
 - When work reveals rule gaps, redundancy, or misplacement, proactively update rule modules/rulesets (including moves/renames) and regenerate AGENTS.md without waiting for explicit user requests.
 - After each task, run a brief retrospective; if you notice avoidable mistakes, missing checks, or recurring back-and-forth, encode the fix as a rule update and regenerate AGENTS.md.
@@ -377,6 +377,19 @@ Source: agent-rules-private/rules/course-site-content-authoring.md
   - 先頭に frontmatter（`title`）を設定する。
   - 必要なコンポーネントは frontmatter の直後で import する（MDX）。
 - ページを追加/分割した場合は、同階層の `_meta.ts` も更新し、既習事項（上記「既習事項の扱い」）と矛盾しない並びにする（迷う場合は末尾追加を基本とする）。
+
+## 試験資料（content/exams）の構成・命名
+
+- 年度で分ける: `content/exams/<year>/...`（`<year>` は `2026` のような数値のみ）。
+- 学期→試験→種別の順で固定する: `content/exams/<year>/<term>/<exam>/<kind>/index.mdx`
+- グルーピング用途のフォルダはページを持たせない（`index.mdx` を置かない）。表示名は `_meta.ts` で指定する。
+- 命名（日本語→スラッグ / 英語表現）:
+  - 前期 → `1semester` / first semester
+  - 後期 → `2semester` / second semester
+  - 中間試験 → `1midterm-exam` / midterm exam
+  - 期末試験 → `2final-exam` / final exam
+  - 概要 → `overview` / overview
+  - 試験対策 → `preparation` / preparation
 
 ## ページ資材（img / assets）
 

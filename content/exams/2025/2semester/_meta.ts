@@ -1,5 +1,6 @@
 const meta = {
-  '2025': '2025',
+  '2final-exam': '期末試験',
 };
 
 export default meta;
+
