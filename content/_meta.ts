@@ -10,7 +10,7 @@ const meta = {
   },
   docs: '学習',
   exams: '試験',
-  submissions: '作品',
+  submissions: {},
 };
 
 export default meta;
