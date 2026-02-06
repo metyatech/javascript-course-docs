@@ -9,7 +9,6 @@
 
 # Generated search
 /public/_pagefind
-/public/monaco-editor/
 
 # Legacy tool output (Docusaurus)
 .docusaurus/
