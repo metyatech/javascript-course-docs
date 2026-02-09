@@ -1,10 +1,14 @@
 ---
+examId: js2-2025-2-final-prep
+schemaVersion: exam-md@1
+timeLimitMinutes: 80
+totalPoints: 70
+questionCount: 4
 title: JavaScriptⅡ 期末試験 対策問題集
 sidebar_label: 期末試験 対策問題集
 hide_title: true
 hide_table_of_contents: true
 ---
-
 
 # JavaScriptⅡ 期末試験 対策問題集
 
@@ -13,7 +17,8 @@ hide_table_of_contents: true
 
 ---
 
-<Exercise title="問題1：クリックでテキストを1回だけ変更（プログラム作成）">
+## 問1
+
 要件を満たすような JavaScript を作成せよ。JavaScript のみ答えること。  
 なお、JavaScript は HTML 全体が読み込まれた後の適切なタイミングで実行されるものとする。
 
@@ -30,18 +35,17 @@ hide_table_of_contents: true
 `id` 名や、変更前/変更後の文字が変わります。
 :::
 
-:::info 採点基準・配点
-- ボタン要素を取得できている：3点
-- テキスト要素を取得できている：3点
-- クリックイベントを設定する記述がある：5点
-- テキストを変更する記述がある：3点
-- 要件通り動作する：2点
-:::
+### 採点基準・配点
 
-<Solution>
+| criterionId    | points | description                          | gradingMode |
+| -------------- | ------ | ------------------------------------ | ----------- |
+| q1.button.get  | 3      | ボタン要素を取得できている           | manual      |
+| q1.text.get    | 3      | テキスト要素を取得できている         | manual      |
+| q1.event.click | 5      | クリックイベントを設定する記述がある | manual      |
+| q1.text.update | 3      | テキストを変更する記述がある         | manual      |
+| q1.requirement | 2      | 要件通り動作する                     | manual      |
+
 ### 解答
-
-**JavaScript:**
 
 ```js
 let startBtnYoso = document.querySelector('#startBtn');
@@ -66,12 +70,11 @@ startBtnYoso.addEventListener('click', function() {
    クリックされたら、`innerText` を書き換えます。`statusTextYoso.innerText = '実行中';` により、表示文字が上書きされます。  
 
 この問題では、2回目以降にクリックしても同じ文字を入れているので、表示は変わらず「実行中」のままになります。
-</Solution>
-</Exercise>
 
 ---
 
-<Exercise title="問題2：クリックで表示/非表示を切り替える（クラスの付け外し）">
+## 問2
+
 要件を満たすような JavaScript を作成せよ。JavaScript のみ答えること。  
 なお、JavaScript は HTML 全体が読み込まれた後の適切なタイミングで実行されるものとする。
 
@@ -107,18 +110,17 @@ startBtnYoso.addEventListener('click', function() {
 CSSを見て「どのクラスが付いたら表示になるか」を読み取り、JavaScriptからそのクラスを付け外ししてください。
 :::
 
-:::info 採点基準・配点
-- タイトル要素を取得できている：3点
-- コンテンツ要素を取得できている：3点
-- クリックイベントを設定する記述がある：5点
-- クラスを付け外しする記述がある：5点
-- 要件通り動作する：2点
-:::
+### 採点基準・配点
 
-<Solution>
+| criterionId     | points | description                          | gradingMode |
+| --------------- | ------ | ------------------------------------ | ----------- |
+| q2.title.get    | 3      | タイトル要素を取得できている         | manual      |
+| q2.content.get  | 3      | コンテンツ要素を取得できている       | manual      |
+| q2.event.click  | 5      | クリックイベントを設定する記述がある | manual      |
+| q2.class.toggle | 5      | クラスを付け外しする記述がある       | manual      |
+| q2.requirement  | 2      | 要件通り動作する                     | manual      |
+
 ### 解答
-
-**JavaScript:**
 
 ```js
 let questionTitleYoso = document.querySelector('.questionTitle');
@@ -143,12 +145,11 @@ questionTitleYoso.addEventListener('click', function() {
    を1行で行います。  
 3. **イベントを設定する場所に注意する**  
    表示/非表示を切り替えるきっかけは「タイトルのクリック」なので、イベントはタイトル側（`.questionTitle`）に付けます。  
-</Solution>
-</Exercise>
 
 ---
 
-<Exercise title="問題3：マウスが乗ったら表示、離れたら非表示（mouseenter / mouseleave）">
+## 問3
+
 要件を満たすような JavaScript を作成せよ。JavaScript のみ答えること。  
 なお、JavaScript は HTML 全体が読み込まれた後の適切なタイミングで実行されるものとする。
 
@@ -207,20 +208,19 @@ questionTitleYoso.addEventListener('click', function() {
 セレクタや、表示状態にするクラス名が変わります。
 :::
 
-:::info 採点基準・配点
-- メニュー要素を取得できている：3点
-- サブメニュー要素を取得できている：3点
-- マウスエンターイベントを設定する記述がある：5点
-- マウスリーブイベントを設定する記述がある：5点
-- クラスを追加する記述がある：4点
-- クラスを削除する記述がある：4点
-- 要件通り動作する：2点
-:::
+### 採点基準・配点
 
-<Solution>
+| criterionId      | points | description                            | gradingMode |
+| ---------------- | ------ | -------------------------------------- | ----------- |
+| q3.menu.get      | 3      | メニュー要素を取得できている           | manual      |
+| q3.submenu.get   | 3      | サブメニュー要素を取得できている       | manual      |
+| q3.event.enter   | 5      | マウスエンターイベントを設定している   | manual      |
+| q3.event.leave   | 5      | マウスリーブイベントを設定している     | manual      |
+| q3.class.add     | 4      | クラスを追加する記述がある             | manual      |
+| q3.class.remove  | 4      | クラスを削除する記述がある             | manual      |
+| q3.requirement   | 2      | 要件通り動作する                       | manual      |
+
 ### 解答
-
-**JavaScript:**
 
 ```js
 let menuWrapYoso = document.querySelector('.menuWrap');
@@ -249,12 +249,11 @@ menuWrapYoso.addEventListener('mouseleave', function() {
 3. **イベントに応じてクラスを付け外しする**  
    - `mouseenter` で `show` クラスを追加して表示  
    - `mouseleave` で `show` クラスを削除して非表示  
-</Solution>
-</Exercise>
 
 ---
 
-<Exercise title="問題4：ポップアップ（モーダル）のCSS穴埋め（opacity / visibility / transition / transform）" enableBlanks>
+## 問4
+
 次の HTML / JavaScript を使って、ポップアップが表示される機能を作成する。  
 この機能が正しく動作するように、CSS の空欄を埋めよ。
 
@@ -346,15 +345,33 @@ ${.modalLayer.isOpen .modalPanel} {
 クラス名や、アニメーションの動き方（スライド/拡大など）が変わります。`opacity` / `visibility` / `transition` / `transform` の役割を理解して埋めてください。
 :::
 
-:::info 採点基準・配点
-- 1つ目の穴埋めが正答：4点
-- 2つ目の穴埋めが正答：4点
-- 3つ目の穴埋めが正答：4点
-- 4つ目の穴埋めが正答：4点
-- 5つ目の穴埋めが正答：4点
-:::
+### 採点基準・配点
 
-<Solution>
+| criterionId     | points | description                          | gradingMode |
+| --------------- | ------ | ------------------------------------ | ----------- |
+| q4.fill1        | 4      | 1つ目の穴埋めが正答                  | fill        |
+| q4.fill2        | 4      | 2つ目の穴埋めが正答                  | fill        |
+| q4.fill3        | 4      | 3つ目の穴埋めが正答                  | fill        |
+| q4.fill4        | 4      | 4つ目の穴埋めが正答                  | fill        |
+| q4.fill5        | 4      | 5つ目の穴埋めが正答                  | fill        |
+
+### 解答
+
+```css
+.modalLayer {
+  opacity: 0;
+}
+.modalLayer.isOpen {
+  opacity: 1;
+}
+.modalPanel {
+  transition: transform 0.3s;
+}
+.modalLayer.isOpen .modalPanel {
+  transform: scale(1);
+}
+```
+
 ### 解説
 
 この問題は、モーダル（ポップアップ）を作るときによく使うCSSの組み合わせを確認する問題です。
@@ -373,9 +390,7 @@ ${.modalLayer.isOpen .modalPanel} {
    - `transition: opacity 0.3s;` で背景のフェードを滑らかにする  
    - `transition: transform 0.3s;` で本体の動きを滑らかにする（`all` でも可）  
 5. **transformで動きを作る**  
-   今回は `scale` を使って「少し小さい状態から元の大きさへ」という動きを作っています。`translateY` を使えば「下から上へスライドする」動きにもできます。  
-</Solution>
-</Exercise>
+   今回は `scale` を使って「少し小さい状態から元の大きさへ」という動きを作っています。`translateY` を使えば「下から上へスライドする」動きにもできます。
 
 ---
 
