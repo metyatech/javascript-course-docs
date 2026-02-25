@@ -15,6 +15,15 @@ npm install
 COURSE_CONTENT_SOURCE="github:metyatech/javascript-course-docs#master" npm run dev
 ```
 
+## Supported environments
+
+- Node.js 20 or later
+- Browser: Modern browsers (Chrome, Firefox, Safari, Edge)
+
+## Dev commands
+
+- `compose-agentsmd`: Regenerate `AGENTS.md` after editing rules or ruleset.
+
 ## Deploy (Vercel)
 
 Deployment is done via GitHub Actions using the Vercel CLI (no Vercel GitHub integration).
@@ -45,3 +54,7 @@ Regenerate `AGENTS.md` after editing `agent-ruleset.json`:
 ```bash
 compose-agentsmd
 ```
+
+## License
+
+[MIT LICENSE](./LICENSE) (c) 2025 metyatech
