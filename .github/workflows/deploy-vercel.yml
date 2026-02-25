@@ -9,13 +9,69 @@ on:
       - "public/**"
       - "site.config.ts"
       - ".github/workflows/deploy-vercel.yml"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "content/**"
+      - "public/**"
+      - "site.config.ts"
+      - ".github/workflows/deploy-vercel.yml"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout course-docs-site
+        uses: actions/checkout@v4
+        with:
+          repository: metyatech/course-docs-site
+          ref: main
+          path: site
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install
+        working-directory: site
+        run: npm ci
+
+      - name: Sync content
+        run: |
+          # Sync content from this repo to the site's content folder
+          # This simulates how it's built and ensures linting covers the content
+          rm -rf site/content
+          mkdir -p site/content
+          # We need to checkout THIS repo as well
+          # Wait, the workflow is running in THIS repo context.
+          # So we checkout THIS repo to 'content-repo' and then sync.
+          
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+        with:
+          path: content-repo
+
+      - name: Sync content to site
+        run: |
+          rsync -av --delete content-repo/content/ site/content/
+          rsync -av content-repo/public/ site/public/
+          cp content-repo/site.config.ts site/site.config.ts
+
+      - name: Lint
+        working-directory: site
+        run: npm run lint
+
   deploy:
+    needs: lint
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -48,10 +104,6 @@ jobs:
       - name: Install
         working-directory: site
         run: npm ci
-
-      - name: Lint
-        working-directory: site
-        run: npm run lint
 
       - name: Vercel pull
         working-directory: site
