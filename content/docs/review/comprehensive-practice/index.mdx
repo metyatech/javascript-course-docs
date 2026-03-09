@@ -1,25 +1,24 @@
----
-title: 総復習
-sidebar_label: 総復習
----
-
-
-## 概要
-
-このページは、これまで学んだ内容（基礎 + UI コンポーネント）をまとめて練習するための総復習ページです。
-上から順に解きながら、「要素の取得」→「イベント」→「状態の管理」→「表示の更新」という流れを復習しましょう。
-
+﻿---
+title: 邱丞ｾｩ鄙・
+sidebar_label: 邱丞ｾｩ鄙・
 ---
 
-<Exercise title="演習1（クリックで1回だけ表示を更新）">
+## 讎りｦ・
 
-要件:
+縺薙・繝壹・繧ｸ縺ｯ縲√％繧後∪縺ｧ蟄ｦ繧薙□蜀・ｮｹ・亥渕遉・+ UI 繧ｳ繝ｳ繝昴・繝阪Φ繝茨ｼ峨ｒ縺ｾ縺ｨ繧√※邱ｴ鄙偵☆繧九◆繧√・邱丞ｾｩ鄙偵・繝ｼ繧ｸ縺ｧ縺吶・
+荳翫°繧蛾・↓隗｣縺阪↑縺後ｉ縲√瑚ｦ∫ｴ縺ｮ蜿門ｾ励坂・縲後う繝吶Φ繝医坂・縲檎憾諷九・邂｡逅・坂・縲瑚｡ｨ遉ｺ縺ｮ譖ｴ譁ｰ縲阪→縺・≧豬√ｌ繧貞ｾｩ鄙偵＠縺ｾ縺励ｇ縺・・
 
-- `申請` ボタンをクリックすると、テキストが「未提出」→「提出済み」に変わる
-- 同時にボタンの文字も「完了」に変わる
-- **2 回目以降**にクリックしても、表示は変わらない（1 回だけ反応）
+---
 
-動作プレビュー:
+<Exercise title="貍皮ｿ・・医け繝ｪ繝・け縺ｧ1蝗槭□縺題｡ｨ遉ｺ繧呈峩譁ｰ・・>
+
+隕∽ｻｶ:
+
+- `逕ｳ隲義 繝懊ち繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ縲√ユ繧ｭ繧ｹ繝医′縲梧悴謠仙・縲坂・縲梧署蜃ｺ貂医∩縲阪↓螟峨ｏ繧・
+- 蜷梧凾縺ｫ繝懊ち繝ｳ縺ｮ譁・ｭ励ｂ縲悟ｮ御ｺ・阪↓螟峨ｏ繧・
+- \**2 蝗樒岼莉･髯・*縺ｫ繧ｯ繝ｪ繝・け縺励※繧ゅ∬｡ｨ遉ｺ縺ｯ螟峨ｏ繧峨↑縺・ｼ・ 蝗槭□縺大渚蠢懶ｼ・
+
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex1"
@@ -29,57 +28,59 @@ sidebar_label: 総復習
   previewVisible={true}
 >
 ```html
-<button id="submitBtn">申請</button>
-<p id="stateText">未提出</p>
+<button id="submitBtn">逕ｳ隲・/button>
+<p id="stateText">譛ｪ謠仙・</p>
 ```
 
 ```js
-// 「申請」ボタンを取得する
+// 縲檎筏隲九阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
 let submitBtnYoso = document.querySelector("#submitBtn");
-// 表示文字（状態）を取得する
+// 陦ｨ遉ｺ譁・ｭ暦ｼ育憾諷具ｼ峨ｒ蜿門ｾ励☆繧・
 let stateTextYoso = document.querySelector("#stateText");
 
-// ボタンがクリックされたときの処理を登録する
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
 submitBtnYoso.addEventListener("click", function () {
-  // テキストを「提出済み」にする
-  stateTextYoso.innerText = "提出済み";
-  // ボタンの文字を「完了」にする
-  submitBtnYoso.innerText = "完了";
+  // 繝・く繧ｹ繝医ｒ縲梧署蜃ｺ貂医∩縲阪↓縺吶ｋ
+  stateTextYoso.innerText = "謠仙・貂医∩";
+  // 繝懊ち繝ｳ縺ｮ譁・ｭ励ｒ縲悟ｮ御ｺ・阪↓縺吶ｋ
+  submitBtnYoso.innerText = "螳御ｺ・;
 });
 ```
+
 </CodePreview>
 
-目安: 5 分
+逶ｮ螳・ 5 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex1" share={false}>
 ```js
 let submitBtnYoso = document.querySelector("#submitBtn");
 let stateTextYoso = document.querySelector("#stateText");
 
-// TODO: 1回だけ反応させ、テキストとボタン文字を変える
-```
+// TODO: 1蝗槭□縺大渚蠢懊＆縺帙√ユ繧ｭ繧ｹ繝医→繝懊ち繝ｳ譁・ｭ励ｒ螟峨∴繧・
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex1" />
-- まず `querySelector` でボタンとテキストを取得します。
-- クリック時に `innerText` を更新し、ボタンの文字も同時に更新します。
+- 縺ｾ縺・`querySelector` 縺ｧ繝懊ち繝ｳ縺ｨ繝・く繧ｹ繝医ｒ蜿門ｾ励＠縺ｾ縺吶・
+- 繧ｯ繝ｪ繝・け譎ゅ↓ `innerText` 繧呈峩譁ｰ縺励√・繧ｿ繝ｳ縺ｮ譁・ｭ励ｂ蜷梧凾縺ｫ譖ｴ譁ｰ縺励∪縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習2（カウンター：最小/最大を守る）">
+<Exercise title="貍皮ｿ・・医き繧ｦ繝ｳ繧ｿ繝ｼ・壽怙蟆・譛螟ｧ繧貞ｮ医ｋ・・>
 
-要件:
+隕∽ｻｶ:
 
-- `+` を押すと数値が 1 増える
-- `-` を押すと数値が 1 減る
-- 数値は **0〜10 の範囲**から出ない
+- `+` 繧呈款縺吶→謨ｰ蛟､縺・1 蠅励∴繧・
+- `-` 繧呈款縺吶→謨ｰ蛟､縺・1 貂帙ｋ
+- 謨ｰ蛟､縺ｯ **0縲・0 縺ｮ遽・峇**縺九ｉ蜃ｺ縺ｪ縺・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex2"
@@ -94,52 +95,53 @@ let stateTextYoso = document.querySelector("#stateText");
   <span id="countText">0</span>
   <button id="plusBtn">+</button>
 </div>
-```
+````
 
 ```js
-// 「-」ボタンを取得する
-let minusBtnYoso = document.querySelector("#minusBtn");
-// 「+」ボタンを取得する
-let plusBtnYoso = document.querySelector("#plusBtn");
-// 数字を表示する場所を取得する
-let countTextYoso = document.querySelector("#countText");
+// 縲・縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
+let minusBtnYoso = document.querySelector('#minusBtn');
+// 縲・縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
+let plusBtnYoso = document.querySelector('#plusBtn');
+// 謨ｰ蟄励ｒ陦ｨ遉ｺ縺吶ｋ蝣ｴ謇繧貞叙蠕励☆繧・
+let countTextYoso = document.querySelector('#countText');
 
-// 状態: 現在の数（最初は 0）
+// 迥ｶ諷・ 迴ｾ蝨ｨ縺ｮ謨ｰ・域怙蛻昴・ 0・・
 let count = 0;
 
-// 画面の表示を更新する
+// 逕ｻ髱｢縺ｮ陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
 function updateCountText() {
-  // 数字を文字として表示する
+  // 謨ｰ蟄励ｒ譁・ｭ励→縺励※陦ｨ遉ｺ縺吶ｋ
   countTextYoso.innerText = count;
 }
 
-// 「-」ボタンがクリックされたときの処理を登録する
-minusBtnYoso.addEventListener("click", function () {
-  // 0より大きいときだけ減らす（0未満にしない）
+// 縲・縲阪・繧ｿ繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+minusBtnYoso.addEventListener('click', function () {
+  // 0繧医ｊ螟ｧ縺阪＞縺ｨ縺阪□縺第ｸ帙ｉ縺呻ｼ・譛ｪ貅縺ｫ縺励↑縺・ｼ・
   if (count > 0) {
-    // 現在の数を 1 減らす
+    // 迴ｾ蝨ｨ縺ｮ謨ｰ繧・1 貂帙ｉ縺・
     count = count - 1;
-    // 表示を更新する
+    // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
     updateCountText();
   }
 });
 
-// 「+」ボタンがクリックされたときの処理を登録する
-plusBtnYoso.addEventListener("click", function () {
-  // 10より小さいときだけ増やす（10を超えない）
+// 縲・縲阪・繧ｿ繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+plusBtnYoso.addEventListener('click', function () {
+  // 10繧医ｊ蟆上＆縺・→縺阪□縺大｢励ｄ縺呻ｼ・0繧定ｶ・∴縺ｪ縺・ｼ・
   if (count < 10) {
-    // 現在の数を 1 増やす
+    // 迴ｾ蝨ｨ縺ｮ謨ｰ繧・1 蠅励ｄ縺・
     count = count + 1;
-    // 表示を更新する
+    // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
     updateCountText();
   }
 });
 ```
+
 </CodePreview>
 
-目安: 10 分
+逶ｮ螳・ 10 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex2" share={false}>
 ```js
@@ -149,28 +151,29 @@ let countTextYoso = document.querySelector("#countText");
 
 let count = 0;
 
-// TODO: 0〜10 の範囲で count を増減して表示を更新する
-```
+// TODO: 0縲・0 縺ｮ遽・峇縺ｧ count 繧貞｢玲ｸ帙＠縺ｦ陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex2" />
-- `count` を「現在の数」として変数で持ちます。
-- 表示更新は `updateCountText()` にまとめ、数が変わったら毎回呼びます。
-- `if` で 0 未満・10 超えにならないようにしてから更新します。
+- `count` 繧偵檎樟蝨ｨ縺ｮ謨ｰ縲阪→縺励※螟画焚縺ｧ謖√■縺ｾ縺吶・
+- 陦ｨ遉ｺ譖ｴ譁ｰ縺ｯ `updateCountText()` 縺ｫ縺ｾ縺ｨ繧√∵焚縺悟､峨ｏ縺｣縺溘ｉ豈主屓蜻ｼ縺ｳ縺ｾ縺吶・
+- `if` 縺ｧ 0 譛ｪ貅繝ｻ10 雜・∴縺ｫ縺ｪ繧峨↑縺・ｈ縺・↓縺励※縺九ｉ譖ｴ譁ｰ縺励∪縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習3（詳細の表示/非表示：classList.toggle）">
+<Exercise title="貍皮ｿ・・郁ｩｳ邏ｰ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ・喞lassList.toggle・・>
 
-要件:
+隕∽ｻｶ:
 
-- `詳細を表示` ボタンをクリックすると、詳細の表示/非表示が切り替わる
-- 切り替えは **クラスの付け外し**で行う（CSS の表示/非表示を JavaScript から直接いじらない）
+- `隧ｳ邏ｰ繧定｡ｨ遉ｺ` 繝懊ち繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ縲∬ｩｳ邏ｰ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ縺悟・繧頑崛繧上ｋ
+- 蛻・ｊ譖ｿ縺医・ **繧ｯ繝ｩ繧ｹ縺ｮ莉倥￠螟悶＠**縺ｧ陦後≧・・SS 縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧・JavaScript 縺九ｉ逶ｴ謗･縺・§繧峨↑縺・ｼ・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex3"
@@ -180,9 +183,9 @@ let count = 0;
   previewVisible={true}
 >
 ```html
-<button class="detailBtn">詳細を表示</button>
-<div class="detailBox">詳細内容</div>
-```
+<button class="detailBtn">隧ｳ邏ｰ繧定｡ｨ遉ｺ</button>
+<div class="detailBox">隧ｳ邏ｰ蜀・ｮｹ</div>
+````
 
 ```css
 .detailBox {
@@ -195,51 +198,53 @@ let count = 0;
 ```
 
 ```js
-// 「詳細を表示」ボタンを取得する
-let detailBtnYoso = document.querySelector(".detailBtn");
-// 詳細の表示エリアを取得する
-let detailBoxYoso = document.querySelector(".detailBox");
+// 縲瑚ｩｳ邏ｰ繧定｡ｨ遉ｺ縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
+let detailBtnYoso = document.querySelector('.detailBtn');
+// 隧ｳ邏ｰ縺ｮ陦ｨ遉ｺ繧ｨ繝ｪ繧｢繧貞叙蠕励☆繧・
+let detailBoxYoso = document.querySelector('.detailBox');
 
-// ボタンがクリックされたときの処理を登録する
-detailBtnYoso.addEventListener("click", function () {
-  // CSS側のクラスで表示/非表示を切り替える
-  detailBoxYoso.classList.toggle("isVisible");
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+detailBtnYoso.addEventListener('click', function () {
+  // CSS蛛ｴ縺ｮ繧ｯ繝ｩ繧ｹ縺ｧ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧貞・繧頑崛縺医ｋ
+  detailBoxYoso.classList.toggle('isVisible');
 });
 ```
+
 </CodePreview>
 
-目安: 10 分
+逶ｮ螳・ 10 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex3" share={false}>
 ```js
 let detailBtnYoso = document.querySelector(".detailBtn");
 let detailBoxYoso = document.querySelector(".detailBox");
 
-// TODO: クリックで isVisible クラスを付け外しする
-```
+// TODO: 繧ｯ繝ｪ繝・け縺ｧ isVisible 繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠螟悶＠縺吶ｋ
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex3" />
-- 表示/非表示は CSS のクラス（`isVisible`）で切り替えるようにして、JavaScript はクラスを付け外しするだけにします。
-- クリックイベントの中で `classList.toggle("isVisible")` を呼ぶと、押すたびに表示状態が切り替わります。
+- 陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ縺ｯ CSS 縺ｮ繧ｯ繝ｩ繧ｹ・・isVisible`・峨〒蛻・ｊ譖ｿ縺医ｋ繧医≧縺ｫ縺励※縲゛avaScript 縺ｯ繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠螟悶＠縺吶ｋ縺縺代↓縺励∪縺吶・
+- 繧ｯ繝ｪ繝・け繧､繝吶Φ繝医・荳ｭ縺ｧ `classList.toggle("isVisible")` 繧貞他縺ｶ縺ｨ縲∵款縺吶◆縺ｳ縺ｫ陦ｨ遉ｺ迥ｶ諷九′蛻・ｊ譖ｿ繧上ｊ縺ｾ縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習4（関数：引数を使って合計を増やす）">
+<Exercise title="貍皮ｿ・・磯未謨ｰ・壼ｼ墓焚繧剃ｽｿ縺｣縺ｦ蜷郁ｨ医ｒ蠅励ｄ縺呻ｼ・>
 
-要件:
+隕∽ｻｶ:
 
-- `+100円` を押すと、合計が 100 増える
-- `+500円` を押すと、合計が 500 増える
-- `リセット` を押すと、合計が 0 に戻る
-- 合計の更新は、引数ありの関数（例: `addAmount(100)`）を使って実装する
+- `+100蜀・ 繧呈款縺吶→縲∝粋險医′ 100 蠅励∴繧・
+- `+500蜀・ 繧呈款縺吶→縲∝粋險医′ 500 蠅励∴繧・
+- `繝ｪ繧ｻ繝・ヨ` 繧呈款縺吶→縲∝粋險医′ 0 縺ｫ謌ｻ繧・
+- 蜷郁ｨ医・譖ｴ譁ｰ縺ｯ縲∝ｼ墓焚縺ゅｊ縺ｮ髢｢謨ｰ・井ｾ・ `addAmount(100)`・峨ｒ菴ｿ縺｣縺ｦ螳溯｣・☆繧・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex4"
@@ -249,67 +254,68 @@ let detailBoxYoso = document.querySelector(".detailBox");
   previewVisible={true}
 >
 ```html
-<button id="add100Btn">+100円</button>
-<button id="add500Btn">+500円</button>
-<button id="resetBtn">リセット</button>
-<p id="totalText">合計: 0円</p>
-```
+<button id="add100Btn">+100蜀・/button>
+<button id="add500Btn">+500蜀・/button>
+<button id="resetBtn">繝ｪ繧ｻ繝・ヨ</button>
+<p id="totalText">蜷郁ｨ・ 0蜀・/p>
+````
 
 ```js
-// 「+100円」ボタンを取得する
+// 縲・100蜀・阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
 let add100BtnYoso = document.querySelector("#add100Btn");
-// 「+500円」ボタンを取得する
+// 縲・500蜀・阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
 let add500BtnYoso = document.querySelector("#add500Btn");
-// 「リセット」ボタンを取得する
+// 縲後Μ繧ｻ繝・ヨ縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
 let resetBtnYoso = document.querySelector("#resetBtn");
-// 合計を表示する場所を取得する
+// 蜷郁ｨ医ｒ陦ｨ遉ｺ縺吶ｋ蝣ｴ謇繧貞叙蠕励☆繧・
 let totalTextYoso = document.querySelector("#totalText");
 
-// 状態: 現在の合計（最初は 0）
+// 迥ｶ諷・ 迴ｾ蝨ｨ縺ｮ蜷郁ｨ茨ｼ域怙蛻昴・ 0・・
 let total = 0;
 
-// 画面の表示を更新する
+// 逕ｻ髱｢縺ｮ陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
 function renderTotal() {
-  // 合計を画面に表示する
-  totalTextYoso.innerText = "合計: " + total + "円";
+  // 蜷郁ｨ医ｒ逕ｻ髱｢縺ｫ陦ｨ遉ｺ縺吶ｋ
+  totalTextYoso.innerText = "蜷郁ｨ・ " + total + "蜀・;
 }
 
-// 引数の分だけ合計を増やして、表示を更新する
+// 蠑墓焚縺ｮ蛻・□縺大粋險医ｒ蠅励ｄ縺励※縲∬｡ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
 function addAmount(amount) {
-  // 合計を増やす
+  // 蜷郁ｨ医ｒ蠅励ｄ縺・
   total = total + amount;
-  // 表示を更新する
+  // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
   renderTotal();
 }
 
-// 最初に1回、表示を整える
+// 譛蛻昴↓1蝗槭∬｡ｨ遉ｺ繧呈紛縺医ｋ
 renderTotal();
 
-// 「+100円」がクリックされたときの処理を登録する
+// 縲・100蜀・阪′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
 add100BtnYoso.addEventListener("click", function () {
-  // 100円分増やす
+  // 100蜀・・蠅励ｄ縺・
   addAmount(100);
 });
 
-// 「+500円」がクリックされたときの処理を登録する
+// 縲・500蜀・阪′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
 add500BtnYoso.addEventListener("click", function () {
-  // 500円分増やす
+  // 500蜀・・蠅励ｄ縺・
   addAmount(500);
 });
 
-// 「リセット」がクリックされたときの処理を登録する
+// 縲後Μ繧ｻ繝・ヨ縲阪′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
 resetBtnYoso.addEventListener("click", function () {
-  // 合計を 0 に戻す
+  // 蜷郁ｨ医ｒ 0 縺ｫ謌ｻ縺・
   total = 0;
-  // 表示を更新する
+  // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
   renderTotal();
 });
 ```
+
 </CodePreview>
 
-目安: 10 分
+逶ｮ螳・ 10 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex4" share={false}>
 ```js
@@ -321,36 +327,37 @@ let totalTextYoso = document.querySelector("#totalText");
 let total = 0;
 
 function renderTotal() {
-  // TODO: total の値を表示する
+// TODO: total 縺ｮ蛟､繧定｡ｨ遉ｺ縺吶ｋ
 }
 
 function addAmount(amount) {
-  // TODO: total を amount 分増やして renderTotal を呼ぶ
+// TODO: total 繧・amount 蛻・｢励ｄ縺励※ renderTotal 繧貞他縺ｶ
 }
 
-// TODO: それぞれのボタンで addAmount を呼ぶ / リセットする
-```
+// TODO: 縺昴ｌ縺槭ｌ縺ｮ繝懊ち繝ｳ縺ｧ addAmount 繧貞他縺ｶ / 繝ｪ繧ｻ繝・ヨ縺吶ｋ
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex4" />
-- 合計は `total` に入れておき、画面表示は `renderTotal()` にまとめます。
-- `addAmount(amount)` のように「増やす値」を引数で受け取ると、`+100` と `+500` を同じ処理で書けます。
-- `リセット` は `total = 0` に戻して `renderTotal()` を呼びます。
+- 蜷郁ｨ医・ `total` 縺ｫ蜈･繧後※縺翫″縲∫判髱｢陦ｨ遉ｺ縺ｯ `renderTotal()` 縺ｫ縺ｾ縺ｨ繧√∪縺吶・
+- `addAmount(amount)` 縺ｮ繧医≧縺ｫ縲悟｢励ｄ縺吝､縲阪ｒ蠑墓焚縺ｧ蜿励￠蜿悶ｋ縺ｨ縲～+100` 縺ｨ `+500` 繧貞酔縺伜・逅・〒譖ｸ縺代∪縺吶・
+- `繝ｪ繧ｻ繝・ヨ` 縺ｯ `total = 0` 縺ｫ謌ｻ縺励※ `renderTotal()` 繧貞他縺ｳ縺ｾ縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習5（オブジェクト：状態をまとめて管理する）">
+<Exercise title="貍皮ｿ・・医が繝悶ず繧ｧ繧ｯ繝茨ｼ夂憾諷九ｒ縺ｾ縺ｨ繧√※邂｡逅・☆繧具ｼ・>
 
-要件:
+隕∽ｻｶ:
 
-- `+10pt` を押すとポイントが 10 増える
-- `リセット` を押すとポイントが 0 に戻る
-- 状態はオブジェクト（例: `player.point`）で管理する
+- `+10pt` 繧呈款縺吶→繝昴う繝ｳ繝医′ 10 蠅励∴繧・
+- `繝ｪ繧ｻ繝・ヨ` 繧呈款縺吶→繝昴う繝ｳ繝医′ 0 縺ｫ謌ｻ繧・
+- 迥ｶ諷九・繧ｪ繝悶ず繧ｧ繧ｯ繝茨ｼ井ｾ・ `player.point`・峨〒邂｡逅・☆繧・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex5"
@@ -362,58 +369,59 @@ function addAmount(amount) {
 ```html
 <div class="box">
   <button id="addBtn">+10pt</button>
-  <button id="resetBtn">リセット</button>
-  <p id="playerText">プレイヤー: - / ポイント: 0</p>
+  <button id="resetBtn">繝ｪ繧ｻ繝・ヨ</button>
+  <p id="playerText">繝励Ξ繧､繝､繝ｼ: - / 繝昴う繝ｳ繝・ 0</p>
 </div>
-```
+````
 
 ```js
-// 「+10pt」ボタンを取得する
-let addBtnYoso = document.querySelector("#addBtn");
-// 「リセット」ボタンを取得する
-let resetBtnYoso = document.querySelector("#resetBtn");
-// プレイヤー情報を表示する場所を取得する
-let playerTextYoso = document.querySelector("#playerText");
+// 縲・10pt縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
+let addBtnYoso = document.querySelector('#addBtn');
+// 縲後Μ繧ｻ繝・ヨ縲阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
+let resetBtnYoso = document.querySelector('#resetBtn');
+// 繝励Ξ繧､繝､繝ｼ諠・ｱ繧定｡ｨ遉ｺ縺吶ｋ蝣ｴ謇繧貞叙蠕励☆繧・
+let playerTextYoso = document.querySelector('#playerText');
 
-// 状態をオブジェクトでまとめる
+// 迥ｶ諷九ｒ繧ｪ繝悶ず繧ｧ繧ｯ繝医〒縺ｾ縺ｨ繧√ｋ
 let player = {
-  // プレイヤー名
-  name: "Sato",
-  // ポイント
+  // 繝励Ξ繧､繝､繝ｼ蜷・
+  name: 'Sato',
+  // 繝昴う繝ｳ繝・
   point: 0,
 };
 
-// 画面の表示を更新する
+// 逕ｻ髱｢縺ｮ陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
 function renderPlayer() {
-  // オブジェクトの中身を使って文字を作り、画面に表示する
+  // 繧ｪ繝悶ず繧ｧ繧ｯ繝医・荳ｭ霄ｫ繧剃ｽｿ縺｣縺ｦ譁・ｭ励ｒ菴懊ｊ縲∫判髱｢縺ｫ陦ｨ遉ｺ縺吶ｋ
   playerTextYoso.innerText =
-    "プレイヤー: " + player.name + " / ポイント: " + player.point;
+    '繝励Ξ繧､繝､繝ｼ: ' + player.name + ' / 繝昴う繝ｳ繝・ ' + player.point;
 }
 
-// 最初に1回、表示を整える
+// 譛蛻昴↓1蝗槭∬｡ｨ遉ｺ繧呈紛縺医ｋ
 renderPlayer();
 
-// 「+10pt」がクリックされたときの処理を登録する
-addBtnYoso.addEventListener("click", function () {
-  // ポイントを 10 増やす
+// 縲・10pt縲阪′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+addBtnYoso.addEventListener('click', function () {
+  // 繝昴う繝ｳ繝医ｒ 10 蠅励ｄ縺・
   player.point = player.point + 10;
-  // 表示を更新する
+  // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
   renderPlayer();
 });
 
-// 「リセット」がクリックされたときの処理を登録する
-resetBtnYoso.addEventListener("click", function () {
-  // ポイントを 0 に戻す
+// 縲後Μ繧ｻ繝・ヨ縲阪′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+resetBtnYoso.addEventListener('click', function () {
+  // 繝昴う繝ｳ繝医ｒ 0 縺ｫ謌ｻ縺・
   player.point = 0;
-  // 表示を更新する
+  // 陦ｨ遉ｺ繧呈峩譁ｰ縺吶ｋ
   renderPlayer();
 });
 ```
+
 </CodePreview>
 
-目安: 15 分
+逶ｮ螳・ 15 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex5" share={false}>
 ```js
@@ -422,36 +430,37 @@ let resetBtnYoso = document.querySelector("#resetBtn");
 let playerTextYoso = document.querySelector("#playerText");
 
 let player = {
-  name: "Sato",
-  point: 0,
+name: "Sato",
+point: 0,
 };
 
 function renderPlayer() {
-  // TODO: player の内容を playerTextYoso に表示する
+// TODO: player 縺ｮ蜀・ｮｹ繧・playerTextYoso 縺ｫ陦ｨ遉ｺ縺吶ｋ
 }
 
-// TODO: クリックで player.point を更新して renderPlayer を呼ぶ
-```
+// TODO: 繧ｯ繝ｪ繝・け縺ｧ player.point 繧呈峩譁ｰ縺励※ renderPlayer 繧貞他縺ｶ
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex5" />
-- `name` と `point` を 1つのオブジェクト（`player`）にまとめると、状態が増えても管理しやすくなります。
-- 表示更新は `renderPlayer()` にまとめ、値を変えたら必ず呼ぶようにします。
+- `name` 縺ｨ `point` 繧・1縺､縺ｮ繧ｪ繝悶ず繧ｧ繧ｯ繝茨ｼ・player`・峨↓縺ｾ縺ｨ繧√ｋ縺ｨ縲∫憾諷九′蠅励∴縺ｦ繧らｮ｡逅・＠繧・☆縺上↑繧翫∪縺吶・
+- 陦ｨ遉ｺ譖ｴ譁ｰ縺ｯ `renderPlayer()` 縺ｫ縺ｾ縺ｨ繧√∝､繧貞､峨∴縺溘ｉ蠢・★蜻ｼ縺ｶ繧医≧縺ｫ縺励∪縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習6（UIパターン：もっと見る / 閉じる）">
+<Exercise title="貍皮ｿ・・・I繝代ち繝ｼ繝ｳ・壹ｂ縺｣縺ｨ隕九ｋ / 髢峨§繧具ｼ・>
 
-要件:
+隕∽ｻｶ:
 
-- 最初は文章を短く表示する（高さ制限 + はみ出しは隠す）
-- `もっと見る` を押すと全文が見える
-- もう一度押すと `閉じる` になり、短い表示に戻る
+- 譛蛻昴・譁・ｫ繧堤洒縺剰｡ｨ遉ｺ縺吶ｋ・磯ｫ倥＆蛻ｶ髯・+ 縺ｯ縺ｿ蜃ｺ縺励・髫縺呻ｼ・
+- `繧ゅ▲縺ｨ隕九ｋ` 繧呈款縺吶→蜈ｨ譁・′隕九∴繧・
+- 繧ゅ≧荳蠎ｦ謚ｼ縺吶→ `髢峨§繧義 縺ｫ縺ｪ繧翫∫洒縺・｡ｨ遉ｺ縺ｫ謌ｻ繧・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex6"
@@ -462,20 +471,20 @@ function renderPlayer() {
 >
 ```html
 <div class="card">
-  <h3>商品説明</h3>
+  <h3>蝠・刀隱ｬ譏・/h3>
   <p class="moreText">
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
-    これはサンプルの文章です。長い文章を想定しています。これはサンプルの文章です。長い文章を想定しています。
+    縺薙ｌ縺ｯ繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶ゅ％繧後・繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶・
+    縺薙ｌ縺ｯ繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶ゅ％繧後・繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶・
+    縺薙ｌ縺ｯ繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶ゅ％繧後・繧ｵ繝ｳ繝励Ν縺ｮ譁・ｫ縺ｧ縺吶る聞縺・枚遶繧呈Φ螳壹＠縺ｦ縺・∪縺吶・
   </p>
-  <button id="toggleBtn">もっと見る</button>
+  <button id="toggleBtn">繧ゅ▲縺ｨ隕九ｋ</button>
 </div>
-```
+````
 
 ```css
 .moreText {
   line-height: 1.2;
-  max-height: 1.8em; /* 1.2 + 1.2の半分 (1行と半分くらい) */
+  max-height: 1.8em; /* 1.2 + 1.2縺ｮ蜊雁・ (1陦後→蜊雁・縺上ｉ縺・ */
   overflow: hidden;
 }
 
@@ -485,61 +494,63 @@ function renderPlayer() {
 ```
 
 ```js
-// 「もっと見る / 閉じる」ボタンを取得する
+// 縲後ｂ縺｣縺ｨ隕九ｋ / 髢峨§繧九阪・繧ｿ繝ｳ繧貞叙蠕励☆繧・
 let toggleBtnYoso = document.querySelector("#toggleBtn");
-// 文章を表示する場所を取得する
+// 譁・ｫ繧定｡ｨ遉ｺ縺吶ｋ蝣ｴ謇繧貞叙蠕励☆繧・
 let moreTextYoso = document.querySelector(".moreText");
 
-// ボタンがクリックされたときの処理を登録する
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
 toggleBtnYoso.addEventListener("click", function () {
-  // 今の状態を見て、クラスとボタン文字を切り替える
+  // 莉翫・迥ｶ諷九ｒ隕九※縲√け繝ｩ繧ｹ縺ｨ繝懊ち繝ｳ譁・ｭ励ｒ蛻・ｊ譖ｿ縺医ｋ
   if (moreTextYoso.classList.contains("isOpen")) {
-    // 開いている状態なら、閉じる
+    // 髢九＞縺ｦ縺・ｋ迥ｶ諷九↑繧峨・哩縺倥ｋ
     moreTextYoso.classList.remove("isOpen");
-    // ボタンの文字を「もっと見る」に戻す
-    toggleBtnYoso.innerText = "もっと見る";
+    // 繝懊ち繝ｳ縺ｮ譁・ｭ励ｒ縲後ｂ縺｣縺ｨ隕九ｋ縲阪↓謌ｻ縺・
+    toggleBtnYoso.innerText = "繧ゅ▲縺ｨ隕九ｋ";
   } else {
-    // 閉じている状態なら、開く
+    // 髢峨§縺ｦ縺・ｋ迥ｶ諷九↑繧峨・幕縺・
     moreTextYoso.classList.add("isOpen");
-    // ボタンの文字を「閉じる」にする
-    toggleBtnYoso.innerText = "閉じる";
+    // 繝懊ち繝ｳ縺ｮ譁・ｭ励ｒ縲碁哩縺倥ｋ縲阪↓縺吶ｋ
+    toggleBtnYoso.innerText = "髢峨§繧・;
   }
 });
 ```
+
 </CodePreview>
 
-目安: 20 分
+逶ｮ螳・ 20 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex6" share={false}>
 ```js
 let toggleBtnYoso = document.querySelector("#toggleBtn");
 let moreTextYoso = document.querySelector(".moreText");
 
-// TODO: classList.contains を使って isOpen を切り替え、ボタン文字も切り替える
-```
+// TODO: classList.contains 繧剃ｽｿ縺｣縺ｦ isOpen 繧貞・繧頑崛縺医√・繧ｿ繝ｳ譁・ｭ励ｂ蛻・ｊ譖ｿ縺医ｋ
+
+````
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex6" />
-- CSS は「短く見せる」と「全部見せる」の 2 状態を、クラス（`isOpen`）で分けています。
-- JavaScript では `classList.contains` で状態を確認し、`add/remove` で切り替えます。
-- 状態に合わせてボタンの文字も切り替えると、ユーザーが次に何を押すか分かりやすくなります。
+- CSS 縺ｯ縲檎洒縺剰ｦ九○繧九阪→縲悟・驛ｨ隕九○繧九阪・ 2 迥ｶ諷九ｒ縲√け繝ｩ繧ｹ・・isOpen`・峨〒蛻・￠縺ｦ縺・∪縺吶・
+- JavaScript 縺ｧ縺ｯ `classList.contains` 縺ｧ迥ｶ諷九ｒ遒ｺ隱阪＠縲～add/remove` 縺ｧ蛻・ｊ譖ｿ縺医∪縺吶・
+- 迥ｶ諷九↓蜷医ｏ縺帙※繝懊ち繝ｳ縺ｮ譁・ｭ励ｂ蛻・ｊ譖ｿ縺医ｋ縺ｨ縲√Θ繝ｼ繧ｶ繝ｼ縺梧ｬ｡縺ｫ菴輔ｒ謚ｼ縺吶°蛻・°繧翫ｄ縺吶￥縺ｪ繧翫∪縺吶・
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習7（タブ切り替え：querySelectorAll + ループ）">
+<Exercise title="貍皮ｿ・・医ち繝門・繧頑崛縺茨ｼ嘔uerySelectorAll + 繝ｫ繝ｼ繝暦ｼ・>
 
-要件:
+隕∽ｻｶ:
 
-- タブをクリックすると、対応するパネルだけが表示される
-- 「選ばれているタブ」には `isActive` クラスを付ける
-- `querySelectorAll` とループで、複数要素をまとめて扱う
+- 繧ｿ繝悶ｒ繧ｯ繝ｪ繝・け縺吶ｋ縺ｨ縲∝ｯｾ蠢懊☆繧九ヱ繝阪Ν縺縺代′陦ｨ遉ｺ縺輔ｌ繧・
+- 縲碁∈縺ｰ繧後※縺・ｋ繧ｿ繝悶阪↓縺ｯ `isActive` 繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠繧・
+- `querySelectorAll` 縺ｨ繝ｫ繝ｼ繝励〒縲∬､・焚隕∫ｴ繧偵∪縺ｨ繧√※謇ｱ縺・
 
-動作プレビュー:
+蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ:
 
 <CodePreview
   sourceId="ex7"
@@ -551,18 +562,18 @@ let moreTextYoso = document.querySelector(".moreText");
 ```html
 <div class="tabs">
   <div class="tabButtons">
-    <button class="tabBtn isActive">概要</button>
-    <button class="tabBtn">仕様</button>
-    <button class="tabBtn">注意</button>
+    <button class="tabBtn isActive">讎りｦ・/button>
+    <button class="tabBtn">莉墓ｧ・/button>
+    <button class="tabBtn">豕ｨ諢・/button>
   </div>
 
   <div class="tabPanels">
-    <div class="tabPanel isActive">概要の内容</div>
-    <div class="tabPanel">仕様の内容</div>
-    <div class="tabPanel">注意の内容</div>
+    <div class="tabPanel isActive">讎りｦ√・蜀・ｮｹ</div>
+    <div class="tabPanel">莉墓ｧ倥・蜀・ｮｹ</div>
+    <div class="tabPanel">豕ｨ諢上・蜀・ｮｹ</div>
   </div>
 </div>
-```
+````
 
 ```css
 .tabBtn.isActive {
@@ -579,37 +590,38 @@ let moreTextYoso = document.querySelector(".moreText");
 ```
 
 ```js
-// タブボタンをまとめて取得する
-let tabBtnYosos = document.querySelectorAll(".tabBtn");
-// タブのパネルをまとめて取得する
-let tabPanelYosos = document.querySelectorAll(".tabPanel");
+// 繧ｿ繝悶・繧ｿ繝ｳ繧偵∪縺ｨ繧√※蜿門ｾ励☆繧・
+let tabBtnYosos = document.querySelectorAll('.tabBtn');
+// 繧ｿ繝悶・繝代ロ繝ｫ繧偵∪縺ｨ繧√※蜿門ｾ励☆繧・
+let tabPanelYosos = document.querySelectorAll('.tabPanel');
 
-// ボタンとパネルは同じ順番なので、インデックスで対応付ける
+// 繝懊ち繝ｳ縺ｨ繝代ロ繝ｫ縺ｯ蜷後§鬆・分縺ｪ縺ｮ縺ｧ縲√う繝ｳ繝・ャ繧ｯ繧ｹ縺ｧ蟇ｾ蠢應ｻ倥￠繧・
 for (let i = 0; i < tabBtnYosos.length; i++) {
-  // i 番目のタブがクリックされたときの処理を登録する
-  tabBtnYosos[i].addEventListener("click", function () {
-    // いったん全てのタブから active を外す
+  // i 逡ｪ逶ｮ縺ｮ繧ｿ繝悶′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ縺吶ｋ
+  tabBtnYosos[i].addEventListener('click', function () {
+    // 縺・▲縺溘ｓ蜈ｨ縺ｦ縺ｮ繧ｿ繝悶°繧・active 繧貞､悶☆
     for (let tabBtnYoso of tabBtnYosos) {
-      tabBtnYoso.classList.remove("isActive");
+      tabBtnYoso.classList.remove('isActive');
     }
 
-    // いったん全てのパネルから active を外す
+    // 縺・▲縺溘ｓ蜈ｨ縺ｦ縺ｮ繝代ロ繝ｫ縺九ｉ active 繧貞､悶☆
     for (let tabPanelYoso of tabPanelYosos) {
-      tabPanelYoso.classList.remove("isActive");
+      tabPanelYoso.classList.remove('isActive');
     }
 
-    // クリックしたタブだけ active にする
-    tabBtnYosos[i].classList.add("isActive");
-    // クリックしたタブに対応するパネルだけ active にする
-    tabPanelYosos[i].classList.add("isActive");
+    // 繧ｯ繝ｪ繝・け縺励◆繧ｿ繝悶□縺・active 縺ｫ縺吶ｋ
+    tabBtnYosos[i].classList.add('isActive');
+    // 繧ｯ繝ｪ繝・け縺励◆繧ｿ繝悶↓蟇ｾ蠢懊☆繧九ヱ繝阪Ν縺縺・active 縺ｫ縺吶ｋ
+    tabPanelYosos[i].classList.add('isActive');
   });
 }
 ```
+
 </CodePreview>
 
-目安: 25 分
+逶ｮ螳・ 25 蛻・
 
-上記の動作プレビューのように動作するように、JavaScript を実装してください。
+荳願ｨ倥・蜍穂ｽ懊・繝ｬ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・↓縲゛avaScript 繧貞ｮ溯｣・＠縺ｦ縺上□縺輔＞縲・
 
 <CodePreview sourceId="ex7" share={false}>
 ```js
@@ -617,16 +629,18 @@ let tabBtnYosos = document.querySelectorAll(".tabBtn");
 let tabPanelYosos = document.querySelectorAll(".tabPanel");
 
 // TODO:
-// - どのタブをクリックしたかを判定する
-// - 全てのタブ/パネルから isActive を外す
-// - 対応するタブ/パネルだけ isActive を付ける
+// - 縺ｩ縺ｮ繧ｿ繝悶ｒ繧ｯ繝ｪ繝・け縺励◆縺九ｒ蛻､螳壹☆繧・
+// - 蜈ｨ縺ｦ縺ｮ繧ｿ繝・繝代ロ繝ｫ縺九ｉ isActive 繧貞､悶☆
+// - 蟇ｾ蠢懊☆繧九ち繝・繝代ロ繝ｫ縺縺・isActive 繧剃ｻ倥￠繧・
+
 ```
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="ex7" />
-- ボタンとパネルは「同じ順番」で並んでいるので、インデックス（`i`）で対応付けできます。
-- クリックされたら、まず全てのタブ/パネルから `isActive` を外します。
-- 最後に、クリックされたインデックスのタブとパネルだけに `isActive` を付けて表示を切り替えます。
+- 繝懊ち繝ｳ縺ｨ繝代ロ繝ｫ縺ｯ縲悟酔縺倬・分縲阪〒荳ｦ繧薙〒縺・ｋ縺ｮ縺ｧ縲√う繝ｳ繝・ャ繧ｯ繧ｹ・・i`・峨〒蟇ｾ蠢應ｻ倥￠縺ｧ縺阪∪縺吶・
+- 繧ｯ繝ｪ繝・け縺輔ｌ縺溘ｉ縲√∪縺壼・縺ｦ縺ｮ繧ｿ繝・繝代ロ繝ｫ縺九ｉ `isActive` 繧貞､悶＠縺ｾ縺吶・
+- 譛蠕後↓縲√け繝ｪ繝・け縺輔ｌ縺溘う繝ｳ繝・ャ繧ｯ繧ｹ縺ｮ繧ｿ繝悶→繝代ロ繝ｫ縺縺代↓ `isActive` 繧剃ｻ倥￠縺ｦ陦ｨ遉ｺ繧貞・繧頑崛縺医∪縺吶・
 </Solution>
 </Exercise>
+```

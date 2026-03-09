@@ -1,40 +1,38 @@
+﻿---
+title: 繧ｯ繝ｩ繧ｹ蛻・ｊ譖ｿ縺医〒CSS繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ
 ---
-title: クラス切り替えでCSSアニメーション
-sidebar_position: 999
----
 
+## 莉頑律縺ｮ蟄ｦ鄙偵・縺薙ｓ縺ｪ縺ｨ縺薙ｍ縺ｧ菴ｿ縺・ｈ
 
-## 今日の学習はこんなところで使うよ
+縺薙・遶縺ｧ縺ｯ縲・*隕∫ｴ縺ｫ莉倥￠繧九け繝ｩ繧ｹ蜷阪ｒJavaScript縺ｧ蛻・ｊ譖ｿ縺医※隕九◆逶ｮ繧貞､峨∴繧区婿豕・*縺ｨ縲・
+縺昴％縺ｫ **CSS Transition** 繧定ｶｳ縺励※繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○繧区婿豕輔ｒ蟄ｦ縺ｳ縺ｾ縺吶・
+繝｡繝九Η繝ｼ縺ｮ髢矩哩縲√Δ繝ｼ繝繝ｫ繧ｦ繧｣繝ｳ繝峨え縺ｮ陦ｨ遉ｺ繝ｻ髱櫁｡ｨ遉ｺ縲√き繝ｼ繝峨・驕ｸ謚樒憾諷九・ON/OFF縺ｪ縺ｩ縲√檎憾諷九阪ｒ陦ｨ縺吶け繝ｩ繧ｹ繧剃ｻ倥￠譖ｿ縺医ｋ縺薙→縺ｧ縲∬ｦ九◆逶ｮ縺ｮ螟牙喧縺ｨ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧偵さ繝ｳ繝医Ο繝ｼ繝ｫ縺ｧ縺阪∪縺吶・
 
-この章では、**要素に付けるクラス名をJavaScriptで切り替えて見た目を変える方法**と、
-そこに **CSS Transition** を足してアニメーションさせる方法を学びます。
-メニューの開閉、モーダルウィンドウの表示・非表示、カードの選択状態のON/OFFなど、「状態」を表すクラスを付け替えることで、見た目の変化とアニメーションをコントロールできます。
-
-まずは **transitionなしで単に見た目が切り替わるだけの例** を見て、
-「クラスをつけ外しすると、適用されるCSSが変わる」ということを確認します。
-そのあとで「同じコードにtransitionを足すと滑らかにアニメーションする」という流れで学習します。
+縺ｾ縺壹・ \*_transition縺ｪ縺励〒蜊倥↓隕九◆逶ｮ縺悟・繧頑崛繧上ｋ縺縺代・萓・_ 繧定ｦ九※縲・
+縲後け繝ｩ繧ｹ繧偵▽縺大､悶＠縺吶ｋ縺ｨ縲・←逕ｨ縺輔ｌ繧気SS縺悟､峨ｏ繧九阪→縺・≧縺薙→繧堤｢ｺ隱阪＠縺ｾ縺吶・
+縺昴・縺ゅ→縺ｧ縲悟酔縺倥さ繝ｼ繝峨↓transition繧定ｶｳ縺吶→貊代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ縲阪→縺・≧豬√ｌ縺ｧ蟄ｦ鄙偵＠縺ｾ縺吶・
 
 ---
 
-## まずは「クラス切り替えだけ」で見た目を変える
+## 縺ｾ縺壹・縲後け繝ｩ繧ｹ蛻・ｊ譖ｿ縺医□縺代阪〒隕九◆逶ｮ繧貞､峨∴繧・
 
-### 基本の考え方（クラス切り替え）
+### 蝓ｺ譛ｬ縺ｮ閠・∴譁ｹ・医け繝ｩ繧ｹ蛻・ｊ譖ｿ縺茨ｼ・
 
-1. **CSS側**で「通常の状態」と「変化後の状態」のスタイルを、クラスで分けて書く。
-2. **JavaScript側**で、イベントに応じてクラスを追加・削除する。
-3. 特によく使うのが `classList.toggle` で、付いていなければクラスを追加、付いていればクラスを削除できる。
-4. クラスが変わる → 適用されるCSSが変わる → 見た目がパッと切り替わる。
+1. **CSS蛛ｴ**縺ｧ縲碁壼ｸｸ縺ｮ迥ｶ諷九阪→縲悟､牙喧蠕後・迥ｶ諷九阪・繧ｹ繧ｿ繧､繝ｫ繧偵√け繝ｩ繧ｹ縺ｧ蛻・￠縺ｦ譖ｸ縺上・
+2. **JavaScript蛛ｴ**縺ｧ縲√う繝吶Φ繝医↓蠢懊§縺ｦ繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉繝ｻ蜑企勁縺吶ｋ縲・
+3. 迚ｹ縺ｫ繧医￥菴ｿ縺・・縺・`classList.toggle` 縺ｧ縲∽ｻ倥＞縺ｦ縺・↑縺代ｌ縺ｰ繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉縲∽ｻ倥＞縺ｦ縺・ｌ縺ｰ繧ｯ繝ｩ繧ｹ繧貞炎髯､縺ｧ縺阪ｋ縲・
+4. 繧ｯ繝ｩ繧ｹ縺悟､峨ｏ繧・竊・驕ｩ逕ｨ縺輔ｌ繧気SS縺悟､峨ｏ繧・竊・隕九◆逶ｮ縺後ヱ繝・→蛻・ｊ譖ｿ繧上ｋ縲・
 
 ```js
-要素.classList.toggle("クラス名"); // クラスが付いていなければ追加、付いていれば削除
+隕∫ｴ.classList.toggle("繧ｯ繝ｩ繧ｹ蜷・); // 繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・↑縺代ｌ縺ｰ霑ｽ蜉縲∽ｻ倥＞縺ｦ縺・ｌ縺ｰ蜑企勁
 ```
 
-### シンプルな例: ボックスをクリックしたら瞬時に大きくなる
+### 繧ｷ繝ｳ繝励Ν縺ｪ萓・ 繝懊ャ繧ｯ繧ｹ繧偵け繝ｪ繝・け縺励◆繧臥椪譎ゅ↓螟ｧ縺阪￥縺ｪ繧・
 
 <CodePreview
 >
 ```html
-<div class="box">クリックでサイズ変更</div>
+<div class="box">繧ｯ繝ｪ繝・け縺ｧ繧ｵ繧､繧ｺ螟画峩</div>
 ```
 
 ```css
@@ -51,43 +49,44 @@ sidebar_position: 999
 ```
 
 ```javascript
-// boxクラスの要素を取得
-let boxYoso = document.querySelector(".box");
+// box繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let boxYoso = document.querySelector('.box');
 
-// クリックされたときの処理を登録
-boxYoso.addEventListener("click", function() {
-  // bigクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("big");
+// 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+boxYoso.addEventListener('click', function () {
+  // big繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  boxYoso.classList.toggle('big');
 });
 ```
+
 </CodePreview>
 
-#### なぜクリックでサイズが変わるのか
+#### 縺ｪ縺懊け繝ｪ繝・け縺ｧ繧ｵ繧､繧ｺ縺悟､峨ｏ繧九・縺・
 
-1. HTMLでは `div` に最初 `class="box"` だけが付いているため、CSSの `.box { ... }` の幅と高さ (120px) が適用される。
-2. JavaScriptで `boxYoso.addEventListener("click", ...)` を書くことで、クリックされた瞬間に中の処理が実行される。
-3. 処理の中で `boxYoso.classList.toggle("big")` を呼び出すと、最初は `big` クラスが付いていないので `big` クラスが追加される。
-4. 要素のクラスが `class="box big"` （box と big の2つのクラスがついているという意味（※クラスは半角スペース区切りで複数つけることができる））になると、CSSの `.box.big { ... }` で指定した幅200px・高さ200px・背景色deepskyblue が新しく適用される。
+1. HTML縺ｧ縺ｯ `div` 縺ｫ譛蛻・`class="box"` 縺縺代′莉倥＞縺ｦ縺・ｋ縺溘ａ縲，SS縺ｮ `.box { ... }` 縺ｮ蟷・→鬮倥＆ (120px) 縺碁←逕ｨ縺輔ｌ繧九・
+2. JavaScript縺ｧ `boxYoso.addEventListener("click", ...)` 繧呈嶌縺上％縺ｨ縺ｧ縲√け繝ｪ繝・け縺輔ｌ縺溽椪髢薙↓荳ｭ縺ｮ蜃ｦ逅・′螳溯｡後＆繧後ｋ縲・
+3. 蜃ｦ逅・・荳ｭ縺ｧ `boxYoso.classList.toggle("big")` 繧貞他縺ｳ蜃ｺ縺吶→縲∵怙蛻昴・ `big` 繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・↑縺・・縺ｧ `big` 繧ｯ繝ｩ繧ｹ縺瑚ｿｽ蜉縺輔ｌ繧九・
+4. 隕∫ｴ縺ｮ繧ｯ繝ｩ繧ｹ縺・`class="box big"` ・・ox 縺ｨ big 縺ｮ2縺､縺ｮ繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺・≧諢丞袖・遺ｻ繧ｯ繝ｩ繧ｹ縺ｯ蜊願ｧ偵せ繝壹・繧ｹ蛹ｺ蛻・ｊ縺ｧ隍・焚縺､縺代ｋ縺薙→縺後〒縺阪ｋ・会ｼ峨↓縺ｪ繧九→縲，SS縺ｮ `.box.big { ... }` 縺ｧ謖・ｮ壹＠縺溷ｹ・00px繝ｻ鬮倥＆200px繝ｻ閭梧勹濶ｲdeepskyblue 縺梧眠縺励￥驕ｩ逕ｨ縺輔ｌ繧九・
 
-つまり「イベントでクラスを付ける → そのクラス用のCSSが適用される」という流れでサイズが変化している。
+縺､縺ｾ繧翫後う繝吶Φ繝医〒繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠繧・竊・縺昴・繧ｯ繝ｩ繧ｹ逕ｨ縺ｮCSS縺碁←逕ｨ縺輔ｌ繧九阪→縺・≧豬√ｌ縺ｧ繧ｵ繧､繧ｺ縺悟､牙喧縺励※縺・ｋ縲・
 
 ---
 
-<Exercise title="演習1（transitionなしでクラス切り替え）">
+<Exercise title="貍皮ｿ・・・ransition縺ｪ縺励〒繧ｯ繝ｩ繧ｹ蛻・ｊ譖ｿ縺茨ｼ・>
 
-次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・？TML/CSS/JavaScript繧呈嶌縺托ｼ亥ｹ・ｄ濶ｲ縺ｯ閾ｪ逕ｱ縺ｧ濶ｯ縺・ｼ峨・
 
-**動作**: 要素をクリックすると `active` クラスが付いたり外れたりすることで見た目が切り替わる（transition は使わない）。
+\*_蜍穂ｽ・_: 隕∫ｴ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ `active` 繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺溘ｊ螟悶ｌ縺溘ｊ縺吶ｋ縺薙→縺ｧ隕九◆逶ｮ縺悟・繧頑崛繧上ｋ・・ransition 縺ｯ菴ｿ繧上↑縺・ｼ峨・
 
 <CodePreview
-  sourceId="演習1"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="box">クリックしてね</div>
+<div class="box">繧ｯ繝ｪ繝・け縺励※縺ｭ</div>
 ```
 
 ```css
@@ -104,35 +103,36 @@ boxYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// boxクラスの要素を取得
-let boxYoso = document.querySelector(".box");
+// box繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let boxYoso = document.querySelector('.box');
 
-// クリックされたときの処理を登録
-boxYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("active");
+// 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+boxYoso.addEventListener('click', function () {
+  // active繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  boxYoso.classList.toggle('active');
 });
 ```
+
 </CodePreview><Solution>
-<CodePreview sourceId="演習1" />
+<CodePreview sourceId="貍皮ｿ・" />
 </Solution>
 </Exercise>
 
 ---
 
-## 同じコードにtransitionを足してアニメーションさせる
+## 蜷後§繧ｳ繝ｼ繝峨↓transition繧定ｶｳ縺励※繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○繧・
 
-次に、さきほどと同じ「クラスを切り替えるコード」に、CSSの `transition` を足してみます。
+谺｡縺ｫ縲√＆縺阪⊇縺ｩ縺ｨ蜷後§縲後け繝ｩ繧ｹ繧貞・繧頑崛縺医ｋ繧ｳ繝ｼ繝峨阪↓縲，SS縺ｮ `transition` 繧定ｶｳ縺励※縺ｿ縺ｾ縺吶・
 
-1. CSS側で、アニメーションさせたい要素に `transition` を追加する。
-2. クラスが切り替わると、プロパティの変化がパッとではなく、指定した時間をかけて滑らかに変化する。
+1. CSS蛛ｴ縺ｧ縲√い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○縺溘＞隕∫ｴ縺ｫ `transition` 繧定ｿｽ蜉縺吶ｋ縲・
+2. 繧ｯ繝ｩ繧ｹ縺悟・繧頑崛繧上ｋ縺ｨ縲√・繝ｭ繝代ユ繧｣縺ｮ螟牙喧縺後ヱ繝・→縺ｧ縺ｯ縺ｪ縺上∵欠螳壹＠縺滓凾髢薙ｒ縺九￠縺ｦ貊代ｉ縺九↓螟牙喧縺吶ｋ縲・
 
-### 例: 先ほどのボックスにtransitionを追加する
+### 萓・ 蜈医⊇縺ｩ縺ｮ繝懊ャ繧ｯ繧ｹ縺ｫtransition繧定ｿｽ蜉縺吶ｋ
 
 <CodePreview
 >
 ```html
-<div class="box">クリックでサイズ変更</div>
+<div class="box">繧ｯ繝ｪ繝・け縺ｧ繧ｵ繧､繧ｺ螟画峩</div>
 ```
 
 ```css
@@ -150,38 +150,39 @@ boxYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// boxクラスの要素を取得
-let boxYoso = document.querySelector(".box");
+// box繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let boxYoso = document.querySelector('.box');
 
-// クリックされたときの処理を登録
-boxYoso.addEventListener("click", function() {
-  // bigクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("big");
+// 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+boxYoso.addEventListener('click', function () {
+  // big繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  boxYoso.classList.toggle('big');
 });
 ```
+
 </CodePreview>
 
-:::tip transition を書く場所が大事
-`transition` は両方の状態で常に残る共通クラス（例: `.box`）に書く。そこで指定すると付ける時も外す時も滑らかになる。変化側だけ（例: `.box.big`）に置くと戻りが一瞬になる。複数なら `transition: all 0.3s;`、特定なら `transition: width 0.3s, height 0.3s;`。
+:::tip transition 繧呈嶌縺丞ｴ謇縺悟､ｧ莠・
+`transition` 縺ｯ荳｡譁ｹ縺ｮ迥ｶ諷九〒蟶ｸ縺ｫ谿九ｋ蜈ｱ騾壹け繝ｩ繧ｹ・井ｾ・ `.box`・峨↓譖ｸ縺上ゅ◎縺薙〒謖・ｮ壹☆繧九→莉倥￠繧区凾繧ょ､悶☆譎ゅｂ貊代ｉ縺九↓縺ｪ繧九ょ､牙喧蛛ｴ縺縺托ｼ井ｾ・ `.box.big`・峨↓鄂ｮ縺上→謌ｻ繧翫′荳迸ｬ縺ｫ縺ｪ繧九り､・焚縺ｪ繧・`transition: all 0.3s;`縲∫音螳壹↑繧・`transition: width 0.3s, height 0.3s;`縲・
 :::
 
 ---
 
-<Exercise title="演習2（滑らかになるようにアニメーション化）">
+<Exercise title="貍皮ｿ・・域ｻ代ｉ縺九↓縺ｪ繧九ｈ縺・↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ蛹厄ｼ・>
 
-演習1と同じように動作するが、次のプレビューのように、さらにサイズや色の変化が滑らかに見えるようにしたHTML/CSS/JavaScriptを作成せよ（幅や色は自由で良い）。
+貍皮ｿ・縺ｨ蜷後§繧医≧縺ｫ蜍穂ｽ懊☆繧九′縲∵ｬ｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√＆繧峨↓繧ｵ繧､繧ｺ繧・牡縺ｮ螟牙喧縺梧ｻ代ｉ縺九↓隕九∴繧九ｈ縺・↓縺励◆HTML/CSS/JavaScript繧剃ｽ懈・縺帙ｈ・亥ｹ・ｄ濶ｲ縺ｯ閾ｪ逕ｱ縺ｧ濶ｯ縺・ｼ峨・
 
-**動作**: 要素をクリックすると `active` クラスが付いたり外れたりすることで見た目が切り替わり、その変化が滑らかにアニメーションする。
+\*_蜍穂ｽ・_: 隕∫ｴ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ `active` 繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺溘ｊ螟悶ｌ縺溘ｊ縺吶ｋ縺薙→縺ｧ隕九◆逶ｮ縺悟・繧頑崛繧上ｊ縲√◎縺ｮ螟牙喧縺梧ｻ代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ縲・
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="box">クリックしてね</div>
+<div class="box">繧ｯ繝ｪ繝・け縺励※縺ｭ</div>
 ```
 
 ```css
@@ -199,38 +200,39 @@ boxYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// boxクラスの要素を取得
-let boxYoso = document.querySelector(".box");
+// box繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let boxYoso = document.querySelector('.box');
 
-// クリックされたときの処理を登録
-boxYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("active");
+// 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+boxYoso.addEventListener('click', function () {
+  // active繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  boxYoso.classList.toggle('active');
 });
 ```
+
 </CodePreview><Solution>
-<CodePreview sourceId="演習2" />
+<CodePreview sourceId="貍皮ｿ・" />
 </Solution>
 </Exercise>
 
 ---
 
-## classListでクラスを操作する
+## classList縺ｧ繧ｯ繝ｩ繧ｹ繧呈桃菴懊☆繧・
 
-クラスの追加・削除には、要素の `classList` を使います。
+繧ｯ繝ｩ繧ｹ縺ｮ霑ｽ蜉繝ｻ蜑企勁縺ｫ縺ｯ縲∬ｦ∫ｴ縺ｮ `classList` 繧剃ｽｿ縺・∪縺吶・
 
 ```js
-要素.classList.add("クラス名");      // クラスを追加
-要素.classList.remove("クラス名");   // クラスを削除
-要素.classList.toggle("クラス名");   // 付いていれば削除、なければ追加
+隕∫ｴ.classList.add("繧ｯ繝ｩ繧ｹ蜷・);      // 繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉
+隕∫ｴ.classList.remove("繧ｯ繝ｩ繧ｹ蜷・);   // 繧ｯ繝ｩ繧ｹ繧貞炎髯､
+隕∫ｴ.classList.toggle("繧ｯ繝ｩ繧ｹ蜷・);   // 莉倥＞縺ｦ縺・ｌ縺ｰ蜑企勁縲√↑縺代ｌ縺ｰ霑ｽ蜉
 ```
 
-### 例: ホバーでクラスを付け外しする
+### 萓・ 繝帙ヰ繝ｼ縺ｧ繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠螟悶＠縺吶ｋ
 
 <CodePreview
 >
 ```html
-<div class="card">マウスを乗せてね</div>
+<div class="card">繝槭え繧ｹ繧剃ｹ励○縺ｦ縺ｭ</div>
 ```
 
 ```css
@@ -248,41 +250,42 @@ boxYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// cardクラスの要素を取得
-let cardYoso = document.querySelector(".card");
+// card繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let cardYoso = document.querySelector('.card');
 
-// マウスが乗ったときの処理を登録
-cardYoso.addEventListener("mouseenter", function() {
-  // hoveredクラスを追加
-  cardYoso.classList.add("hovered");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+cardYoso.addEventListener('mouseenter', function () {
+  // hovered繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉
+  cardYoso.classList.add('hovered');
 });
 
-// マウスが離れたときの処理を登録
-cardYoso.addEventListener("mouseleave", function() {
-  // hoveredクラスを削除
-  cardYoso.classList.remove("hovered");
+// 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+cardYoso.addEventListener('mouseleave', function () {
+  // hovered繧ｯ繝ｩ繧ｹ繧貞炎髯､
+  cardYoso.classList.remove('hovered');
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習3（hoverで影をつける）">
+<Exercise title="貍皮ｿ・・・over縺ｧ蠖ｱ繧偵▽縺代ｋ・・>
 
-次のように動作するよう、CSSとJavaScriptを書け（幅や色は自由で良い）。
+谺｡縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・，SS縺ｨJavaScript繧呈嶌縺托ｼ亥ｹ・ｄ濶ｲ縺ｯ閾ｪ逕ｱ縺ｧ濶ｯ縺・ｼ峨・
 
-**動作**: カードにマウスを乗せると背景色が変わり影が付く。マウスが離れると元に戻る。変化は滑らかにアニメーションする。また、p要素のテキストも状態に応じて切り替わる。
+\*_蜍穂ｽ・_: 繧ｫ繝ｼ繝峨↓繝槭え繧ｹ繧剃ｹ励○繧九→閭梧勹濶ｲ縺悟､峨ｏ繧雁ｽｱ縺御ｻ倥￥縲ゅ・繧ｦ繧ｹ縺碁屬繧後ｋ縺ｨ蜈・↓謌ｻ繧九ょ､牙喧縺ｯ貊代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ縲ゅ∪縺溘｝隕∫ｴ縺ｮ繝・く繧ｹ繝医ｂ迥ｶ諷九↓蠢懊§縺ｦ蛻・ｊ譖ｿ繧上ｋ縲・
 
 <CodePreview
-  sourceId="演習3"
+  sourceId="貍皮ｿ・"
   htmlVisible={true}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="card">マウスを乗せてね</div>
-<p>ステータス: <span class="status">通常</span></p>
+<div class="card">繝槭え繧ｹ繧剃ｹ励○縺ｦ縺ｭ</div>
+<p>繧ｹ繝・・繧ｿ繧ｹ: <span class="status">騾壼ｸｸ</span></p>
 ```
 
 ```css
@@ -300,55 +303,56 @@ cardYoso.addEventListener("mouseleave", function() {
 ```
 
 ```javascript
-// cardクラスの要素とstatus要素を取得
-let cardYoso = document.querySelector(".card");
-let statusYoso = document.querySelector(".status");
+// card繧ｯ繝ｩ繧ｹ縺ｮ隕∫ｴ縺ｨstatus隕∫ｴ繧貞叙蠕・
+let cardYoso = document.querySelector('.card');
+let statusYoso = document.querySelector('.status');
 
-// マウスが乗ったときの処理を登録
-cardYoso.addEventListener("mouseenter", function() {
-  // hoveredクラスを追加
-  cardYoso.classList.add("hovered");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+cardYoso.addEventListener('mouseenter', function () {
+  // hovered繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉
+  cardYoso.classList.add('hovered');
 
-  // ステータステキストを変更
-  statusYoso.innerText = "ホバー中";
+  // 繧ｹ繝・・繧ｿ繧ｹ繝・く繧ｹ繝医ｒ螟画峩
+  statusYoso.innerText = '繝帙ヰ繝ｼ荳ｭ';
 });
 
-// マウスが離れたときの処理を登録
-cardYoso.addEventListener("mouseleave", function() {
-  // hoveredクラスを削除
-  cardYoso.classList.remove("hovered");
+// 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+cardYoso.addEventListener('mouseleave', function () {
+  // hovered繧ｯ繝ｩ繧ｹ繧貞炎髯､
+  cardYoso.classList.remove('hovered');
 
-  // ステータステキストを元に戻す
-  statusYoso.innerText = "通常";
+  // 繧ｹ繝・・繧ｿ繧ｹ繝・く繧ｹ繝医ｒ蜈・↓謌ｻ縺・
+  statusYoso.innerText = '騾壼ｸｸ';
 });
 ```
+
 </CodePreview><Solution>
-<CodePreview sourceId="演習3" />
+<CodePreview sourceId="貍皮ｿ・" />
 </Solution>
 </Exercise>
 
 ---
 
-## classList.contains で「今そのクラスが付いているか」を調べる
+## classList.contains 縺ｧ縲御ｻ翫◎縺ｮ繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・ｋ縺九阪ｒ隱ｿ縺ｹ繧・
 
-クラスの ON/OFF を切り替えるだけなら `classList.toggle` だけで十分ですが、
-「今そのクラスが付いているかどうかで処理を分けたい」こともよくあります。
+繧ｯ繝ｩ繧ｹ縺ｮ ON/OFF 繧貞・繧頑崛縺医ｋ縺縺代↑繧・`classList.toggle` 縺縺代〒蜊∝・縺ｧ縺吶′縲・
+縲御ｻ翫◎縺ｮ繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・ｋ縺九←縺・°縺ｧ蜃ｦ逅・ｒ蛻・￠縺溘＞縲阪％縺ｨ繧ゅｈ縺上≠繧翫∪縺吶・
 
-そのときに使うのが `classList.contains` です。
+縺昴・縺ｨ縺阪↓菴ｿ縺・・縺・`classList.contains` 縺ｧ縺吶・
 
 ```js
-要素.classList.contains("クラス名"); // 付いていれば true、付いていなければ false
+隕∫ｴ.classList.contains("繧ｯ繝ｩ繧ｹ蜷・); // 莉倥＞縺ｦ縺・ｌ縺ｰ true縲∽ｻ倥＞縺ｦ縺・↑縺代ｌ縺ｰ false
 ```
 
-この戻り値（true / false）を使って、`if` 文でメッセージや見た目を切り替えることができます。
+縺薙・謌ｻ繧雁､・・rue / false・峨ｒ菴ｿ縺｣縺ｦ縲～if` 譁・〒繝｡繝・そ繝ｼ繧ｸ繧・ｦ九◆逶ｮ繧貞・繧頑崛縺医ｋ縺薙→縺後〒縺阪∪縺吶・
 
-### 例: 選択中なら「ON」、そうでなければ「OFF」と表示する
+### 萓・ 驕ｸ謚樔ｸｭ縺ｪ繧峨薫N縲阪√◎縺・〒縺ｪ縺代ｌ縺ｰ縲薫FF縲阪→陦ｨ遉ｺ縺吶ｋ
 
 <CodePreview
 >
 ```html
-<button class="btn">ボタン</button>
-<p>状態: <span class="status">OFF</span></p>
+<button class="btn">繝懊ち繝ｳ</button>
+<p>迥ｶ諷・ <span class="status">OFF</span></p>
 ```
 
 ```css
@@ -361,43 +365,44 @@ cardYoso.addEventListener("mouseleave", function() {
 ```
 
 ```javascript
-// ボタンとステータスの要素を取得
-let btnYoso = document.querySelector(".btn");
-let statusYoso = document.querySelector(".status");
+// 繝懊ち繝ｳ縺ｨ繧ｹ繝・・繧ｿ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let btnYoso = document.querySelector('.btn');
+let statusYoso = document.querySelector('.status');
 
-// ボタンがクリックされたときの処理を登録
-btnYoso.addEventListener("click", function() {
-  // selectedクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("selected");
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+btnYoso.addEventListener('click', function () {
+  // selected繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  btnYoso.classList.toggle('selected');
 
-  // selectedクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("selected")) {
-    statusYoso.innerText = "ON";
+  // selected繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・ｋ縺九←縺・°縺ｧ陦ｨ遉ｺ繧貞・繧頑崛縺・
+  if (btnYoso.classList.contains('selected')) {
+    statusYoso.innerText = 'ON';
   } else {
-    statusYoso.innerText = "OFF";
+    statusYoso.innerText = 'OFF';
   }
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習4（ON/OFF表示をclassList.containsで切り替える）">
+<Exercise title="貍皮ｿ・・・N/OFF陦ｨ遉ｺ繧団lassList.contains縺ｧ蛻・ｊ譖ｿ縺医ｋ・・>
 
-次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九ｈ縺・？TML/CSS/JavaScript繧呈嶌縺托ｼ亥ｹ・ｄ濶ｲ縺ｯ閾ｪ逕ｱ縺ｧ濶ｯ縺・ｼ峨・
 
-**動作**: ボタンをクリックするたびに、見た目と「有効/無効」の表示が切り替わる。`classList.contains` を使って、ボタンが選択されているかどうかでテキストを変えること。
+\*_蜍穂ｽ・_: 繝懊ち繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺溘・縺ｫ縲∬ｦ九◆逶ｮ縺ｨ縲梧怏蜉ｹ/辟｡蜉ｹ縲阪・陦ｨ遉ｺ縺悟・繧頑崛繧上ｋ縲ＡclassList.contains` 繧剃ｽｿ縺｣縺ｦ縲√・繧ｿ繝ｳ縺碁∈謚槭＆繧後※縺・ｋ縺九←縺・°縺ｧ繝・く繧ｹ繝医ｒ螟峨∴繧九％縺ｨ縲・
 
 <CodePreview
-  sourceId="演習4"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<button class="btn">通知を切り替え</button>
-<p>通知の状態: <span class="status">無効</span></p>
+<button class="btn">騾夂衍繧貞・繧頑崛縺・/button>
+<p>騾夂衍縺ｮ迥ｶ諷・ <span class="status">辟｡蜉ｹ</span></p>
 ```
 
 ```css
@@ -410,57 +415,59 @@ btnYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// ボタンとステータスの要素を取得
-let btnYoso = document.querySelector(".btn");
-let statusYoso = document.querySelector(".status");
+// 繝懊ち繝ｳ縺ｨ繧ｹ繝・・繧ｿ繧ｹ縺ｮ隕∫ｴ繧貞叙蠕・
+let btnYoso = document.querySelector('.btn');
+let statusYoso = document.querySelector('.status');
 
-// ボタンがクリックされたときの処理を登録
-btnYoso.addEventListener("click", function() {
-  // selectedクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("selected");
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+btnYoso.addEventListener('click', function () {
+  // selected繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  btnYoso.classList.toggle('selected');
 
-  // selectedクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("selected")) {
-    statusYoso.innerText = "有効";
+  // selected繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・ｋ縺九←縺・°縺ｧ陦ｨ遉ｺ繧貞・繧頑崛縺・
+  if (btnYoso.classList.contains('selected')) {
+    statusYoso.innerText = '譛牙柑';
   } else {
-    statusYoso.innerText = "無効";
+    statusYoso.innerText = '辟｡蜉ｹ';
   }
 });
 ```
+
 </CodePreview><Solution>
-<CodePreview sourceId="演習4" />
+<CodePreview sourceId="貍皮ｿ・" />
 </Solution>
 </Exercise>
 
 ---
 
-## 演習-発展（実践的な例）
+## 貍皮ｿ・逋ｺ螻包ｼ亥ｮ溯ｷｵ逧・↑萓具ｼ・
 
-ここからは、実際のウェブサイトでよく見かける機能を作成する演習です。
-好きなものを選んで挑戦してみましょう。
+縺薙％縺九ｉ縺ｯ縲∝ｮ滄圀縺ｮ繧ｦ繧ｧ繝悶し繧､繝医〒繧医￥隕九°縺代ｋ讖溯・繧剃ｽ懈・縺吶ｋ貍皮ｿ偵〒縺吶・
+螂ｽ縺阪↑繧ゅ・繧帝∈繧薙〒謖第姶縺励※縺ｿ縺ｾ縺励ｇ縺・・
 
 ---
 
-<Exercise title="演習-発展1（お気に入りボタン）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医♀豌励↓蜈･繧翫・繧ｿ繝ｳ・・>
 
-次のプレビューのように動作する、お気に入りボタンを作成せよ。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九√♀豌励↓蜈･繧翫・繧ｿ繝ｳ繧剃ｽ懈・縺帙ｈ縲・
 
-**動作要件**:
-- ハートボタンをクリックすると、お気に入り状態のON/OFFが切り替わる
-- お気に入り状態では色が変わる
-- 色の変化は滑らかにアニメーションする
-- 状態に応じてテキストも「お気に入りに追加」「お気に入り済み」と切り替わる
+**蜍穂ｽ懆ｦ∽ｻｶ**:
+
+- 繝上・繝医・繧ｿ繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ縲√♀豌励↓蜈･繧顔憾諷九・ON/OFF縺悟・繧頑崛繧上ｋ
+- 縺頑ｰ励↓蜈･繧顔憾諷九〒縺ｯ濶ｲ縺悟､峨ｏ繧・
+- 濶ｲ縺ｮ螟牙喧縺ｯ貊代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ
+- 迥ｶ諷九↓蠢懊§縺ｦ繝・く繧ｹ繝医ｂ縲後♀豌励↓蜈･繧翫↓霑ｽ蜉縲阪後♀豌励↓蜈･繧頑ｸ医∩縲阪→蛻・ｊ譖ｿ繧上ｋ
 
 <CodePreview
-  sourceId="演習-発展1"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="favorite-btn">♥</div>
-<p class="status-text">お気に入りに追加</p>
+<div class="favorite-btn">笙･</div>
+<p class="status-text">縺頑ｰ励↓蜈･繧翫↓霑ｽ蜉</p>
 ```
 
 ```css
@@ -479,48 +486,51 @@ btnYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// ボタンとテキスト要素を取得
-let btnYoso = document.querySelector(".favorite-btn");
-let textYoso = document.querySelector(".status-text");
+// 繝懊ち繝ｳ縺ｨ繝・く繧ｹ繝郁ｦ∫ｴ繧貞叙蠕・
+let btnYoso = document.querySelector('.favorite-btn');
+let textYoso = document.querySelector('.status-text');
 
-// ボタンがクリックされたときの処理を登録
-btnYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("active");
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・ｒ逋ｻ骭ｲ
+btnYoso.addEventListener('click', function () {
+  // active繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+  btnYoso.classList.toggle('active');
 
-  // activeクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("active")) {
-    textYoso.innerText = "お気に入り済み";
+  // active繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺ｦ縺・ｋ縺九←縺・°縺ｧ陦ｨ遉ｺ繧貞・繧頑崛縺・
+  if (btnYoso.classList.contains('active')) {
+    textYoso.innerText = '縺頑ｰ励↓蜈･繧頑ｸ医∩';
   } else {
-    textYoso.innerText = "お気に入りに追加";
+    textYoso.innerText = '縺頑ｰ励↓蜈･繧翫↓霑ｽ蜉';
   }
 });
 ```
-</CodePreview><Solution>
-<CodePreview sourceId="演習-発展1" />
 
-**解説**:
-- ハートマーク(♥)をボタンとして使用しています
-- `active` クラスが付いたときに色が灰色からピンク色に変わります
-- `transition: color 0.3s;` で色の変化が滑らかにアニメーションします
-- `classList.contains` を使って状態を確認し、テキストを切り替えています
-</Solution>
+</CodePreview><Solution>
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・" />
+
+**隗｣隱ｬ**:
+
+- 繝上・繝医・繝ｼ繧ｯ(笙･)繧偵・繧ｿ繝ｳ縺ｨ縺励※菴ｿ逕ｨ縺励※縺・∪縺・
+- `active` 繧ｯ繝ｩ繧ｹ縺御ｻ倥＞縺溘→縺阪↓濶ｲ縺檎・濶ｲ縺九ｉ繝斐Φ繧ｯ濶ｲ縺ｫ螟峨ｏ繧翫∪縺・
+- `transition: color 0.3s;` 縺ｧ濶ｲ縺ｮ螟牙喧縺梧ｻ代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺励∪縺・
+- `classList.contains` 繧剃ｽｿ縺｣縺ｦ迥ｶ諷九ｒ遒ｺ隱阪＠縲√ユ繧ｭ繧ｹ繝医ｒ蛻・ｊ譖ｿ縺医※縺・∪縺・
+    </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習-発展2（通知バナー）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・磯夂衍繝舌リ繝ｼ・・>
 
-次のプレビューのように動作する、通知バナーを作成せよ。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九・夂衍繝舌リ繝ｼ繧剃ｽ懈・縺帙ｈ縲・
 
-**動作要件**:
-- 「通知を表示」ボタンをクリックすると、画面上部に通知バナーが表示される
-- 通知バナーの×ボタンをクリックすると、バナーが非表示になる
-- バナーの表示・非表示は滑らかにアニメーションする
-- バナーが表示されている間は、「通知を表示」ボタンは無効化される
+**蜍穂ｽ懆ｦ∽ｻｶ**:
+
+- 縲碁夂衍繧定｡ｨ遉ｺ縲阪・繧ｿ繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ縲∫判髱｢荳企Κ縺ｫ騾夂衍繝舌リ繝ｼ縺瑚｡ｨ遉ｺ縺輔ｌ繧・
+- 騾夂衍繝舌リ繝ｼ縺ｮﾃ励・繧ｿ繝ｳ繧偵け繝ｪ繝・け縺吶ｋ縺ｨ縲√ヰ繝翫・縺碁撼陦ｨ遉ｺ縺ｫ縺ｪ繧・
+- 繝舌リ繝ｼ縺ｮ陦ｨ遉ｺ繝ｻ髱櫁｡ｨ遉ｺ縺ｯ貊代ｉ縺九↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ
+- 繝舌リ繝ｼ縺瑚｡ｨ遉ｺ縺輔ｌ縺ｦ縺・ｋ髢薙・縲√碁夂衍繧定｡ｨ遉ｺ縲阪・繧ｿ繝ｳ縺ｯ辟｡蜉ｹ蛹悶＆繧後ｋ
 
 <CodePreview
-  sourceId="演習-発展2"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -528,10 +538,10 @@ btnYoso.addEventListener("click", function() {
 >
 ```html
 <div class="notification">
-  <span>新しいメッセージが届きました</span>
-  <button class="close-btn">×</button>
+  <span>譁ｰ縺励＞繝｡繝・そ繝ｼ繧ｸ縺悟ｱ翫″縺ｾ縺励◆</span>
+  <button class="close-btn">ﾃ・/button>
 </div>
-<button class="show-btn">通知を表示</button>
+<button class="show-btn">騾夂衍繧定｡ｨ遉ｺ</button>
 ```
 
 ```css
@@ -567,103 +577,106 @@ btnYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// 各要素を取得
-let notificationYoso = document.querySelector(".notification");
-let closeBtnYoso = document.querySelector(".close-btn");
-let showBtnYoso = document.querySelector(".show-btn");
+// 蜷・ｦ∫ｴ繧貞叙蠕・
+let notificationYoso = document.querySelector('.notification');
+let closeBtnYoso = document.querySelector('.close-btn');
+let showBtnYoso = document.querySelector('.show-btn');
 
-// 「通知を表示」ボタンがクリックされたときの処理
-showBtnYoso.addEventListener("click", function() {
-  // 通知にshowクラスを追加
-  notificationYoso.classList.add("show");
+// 縲碁夂衍繧定｡ｨ遉ｺ縲阪・繧ｿ繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
+showBtnYoso.addEventListener('click', function () {
+  // 騾夂衍縺ｫshow繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉
+  notificationYoso.classList.add('show');
 
-  // ボタンを無効化
-  showBtnYoso.classList.add("disabled");
+  // 繝懊ち繝ｳ繧堤┌蜉ｹ蛹・
+  showBtnYoso.classList.add('disabled');
 });
 
-// 「×」ボタンがクリックされたときの処理
-closeBtnYoso.addEventListener("click", function() {
-  // 通知からshowクラスを削除
-  notificationYoso.classList.remove("show");
+// 縲古励阪・繧ｿ繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
+closeBtnYoso.addEventListener('click', function () {
+  // 騾夂衍縺九ｉshow繧ｯ繝ｩ繧ｹ繧貞炎髯､
+  notificationYoso.classList.remove('show');
 
-  // ボタンを有効化
-  showBtnYoso.classList.remove("disabled");
+  // 繝懊ち繝ｳ繧呈怏蜉ｹ蛹・
+  showBtnYoso.classList.remove('disabled');
 });
 ```
-</CodePreview><Solution>
-<CodePreview sourceId="演習-発展2" />
 
-**解説**:
-- 最初は `display: none;` で非表示にし、`show` クラスが付くと `display: block;` で表示されます
-- ボタンに `disabled` クラスを付けることで見た目を変え、視覚的に無効状態を表現しています
-</Solution>
+</CodePreview><Solution>
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・" />
+
+**隗｣隱ｬ**:
+
+- 譛蛻昴・ `display: none;` 縺ｧ髱櫁｡ｨ遉ｺ縺ｫ縺励～show`繧ｯ繝ｩ繧ｹ縺御ｻ倥￥縺ｨ`display: block;` 縺ｧ陦ｨ遉ｺ縺輔ｌ縺ｾ縺・
+- 繝懊ち繝ｳ縺ｫ `disabled` 繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠繧九％縺ｨ縺ｧ隕九◆逶ｮ繧貞､峨∴縲∬ｦ冶ｦ夂噪縺ｫ辟｡蜉ｹ迥ｶ諷九ｒ陦ｨ迴ｾ縺励※縺・∪縺・
+    </Solution>
 </Exercise>
 
 ---
 
-## まとめて要素を取得してループ処理する（querySelectorAll / for...of）
+## 縺ｾ縺ｨ繧√※隕∫ｴ繧貞叙蠕励＠縺ｦ繝ｫ繝ｼ繝怜・逅・☆繧具ｼ・uerySelectorAll / for...of・・
 
-演習-発展3 以降では、「複数の要素に同じ処理をしたい」という場面がよく出てきます。
-そのときに使うのが `document.querySelectorAll()` と `for...of` 文です。
+貍皮ｿ・逋ｺ螻・ 莉･髯阪〒縺ｯ縲√瑚､・焚縺ｮ隕∫ｴ縺ｫ蜷後§蜃ｦ逅・ｒ縺励◆縺・阪→縺・≧蝣ｴ髱｢縺後ｈ縺丞・縺ｦ縺阪∪縺吶・
+縺昴・縺ｨ縺阪↓菴ｿ縺・・縺・`document.querySelectorAll()` 縺ｨ `for...of` 譁・〒縺吶・
 
-### document.querySelectorAll で複数の要素をまとめて取る
+### document.querySelectorAll 縺ｧ隍・焚縺ｮ隕∫ｴ繧偵∪縺ｨ繧√※蜿悶ｋ
 
-`querySelector` は「1つだけ」要素を取るのに対して、`querySelectorAll` は「条件に当てはまる要素を全部まとめて」取ってきます。
+`querySelector` 縺ｯ縲・縺､縺縺代崎ｦ∫ｴ繧貞叙繧九・縺ｫ蟇ｾ縺励※縲～querySelectorAll` 縺ｯ縲梧擅莉ｶ縺ｫ蠖薙※縺ｯ縺ｾ繧玖ｦ∫ｴ繧貞・驛ｨ縺ｾ縺ｨ繧√※縲榊叙縺｣縺ｦ縺阪∪縺吶・
 
 ```js
-let cardYosos = document.querySelectorAll(".card");
-// cardYosos には .card が付いている要素が全部まとまって入る
+let cardYosos = document.querySelectorAll('.card');
+// cardYosos 縺ｫ縺ｯ .card 縺御ｻ倥＞縺ｦ縺・ｋ隕∫ｴ縺悟・驛ｨ縺ｾ縺ｨ縺ｾ縺｣縺ｦ蜈･繧・
 ```
 
-ここで `cardYosos` に入るのは、配列に似た「たくさんの要素が入ったまとまり」です。
+縺薙％縺ｧ `cardYosos` 縺ｫ蜈･繧九・縺ｯ縲・・蛻励↓莨ｼ縺溘後◆縺上＆繧薙・隕∫ｴ縺悟・縺｣縺溘∪縺ｨ縺ｾ繧翫阪〒縺吶・
 
-### for...of で1つずつ取り出して処理する
+### for...of 縺ｧ1縺､縺壹▽蜿悶ｊ蜃ｺ縺励※蜃ｦ逅・☆繧・
 
-`querySelectorAll` でまとめて取ってきた要素には、`for...of` 文で「1つずつ」順番に処理を書くことができます。
+`querySelectorAll` 縺ｧ縺ｾ縺ｨ繧√※蜿悶▲縺ｦ縺阪◆隕∫ｴ縺ｫ縺ｯ縲～for...of` 譁・〒縲・縺､縺壹▽縲埼・分縺ｫ蜃ｦ逅・ｒ譖ｸ縺上％縺ｨ縺後〒縺阪∪縺吶・
 
 ```js
-let cardYosos = document.querySelectorAll(".card");
+let cardYosos = document.querySelectorAll('.card');
 
-// cardYosos に入っている要素を1つずつ取り出して処理
+// cardYosos 縺ｫ蜈･縺｣縺ｦ縺・ｋ隕∫ｴ繧・縺､縺壹▽蜿悶ｊ蜃ｺ縺励※蜃ｦ逅・
 for (let cardYoso of cardYosos) {
-  // ここに1つぶんの処理を書く
-  cardYoso.addEventListener("click", function() {
-    // クリックされたカードに対する処理
+  // 縺薙％縺ｫ1縺､縺ｶ繧薙・蜃ｦ逅・ｒ譖ｸ縺・
+  cardYoso.addEventListener('click', function () {
+    // 繧ｯ繝ｪ繝・け縺輔ｌ縺溘き繝ｼ繝峨↓蟇ｾ縺吶ｋ蜃ｦ逅・
   });
 }
 ```
 
-ポイント:
+繝昴う繝ｳ繝・
 
-- `for (let cardYoso of cardYosos)` と書くことで、`cardYosos` の中身を先頭から順番に `cardYoso` に取り出してくれる
-- 中かっこの中には「1つぶん」の処理だけを書けばよい（それが全部の要素に対して繰り返される）
+- `for (let cardYoso of cardYosos)` 縺ｨ譖ｸ縺上％縺ｨ縺ｧ縲～cardYosos`縺ｮ荳ｭ霄ｫ繧貞・鬆ｭ縺九ｉ鬆・分縺ｫ`cardYoso` 縺ｫ蜿悶ｊ蜃ｺ縺励※縺上ｌ繧・
+- 荳ｭ縺九▲縺薙・荳ｭ縺ｫ縺ｯ縲・縺､縺ｶ繧薙阪・蜃ｦ逅・□縺代ｒ譖ｸ縺代・繧医＞・医◎繧後′蜈ｨ驛ｨ縺ｮ隕∫ｴ縺ｫ蟇ｾ縺励※郢ｰ繧願ｿ斐＆繧後ｋ・・
 
-この組み合わせ（`querySelectorAll` + `for...of`）を使って、だんだん複雑なUIに挑戦していきます。
+縺薙・邨・∩蜷医ｏ縺幢ｼ・querySelectorAll`+`for...of`・峨ｒ菴ｿ縺｣縺ｦ縲√□繧薙□繧楢､・尅縺ｪUI縺ｫ謖第姶縺励※縺・″縺ｾ縺吶・
 
 ---
 
-<Exercise title="演習-発展3（まずは単純なカード選択）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医∪縺壹・蜊倡ｴ斐↑繧ｫ繝ｼ繝蛾∈謚橸ｼ・>
 
-最初は、**単一の for...of だけ** を使ったシンプルな例に挑戦します。
+譛蛻昴・縲・_蜊倅ｸ縺ｮ for...of 縺縺・_ 繧剃ｽｿ縺｣縺溘す繝ｳ繝励Ν縺ｪ萓九↓謖第姶縺励∪縺吶・
 
-次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九∬､・焚驕ｸ謚槫庄閭ｽ縺ｪ繧ｫ繝ｼ繝蔚I繧剃ｽ懈・縺帙ｈ縲・
 
-**動作要件**:
-- 3つのカードがあり、クリックすると選択状態になる
-- 選択されたカードには `selected` クラスが付き、見た目が変わる
-- もう一度クリックすると選択が解除される
+**蜍穂ｽ懆ｦ∽ｻｶ**:
+
+- 3縺､縺ｮ繧ｫ繝ｼ繝峨′縺ゅｊ縲√け繝ｪ繝・け縺吶ｋ縺ｨ驕ｸ謚樒憾諷九↓縺ｪ繧・
+- 驕ｸ謚槭＆繧後◆繧ｫ繝ｼ繝峨↓縺ｯ `selected` 繧ｯ繝ｩ繧ｹ縺御ｻ倥″縲∬ｦ九◆逶ｮ縺悟､峨ｏ繧・
+- 繧ゅ≧荳蠎ｦ繧ｯ繝ｪ繝・け縺吶ｋ縺ｨ驕ｸ謚槭′隗｣髯､縺輔ｌ繧・
 
 <CodePreview
-  sourceId="演習-発展3"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="card">カード1</div>
-<div class="card">カード2</div>
-<div class="card">カード3</div>
+<div class="card">繧ｫ繝ｼ繝・</div>
+<div class="card">繧ｫ繝ｼ繝・</div>
+<div class="card">繧ｫ繝ｼ繝・</div>
 ```
 
 ```css
@@ -683,54 +696,57 @@ for (let cardYoso of cardYosos) {
 ```
 
 ```javascript
-// すべてのカード要素を取得
-let cardYosos = document.querySelectorAll(".card");
+// 縺吶∋縺ｦ縺ｮ繧ｫ繝ｼ繝芽ｦ∫ｴ繧貞叙蠕・
+let cardYosos = document.querySelectorAll('.card');
 
-// すべてのカードをループで処理
+// 縺吶∋縺ｦ縺ｮ繧ｫ繝ｼ繝峨ｒ繝ｫ繝ｼ繝励〒蜃ｦ逅・
 for (let cardYoso of cardYosos) {
-  // 各カードにクリックイベントを登録
-  cardYoso.addEventListener("click", function() {
-    // selectedクラスを付けたり外したりして切り替え
-    cardYoso.classList.toggle("selected");
+  // 蜷・き繝ｼ繝峨↓繧ｯ繝ｪ繝・け繧､繝吶Φ繝医ｒ逋ｻ骭ｲ
+  cardYoso.addEventListener('click', function () {
+    // selected繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+    cardYoso.classList.toggle('selected');
   });
 }
 ```
-</CodePreview><Solution>
-<CodePreview sourceId="演習-発展3" />
 
-**解説**:
-- `querySelectorAll(".card")` で3つのカードをまとめて取得しています
-- `for...of` の中では「1枚のカード」に対する処理だけを書き、toggle で選択の ON/OFF をしています
-</Solution>
+</CodePreview><Solution>
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・" />
+
+**隗｣隱ｬ**:
+
+- `querySelectorAll(".card")` 縺ｧ3縺､縺ｮ繧ｫ繝ｼ繝峨ｒ縺ｾ縺ｨ繧√※蜿門ｾ励＠縺ｦ縺・∪縺・
+- `for...of` 縺ｮ荳ｭ縺ｧ縺ｯ縲・譫壹・繧ｫ繝ｼ繝峨阪↓蟇ｾ縺吶ｋ蜃ｦ逅・□縺代ｒ譖ｸ縺阪》oggle 縺ｧ驕ｸ謚槭・ ON/OFF 繧偵＠縺ｦ縺・∪縺・
+    </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習-発展4（単一 for-of でカード選択＋カウント）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・亥腰荳 for-of 縺ｧ繧ｫ繝ｼ繝蛾∈謚橸ｼ九き繧ｦ繝ｳ繝茨ｼ・>
 
-次に、**単一の for...of の中で完結する** 少しだけ発展したパターンを練習します。
+谺｡縺ｫ縲・_蜊倅ｸ縺ｮ for...of 縺ｮ荳ｭ縺ｧ螳檎ｵ舌☆繧・_ 蟆代＠縺縺醍匱螻輔＠縺溘ヱ繧ｿ繝ｼ繝ｳ繧堤ｷｴ鄙偵＠縺ｾ縺吶・
 
-次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九∬､・焚驕ｸ謚槫庄閭ｽ縺ｪ繧ｫ繝ｼ繝蔚I繧剃ｽ懈・縺帙ｈ縲・
 
-**動作要件**:
-- 3つのカードがあり、クリックすると選択状態になる
-- 選択されたカードには `selected` クラスが付き、見た目が変わる
-- もう一度クリックすると選択が解除される
-- 複数のカードを同時に選択できる
-- 選択中のカード数を表示する
+**蜍穂ｽ懆ｦ∽ｻｶ**:
+
+- 3縺､縺ｮ繧ｫ繝ｼ繝峨′縺ゅｊ縲√け繝ｪ繝・け縺吶ｋ縺ｨ驕ｸ謚樒憾諷九↓縺ｪ繧・
+- 驕ｸ謚槭＆繧後◆繧ｫ繝ｼ繝峨↓縺ｯ `selected` 繧ｯ繝ｩ繧ｹ縺御ｻ倥″縲∬ｦ九◆逶ｮ縺悟､峨ｏ繧・
+- 繧ゅ≧荳蠎ｦ繧ｯ繝ｪ繝・け縺吶ｋ縺ｨ驕ｸ謚槭′隗｣髯､縺輔ｌ繧・
+- 隍・焚縺ｮ繧ｫ繝ｼ繝峨ｒ蜷梧凾縺ｫ驕ｸ謚槭〒縺阪ｋ
+- 驕ｸ謚樔ｸｭ縺ｮ繧ｫ繝ｼ繝画焚繧定｡ｨ遉ｺ縺吶ｋ
 
 <CodePreview
-  sourceId="演習-発展4"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<div class="card">カード1</div>
-<div class="card">カード2</div>
-<div class="card">カード3</div>
-<p>選択中: <span class="count">0</span>枚</p>
+<div class="card">繧ｫ繝ｼ繝・</div>
+<div class="card">繧ｫ繝ｼ繝・</div>
+<div class="card">繧ｫ繝ｼ繝・</div>
+<p>驕ｸ謚樔ｸｭ: <span class="count">0</span>譫・/p>
 ```
 
 ```css
@@ -750,69 +766,72 @@ for (let cardYoso of cardYosos) {
 ```
 
 ```javascript
-// すべてのカード要素を取得
-let cardYosos = document.querySelectorAll(".card");
+// 縺吶∋縺ｦ縺ｮ繧ｫ繝ｼ繝芽ｦ∫ｴ繧貞叙蠕・
+let cardYosos = document.querySelectorAll('.card');
 
-// カウント表示要素を取得
-let countYoso = document.querySelector(".count");
+// 繧ｫ繧ｦ繝ｳ繝郁｡ｨ遉ｺ隕∫ｴ繧貞叙蠕・
+let countYoso = document.querySelector('.count');
 
-// すべてのカードをループで処理
+// 縺吶∋縺ｦ縺ｮ繧ｫ繝ｼ繝峨ｒ繝ｫ繝ｼ繝励〒蜃ｦ逅・
 for (let cardYoso of cardYosos) {
-  // 各カードにクリックイベントを登録
-  cardYoso.addEventListener("click", function() {
-    // selectedクラスを付けたり外したりして切り替え
-    cardYoso.classList.toggle("selected");
+  // 蜷・き繝ｼ繝峨↓繧ｯ繝ｪ繝・け繧､繝吶Φ繝医ｒ逋ｻ骭ｲ
+  cardYoso.addEventListener('click', function () {
+    // selected繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+    cardYoso.classList.toggle('selected');
 
-    // 選択中のカード数をカウント
+    // 驕ｸ謚樔ｸｭ縺ｮ繧ｫ繝ｼ繝画焚繧偵き繧ｦ繝ｳ繝・
     let selectedCount = 0;
     for (let currentCardYoso of cardYosos) {
-      if (currentCardYoso.classList.contains("selected")) {
+      if (currentCardYoso.classList.contains('selected')) {
         selectedCount = selectedCount + 1;
       }
     }
 
-    // カウントを表示
+    // 繧ｫ繧ｦ繝ｳ繝医ｒ陦ｨ遉ｺ
     countYoso.innerText = selectedCount;
   });
 }
 ```
-</CodePreview><Solution>
-<CodePreview sourceId="演習-発展4" />
 
-**解説**:
-- `for...of` の外でカードのまとまりとカウント表示を取得しています
-- クリックされたときに、再び `for...of` を使って「今選択されているカードの数」を数えています
-</Solution>
+</CodePreview><Solution>
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・" />
+
+**隗｣隱ｬ**:
+
+- `for...of` 縺ｮ螟悶〒繧ｫ繝ｼ繝峨・縺ｾ縺ｨ縺ｾ繧翫→繧ｫ繧ｦ繝ｳ繝郁｡ｨ遉ｺ繧貞叙蠕励＠縺ｦ縺・∪縺・
+- 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪↓縲∝・縺ｳ `for...of` 繧剃ｽｿ縺｣縺ｦ縲御ｻ企∈謚槭＆繧後※縺・ｋ繧ｫ繝ｼ繝峨・謨ｰ縲阪ｒ謨ｰ縺医※縺・∪縺・
+    </Solution>
 </Exercise>
 
 ---
 
-ここまでで、
+縺薙％縺ｾ縺ｧ縺ｧ縲・
 
-- 「1つぶんの処理」を `for...of` の中に書く
-- 必要なら、その中で再度 `for...of` を使って「全体の状態」を数え直す
+- 縲・縺､縺ｶ繧薙・蜃ｦ逅・阪ｒ `for...of` 縺ｮ荳ｭ縺ｫ譖ｸ縺・
+- 蠢・ｦ√↑繧峨√◎縺ｮ荳ｭ縺ｧ蜀榊ｺｦ `for...of` 繧剃ｽｿ縺｣縺ｦ縲悟・菴薙・迥ｶ諷九阪ｒ謨ｰ縺育峩縺・
 
-という2パターンを練習しました。
+縺ｨ縺・≧2繝代ち繝ｼ繝ｳ繧堤ｷｴ鄙偵＠縺ｾ縺励◆縲・
 
-ここから先は、**複数の for...of や、ふつうの for 文（インデックスつき）を組み合わせないと実現しにくいパターン** に挑戦していきます。
+縺薙％縺九ｉ蜈医・縲・\*隍・焚縺ｮ for...of 繧・√・縺､縺・・ for 譁・ｼ医う繝ｳ繝・ャ繧ｯ繧ｹ縺､縺搾ｼ峨ｒ邨・∩蜷医ｏ縺帙↑縺・→螳溽樟縺励↓縺上＞繝代ち繝ｼ繝ｳ\*\* 縺ｫ謖第姶縺励※縺・″縺ｾ縺吶・
 
 ---
 
-<Exercise title="演習-発展5（アコーディオン）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医い繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳ・・>
 
-次のプレビューのように動作する、アコーディオンUIを作成せよ。
+谺｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ蜍穂ｽ懊☆繧九√い繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳUI繧剃ｽ懈・縺帙ｈ縲・
 
-**動作要件**:
-- 質問をクリックすると、対応する回答が表示される
-- もう一度クリックすると回答が非表示になる
-- 複数の質問を同時に開くことができる
+**蜍穂ｽ懆ｦ∽ｻｶ**:
 
-:::tip ヒント
-要素を非表示にするには `display: none;`、表示するには `display: block;` を使う。クラスでこれを切り替えるとよい。
+- 雉ｪ蝠上ｒ繧ｯ繝ｪ繝・け縺吶ｋ縺ｨ縲∝ｯｾ蠢懊☆繧句屓遲斐′陦ｨ遉ｺ縺輔ｌ繧・
+- 繧ゅ≧荳蠎ｦ繧ｯ繝ｪ繝・け縺吶ｋ縺ｨ蝗樒ｭ斐′髱櫁｡ｨ遉ｺ縺ｫ縺ｪ繧・
+- 隍・焚縺ｮ雉ｪ蝠上ｒ蜷梧凾縺ｫ髢九￥縺薙→縺後〒縺阪ｋ
+
+:::tip 繝偵Φ繝・
+隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺吶ｋ縺ｫ縺ｯ `display: none;`縲∬｡ｨ遉ｺ縺吶ｋ縺ｫ縺ｯ `display: block;` 繧剃ｽｿ縺・ゅけ繝ｩ繧ｹ縺ｧ縺薙ｌ繧貞・繧頑崛縺医ｋ縺ｨ繧医＞縲・
 :::
 
 <CodePreview
-  sourceId="演習-発展5"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -820,16 +839,16 @@ for (let cardYoso of cardYosos) {
 >
 ```html
 <div class="faq-item">
-  <div class="question">JavaScriptとは何ですか?</div>
-  <div class="answer">JavaScriptはWebページに動きをつけるプログラミング言語です。</div>
+  <div class="question">JavaScript縺ｨ縺ｯ菴輔〒縺吶°?</div>
+  <div class="answer">JavaScript縺ｯWeb繝壹・繧ｸ縺ｫ蜍輔″繧偵▽縺代ｋ繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ險隱槭〒縺吶・/div>
 </div>
 <div class="faq-item">
-  <div class="question">CSSとは何ですか？</div>
-  <div class="answer">CSSはWebページの見た目を整えるための言語です。</div>
+  <div class="question">CSS縺ｨ縺ｯ菴輔〒縺吶°・・/div>
+  <div class="answer">CSS縺ｯWeb繝壹・繧ｸ縺ｮ隕九◆逶ｮ繧呈紛縺医ｋ縺溘ａ縺ｮ險隱槭〒縺吶・/div>
 </div>
 <div class="faq-item">
-  <div class="question">HTMLとは何ですか？</div>
-  <div class="answer">HTMLはWebページの構造を作るための言語です。</div>
+  <div class="question">HTML縺ｨ縺ｯ菴輔〒縺吶°・・/div>
+  <div class="answer">HTML縺ｯWeb繝壹・繧ｸ縺ｮ讒矩繧剃ｽ懊ｋ縺溘ａ縺ｮ險隱槭〒縺吶・/div>
 </div>
 ```
 
@@ -854,37 +873,39 @@ for (let cardYoso of cardYosos) {
 ```
 
 ```javascript
-// すべての質問要素を取得
-let questionYosos = document.querySelectorAll(".question");
+// 縺吶∋縺ｦ縺ｮ雉ｪ蝠剰ｦ∫ｴ繧貞叙蠕・
+let questionYosos = document.querySelectorAll('.question');
 
-// すべての回答要素を取得
-let answerYosos = document.querySelectorAll(".answer");
+// 縺吶∋縺ｦ縺ｮ蝗樒ｭ碑ｦ∫ｴ繧貞叙蠕・
+let answerYosos = document.querySelectorAll('.answer');
 
-// すべての質問をループで処理
+// 縺吶∋縺ｦ縺ｮ雉ｪ蝠上ｒ繝ｫ繝ｼ繝励〒蜃ｦ逅・
 for (let questionYoso of questionYosos) {
-  // 各質問にクリックイベントを登録
-  questionYoso.addEventListener("click", function() {
-    // クリックされた質問に対応する回答要素を探す
+  // 蜷・ｳｪ蝠上↓繧ｯ繝ｪ繝・け繧､繝吶Φ繝医ｒ逋ｻ骭ｲ
+  questionYoso.addEventListener('click', function () {
+    // 繧ｯ繝ｪ繝・け縺輔ｌ縺溯ｳｪ蝠上↓蟇ｾ蠢懊☆繧句屓遲碑ｦ∫ｴ繧呈爾縺・
     for (let i = 0; i < questionYosos.length; i++) {
       if (questionYosos[i] === questionYoso) {
-        // 同じ順番の位置にあるanswerを取得
+        // 蜷後§鬆・分縺ｮ菴咲ｽｮ縺ｫ縺ゅｋanswer繧貞叙蠕・
         let answerYoso = answerYosos[i];
 
-        // 回答のopenクラスを付けたり外したりして切り替え
-        answerYoso.classList.toggle("open");
+        // 蝗樒ｭ斐・open繧ｯ繝ｩ繧ｹ繧剃ｻ倥￠縺溘ｊ螟悶＠縺溘ｊ縺励※蛻・ｊ譖ｿ縺・
+        answerYoso.classList.toggle('open');
       }
     }
   });
 }
 ```
-</CodePreview><Solution>
-<CodePreview sourceId="演習-発展5" />
 
-**解説**:
-- `display: none;` と `display: block;` で回答の表示・非表示を制御しています
-- `querySelectorAll(".question")` と `querySelectorAll(".answer")` で、それぞれ質問と回答をまとめて取得し、同じ順番の組み合わせとして対応付けています
-- クリックされた質問と同じインデックス番号の回答要素を探すために、ふつうの `for` 文を使っています
-</Solution>
+</CodePreview><Solution>
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・" />
+
+**隗｣隱ｬ**:
+
+- `display: none;` 縺ｨ `display: block;` 縺ｧ蝗樒ｭ斐・陦ｨ遉ｺ繝ｻ髱櫁｡ｨ遉ｺ繧貞宛蠕｡縺励※縺・∪縺・
+- `querySelectorAll(".question")` 縺ｨ `querySelectorAll(".answer")` 縺ｧ縲√◎繧後◇繧瑚ｳｪ蝠上→蝗樒ｭ斐ｒ縺ｾ縺ｨ繧√※蜿門ｾ励＠縲∝酔縺倬・分縺ｮ邨・∩蜷医ｏ縺帙→縺励※蟇ｾ蠢應ｻ倥￠縺ｦ縺・∪縺・
+- 繧ｯ繝ｪ繝・け縺輔ｌ縺溯ｳｪ蝠上→蜷後§繧､繝ｳ繝・ャ繧ｯ繧ｹ逡ｪ蜿ｷ縺ｮ蝗樒ｭ碑ｦ∫ｴ繧呈爾縺吶◆繧√↓縲√・縺､縺・・ `for` 譁・ｒ菴ｿ縺｣縺ｦ縺・∪縺・
+    </Solution>
 </Exercise>
 
 ---

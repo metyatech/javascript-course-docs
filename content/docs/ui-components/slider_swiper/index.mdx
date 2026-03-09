@@ -1,81 +1,86 @@
+﻿---
+title: 繧ｹ繝ｩ繧､繝繝ｼ (Swiper.js)
 ---
-title: スライダー (Swiper.js)
----
 
+## 莉頑律縺ｮ蟄ｦ鄙偵・縺薙ｓ縺ｪ縺ｨ縺薙ｍ縺ｧ菴ｿ縺・ｈ
 
-## 今日の学習はこんなところで使うよ
+莉頑律縺ｯ縲√せ繝ｩ繧､繝繝ｼ繧・き繝ｫ繝ｼ繧ｻ繝ｫ繧貞ｮ溯｣・＠縺ｦ縺ｿ縺ｾ縺励ｇ縺・・
+螳滄圀縺ｮ繧ｦ繧ｧ繝悶し繧､繝医・縲檎判蜒上ぐ繝｣繝ｩ繝ｪ繝ｼ縲阪ｄ縲悟膚蜩∽ｸ隕ｧ縲阪√後ル繝･繝ｼ繧ｹ縺ｮ繧ｹ繝ｩ繧､繝繝ｼ縲阪〒蠎・￥菴ｿ繧上ｌ縺ｦ縺・ｋ讖溯・縺ｧ縺吶・
 
-今日は、スライダーやカルーセルを実装してみましょう。
-実際のウェブサイトの「画像ギャラリー」や「商品一覧」、「ニュースのスライダー」で広く使われている機能です。
+螳滄圀縺ｫ菴ｿ繧上ｌ縺ｦ縺・◎縺・↑繧ｵ繧､繝医・萓具ｼ井ｻ｣陦ｨ萓具ｼ・
 
-実際に使われていそうなサイトの例（代表例）:
+- Apple Store・亥・髢九・繝ｼ繧ｸ縺ｧ陬ｽ蜩∫ｴｹ莉九・繧ｹ繝ｩ繧､繝繝ｼ縺檎｢ｺ隱阪〒縺阪∪縺呻ｼ・ <https://www.apple.com/jp/store>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 繝医ャ繝励・繝ｼ繧ｸ縺ｮ陬ｽ蜩∫ｴｹ莉九せ繝ｩ繧､繝繝ｼ 竊・逕ｻ蜒上ｒ蟾ｦ蜿ｳ縺ｫ繧ｹ繝ｯ繧､繝・
+- Uniqlo・亥膚蜩∫判蜒上・繧ｹ繝ｩ繧､繝繝ｼ・・ <https://www.uniqlo.com/jp/ja/>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 蝠・刀隧ｳ邏ｰ繝壹・繧ｸ縺ｮ逕ｻ蜒上ぐ繝｣繝ｩ繝ｪ繝ｼ 竊・蟾ｦ蜿ｳ縺ｫ繧ｹ繝ｯ繧､繝励＠縺ｦ蛻･縺ｮ蝠・刀逕ｻ蜒上ｒ陦ｨ遉ｺ
 
-- Apple Store（公開ページで製品紹介のスライダーが確認できます）: https://www.apple.com/jp/store
-  - 使われる箇所: トップページの製品紹介スライダー → 画像を左右にスワイプ
-- Uniqlo（商品画像のスライダー）: https://www.uniqlo.com/jp/ja/
-  - 使われる箇所: 商品詳細ページの画像ギャラリー → 左右にスワイプして別の商品画像を表示
-
-以下は、完成イメージです。左右の矢印ボタンやドラッグで操作できます。
+莉･荳九・縲∝ｮ梧・繧､繝｡繝ｼ繧ｸ縺ｧ縺吶ょｷｦ蜿ｳ縺ｮ遏｢蜊ｰ繝懊ち繝ｳ繧・ラ繝ｩ繝・げ縺ｧ謫堺ｽ懊〒縺阪∪縺吶・
 
 <CodePreview
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <div class="swiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
       <div class="product-card">
-        <div class="product-image">📱</div>
-        <h3>スマートフォン</h3>
-        <p class="price">¥89,800</p>
+        <div class="product-image">導</div>
+        <h3>繧ｹ繝槭・繝医ヵ繧ｩ繝ｳ</h3>
+        <p class="price">ﾂ･89,800</p>
       </div>
     </div>
     <div class="swiper-slide">
       <div class="product-card">
-        <div class="product-image">💻</div>
-        <h3>ノートパソコン</h3>
-        <p class="price">¥149,800</p>
+        <div class="product-image">捗</div>
+        <h3>繝弱・繝医ヱ繧ｽ繧ｳ繝ｳ</h3>
+        <p class="price">ﾂ･149,800</p>
       </div>
     </div>
     <div class="swiper-slide">
       <div class="product-card">
-        <div class="product-image">⌚</div>
-        <h3>スマートウォッチ</h3>
-        <p class="price">¥45,800</p>
+        <div class="product-image">
+          竚・/div>
+          <h3>繧ｹ繝槭・繝医え繧ｩ繝・メ</h3>
+          <p class="price">ﾂ･45,800</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="product-card">
+          <div class="product-image">而</div>
+          <h3>繝ｯ繧､繝､繝ｬ繧ｹ繧､繝､繝帙Φ</h3>
+          <p class="price">ﾂ･29,800</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="product-card">
+          <div class="product-image">胴</div>
+          <h3>繝・ず繧ｿ繝ｫ繧ｫ繝｡繝ｩ</h3>
+          <p class="price">ﾂ･79,800</p>
+        </div>
       </div>
     </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">🎧</div>
-        <h3>ワイヤレスイヤホン</h3>
-        <p class="price">¥29,800</p>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">📷</div>
-        <h3>デジタルカメラ</h3>
-        <p class="price">¥79,800</p>
-      </div>
-    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
   </div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-pagination"></div>
 </div>
 ```
 
 ```css
 .swiper {
   height: 280px;
-  /* スライド幅計算とズレないよう左右パディングは外す */
+  /* 繧ｹ繝ｩ繧､繝牙ｹ・ｨ育ｮ励→繧ｺ繝ｬ縺ｪ縺・ｈ縺・ｷｦ蜿ｳ繝代ョ繧｣繝ｳ繧ｰ縺ｯ螟悶☆ */
   padding: 20px 0;
-  /* 念のためはみ出しを隠す */
+  /* 蠢ｵ縺ｮ縺溘ａ縺ｯ縺ｿ蜃ｺ縺励ｒ髫縺・*/
   overflow: hidden;
 }
 .swiper-slide {
@@ -83,16 +88,16 @@ title: スライダー (Swiper.js)
   display: flex;
   justify-content: center;
   align-items: center;
-  /* 子要素の幅計算でオーバーフローしないように */
+  /* 蟄占ｦ∫ｴ縺ｮ蟷・ｨ育ｮ励〒繧ｪ繝ｼ繝舌・繝輔Ο繝ｼ縺励↑縺・ｈ縺・↓ */
   min-width: 0;
 }
 .product-card {
   background: white;
   border-radius: 12px;
   padding: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  /* スライド幅に応じて縮み、最大200pxまで */
+  /* 繧ｹ繝ｩ繧､繝牙ｹ・↓蠢懊§縺ｦ邵ｮ縺ｿ縲∵怙螟ｧ200px縺ｾ縺ｧ */
   max-width: 200px;
   box-sizing: border-box;
 }
@@ -114,7 +119,7 @@ title: スライダー (Swiper.js)
 ```
 
 ```javascript
-let swiper = new Swiper(".swiper", {
+let swiper = new Swiper('.swiper', {
   slidesPerView: 3,
   spaceBetween: 20,
   loop: true,
@@ -122,59 +127,61 @@ let swiper = new Swiper(".swiper", {
     delay: 3000,
   },
   navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
   },
   pagination: {
-    el: ".swiper-pagination",
+    el: '.swiper-pagination',
     clickable: true,
   },
 });
 ```
+
 </CodePreview>
 
 ---
 
-## この章の進め方（ライブラリを使ってみよう）
+## 縺薙・遶縺ｮ騾ｲ繧∵婿・医Λ繧､繝悶Λ繝ｪ繧剃ｽｿ縺｣縺ｦ縺ｿ繧医≧・・
 
-スライダーを純粋な HTML、CSS、JavaScript だけで自力で作るのは、とても難しいです。
-そこで、**「ライブラリ」** と言って、どこかの誰かが作ってくれたものを使いましょう。
+繧ｹ繝ｩ繧､繝繝ｼ繧堤ｴ皮ｲ九↑ HTML縲，SS縲゛avaScript 縺縺代〒閾ｪ蜉帙〒菴懊ｋ縺ｮ縺ｯ縲√→縺ｦ繧る屮縺励＞縺ｧ縺吶・
+縺昴％縺ｧ縲・_縲後Λ繧､繝悶Λ繝ｪ縲・_ 縺ｨ險縺｣縺ｦ縲√←縺薙°縺ｮ隱ｰ縺九′菴懊▲縺ｦ縺上ｌ縺溘ｂ縺ｮ繧剃ｽｿ縺・∪縺励ｇ縺・・
 
-実務では、誰かが作ってくれたものを借りて使って、目的を達成するということがよくあります。
-今日は、この「誰かが作ってくれたライブラリ」をドキュメントを見ながら使うという体験をしましょう。
+螳溷漁縺ｧ縺ｯ縲∬ｪｰ縺九′菴懊▲縺ｦ縺上ｌ縺溘ｂ縺ｮ繧貞溘ｊ縺ｦ菴ｿ縺｣縺ｦ縲∫岼逧・ｒ驕疲・縺吶ｋ縺ｨ縺・≧縺薙→縺後ｈ縺上≠繧翫∪縺吶・
+莉頑律縺ｯ縲√％縺ｮ縲瑚ｪｰ縺九′菴懊▲縺ｦ縺上ｌ縺溘Λ繧､繝悶Λ繝ｪ縲阪ｒ繝峨く繝･繝｡繝ｳ繝医ｒ隕九↑縺後ｉ菴ｿ縺・→縺・≧菴馴ｨ薙ｒ縺励∪縺励ｇ縺・・
 
-今回使用するライブラリは「Swiper.js」という、スライダーやカルーセルを簡単に実装できるライブラリです。
+莉雁屓菴ｿ逕ｨ縺吶ｋ繝ｩ繧､繝悶Λ繝ｪ縺ｯ縲郡wiper.js縲阪→縺・≧縲√せ繝ｩ繧､繝繝ｼ繧・き繝ｫ繝ｼ繧ｻ繝ｫ繧堤ｰ｡蜊倥↓螳溯｣・〒縺阪ｋ繝ｩ繧､繝悶Λ繝ｪ縺ｧ縺吶・
 
-- まず公式サイトをざっと眺める: https://swiperjs.com/
-- 検索キーワード例:
-  - 「Swiper 使い方」,「Swiper 始め方」
-  - 「Swiper 矢印ボタン」,「Swiper ページネーション」
+- 縺ｾ縺壼・蠑上し繧､繝医ｒ縺悶▲縺ｨ逵ｺ繧√ｋ: <https://swiperjs.com/>
+- 讀懃ｴ｢繧ｭ繝ｼ繝ｯ繝ｼ繝我ｾ・
+  - 縲郡wiper 菴ｿ縺・婿縲・縲郡wiper 蟋九ａ譁ｹ縲・
+  - 縲郡wiper 遏｢蜊ｰ繝懊ち繝ｳ縲・縲郡wiper 繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ縲・
 
-以下の演習は、Swiper.js の使い方を自分で調べて解いてください。
+莉･荳九・貍皮ｿ偵・縲ヾwiper.js 縺ｮ菴ｿ縺・婿繧定・蛻・〒隱ｿ縺ｹ縺ｦ隗｣縺・※縺上□縺輔＞縲・
 
 ---
 
-<Exercise title="演習1（基本のスライダー：3枚を横にスワイプ）">
-3枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい。
+<Exercise title="貍皮ｿ・・亥渕譛ｬ縺ｮ繧ｹ繝ｩ繧､繝繝ｼ・・譫壹ｒ讓ｪ縺ｫ繧ｹ繝ｯ繧､繝暦ｼ・>
+3譫壹・繧ｹ繝ｩ繧､繝峨ｒ讓ｪ縺ｫ繧ｹ繝ｯ繧､繝励〒縺阪ｋ縲∵ｬ｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｪ繧ｹ繝ｩ繧､繝繝ｼ繧剃ｽ懈・縺励※荳九＆縺・・
 
 <CodePreview
-  sourceId="演習1_基本"
+  sourceId="貍皮ｿ・_蝓ｺ譛ｬ"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-<!-- これを body 内に入れて -->
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">スライド1</div>
-    <div class="swiper-slide">スライド2</div>
-    <div class="swiper-slide">スライド3</div>
+    <div class="swiper-slide">繧ｹ繝ｩ繧､繝・</div>
+    <div class="swiper-slide">繧ｹ繝ｩ繧､繝・</div>
+    <div class="swiper-slide">繧ｹ繝ｩ繧､繝・</div>
   </div>
 </div>
 ```
@@ -191,11 +198,12 @@ let swiper = new Swiper(".swiper", {
 ```javascript
 let swiper = new Swiper('.swiper', {});
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview
-  sourceId="演習1_基本"
+  sourceId="貍皮ｿ・_蝓ｺ譛ｬ"
   htmlVisible={true}
   cssVisible={true}
   jsVisible={true}
@@ -206,31 +214,32 @@ let swiper = new Swiper('.swiper', {});
 
 ---
 
-<Exercise title="演習2（矢印とページネーションを付ける）">
-4枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい。
+<Exercise title="貍皮ｿ・・育泙蜊ｰ縺ｨ繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ繧剃ｻ倥￠繧具ｼ・>
+4譫壹・繧ｹ繝ｩ繧､繝峨ｒ讓ｪ縺ｫ繧ｹ繝ｯ繧､繝励〒縺阪ｋ縲∵ｬ｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｪ繧ｹ繝ｩ繧､繝繝ｼ繧剃ｽ懈・縺励※荳九＆縺・・
 
-- 左右の矢印ボタンで操作できる。
-- 下部にページネーション（点）が表示される。
+- 蟾ｦ蜿ｳ縺ｮ遏｢蜊ｰ繝懊ち繝ｳ縺ｧ謫堺ｽ懊〒縺阪ｋ縲・
+- 荳矩Κ縺ｫ繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ・育せ・峨′陦ｨ遉ｺ縺輔ｌ繧九・
 
 <CodePreview
-  sourceId="演習2_ナビページネーション"
+  sourceId="貍皮ｿ・_繝翫ン繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-<!-- これを body 内に入れて -->
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">商品A</div>
-    <div class="swiper-slide">商品B</div>
-    <div class="swiper-slide">商品C</div>
-    <div class="swiper-slide">商品D</div>
+    <div class="swiper-slide">蝠・刀A</div>
+    <div class="swiper-slide">蝠・刀B</div>
+    <div class="swiper-slide">蝠・刀C</div>
+    <div class="swiper-slide">蝠・刀D</div>
   </div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
@@ -258,11 +267,12 @@ let swiper = new Swiper('.swiper', {
   },
 });
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview
-  sourceId="演習2_ナビページネーション"
+  sourceId="貍皮ｿ・_繝翫ン繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ"
   htmlVisible={true}
   cssVisible={true}
   jsVisible={true}
@@ -273,33 +283,34 @@ let swiper = new Swiper('.swiper', {
 
 ---
 
-<Exercise title="演習2-発展1（自動再生とループ機能）">
-5枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい。
+<Exercise title="貍皮ｿ・-逋ｺ螻・・郁・蜍募・逕溘→繝ｫ繝ｼ繝玲ｩ溯・・・>
+5譫壹・繧ｹ繝ｩ繧､繝峨ｒ謖√▽縲∵ｬ｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｪ繧ｹ繝ｩ繧､繝繝ｼ繧剃ｽ懈・縺励※荳九＆縺・・
 
-- 3秒ごとに自動でスライドが切り替わる。
-- 最後のスライドの次は、最初のスライドに戻る（ループ再生）。
-- 矢印ボタンとページネーションも表示する。
+- 3遘偵＃縺ｨ縺ｫ閾ｪ蜍輔〒繧ｹ繝ｩ繧､繝峨′蛻・ｊ譖ｿ繧上ｋ縲・
+- 譛蠕後・繧ｹ繝ｩ繧､繝峨・谺｡縺ｯ縲∵怙蛻昴・繧ｹ繝ｩ繧､繝峨↓謌ｻ繧具ｼ医Ν繝ｼ繝怜・逕滂ｼ峨・
+- 遏｢蜊ｰ繝懊ち繝ｳ縺ｨ繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ繧り｡ｨ遉ｺ縺吶ｋ縲・
 
 <CodePreview
-  sourceId="演習2発展1_自動再生ループ"
+  sourceId="貍皮ｿ・逋ｺ螻・_閾ｪ蜍募・逕溘Ν繝ｼ繝・
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-<!-- これを body 内に入れて -->
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">ニュース1</div>
-    <div class="swiper-slide">ニュース2</div>
-    <div class="swiper-slide">ニュース3</div>
-    <div class="swiper-slide">ニュース4</div>
-    <div class="swiper-slide">ニュース5</div>
+    <div class="swiper-slide">繝九Η繝ｼ繧ｹ1</div>
+    <div class="swiper-slide">繝九Η繝ｼ繧ｹ2</div>
+    <div class="swiper-slide">繝九Η繝ｼ繧ｹ3</div>
+    <div class="swiper-slide">繝九Η繝ｼ繧ｹ4</div>
+    <div class="swiper-slide">繝九Η繝ｼ繧ｹ5</div>
   </div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
@@ -331,54 +342,57 @@ let swiper = new Swiper('.swiper', {
   },
 });
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview
-  sourceId="演習2発展1_自動再生ループ"
+  sourceId="貍皮ｿ・逋ｺ螻・_閾ｪ蜍募・逕溘Ν繝ｼ繝・
   htmlVisible={true}
   cssVisible={true}
   jsVisible={true}
   previewVisible={true}
 />
 
-**解説**:
-- `loop: true` で最後のスライドの次に最初のスライドに戻ります（ループ再生）。
-- `autoplay: { delay: 3000 }` で3秒（3000ミリ秒）ごとに自動でスライドが切り替わります。
-- これらのオプションを組み合わせることで、ニュースティッカーのような自動循環スライダーが作れます。
-</Solution>
+**隗｣隱ｬ**:
+
+- `loop: true` 縺ｧ譛蠕後・繧ｹ繝ｩ繧､繝峨・谺｡縺ｫ譛蛻昴・繧ｹ繝ｩ繧､繝峨↓謌ｻ繧翫∪縺呻ｼ医Ν繝ｼ繝怜・逕滂ｼ峨・
+- `autoplay: { delay: 3000 }` 縺ｧ3遘抵ｼ・000繝溘Μ遘抵ｼ峨＃縺ｨ縺ｫ閾ｪ蜍輔〒繧ｹ繝ｩ繧､繝峨′蛻・ｊ譖ｿ繧上ｊ縺ｾ縺吶・
+- 縺薙ｌ繧峨・繧ｪ繝励す繝ｧ繝ｳ繧堤ｵ・∩蜷医ｏ縺帙ｋ縺薙→縺ｧ縲√ル繝･繝ｼ繧ｹ繝・ぅ繝・き繝ｼ縺ｮ繧医≧縺ｪ閾ｪ蜍募ｾｪ迺ｰ繧ｹ繝ｩ繧､繝繝ｼ縺御ｽ懊ｌ縺ｾ縺吶・
+    </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習2-発展2（複数枚同時表示）">
-6枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい。
+<Exercise title="貍皮ｿ・-逋ｺ螻・・郁､・焚譫壼酔譎り｡ｨ遉ｺ・・>
+6譫壹・繧ｹ繝ｩ繧､繝峨ｒ謖√▽縲∵ｬ｡縺ｮ繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｪ繧ｹ繝ｩ繧､繝繝ｼ繧剃ｽ懈・縺励※荳九＆縺・・
 
-- 一度に3枚のスライドを表示する。
-- スライド間のスペースは20pxにする。
-- 矢印ボタンとページネーションも表示する。
+- 荳蠎ｦ縺ｫ3譫壹・繧ｹ繝ｩ繧､繝峨ｒ陦ｨ遉ｺ縺吶ｋ縲・
+- 繧ｹ繝ｩ繧､繝蛾俣縺ｮ繧ｹ繝壹・繧ｹ縺ｯ20px縺ｫ縺吶ｋ縲・
+- 遏｢蜊ｰ繝懊ち繝ｳ縺ｨ繝壹・繧ｸ繝阪・繧ｷ繝ｧ繝ｳ繧り｡ｨ遉ｺ縺吶ｋ縲・
 
 <CodePreview
-  sourceId="演習2発展2_複数枚表示"
+  sourceId="貍皮ｿ・逋ｺ螻・_隍・焚譫夊｡ｨ遉ｺ"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
-<!-- これを body 内に入れて -->
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
 <div class="swiper">
   <div class="swiper-wrapper">
-    <div class="swiper-slide">画像1</div>
-    <div class="swiper-slide">画像2</div>
-    <div class="swiper-slide">画像3</div>
-    <div class="swiper-slide">画像4</div>
-    <div class="swiper-slide">画像5</div>
-    <div class="swiper-slide">画像6</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
+    <div class="swiper-slide">逕ｻ蜒・</div>
   </div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
@@ -408,20 +422,22 @@ let swiper = new Swiper('.swiper', {
   },
 });
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview
-  sourceId="演習2発展2_複数枚表示"
+  sourceId="貍皮ｿ・逋ｺ螻・_隍・焚譫夊｡ｨ遉ｺ"
   htmlVisible={true}
   cssVisible={true}
   jsVisible={true}
   previewVisible={true}
 />
 
-**解説**:
-- `slidesPerView: 3` で一度に3枚のスライドを表示します。
-- `spaceBetween: 20` でスライド間のスペースを20pxに設定します。
-- このように複数枚を同時に表示することで、ギャラリーや商品一覧のようなレイアウトが作れます。
-</Solution>
+**隗｣隱ｬ**:
+
+- `slidesPerView: 3` 縺ｧ荳蠎ｦ縺ｫ3譫壹・繧ｹ繝ｩ繧､繝峨ｒ陦ｨ遉ｺ縺励∪縺吶・
+- `spaceBetween: 20` 縺ｧ繧ｹ繝ｩ繧､繝蛾俣縺ｮ繧ｹ繝壹・繧ｹ繧・0px縺ｫ險ｭ螳壹＠縺ｾ縺吶・
+- 縺薙・繧医≧縺ｫ隍・焚譫壹ｒ蜷梧凾縺ｫ陦ｨ遉ｺ縺吶ｋ縺薙→縺ｧ縲√ぐ繝｣繝ｩ繝ｪ繝ｼ繧・膚蜩∽ｸ隕ｧ縺ｮ繧医≧縺ｪ繝ｬ繧､繧｢繧ｦ繝医′菴懊ｌ縺ｾ縺吶・
+    </Solution>
 </Exercise>

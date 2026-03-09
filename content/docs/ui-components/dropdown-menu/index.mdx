@@ -1,21 +1,19 @@
+﻿---
+title: 繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ
 ---
-title: ドロップダウンメニュー
-sidebar_position: 999
----
 
+## 繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｨ縺ｯ
 
-## ドロップダウンメニューとは
+繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｯ縲√Γ繝九Η繝ｼ鬆・岼縺ｮ荳九↓髫縺輔ｌ縺溘し繝悶Γ繝九Η繝ｼ縺後√け繝ｪ繝・け繧・・繝舌・縺ｧ陦ｨ遉ｺ縺輔ｌ繧・UI 繝代ち繝ｼ繝ｳ縺ｧ縺吶ゅリ繝薙ご繝ｼ繧ｷ繝ｧ繝ｳ繝｡繝九Η繝ｼ縺ｧ繧医￥菴ｿ繧上ｌ縲・剞繧峨ｌ縺溘せ繝壹・繧ｹ縺ｫ螟壹￥縺ｮ繝ｪ繝ｳ繧ｯ繧帝・鄂ｮ縺ｧ縺阪∪縺吶・
 
-ドロップダウンメニューは、メニュー項目の下に隠されたサブメニューが、クリックやホバーで表示される UI パターンです。ナビゲーションメニューでよく使われ、限られたスペースに多くのリンクを配置できます。
+縺薙・繝壹・繧ｸ縺ｧ縺ｯ縲√ラ繝ｭ繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｮ菴懊ｊ譁ｹ繧帝・ｒ霑ｽ縺｣縺ｦ蟄ｦ繧薙〒縺・″縺ｾ縺吶・
 
-このページでは、ドロップダウンメニューの作り方を順を追って学んでいきます。
+<Exercise title="貍皮ｿ・・医Γ繝九Η繝ｼ縺ｮ蝓ｺ譛ｬ讒矩菴懈・・・>
 
-<Exercise title="演習1（メニューの基本構造作成）">
-
-まずは、メニューの基本的な見た目を作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
+縺ｾ縺壹・縲√Γ繝九Η繝ｼ縺ｮ蝓ｺ譛ｬ逧・↑隕九◆逶ｮ繧剃ｽ懊ｊ縺ｾ縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｨ蜷後§隕九◆逶ｮ縺ｫ縺ｪ繧九ｈ縺・↓縲？TML 縺ｨ CSS 繧呈嶌縺・※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習1"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -25,10 +23,10 @@ sidebar_position: 999
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
-      <li>サービス</li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>繝帙・繝</li>
+      <li>繧ｵ繝ｼ繝薙せ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -36,32 +34,33 @@ sidebar_position: 999
 
 ```css
 body {
-  margin: 0; /* ページの端の余白をなくす */
+  margin: 0; /* 繝壹・繧ｸ縺ｮ遶ｯ縺ｮ菴咏區繧偵↑縺上☆ */
 }
 
 header {
-  border-bottom: solid black 1px; /* ヘッダーの下の線 */
+  border-bottom: solid black 1px; /* 繝倥ャ繝繝ｼ縺ｮ荳九・邱・*/
 }
 
 .menu {
-  display: flex; /* 横並びに */
-  list-style: none; /* リストの点を消す */
-  padding: 0; /* ulにデフォルトでついているパディングを消す */
+  display: flex; /* 讓ｪ荳ｦ縺ｳ縺ｫ */
+  list-style: none; /* 繝ｪ繧ｹ繝医・轤ｹ繧呈ｶ医☆ */
+  padding: 0; /* ul縺ｫ繝・ヵ繧ｩ繝ｫ繝医〒縺､縺・※縺・ｋ繝代ョ繧｣繝ｳ繧ｰ繧呈ｶ医☆ */
 }
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習1"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習2（サブメニューの作成）">
+<Exercise title="貍皮ｿ・・医し繝悶Γ繝九Η繝ｼ縺ｮ菴懈・・・>
 
-続いて、メニューの中身を書きましょう。「サービス」メニューの中身だけ、作成してください。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
+邯壹＞縺ｦ縲√Γ繝九Η繝ｼ縺ｮ荳ｭ霄ｫ繧呈嶌縺阪∪縺励ｇ縺・ゅ後し繝ｼ繝薙せ縲阪Γ繝九Η繝ｼ縺ｮ荳ｭ霄ｫ縺縺代∽ｽ懈・縺励※縺上□縺輔＞縲ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｨ蜷後§隕九◆逶ｮ縺ｫ縺ｪ繧九ｈ縺・↓縲？TML 縺ｨ CSS 繧呈嶌縺・※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -71,17 +70,17 @@ header {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li>
-        <span>サービス</span> <!-- サブメニューができたので、(地べたに置くと扱いにくそうなので)ここは何か要素で囲んでおく(span など (概ねなんでも良い)) -->
-        <ul class="dd-submenu"> <!-- 「サービス」を囲んでいた li の中に、サブメニューを追加。dd = drop down のつもりでつけました(名前は何でも良いです) -->
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+        <span>繧ｵ繝ｼ繝薙せ</span> <!-- 繧ｵ繝悶Γ繝九Η繝ｼ縺後〒縺阪◆縺ｮ縺ｧ縲・蝨ｰ縺ｹ縺溘↓鄂ｮ縺上→謇ｱ縺・↓縺上◎縺・↑縺ｮ縺ｧ)縺薙％縺ｯ菴輔°隕∫ｴ縺ｧ蝗ｲ繧薙〒縺翫￥(span 縺ｪ縺ｩ (讎ゅ・縺ｪ繧薙〒繧り憶縺・) -->
+        <ul class="dd-submenu"> <!-- 縲後し繝ｼ繝薙せ縲阪ｒ蝗ｲ繧薙〒縺・◆ li 縺ｮ荳ｭ縺ｫ縲√し繝悶Γ繝九Η繝ｼ繧定ｿｽ蜉縲Ｅd = drop down 縺ｮ縺､繧ゅｊ縺ｧ縺､縺代∪縺励◆(蜷榊燕縺ｯ菴輔〒繧り憶縺・〒縺・ -->
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -103,35 +102,36 @@ header {
 }
 
 .dd-submenu {
-  list-style: none; /* リストの点を消す */
-  padding: 0; /* ulにデフォルトでついているパディングを消す */
-  border: solid black 1px; /* 枠線 */
-  background-color: white; /* 背景色を白に */
-  position: absolute; /* 絶対配置にして、その場のスペースを占有せずに、要素を浮かせる */
+  list-style: none; /* 繝ｪ繧ｹ繝医・轤ｹ繧呈ｶ医☆ */
+  padding: 0; /* ul縺ｫ繝・ヵ繧ｩ繝ｫ繝医〒縺､縺・※縺・ｋ繝代ョ繧｣繝ｳ繧ｰ繧呈ｶ医☆ */
+  border: solid black 1px; /* 譫邱・*/
+  background-color: white; /* 閭梧勹濶ｲ繧堤區縺ｫ */
+  position: absolute; /* 邨ｶ蟇ｾ驟咲ｽｮ縺ｫ縺励※縲√◎縺ｮ蝣ｴ縺ｮ繧ｹ繝壹・繧ｹ繧貞頃譛峨○縺壹↓縲∬ｦ∫ｴ繧呈ｵｮ縺九○繧・*/
 }
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習2"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習3（開閉機能の作成）">
+<Exercise title="貍皮ｿ・・磯幕髢画ｩ溯・縺ｮ菴懈・・・>
 
-ついに、JavaScript で開閉機能を作りましょう。以下のプレビューのように、サービスメニューにカーソルを乗せたときにサブメニューが表示されるようにしてください。
+縺､縺・↓縲゛avaScript 縺ｧ髢矩哩讖溯・繧剃ｽ懊ｊ縺ｾ縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√し繝ｼ繝薙せ繝｡繝九Η繝ｼ縺ｫ繧ｫ繝ｼ繧ｽ繝ｫ繧剃ｹ励○縺溘→縺阪↓繧ｵ繝悶Γ繝九Η繝ｼ縺瑚｡ｨ遉ｺ縺輔ｌ繧九ｈ縺・↓縺励※縺上□縺輔＞縲・
 
-（次の演習でアニメーションさせたいので）表示/非表示は、透明度で制御してください。
-また、CSSの変更はクラスのつけ外しで行ってください。
+・域ｬ｡縺ｮ貍皮ｿ偵〒繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○縺溘＞縺ｮ縺ｧ・芽｡ｨ遉ｺ/髱櫁｡ｨ遉ｺ縺ｯ縲・乗・蠎ｦ縺ｧ蛻ｶ蠕｡縺励※縺上□縺輔＞縲・
+縺ｾ縺溘，SS縺ｮ螟画峩縺ｯ繧ｯ繝ｩ繧ｹ縺ｮ縺､縺大､悶＠縺ｧ陦後▲縺ｦ縺上□縺輔＞縲・
 
 ::::tip
-透明度で表示/非表示を制御する場合、要素が完全に透明であっても、要素自体は存在している扱いとなるため、カーソルを乗せた時のイベントなどが発生する状態となります。  
-それを防ぐには、CSSの `visibility` プロパティを使って、非表示にするときには `visibility: hidden;`、表示するときには `visibility: visible;` も追加することで、イベントも発生させないようにできます。
+騾乗・蠎ｦ縺ｧ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧貞宛蠕｡縺吶ｋ蝣ｴ蜷医∬ｦ∫ｴ縺悟ｮ悟・縺ｫ騾乗・縺ｧ縺ゅ▲縺ｦ繧ゅ∬ｦ∫ｴ閾ｪ菴薙・蟄伜惠縺励※縺・ｋ謇ｱ縺・→縺ｪ繧九◆繧√√き繝ｼ繧ｽ繝ｫ繧剃ｹ励○縺滓凾縺ｮ繧､繝吶Φ繝医↑縺ｩ縺檎匱逕溘☆繧狗憾諷九→縺ｪ繧翫∪縺吶・
+縺昴ｌ繧帝亟縺舌↓縺ｯ縲，SS縺ｮ `visibility` 繝励Ο繝代ユ繧｣繧剃ｽｿ縺｣縺ｦ縲・撼陦ｨ遉ｺ縺ｫ縺吶ｋ縺ｨ縺阪↓縺ｯ `visibility: hidden;`縲∬｡ｨ遉ｺ縺吶ｋ縺ｨ縺阪↓縺ｯ `visibility: visible;` 繧りｿｽ蜉縺吶ｋ縺薙→縺ｧ縲√う繝吶Φ繝医ｂ逋ｺ逕溘＆縺帙↑縺・ｈ縺・↓縺ｧ縺阪∪縺吶・
 ::::
 
 <CodePreview
-  sourceId="演習3"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -141,17 +141,17 @@ header {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu"> <!-- この要素(= 子である「サービス」や「.dd-submenu」)にカーソルを乗せたり外したりしたときにメニューを開閉したいので、ここにクラスをつける -->
-        <span>サービス</span>
+      <li>繝帙・繝</li>
+      <li class="dd-menu"> <!-- 縺薙・隕∫ｴ(= 蟄舌〒縺ゅｋ縲後し繝ｼ繝薙せ縲阪ｄ縲・dd-submenu縲・縺ｫ繧ｫ繝ｼ繧ｽ繝ｫ繧剃ｹ励○縺溘ｊ螟悶＠縺溘ｊ縺励◆縺ｨ縺阪↓繝｡繝九Η繝ｼ繧帝幕髢峨＠縺溘＞縺ｮ縺ｧ縲√％縺薙↓繧ｯ繝ｩ繧ｹ繧偵▽縺代ｋ -->
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -178,46 +178,48 @@ header {
   border: solid black 1px;
   background-color: white;
   position: absolute;
-  opacity: 0; /* 最初は完全に透明で */
-  visibility: hidden; /* 見えないようにする */
+  opacity: 0; /* 譛蛻昴・螳悟・縺ｫ騾乗・縺ｧ */
+  visibility: hidden; /* 隕九∴縺ｪ縺・ｈ縺・↓縺吶ｋ */
 }
 
-.dd-submenu.open { /* サブメニューに open クラスがついているとき（開いているとき） */
-  opacity: 1; /* しっかり見えるようにする */
-  visibility: visible; /* 見えるようにする */
+.dd-submenu.open {
+  /* 繧ｵ繝悶Γ繝九Η繝ｼ縺ｫ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ・*/
+  opacity: 1; /* 縺励▲縺九ｊ隕九∴繧九ｈ縺・↓縺吶ｋ */
+  visibility: visible; /* 隕九∴繧九ｈ縺・↓縺吶ｋ */
 }
 ```
 
 ```javascript
-// ドロップダウンメニューの要素を取得
+// 繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｮ隕∫ｴ繧貞叙蠕・
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-// マウスが乗ったときの処理
-ddMenuYoso.addEventListener('mouseenter', function() {
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open'); // open クラスを追加して表示
+  submenu.classList.add('open'); // open 繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉縺励※陦ｨ遉ｺ
 });
 
-// マウスが離れたときの処理
-ddMenuYoso.addEventListener('mouseleave', function() {
+// 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺阪・蜃ｦ逅・
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open'); // open クラスを削除して非表示
+  submenu.classList.remove('open'); // open 繧ｯ繝ｩ繧ｹ繧貞炎髯､縺励※髱櫁｡ｨ遉ｺ
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習3"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習4（アニメーション化）">
+<Exercise title="貍皮ｿ・・医い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ蛹厄ｼ・>
 
-あとは適切にアニメーションするように調整しましょう。以下のプレビューのように、滑らかに表示/非表示が切り替わるようにしてください。
+縺ゅ→縺ｯ驕ｩ蛻・↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ繧医≧縺ｫ隱ｿ謨ｴ縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲∵ｻ代ｉ縺九↓陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ縺悟・繧頑崛繧上ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習4"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -227,17 +229,17 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -266,7 +268,7 @@ header {
   position: absolute;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s; /* 0.3秒かけて変化させるようにアニメーション化する */
+  transition: all 0.3s; /* 0.3遘偵°縺代※螟牙喧縺輔○繧九ｈ縺・↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ蛹悶☆繧・*/
 }
 
 .dd-submenu.open {
@@ -278,30 +280,31 @@ header {
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習4"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展1（デザイン調整）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医ョ繧ｶ繧､繝ｳ隱ｿ謨ｴ・・>
 
-機能は完成したので、見た目を整えましょう。以下のプレビューと同じ見た目になるように、CSSを調整してください。
+讖溯・縺ｯ螳梧・縺励◆縺ｮ縺ｧ縲∬ｦ九◆逶ｮ繧呈紛縺医∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｨ蜷後§隕九◆逶ｮ縺ｫ縺ｪ繧九ｈ縺・↓縲，SS繧定ｪｿ謨ｴ縺励※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習-発展1"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -311,17 +314,17 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -333,53 +336,58 @@ body {
 }
 
 header {
-  border-bottom: solid #ddd 1px; /* 枠線を薄いグレーに */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  border-bottom: solid #ddd 1px; /* 譫邱壹ｒ阮・＞繧ｰ繝ｬ繝ｼ縺ｫ */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 蠖ｱ繧定ｿｽ蜉 */
 }
 
 .menu {
   display: flex;
   list-style: none;
   padding: 0;
-  margin: 0; /* デフォルトのマージンを削除 */
+  margin: 0; /* 繝・ヵ繧ｩ繝ｫ繝医・繝槭・繧ｸ繝ｳ繧貞炎髯､ */
 }
 
-.menu > li { /* メニュー項目のスタイル */
-  padding: 15px 20px; /* 上下15px、左右20pxの余白 */
-  cursor: pointer; /* カーソルをポインターに */
+.menu > li {
+  /* 繝｡繝九Η繝ｼ鬆・岼縺ｮ繧ｹ繧ｿ繧､繝ｫ */
+  padding: 15px 20px; /* 荳贋ｸ・5px縲∝ｷｦ蜿ｳ20px縺ｮ菴咏區 */
+  cursor: pointer; /* 繧ｫ繝ｼ繧ｽ繝ｫ繧偵・繧､繝ｳ繧ｿ繝ｼ縺ｫ */
 }
 
-.menu > li:hover { /* メニュー項目にホバーしたとき */
-  background-color: #f5f5f5; /* 背景色を薄いグレーに */
+.menu > li:hover {
+  /* 繝｡繝九Η繝ｼ鬆・岼縺ｫ繝帙ヰ繝ｼ縺励◆縺ｨ縺・*/
+  background-color: #f5f5f5; /* 閭梧勹濶ｲ繧定埋縺・げ繝ｬ繝ｼ縺ｫ */
 }
 
-.dd-menu { /* ドロップダウンメニューを持つ項目 */
-  position: relative; /* 子要素の絶対配置の基準にする */
+.dd-menu {
+  /* 繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ繧呈戟縺､鬆・岼 */
+  position: relative; /* 蟄占ｦ∫ｴ縺ｮ邨ｶ蟇ｾ驟咲ｽｮ縺ｮ蝓ｺ貅悶↓縺吶ｋ */
 }
 
 .dd-submenu {
   list-style: none;
   padding: 0;
-  margin: 0; /* デフォルトのマージンを削除 */
-  border: solid #ddd 1px; /* 枠線を薄いグレーに */
+  margin: 0; /* 繝・ヵ繧ｩ繝ｫ繝医・繝槭・繧ｸ繝ｳ繧貞炎髯､ */
+  border: solid #ddd 1px; /* 譫邱壹ｒ阮・＞繧ｰ繝ｬ繝ｼ縺ｫ */
   background-color: white;
   position: absolute;
-  top: 100%; /* .dd-menu の下端に配置 */
-  left: 0; /* .dd-menu の左端に配置 */
-  width: max-content; /* 最大コンテンツの幅に合わせる */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+  top: 100%; /* .dd-menu 縺ｮ荳狗ｫｯ縺ｫ驟咲ｽｮ */
+  left: 0; /* .dd-menu 縺ｮ蟾ｦ遶ｯ縺ｫ驟咲ｽｮ */
+  width: max-content; /* 譛螟ｧ繧ｳ繝ｳ繝・Φ繝・・蟷・↓蜷医ｏ縺帙ｋ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 蠖ｱ繧定ｿｽ蜉 */
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s;
 }
 
-.dd-submenu > li { /* サブメニュー項目のスタイル */
-  padding: 12px 20px; /* 上下12px、左右20pxの余白 */
-  cursor: pointer; /* カーソルをポインターに */
+.dd-submenu > li {
+  /* 繧ｵ繝悶Γ繝九Η繝ｼ鬆・岼縺ｮ繧ｹ繧ｿ繧､繝ｫ */
+  padding: 12px 20px; /* 荳贋ｸ・2px縲∝ｷｦ蜿ｳ20px縺ｮ菴咏區 */
+  cursor: pointer; /* 繧ｫ繝ｼ繧ｽ繝ｫ繧偵・繧､繝ｳ繧ｿ繝ｼ縺ｫ */
 }
 
-.dd-submenu > li:hover { /* サブメニュー項目にホバーしたとき */
-  background-color: #f5f5f5; /* 背景色を薄いグレーに */
+.dd-submenu > li:hover {
+  /* 繧ｵ繝悶Γ繝九Η繝ｼ鬆・岼縺ｫ繝帙ヰ繝ｼ縺励◆縺ｨ縺・*/
+  background-color: #f5f5f5; /* 閭梧勹濶ｲ繧定埋縺・げ繝ｬ繝ｼ縺ｫ */
 }
 
 .dd-submenu.open {
@@ -389,38 +397,39 @@ header {
 ```
 
 ```javascript
+let ddMenuYoso = document.querySelector('.dd-menu');
 
-  let ddMenuYoso = document.querySelector('.dd-menu');
+ddMenuYoso.addEventListener('mouseenter', function () {
+  let submenu = ddMenuYoso.querySelector('.dd-submenu');
+  submenu.classList.add('open');
+});
 
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.add('open');
-  });
-
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.remove('open');
-  });
-
+ddMenuYoso.addEventListener('mouseleave', function () {
+  let submenu = ddMenuYoso.querySelector('.dd-submenu');
+  submenu.classList.remove('open');
+});
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展1"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展2（スライドダウンアニメーションの追加）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医せ繝ｩ繧､繝峨ム繧ｦ繝ｳ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ霑ｽ蜉・・>
 
-今のアニメーションに、さらに上から降りてくるアニメーションを追加しましょう。以下のプレビューのように、上からスライドダウンしてくるようにしてください。
+莉翫・繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｫ縲√＆繧峨↓荳翫°繧蛾剄繧翫※縺上ｋ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧定ｿｽ蜉縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲∽ｸ翫°繧峨せ繝ｩ繧､繝峨ム繧ｦ繝ｳ縺励※縺上ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 :::tip
-- `transform: translateY()` を使って、縦方向の移動をアニメーションさせます
-::::
+
+- `transform: translateY()` 繧剃ｽｿ縺｣縺ｦ縲∫ｸｦ譁ｹ蜷代・遘ｻ蜍輔ｒ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○縺ｾ縺・
+
+  ::::
 
 <CodePreview
-  sourceId="演習-発展2"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -430,17 +439,17 @@ header {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -489,8 +498,11 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px); /* 上に10px移動した位置から開始 */
-  transition: all 0.3s, transform 0.3s, visibility 0.3s;
+  transform: translateY(-10px); /* 荳翫↓10px遘ｻ蜍輔＠縺滉ｽ咲ｽｮ縺九ｉ髢句ｧ・*/
+  transition:
+    all 0.3s,
+    transform 0.3s,
+    visibility 0.3s;
 }
 
 .dd-submenu > li {
@@ -505,45 +517,48 @@ header {
 .dd-submenu.open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0); /* 元の位置に移動 */
+  transform: translateY(0); /* 蜈・・菴咲ｽｮ縺ｫ遘ｻ蜍・*/
 }
 ```
 
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展2"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展3（スケールアニメーションの追加）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医せ繧ｱ繝ｼ繝ｫ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ霑ｽ蜉・・>
 
-演習-発展2 で作ったスライドダウンアニメーションに、さらに拡大アニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら、同時に小さい状態から拡大して表示されるようにしてください。
+貍皮ｿ・逋ｺ螻・ 縺ｧ菴懊▲縺溘せ繝ｩ繧､繝峨ム繧ｦ繝ｳ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｫ縲√＆繧峨↓諡｡螟ｧ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧りｿｽ蜉縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲∽ｸ翫°繧蛾剄繧翫※縺阪↑縺後ｉ縲∝酔譎ゅ↓蟆上＆縺・憾諷九°繧画僑螟ｧ縺励※陦ｨ遉ｺ縺輔ｌ繧九ｈ縺・↓縺励※縺上□縺輔＞縲・
 
 :::tip
-- `transform` プロパティには、複数の変形を半角スペースで区切って指定できます
-- 例: `transform: translateY(-10px) scale(0.95);` （上に10px移動 & 95%の大きさ）
-- translateY が上下方向の移動、scale が拡大・縮小を表します
-- `transform-origin` を使って、拡大の基準点を設定できます
-- 例: `transform-origin: left top;` （左上を基準に拡大・縮小）
-::::
+
+- `transform` 繝励Ο繝代ユ繧｣縺ｫ縺ｯ縲∬､・焚縺ｮ螟牙ｽ｢繧貞濠隗偵せ繝壹・繧ｹ縺ｧ蛹ｺ蛻・▲縺ｦ謖・ｮ壹〒縺阪∪縺・
+- 萓・ `transform: translateY(-10px) scale(0.95);` ・井ｸ翫↓10px遘ｻ蜍・& 95%縺ｮ螟ｧ縺阪＆・・
+- translateY 縺御ｸ贋ｸ区婿蜷代・遘ｻ蜍輔《cale 縺梧僑螟ｧ繝ｻ邵ｮ蟆上ｒ陦ｨ縺励∪縺・
+- `transform-origin` 繧剃ｽｿ縺｣縺ｦ縲∵僑螟ｧ縺ｮ蝓ｺ貅也せ繧定ｨｭ螳壹〒縺阪∪縺・
+- 萓・ `transform-origin: left top;` ・亥ｷｦ荳翫ｒ蝓ｺ貅悶↓諡｡螟ｧ繝ｻ邵ｮ蟆擾ｼ・
+
+  ::::
 
 <CodePreview
-  sourceId="演習-発展3"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -553,17 +568,17 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -612,8 +627,8 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px) scale(0.95); /* 上に10px移動した位置から開始 + 少し小さい状態から開始 */
-  transform-origin: left top; /* 左上を基準に変形 */
+  transform: translateY(-10px) scale(0.95); /* 荳翫↓10px遘ｻ蜍輔＠縺滉ｽ咲ｽｮ縺九ｉ髢句ｧ・+ 蟆代＠蟆上＆縺・憾諷九°繧蛾幕蟋・*/
+  transform-origin: left top; /* 蟾ｦ荳翫ｒ蝓ｺ貅悶↓螟牙ｽ｢ */
   transition: all 0.3s;
 }
 
@@ -629,43 +644,46 @@ header {
 .dd-submenu.open {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0) scale(1); /* 元の位置に移動 + 通常サイズ */
+  transform: translateY(0) scale(1); /* 蜈・・菴咲ｽｮ縺ｫ遘ｻ蜍・+ 騾壼ｸｸ繧ｵ繧､繧ｺ */
 }
 ```
 
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展3"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展4（回転アニメーションの追加）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・亥屓霆｢繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ霑ｽ蜉・・>
 
-演習-発展3 で作ったアニメーションに、さらに回転のアニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら拡大し、同時に少し回転しながら表示されるようにしてください。
+貍皮ｿ・逋ｺ螻・ 縺ｧ菴懊▲縺溘い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｫ縲√＆繧峨↓蝗櫁ｻ｢縺ｮ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧りｿｽ蜉縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲∽ｸ翫°繧蛾剄繧翫※縺阪↑縺後ｉ諡｡螟ｧ縺励∝酔譎ゅ↓蟆代＠蝗櫁ｻ｢縺励↑縺後ｉ陦ｨ遉ｺ縺輔ｌ繧九ｈ縺・↓縺励※縺上□縺輔＞縲・
 
 :::tip
-- `transform: rotate()` を使って、要素を回転させることができます
-- 角度の単位は `deg`（度）を使います
-- 複数の変形を組み合わせる場合は、半角スペースで区切って指定します
-::::
+
+- `transform: rotate()` 繧剃ｽｿ縺｣縺ｦ縲∬ｦ∫ｴ繧貞屓霆｢縺輔○繧九％縺ｨ縺後〒縺阪∪縺・
+- 隗貞ｺｦ縺ｮ蜊倅ｽ阪・ `deg`・亥ｺｦ・峨ｒ菴ｿ縺・∪縺・
+- 隍・焚縺ｮ螟牙ｽ｢繧堤ｵ・∩蜷医ｏ縺帙ｋ蝣ｴ蜷医・縲∝濠隗偵せ繝壹・繧ｹ縺ｧ蛹ｺ蛻・▲縺ｦ謖・ｮ壹＠縺ｾ縺・
+
+  ::::
 
 <CodePreview
-  sourceId="演習-発展4"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -675,17 +693,17 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
+      <li>莨夂､ｾ諠・ｱ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -734,7 +752,7 @@ header {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px) scale(0.95) rotate(-3deg); /* 上に移動 + 縮小 + 反時計回りに3度回転した状態から開始 */
+  transform: translateY(-10px) scale(0.95) rotate(-3deg); /* 荳翫↓遘ｻ蜍・+ 邵ｮ蟆・+ 蜿肴凾險亥屓繧翫↓3蠎ｦ蝗櫁ｻ｢縺励◆迥ｶ諷九°繧蛾幕蟋・*/
   transform-origin: top left;
   transition: all 0.3s;
 }
@@ -751,43 +769,46 @@ header {
 .dd-submenu.open {
   opacity: 1;
   visibility: visible;
-  transform: revert; /* 元の状態に戻す　というのは、実は revert という特別な値を設定することで簡単に実現できます。(このような特別な値は initial, inherit, revert, unset などがあり、これらの特別な値は、全てのCSSのプロパティに使用できます) */
+  transform: revert; /* 蜈・・迥ｶ諷九↓謌ｻ縺吶縺ｨ縺・≧縺ｮ縺ｯ縲∝ｮ溘・ revert 縺ｨ縺・≧迚ｹ蛻･縺ｪ蛟､繧定ｨｭ螳壹☆繧九％縺ｨ縺ｧ邁｡蜊倥↓螳溽樟縺ｧ縺阪∪縺吶・縺薙・繧医≧縺ｪ迚ｹ蛻･縺ｪ蛟､縺ｯ initial, inherit, revert, unset 縺ｪ縺ｩ縺後≠繧翫√％繧後ｉ縺ｮ迚ｹ蛻･縺ｪ蛟､縺ｯ縲∝・縺ｦ縺ｮCSS縺ｮ繝励Ο繝代ユ繧｣縺ｫ菴ｿ逕ｨ縺ｧ縺阪∪縺・ */
 }
 ```
 
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展4"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展5（複数のドロップダウンメニュー対応）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・郁､・焚縺ｮ繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ蟇ｾ蠢懶ｼ・>
 
-今までは「サービス」メニューだけにドロップダウン機能をつけていましたが、複数のメニュー項目でドロップダウンが使えるように拡張しましょう。以下のプレビューのように、「会社情報」にもドロップダウンメニューを追加してください。
+莉翫∪縺ｧ縺ｯ縲後し繝ｼ繝薙せ縲阪Γ繝九Η繝ｼ縺縺代↓繝峨Ο繝・・繝繧ｦ繝ｳ讖溯・繧偵▽縺代※縺・∪縺励◆縺後∬､・焚縺ｮ繝｡繝九Η繝ｼ鬆・岼縺ｧ繝峨Ο繝・・繝繧ｦ繝ｳ縺御ｽｿ縺医ｋ繧医≧縺ｫ諡｡蠑ｵ縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√御ｼ夂､ｾ諠・ｱ縲阪↓繧ゅラ繝ｭ繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ繧定ｿｽ蜉縺励※縺上□縺輔＞縲・
 
 :::tip
-- 複数の要素に同じイベントを設定する場合は、`querySelectorAll` を使って全ての要素の配列を取得します(初めて使う場合は、「[複数の要素を取得する（querySelectorAll）](../basics/dom-css-transition#複数の要素を取得するqueryselectorall)」を参照してください)
-- `for of 文` を使って、それぞれの要素に対してイベントリスナーを設定します
-- `document.querySelector` ではなく、`要素.querySelector` を使うことで、その要素の中からさらに要素を探すことができます
-::::
+
+- 隍・焚縺ｮ隕∫ｴ縺ｫ蜷後§繧､繝吶Φ繝医ｒ險ｭ螳壹☆繧句ｴ蜷医・縲～querySelectorAll` 繧剃ｽｿ縺｣縺ｦ蜈ｨ縺ｦ縺ｮ隕∫ｴ縺ｮ驟榊・繧貞叙蠕励＠縺ｾ縺・蛻昴ａ縺ｦ菴ｿ縺・ｴ蜷医・縲√啓隍・焚縺ｮ隕∫ｴ繧貞叙蠕励☆繧具ｼ・uerySelectorAll・云(../basics/dom-css-transition#隍・焚縺ｮ隕∫ｴ繧貞叙蠕励☆繧客ueryselectorall)縲阪ｒ蜿ら・縺励※縺上□縺輔＞)
+- `for of 譁㌔ 繧剃ｽｿ縺｣縺ｦ縲√◎繧後◇繧後・隕∫ｴ縺ｫ蟇ｾ縺励※繧､繝吶Φ繝医Μ繧ｹ繝翫・繧定ｨｭ螳壹＠縺ｾ縺・
+- `document.querySelector` 縺ｧ縺ｯ縺ｪ縺上～隕∫ｴ.querySelector` 繧剃ｽｿ縺・％縺ｨ縺ｧ縲√◎縺ｮ隕∫ｴ縺ｮ荳ｭ縺九ｉ縺輔ｉ縺ｫ隕∫ｴ繧呈爾縺吶％縺ｨ縺後〒縺阪∪縺・
+
+  ::::
 
 <CodePreview
-  sourceId="演習-発展5"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -797,24 +818,24 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
-      <li class="dd-menu"> <!-- 会社情報にも dd-menu クラスを追加 -->
-        <span>会社情報</span>
+      <li class="dd-menu"> <!-- 莨夂､ｾ諠・ｱ縺ｫ繧・dd-menu 繧ｯ繝ｩ繧ｹ繧定ｿｽ蜉 -->
+        <span>莨夂､ｾ諠・ｱ</span>
         <ul class="dd-submenu">
-          <li>会社概要</li>
-          <li>代表挨拶</li>
-          <li>アクセス</li>
+          <li>莨夂､ｾ讎りｦ・/li>
+          <li>莉｣陦ｨ謖ｨ諡ｶ</li>
+          <li>繧｢繧ｯ繧ｻ繧ｹ</li>
         </ul>
       </li>
-      <li>お問い合わせ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -885,44 +906,47 @@ header {
 ```
 
 ```javascript
-// 全てのドロップダウンメニューの要素を取得
+// 蜈ｨ縺ｦ縺ｮ繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｮ隕∫ｴ繧貞叙蠕・
 let ddMenuYosos = document.querySelectorAll('.dd-menu');
 
-// それぞれのドロップダウンメニューに対してイベントを設定
+// 縺昴ｌ縺槭ｌ縺ｮ繝峨Ο繝・・繝繧ｦ繝ｳ繝｡繝九Η繝ｼ縺ｫ蟇ｾ縺励※繧､繝吶Φ繝医ｒ險ｭ螳・
 for (let ddMenuYoso of ddMenuYosos) {
-  // マウスが乗ったときの処理
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
+  // 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・
+  ddMenuYoso.addEventListener('mouseenter', function () {
+    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 隕∫ｴ.querySelector 繧剃ｽｿ縺｣縺ｦ縲‥dMenuYoso 縺ｮ荳ｭ縺九ｉ .dd-submenu 縺ｫ繝槭ャ繝√☆繧玖ｦ∫ｴ繧貞叙蠕・
     submenu.classList.add('open');
   });
 
-  // マウスが離れたときの処理
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
+  // 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺阪・蜃ｦ逅・
+  ddMenuYoso.addEventListener('mouseleave', function () {
+    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 隕∫ｴ.querySelector 繧剃ｽｿ縺｣縺ｦ縲‥dMenuYoso 縺ｮ荳ｭ縺九ｉ .dd-submenu 縺ｫ繝槭ャ繝√☆繧玖ｦ∫ｴ繧貞叙蠕・
     submenu.classList.remove('open');
   });
 }
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展5"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展6（サブメニュー項目の段階的表示）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医し繝悶Γ繝九Η繝ｼ鬆・岼縺ｮ谿ｵ髫守噪陦ｨ遉ｺ・・>
 
-さらに、サブメニューの各項目が順番に左から移動してきながらフェードインするアニメーションを追加しましょう。加えて、以下のプレビューのように、メニューを開いたときに各項目が最初の項目から順にアニメーションが開始されるようにしてください。
+縺輔ｉ縺ｫ縲√し繝悶Γ繝九Η繝ｼ縺ｮ蜷・・岼縺碁・分縺ｫ蟾ｦ縺九ｉ遘ｻ蜍輔＠縺ｦ縺阪↑縺後ｉ繝輔ぉ繝ｼ繝峨う繝ｳ縺吶ｋ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧定ｿｽ蜉縺励∪縺励ｇ縺・ょ刈縺医※縲∽ｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√Γ繝九Η繝ｼ繧帝幕縺・◆縺ｨ縺阪↓蜷・・岼縺梧怙蛻昴・鬆・岼縺九ｉ鬆・↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺碁幕蟋九＆繧後ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 :::tip
-- CSS の `transition-delay` プロパティを使うと、アニメーションの開始タイミングをずらすことができます
-- `:nth-child()` 疑似クラスを使って、項目ごとに異なる遅延時間を設定します
-- 例: `.dd-submenu > li:nth-child(1)` で .dd-submenu の子の1番目のliの項目、`:nth-child(2)` で2番目の項目、… のように指定できます
-::::
+
+- CSS 縺ｮ `transition-delay` 繝励Ο繝代ユ繧｣繧剃ｽｿ縺・→縲√い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺ｮ髢句ｧ九ち繧､繝溘Φ繧ｰ繧偵★繧峨☆縺薙→縺後〒縺阪∪縺・
+- `:nth-child()` 逍台ｼｼ繧ｯ繝ｩ繧ｹ繧剃ｽｿ縺｣縺ｦ縲・・岼縺斐→縺ｫ逡ｰ縺ｪ繧矩≦蟒ｶ譎る俣繧定ｨｭ螳壹＠縺ｾ縺・
+- 萓・ `.dd-submenu > li:nth-child(1)` 縺ｧ .dd-submenu 縺ｮ蟄舌・1逡ｪ逶ｮ縺ｮli縺ｮ鬆・岼縲～:nth-child(2)` 縺ｧ2逡ｪ逶ｮ縺ｮ鬆・岼縲≫ｦ 縺ｮ繧医≧縺ｫ謖・ｮ壹〒縺阪∪縺・
+
+  ::::
 
 <CodePreview
-  sourceId="演習-発展6"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -932,24 +956,24 @@ for (let ddMenuYoso of ddMenuYosos) {
 <header>
   <nav>
     <ul class="menu">
-      <li>ホーム</li>
+      <li>繝帙・繝</li>
       <li class="dd-menu">
-        <span>サービス</span>
+        <span>繧ｵ繝ｼ繝薙せ</span>
         <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+          <li>Web髢狗匱</li>
+          <li>繝｢繝舌う繝ｫ繧｢繝励Μ髢狗匱</li>
+          <li>UI/UX繝・じ繧､繝ｳ</li>
         </ul>
       </li>
       <li class="dd-menu">
-        <span>会社情報</span>
+        <span>莨夂､ｾ諠・ｱ</span>
         <ul class="dd-submenu">
-          <li>会社概要</li>
-          <li>代表挨拶</li>
-          <li>アクセス</li>
+          <li>莨夂､ｾ讎りｦ・/li>
+          <li>莉｣陦ｨ謖ｨ諡ｶ</li>
+          <li>繧｢繧ｯ繧ｻ繧ｹ</li>
         </ul>
       </li>
-      <li>お問い合わせ</li>
+      <li>縺雁撫縺・粋繧上○</li>
     </ul>
   </nav>
 </header>
@@ -1006,26 +1030,28 @@ header {
 .dd-submenu > li {
   padding: 12px 20px;
   cursor: pointer;
-  opacity: 0; /* 最初は各項目を透明に */
-  transform: translateX(-10px); /* 少し左にずらした状態から開始 */
-  transition: opacity 0.3s, transform 0.3s; /* 各項目のアニメーション */
+  opacity: 0; /* 譛蛻昴・蜷・・岼繧帝乗・縺ｫ */
+  transform: translateX(-10px); /* 蟆代＠蟾ｦ縺ｫ縺壹ｉ縺励◆迥ｶ諷九°繧蛾幕蟋・*/
+  transition:
+    opacity 0.3s,
+    transform 0.3s; /* 蜷・・岼縺ｮ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ */
 }
 
 .dd-submenu > li:hover {
   background-color: #f5f5f5;
 }
 
-/* 各サブメニュー項目の遅延設定 */
+/* 蜷・し繝悶Γ繝九Η繝ｼ鬆・岼縺ｮ驕・ｻｶ險ｭ螳・*/
 .dd-submenu > li:nth-child(1) {
-  transition-delay: 0.1s; /* 1番目は0.1秒遅れて表示 */
+  transition-delay: 0.1s; /* 1逡ｪ逶ｮ縺ｯ0.1遘帝≦繧後※陦ｨ遉ｺ */
 }
 
 .dd-submenu > li:nth-child(2) {
-  transition-delay: 0.2s; /* 2番目は0.2秒遅れて表示 */
+  transition-delay: 0.2s; /* 2逡ｪ逶ｮ縺ｯ0.2遘帝≦繧後※陦ｨ遉ｺ */
 }
 
 .dd-submenu > li:nth-child(3) {
-  transition-delay: 0.3s; /* 3番目は0.3秒遅れて表示 */
+  transition-delay: 0.3s; /* 3逡ｪ逶ｮ縺ｯ0.3遘帝≦繧後※陦ｨ遉ｺ */
 }
 
 .dd-submenu.open {
@@ -1034,10 +1060,10 @@ header {
   transform: revert;
 }
 
-/* サブメニューが開いたときの、各項目の設定 */
+/* 繧ｵ繝悶Γ繝九Η繝ｼ縺碁幕縺・◆縺ｨ縺阪・縲∝推鬆・岼縺ｮ險ｭ螳・*/
 .dd-submenu.open > li {
-  opacity: revert; /* 元の位置に */
-  transform: revert; /* 元の位置に */
+  opacity: revert; /* 蜈・・菴咲ｽｮ縺ｫ */
+  transform: revert; /* 蜈・・菴咲ｽｮ縺ｫ */
 }
 ```
 
@@ -1045,21 +1071,22 @@ header {
 let ddMenuYosos = document.querySelectorAll('.dd-menu');
 
 for (let ddMenuYoso of ddMenuYosos) {
-  ddMenuYoso.addEventListener('mouseenter', function() {
+  ddMenuYoso.addEventListener('mouseenter', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu');
     submenu.classList.add('open');
   });
 
-  ddMenuYoso.addEventListener('mouseleave', function() {
+  ddMenuYoso.addEventListener('mouseleave', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu');
     submenu.classList.remove('open');
   });
 }
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展6"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
