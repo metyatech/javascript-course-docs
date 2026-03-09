@@ -1,24 +1,22 @@
+﻿---
+title: 繝峨Ο繝ｯ繝ｼ繝｡繝九Η繝ｼ
 ---
-title: ドロワーメニュー
-sidebar_position: 999
----
 
+## 繝峨Ο繝ｯ繝ｼ繝｡繝九Η繝ｼ縺ｨ縺ｯ
 
-## ドロワーメニューとは
+繝峨Ο繝ｯ繝ｼ繝｡繝九Η繝ｼ縺ｯ縲∫判髱｢縺ｮ遶ｯ縺九ｉ蠑輔″蜃ｺ縺吶ｈ縺・↓陦ｨ遉ｺ縺輔ｌ繧九Γ繝九Η繝ｼ縺ｧ縺吶ゅせ繝槭・繝医ヵ繧ｩ繝ｳ繧ｵ繧､繝医〒繧医￥菴ｿ繧上ｌ繧・UI 繝代ち繝ｼ繝ｳ縺ｧ縲√ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｨ邨・∩蜷医ｏ縺帙※螳溯｣・＆繧後ｋ縺薙→縺悟､壹＞縺ｧ縺吶・
 
-ドロワーメニューは、画面の端から引き出すように表示されるメニューです。スマートフォンサイトでよく使われる UI パターンで、ハンバーガーアイコンと組み合わせて実装されることが多いです。
+縺薙・繝壹・繧ｸ縺ｧ縺ｯ縲√ラ繝ｭ繝ｯ繝ｼ繝｡繝九Η繝ｼ縺ｮ菴懊ｊ譁ｹ繧帝・ｒ霑ｽ縺｣縺ｦ蟄ｦ繧薙〒縺・″縺ｾ縺吶・
 
-このページでは、ドロワーメニューの作り方を順を追って学んでいきます。
+<Exercise title="貍皮ｿ・・医・繝・ム繝ｼ縺ｨ繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ菴懈・・・>
 
-<Exercise title="演習1（ヘッダーとハンバーガーアイコンの作成）">
+縺ｾ縺壹・縲√・繝・ム繝ｼ縺ｨ繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ隕九◆逶ｮ繧剃ｽ懊ｊ縺ｾ縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｨ蜷後§隕九◆逶ｮ縺ｫ縺ｪ繧九ｈ縺・↓縲？TML 縺ｨ CSS 繧呈嶌縺・※縺上□縺輔＞縲・
 
-まずは、ヘッダーとハンバーガーアイコンの見た目を作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
-
-但し、ハンバーガーアイコンの部分は、次の図のように、3つの要素を使って作成してください。  
-![ハンバーガーアイコンを、各線が高さ4px、横幅32pxで、任意の適度な間隔の線で、div,spanなど、任意の要素で作成](./img/hamburger-icon-detail.png)
+菴・＠縲√ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ驛ｨ蛻・・縲∵ｬ｡縺ｮ蝗ｳ縺ｮ繧医≧縺ｫ縲・縺､縺ｮ隕∫ｴ繧剃ｽｿ縺｣縺ｦ菴懈・縺励※縺上□縺輔＞縲・
+![繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ繧偵∝推邱壹′鬮倥＆4px縲∵ｨｪ蟷・2px縺ｧ縲∽ｻｻ諢上・驕ｩ蠎ｦ縺ｪ髢馴囈縺ｮ邱壹〒縲‥iv,span縺ｪ縺ｩ縲∽ｻｻ諢上・隕∫ｴ縺ｧ菴懈・](./img/hamburger-icon-detail.png)
 
 <CodePreview
-  sourceId="演習1"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -38,50 +36,51 @@ sidebar_position: 999
 
 ```css
 body {
-    margin: 0; /* ページの端の余白をなくす */
+  margin: 0; /* 繝壹・繧ｸ縺ｮ遶ｯ縺ｮ菴咏區繧偵↑縺上☆ */
 }
 
 header {
-  border-bottom: solid black 1px; /* ヘッダーの下の線 */
+  border-bottom: solid black 1px; /* 繝倥ャ繝繝ｼ縺ｮ荳九・邱・*/
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
-  display: block; /* block にしないと変な意図しない余白が勝手に入るので */
+  display: block; /* block 縺ｫ縺励↑縺・→螟峨↑諢丞峙縺励↑縺・ｽ咏區縺悟享謇九↓蜈･繧九・縺ｧ */
   padding: 20px;
 
-  border: none; /* 枠線を消す */
-  background: transparent; /* 背景を消す */
-  cursor: pointer; /* カーソルは手のマーク */
+  border: none; /* 譫邱壹ｒ豸医☆ */
+  background: transparent; /* 閭梧勹繧呈ｶ医☆ */
+  cursor: pointer; /* 繧ｫ繝ｼ繧ｽ繝ｫ縺ｯ謇九・繝槭・繧ｯ */
 }
 
 .ham-icon {
-  display: flex; /* gap を使いたいだけ */
-  flex-direction: column; /* 縦並び */
-  gap: 8px; /* 間隔 8px */
+  display: flex; /* gap 繧剃ｽｿ縺・◆縺・□縺・*/
+  flex-direction: column; /* 邵ｦ荳ｦ縺ｳ */
+  gap: 8px; /* 髢馴囈 8px */
 }
 
 .ham-icon .line {
   width: 32px;
   height: 4px;
 
-  display: block; /* span はデフォルトで display: inline なので、width, height を効かせるために block にする */
+  display: block; /* span 縺ｯ繝・ヵ繧ｩ繝ｫ繝医〒 display: inline 縺ｪ縺ｮ縺ｧ縲『idth, height 繧貞柑縺九○繧九◆繧√↓ block 縺ｫ縺吶ｋ */
   background-color: black;
 }
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習1"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習2（メニューコンテンツの作成）">
+<Exercise title="貍皮ｿ・・医Γ繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・・菴懈・・・>
 
-続いて、ドロワーメニューのメニューコンテンツを作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
+邯壹＞縺ｦ縲√ラ繝ｭ繝ｯ繝ｼ繝｡繝九Η繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・ｒ菴懊ｊ縺ｾ縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｨ蜷後§隕九◆逶ｮ縺ｫ縺ｪ繧九ｈ縺・↓縲？TML 縺ｨ CSS 繧呈嶌縺・※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -99,27 +98,27 @@ header {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 ```
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -128,8 +127,8 @@ header {
   background: transparent;
   cursor: pointer;
 
-  position: relative; /* z-index を効かせるためだけに position を relative に */
-  z-index: 1; /* ハンバーガーボタンをメニューコンテンツより面に表示するため */
+  position: relative; /* z-index 繧貞柑縺九○繧九◆繧√□縺代↓ position 繧・relative 縺ｫ */
+  z-index: 1; /* 繝上Φ繝舌・繧ｬ繝ｼ繝懊ち繝ｳ繧偵Γ繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・ｈ繧企擇縺ｫ陦ｨ遉ｺ縺吶ｋ縺溘ａ */
 }
 
 .ham-icon {
@@ -146,35 +145,36 @@ header {
   background-color: black;
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
-  position: fixed; /* 画面内で、位置固定 */
-  top: 0; /* 要素の上端は画面の上端に合わせる */
-  bottom: 0; /* 要素の下端は画面の下端に合わせる(top:0, bottom:0 によって高さが画面いっぱいになる) */
-  left: 0; /* 画面の左端に配置 */
-  background-color: white; /* 背景をつけないと透明になるから */
-  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); /* 右側に影をつける */
+  position: fixed; /* 逕ｻ髱｢蜀・〒縲∽ｽ咲ｽｮ蝗ｺ螳・*/
+  top: 0; /* 隕∫ｴ縺ｮ荳顔ｫｯ縺ｯ逕ｻ髱｢縺ｮ荳顔ｫｯ縺ｫ蜷医ｏ縺帙ｋ */
+  bottom: 0; /* 隕∫ｴ縺ｮ荳狗ｫｯ縺ｯ逕ｻ髱｢縺ｮ荳狗ｫｯ縺ｫ蜷医ｏ縺帙ｋ(top:0, bottom:0 縺ｫ繧医▲縺ｦ鬮倥＆縺檎判髱｢縺・▲縺ｱ縺・↓縺ｪ繧・ */
+  left: 0; /* 逕ｻ髱｢縺ｮ蟾ｦ遶ｯ縺ｫ驟咲ｽｮ */
+  background-color: white; /* 閭梧勹繧偵▽縺代↑縺・→騾乗・縺ｫ縺ｪ繧九°繧・*/
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); /* 蜿ｳ蛛ｴ縺ｫ蠖ｱ繧偵▽縺代ｋ */
 
-  padding-top: 60px; /* 上に60pxの余白 */
+  padding-top: 60px; /* 荳翫↓60px縺ｮ菴咏區 */
 }
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習2"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習3（開閉機能の作成）">
+<Exercise title="貍皮ｿ・・磯幕髢画ｩ溯・縺ｮ菴懈・・・>
 
-ついに、JavaScript で開閉機能を作りましょう。以下のプレビューのように、ハンバーガーアイコンをクリックしたら、メニューが出し入れするように、CSS と JavaScript を書いてください。
+縺､縺・↓縲゛avaScript 縺ｧ髢矩哩讖溯・繧剃ｽ懊ｊ縺ｾ縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ繧偵け繝ｪ繝・け縺励◆繧峨√Γ繝九Η繝ｼ縺悟・縺怜・繧後☆繧九ｈ縺・↓縲，SS 縺ｨ JavaScript 繧呈嶌縺・※縺上□縺輔＞縲・
 
-（次の演習でアニメーションさせたいので）transform プロパティを使用して、画面左外にメニューを隠すようにしてください。  
-また、CSSの変更はクラスのつけ外しで行ってください。
+・域ｬ｡縺ｮ貍皮ｿ偵〒繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺輔○縺溘＞縺ｮ縺ｧ・液ransform 繝励Ο繝代ユ繧｣繧剃ｽｿ逕ｨ縺励※縲∫判髱｢蟾ｦ螟悶↓繝｡繝九Η繝ｼ繧帝國縺吶ｈ縺・↓縺励※縺上□縺輔＞縲・
+縺ｾ縺溘，SS縺ｮ螟画峩縺ｯ繧ｯ繝ｩ繧ｹ縺ｮ縺､縺大､悶＠縺ｧ陦後▲縺ｦ縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習3"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -192,27 +192,27 @@ header {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 ```
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -239,7 +239,7 @@ header {
   background-color: black;
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
@@ -250,43 +250,48 @@ header {
 
   padding-top: 60px;
 
-  transform: translateX(-100%); /* 初期の閉じている状態では、画面左に隠す */
+  transform: translateX(
+    -100%
+  ); /* 蛻晄悄縺ｮ髢峨§縺ｦ縺・ｋ迥ｶ諷九〒縺ｯ縲∫判髱｢蟾ｦ縺ｫ髫縺・*/
 }
 
-.drawer.open { /* メニューコンテンツに open クラスがついているとき（開いているとき） */
-  transform: translateX(0); /* 元の位置に表示する */
+.drawer.open {
+  /* 繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・↓ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ・*/
+  transform: translateX(0); /* 蜈・・菴咲ｽｮ縺ｫ陦ｨ遉ｺ縺吶ｋ */
 }
 ```
 
 ```javascript
-// ハンバーガーボタンの要素を取得
+// 繝上Φ繝舌・繧ｬ繝ｼ繝懊ち繝ｳ縺ｮ隕∫ｴ繧貞叙蠕・
 let hamBtnYoso = document.querySelector('.ham-btn');
-// ドロワーの要素を取得
+// 繝峨Ο繝ｯ繝ｼ縺ｮ隕∫ｴ繧貞叙蠕・
 let drawerYoso = document.querySelector('.drawer');
 
-// ハンバーガーボタンがクリックされたときの処理
+// 繝上Φ繝舌・繧ｬ繝ｼ繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
 hamBtnYoso.addEventListener('click', () => {
-  // ドロワー要素に対して、open クラスの付け外しを行う
+  // 繝峨Ο繝ｯ繝ｼ隕∫ｴ縺ｫ蟇ｾ縺励※縲｛pen 繧ｯ繝ｩ繧ｹ縺ｮ莉倥￠螟悶＠繧定｡後≧
   drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習3"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習4（アニメーション化）">
+<Exercise title="貍皮ｿ・・医い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ蛹厄ｼ・>
 
-あとは適切にアニメーションするように調整しましょう。以下のプレビューのように、ハンバーガーアイコンをクリックしたら、
-- 滑らかにメニューが出し入れする
-- 閉じているときにメニューの影がちらっと見えないようにする
-ように CSS を書き換えてください。
+縺ゅ→縺ｯ驕ｩ蛻・↓繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ縺吶ｋ繧医≧縺ｫ隱ｿ謨ｴ縺励∪縺励ｇ縺・ゆｻ･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ繧偵け繝ｪ繝・け縺励◆繧峨・
+
+- 貊代ｉ縺九↓繝｡繝九Η繝ｼ縺悟・縺怜・繧後☆繧・
+- 髢峨§縺ｦ縺・ｋ縺ｨ縺阪↓繝｡繝九Η繝ｼ縺ｮ蠖ｱ縺後■繧峨▲縺ｨ隕九∴縺ｪ縺・ｈ縺・↓縺吶ｋ
+  繧医≧縺ｫ CSS 繧呈嶌縺肴鋤縺医※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習4"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -304,27 +309,27 @@ hamBtnYoso.addEventListener('click', () => {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 ```
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -351,24 +356,24 @@ header {
   background-color: black;
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   background-color: white;
-  /* box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); これは、open の時の方に移動 */
+  /* box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); 縺薙ｌ縺ｯ縲｛pen 縺ｮ譎ゅ・譁ｹ縺ｫ遘ｻ蜍・*/
 
   padding-top: 60px;
 
   transform: translateX(-100%);
-  transition: all 1s; /* 滑らかに変化するようにする */
+  transition: all 1s; /* 貊代ｉ縺九↓螟牙喧縺吶ｋ繧医≧縺ｫ縺吶ｋ */
 }
 
 .drawer.open {
   transform: translateX(0);
-  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); /* 開いている時だけ影をつけるようにする */
+  box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2); /* 髢九＞縺ｦ縺・ｋ譎ゅ□縺大ｽｱ繧偵▽縺代ｋ繧医≧縺ｫ縺吶ｋ */
 }
 ```
 
@@ -380,26 +385,29 @@ hamBtnYoso.addEventListener('click', () => {
   drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習4"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展1（オーバーレイ）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医が繝ｼ繝舌・繝ｬ繧､・・>
 
-以下のプレビューのように、メニューが開いているときは、ページの内容の上にグレーの半透明のもの（オーバーレイと言います）が表示されるようにしてください。
-また、オーバーレイ部分をクリックしたらメニューが閉じるようにしてください。
+莉･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√Γ繝九Η繝ｼ縺碁幕縺・※縺・ｋ縺ｨ縺阪・縲√・繝ｼ繧ｸ縺ｮ蜀・ｮｹ縺ｮ荳翫↓繧ｰ繝ｬ繝ｼ縺ｮ蜊企乗・縺ｮ繧ゅ・・医が繝ｼ繝舌・繝ｬ繧､縺ｨ險縺・∪縺呻ｼ峨′陦ｨ遉ｺ縺輔ｌ繧九ｈ縺・↓縺励※縺上□縺輔＞縲・
+縺ｾ縺溘√が繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・ｒ繧ｯ繝ｪ繝・け縺励◆繧峨Γ繝九Η繝ｼ縺碁哩縺倥ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 :::tip
-ヒント
-- オーバーレイは画面全体を覆う、要素として作ります。そのため、それ用の要素を HTML に追加する必要があります。
-:::
+繝偵Φ繝・
+
+- 繧ｪ繝ｼ繝舌・繝ｬ繧､縺ｯ逕ｻ髱｢蜈ｨ菴薙ｒ隕・≧縲∬ｦ∫ｴ縺ｨ縺励※菴懊ｊ縺ｾ縺吶ゅ◎縺ｮ縺溘ａ縲√◎繧檎畑縺ｮ隕∫ｴ繧・HTML 縺ｫ霑ｽ蜉縺吶ｋ蠢・ｦ√′縺ゅｊ縺ｾ縺吶・
+
+  :::
 
 <CodePreview
-  sourceId="演習-発展1"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -417,13 +425,13 @@ hamBtnYoso.addEventListener('click', () => {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 <div class="overlay"></div>
@@ -431,14 +439,14 @@ hamBtnYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -448,7 +456,7 @@ header {
   cursor: pointer;
 
   position: relative;
-  z-index: 2; /* メニューコンテンツより上に表示するために、z-index を 2 に */
+  z-index: 2; /* 繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・ｈ繧贋ｸ翫↓陦ｨ遉ｺ縺吶ｋ縺溘ａ縺ｫ縲】-index 繧・2 縺ｫ */
 }
 
 .ham-icon {
@@ -465,7 +473,7 @@ header {
   background-color: black;
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
@@ -477,7 +485,7 @@ header {
 
   transform: translateX(-100%);
   transition: all 1s;
-  z-index: 1; /* オーバーレイの上に表示するために、z-index を 1 に */
+  z-index: 1; /* 繧ｪ繝ｼ繝舌・繝ｬ繧､縺ｮ荳翫↓陦ｨ遉ｺ縺吶ｋ縺溘ａ縺ｫ縲】-index 繧・1 縺ｫ */
 }
 
 .drawer.open {
@@ -485,62 +493,66 @@ header {
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
-/* オーバーレイ部分の調整 */
+/* 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・・隱ｿ謨ｴ */
 .overlay {
-  position: fixed; /* 画面内で位置固定 */
-  top: 0; /* 上端を画面の上端に合わせる */
-  bottom: 0; /* 下端を画面の下端に合わせる */
-  left: 0; /* 左端を画面の左端に合わせる */
-  right: 0; /* 右端を画面の右端に合わせる */
-  background-color: rgba(0, 0, 0, 0.5); /* 半透明の黒 */
-  opacity: 0; /* 初期状態では透明にする */
-  transition: opacity 1s; /* opacity の変化を滑らかにする */
-  z-index: 0; /* メニューの下に表示するために、z-index を 0 に */
+  position: fixed; /* 逕ｻ髱｢蜀・〒菴咲ｽｮ蝗ｺ螳・*/
+  top: 0; /* 荳顔ｫｯ繧堤判髱｢縺ｮ荳顔ｫｯ縺ｫ蜷医ｏ縺帙ｋ */
+  bottom: 0; /* 荳狗ｫｯ繧堤判髱｢縺ｮ荳狗ｫｯ縺ｫ蜷医ｏ縺帙ｋ */
+  left: 0; /* 蟾ｦ遶ｯ繧堤判髱｢縺ｮ蟾ｦ遶ｯ縺ｫ蜷医ｏ縺帙ｋ */
+  right: 0; /* 蜿ｳ遶ｯ繧堤判髱｢縺ｮ蜿ｳ遶ｯ縺ｫ蜷医ｏ縺帙ｋ */
+  background-color: rgba(0, 0, 0, 0.5); /* 蜊企乗・縺ｮ鮟・*/
+  opacity: 0; /* 蛻晄悄迥ｶ諷九〒縺ｯ騾乗・縺ｫ縺吶ｋ */
+  transition: opacity 1s; /* opacity 縺ｮ螟牙喧繧呈ｻ代ｉ縺九↓縺吶ｋ */
+  z-index: 0; /* 繝｡繝九Η繝ｼ縺ｮ荳九↓陦ｨ遉ｺ縺吶ｋ縺溘ａ縺ｫ縲】-index 繧・0 縺ｫ */
 }
 
-.overlay.open { /* オーバーレイに open クラスがついているとき（開いているとき） */
-  opacity: 1; /* 見えるようにする */
+.overlay.open {
+  /* 繧ｪ繝ｼ繝舌・繝ｬ繧､縺ｫ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ・*/
+  opacity: 1; /* 隕九∴繧九ｈ縺・↓縺吶ｋ */
 }
 ```
 
 ```javascript
 let hamBtnYoso = document.querySelector('.ham-btn');
 let drawerYoso = document.querySelector('.drawer');
-// オーバーレイ部分の要素を取得
+// 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・・隕∫ｴ繧貞叙蠕・
 let overlayYoso = document.querySelector('.overlay');
 
 hamBtnYoso.addEventListener('click', () => {
   drawerYoso.classList.toggle('open');
-  overlayYoso.classList.toggle('open'); // オーバーレイ部分も open クラスの付け外しを行う
+  overlayYoso.classList.toggle('open'); // 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・ｂ open 繧ｯ繝ｩ繧ｹ縺ｮ莉倥￠螟悶＠繧定｡後≧
 });
 
-// オーバーレイ部分がクリックされたときの処理
+// 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・′繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
 overlayYoso.addEventListener('click', () => {
-  drawerYoso.classList.remove('open'); // メニューを閉じる
-  overlayYoso.classList.remove('open'); // オーバーレイ部分も閉じる
+  drawerYoso.classList.remove('open'); // 繝｡繝九Η繝ｼ繧帝哩縺倥ｋ
+  overlayYoso.classList.remove('open'); // 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・ｂ髢峨§繧・
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展1"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展2（ハンバーガーから×アイコンにアニメーション）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医ワ繝ｳ繝舌・繧ｬ繝ｼ縺九ｉﾃ励い繧､繧ｳ繝ｳ縺ｫ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ・・>
 
-以下のプレビューのように、メニューを開いたときに、ハンバーガーアイコンが×アイコンに変化するようにしてください。
+莉･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√Γ繝九Η繝ｼ繧帝幕縺・◆縺ｨ縺阪↓縲√ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺古励い繧､繧ｳ繝ｳ縺ｫ螟牙喧縺吶ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 :::tip
-ヒント
-- ハンバーガーアイコンの各線に対して、transform: rotate で回転させると良いです。
-- 真ん中の線は、透明にしましょう。
-- transform: rotate する際の基準点は、transform-origin プロパティで変更することができます。（デフォルトは中央です）
-:::
+繝偵Φ繝・
+
+- 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ蜷・ｷ壹↓蟇ｾ縺励※縲》ransform: rotate 縺ｧ蝗櫁ｻ｢縺輔○繧九→濶ｯ縺・〒縺吶・
+- 逵溘ｓ荳ｭ縺ｮ邱壹・縲・乗・縺ｫ縺励∪縺励ｇ縺・・
+- transform: rotate 縺吶ｋ髫帙・蝓ｺ貅也せ縺ｯ縲》ransform-origin 繝励Ο繝代ユ繧｣縺ｧ螟画峩縺吶ｋ縺薙→縺後〒縺阪∪縺吶ゑｼ医ョ繝輔か繝ｫ繝医・荳ｭ螟ｮ縺ｧ縺呻ｼ・
+
+  :::
 
 <CodePreview
-  sourceId="演習-発展2"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -558,13 +570,13 @@ overlayYoso.addEventListener('click', () => {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 <div class="overlay"></div>
@@ -572,14 +584,14 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -605,21 +617,24 @@ header {
   display: block;
   background-color: black;
 
-  transform-origin: left center; /* 左中央を基準点にする */
-  transition: all 1s; /* プロパティの変化を滑らかに */
+  transform-origin: left center; /* 蟾ｦ荳ｭ螟ｮ繧貞渕貅也せ縺ｫ縺吶ｋ */
+  transition: all 1s; /* 繝励Ο繝代ユ繧｣縺ｮ螟牙喧繧呈ｻ代ｉ縺九↓ */
 }
 
-.ham-icon.open .line.top { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番上の線 */
-  transform: rotate(45deg); /* 45度回転 */
+.ham-icon.open .line.top {
+  /* 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｫ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ峨縺ｮ縲荳逡ｪ荳翫・邱・*/
+  transform: rotate(45deg); /* 45蠎ｦ蝗櫁ｻ｢ */
 }
-.ham-icon.open .line.middle { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　真ん中の線 */
-  opacity: 0; /* 透明にする */
+.ham-icon.open .line.middle {
+  /* 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｫ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ峨縺ｮ縲逵溘ｓ荳ｭ縺ｮ邱・*/
+  opacity: 0; /* 騾乗・縺ｫ縺吶ｋ */
 }
-.ham-icon.open .line.bottom { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番下の線 */
-  transform: rotate(-45deg); /* -45度回転 */
+.ham-icon.open .line.bottom {
+  /* 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｫ open 繧ｯ繝ｩ繧ｹ縺後▽縺・※縺・ｋ縺ｨ縺搾ｼ磯幕縺・※縺・ｋ縺ｨ縺搾ｼ峨縺ｮ縲荳逡ｪ荳九・邱・*/
+  transform: rotate(-45deg); /* -45蠎ｦ蝗櫁ｻ｢ */
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
@@ -639,7 +654,7 @@ header {
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
-/* オーバーレイ部分の調整 */
+/* 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・・隱ｿ謨ｴ */
 .overlay {
   position: fixed;
   top: 0;
@@ -661,39 +676,41 @@ header {
 let hamBtnYoso = document.querySelector('.ham-btn');
 let drawerYoso = document.querySelector('.drawer');
 let overlayYoso = document.querySelector('.overlay');
-// ハンバーガーアイコン部分の要素を取得
+// 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ驛ｨ蛻・・隕∫ｴ繧貞叙蠕・
 let hamIconYoso = document.querySelector('.ham-icon');
 
 hamBtnYoso.addEventListener('click', () => {
   drawerYoso.classList.toggle('open');
   overlayYoso.classList.toggle('open');
-  hamIconYoso.classList.toggle('open'); // ハンバーガーアイコン部分も open クラスの付け外しを行う
+  hamIconYoso.classList.toggle('open'); // 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ驛ｨ蛻・ｂ open 繧ｯ繝ｩ繧ｹ縺ｮ莉倥￠螟悶＠繧定｡後≧
 });
 
 overlayYoso.addEventListener('click', () => {
   drawerYoso.classList.remove('open');
   overlayYoso.classList.remove('open');
-  hamIconYoso.classList.remove('open'); // ハンバーガーアイコン部分も open クラスを外す
+  hamIconYoso.classList.remove('open'); // 繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ驛ｨ蛻・ｂ open 繧ｯ繝ｩ繧ｹ繧貞､悶☆
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展2"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展3（ハンバーガーアイコンの長さ調整）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医ワ繝ｳ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ髟ｷ縺戊ｪｿ謨ｴ・・>
 
-先ほどの演習-発展2では、実は×が綺麗な正方形になっていません。
-![×が綺麗な正方形になっていない図](./img/cross-icon-misalignment.png)
-- なぜでしょうか？
-- どうすれば綺麗な正方形になるでしょうか？
-- 綺麗な正方形になるように、CSS を修正してください。
+蜈医⊇縺ｩ縺ｮ貍皮ｿ・逋ｺ螻・縺ｧ縺ｯ縲∝ｮ溘・ﾃ励′邯ｺ鮗励↑豁｣譁ｹ蠖｢縺ｫ縺ｪ縺｣縺ｦ縺・∪縺帙ｓ縲・
+![ﾃ励′邯ｺ鮗励↑豁｣譁ｹ蠖｢縺ｫ縺ｪ縺｣縺ｦ縺・↑縺・峙](./img/cross-icon-misalignment.png)
+
+- 縺ｪ縺懊〒縺励ｇ縺・°・・
+- 縺ｩ縺・☆繧後・邯ｺ鮗励↑豁｣譁ｹ蠖｢縺ｫ縺ｪ繧九〒縺励ｇ縺・°・・
+- 邯ｺ鮗励↑豁｣譁ｹ蠖｢縺ｫ縺ｪ繧九ｈ縺・↓縲，SS 繧剃ｿｮ豁｣縺励※縺上□縺輔＞縲・
 
 <CodePreview
-  sourceId="演習-発展3"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -711,13 +728,13 @@ overlayYoso.addEventListener('click', () => {
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">お問い合わせ2</a></li>
-    <li><a href="#">お問い合わせ3</a></li>
-    <li><a href="#">お問い合わせ4</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○2</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○3</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○4</a></li>
   </ul>
 </nav>
 <div class="overlay"></div>
@@ -725,14 +742,14 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -752,7 +769,7 @@ header {
 }
 
 .ham-icon .line {
-  width: calc(24px * sqrt(2)); /* ここを 24√2 px になるように調整 */
+  width: calc(24px * sqrt(2)); /* 縺薙％繧・24竏・ px 縺ｫ縺ｪ繧九ｈ縺・↓隱ｿ謨ｴ */
   height: 4px;
 
   display: block;
@@ -772,7 +789,7 @@ header {
   transform: rotate(-45deg);
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
@@ -792,7 +809,7 @@ header {
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
-/* オーバーレイ部分の調整 */
+/* 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・・隱ｿ謨ｴ */
 .overlay {
   position: fixed;
   top: 0;
@@ -828,45 +845,48 @@ overlayYoso.addEventListener('click', () => {
   hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-答えは、線の横幅が少し短く、足りないからです。（あるいは別の表現で、線の高さが高すぎる、間隔が広すぎる、などとも言えます）  
-この解答では、ぴったり正方形になるように、もう少し線の width を長くしてあげることにします。
+遲斐∴縺ｯ縲∫ｷ壹・讓ｪ蟷・′蟆代＠遏ｭ縺上∬ｶｳ繧翫↑縺・°繧峨〒縺吶ゑｼ医≠繧九＞縺ｯ蛻･縺ｮ陦ｨ迴ｾ縺ｧ縲∫ｷ壹・鬮倥＆縺碁ｫ倥☆縺弱ｋ縲・俣髫斐′蠎・☆縺弱ｋ縲√↑縺ｩ縺ｨ繧りｨ縺医∪縺呻ｼ・
+縺薙・隗｣遲斐〒縺ｯ縲√・縺｣縺溘ｊ豁｣譁ｹ蠖｢縺ｫ縺ｪ繧九ｈ縺・↓縲√ｂ縺・ｰ代＠邱壹・ width 繧帝聞縺上＠縺ｦ縺ゅ￡繧九％縺ｨ縺ｫ縺励∪縺吶・
 
-勘で長さを調整しても良いですが、正確に正方形にするには、数学的に図を書いて計算で求めることができます。
+蜍倥〒髟ｷ縺輔ｒ隱ｿ謨ｴ縺励※繧り憶縺・〒縺吶′縲∵ｭ｣遒ｺ縺ｫ豁｣譁ｹ蠖｢縺ｫ縺吶ｋ縺ｫ縺ｯ縲∵焚蟄ｦ逧・↓蝗ｳ繧呈嶌縺・※險育ｮ励〒豎ゅａ繧九％縺ｨ縺後〒縺阪∪縺吶・
 
-まず、高さ方向の長さについて考えると、![ハンバーガーアイコンの各線の高さは4px, 間隔は8px](./img/hamburger-height-size-detail.png)
-このようになっているので、一番上の線の中心線と、一番下の線の中心線の間隔（つまり今長方形になっている領域の高さ）は、4*2 + 8*2 = 24 px です。
-![ハンバーガーアイコンの長方形領域の高さサイズは24px](./img/hamburger-height-size.png)
+縺ｾ縺壹・ｫ倥＆譁ｹ蜷代・髟ｷ縺輔↓縺､縺・※閠・∴繧九→縲・[繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ蜷・ｷ壹・鬮倥＆縺ｯ4px, 髢馴囈縺ｯ8px](./img/hamburger-height-size-detail.png)
+縺薙・繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋ縺ｮ縺ｧ縲∽ｸ逡ｪ荳翫・邱壹・荳ｭ蠢・ｷ壹→縲∽ｸ逡ｪ荳九・邱壹・荳ｭ蠢・ｷ壹・髢馴囈・医▽縺ｾ繧贋ｻ企聞譁ｹ蠖｢縺ｫ縺ｪ縺｣縺ｦ縺・ｋ鬆伜沺縺ｮ鬮倥＆・峨・縲・*2 + 8*2 = 24 px 縺ｧ縺吶・
+![繝上Φ繝舌・繧ｬ繝ｼ繧｢繧､繧ｳ繝ｳ縺ｮ髟ｷ譁ｹ蠖｢鬆伜沺縺ｮ鬮倥＆繧ｵ繧､繧ｺ縺ｯ24px](./img/hamburger-height-size.png)
 
-ということは、上下の線を、左端の中央位置を基準に45度回転させたときに正方形になるようにするには、下の図のようになる必要があります。
-![縦24px、横24pxの正方形に×が収まる](./img/cross-icon-square-alignment-highlight.png)
+縺ｨ縺・≧縺薙→縺ｯ縲∽ｸ贋ｸ九・邱壹ｒ縲∝ｷｦ遶ｯ縺ｮ荳ｭ螟ｮ菴咲ｽｮ繧貞渕貅悶↓45蠎ｦ蝗櫁ｻ｢縺輔○縺溘→縺阪↓豁｣譁ｹ蠖｢縺ｫ縺ｪ繧九ｈ縺・↓縺吶ｋ縺ｫ縺ｯ縲∽ｸ九・蝗ｳ縺ｮ繧医≧縺ｫ縺ｪ繧句ｿ・ｦ√′縺ゅｊ縺ｾ縺吶・
+![邵ｦ24px縲∵ｨｪ24px縺ｮ豁｣譁ｹ蠖｢縺ｫﾃ励′蜿弱∪繧犠(./img/cross-icon-square-alignment-highlight.png)
 
-ということは、線は、この正方形の対角線になります。  
-45度の直角三角形の辺の長さの比は 1:1:√2 なので、
-![45度の直角三角形の辺の長さの比は 1:1:√2](./img/trigonometric_ratio_45deg.png)
+縺ｨ縺・≧縺薙→縺ｯ縲∫ｷ壹・縲√％縺ｮ豁｣譁ｹ蠖｢縺ｮ蟇ｾ隗堤ｷ壹↓縺ｪ繧翫∪縺吶・
+45蠎ｦ縺ｮ逶ｴ隗剃ｸ芽ｧ貞ｽ｢縺ｮ霎ｺ縺ｮ髟ｷ縺輔・豈斐・ 1:1:竏・ 縺ｪ縺ｮ縺ｧ縲・
+![45蠎ｦ縺ｮ逶ｴ隗剃ｸ芽ｧ貞ｽ｢縺ｮ霎ｺ縺ｮ髟ｷ縺輔・豈斐・ 1:1:竏・](./img/trigonometric_ratio_45deg.png)
 
-線の長さは、正方形の対角線の長さである 24√2 px になる必要があることが分かります。
-![線の長さは24√2px](./img/cross-icon-alignment-size-answer.png)
+邱壹・髟ｷ縺輔・縲∵ｭ｣譁ｹ蠖｢縺ｮ蟇ｾ隗堤ｷ壹・髟ｷ縺輔〒縺ゅｋ 24竏・ px 縺ｫ縺ｪ繧句ｿ・ｦ√′縺ゅｋ縺薙→縺悟・縺九ｊ縺ｾ縺吶・
+![邱壹・髟ｷ縺輔・24竏・px](./img/cross-icon-alignment-size-answer.png)
 
-CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
+CSS荳翫〒24竏・ px 縺ｯ縲…alc(24px \* sqrt(2)) 縺ｧ陦ｨ縺吶％縺ｨ縺後〒縺阪∪縺吶・
 
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展3"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
-<Exercise title="演習-発展4（メニューコンテンツのデザイン調整）">
+<Exercise title="貍皮ｿ・逋ｺ螻・・医Γ繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・・繝・じ繧､繝ｳ隱ｿ謨ｴ・・>
 
-以下のプレビューのように、メニューコンテンツのデザインを調整してください。
-- リストのマーカー（黒丸）を消す
-- リンクの下線を消す
-- リンクの色を黒にする
-- リンクにホバーしたときに背景色をライトグレー(#f0f0f0)にする
+莉･荳九・繝励Ξ繝薙Η繝ｼ縺ｮ繧医≧縺ｫ縲√Γ繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・・繝・じ繧､繝ｳ繧定ｪｿ謨ｴ縺励※縺上□縺輔＞縲・
+
+- 繝ｪ繧ｹ繝医・繝槭・繧ｫ繝ｼ・磯ｻ剃ｸｸ・峨ｒ豸医☆
+- 繝ｪ繝ｳ繧ｯ縺ｮ荳狗ｷ壹ｒ豸医☆
+- 繝ｪ繝ｳ繧ｯ縺ｮ濶ｲ繧帝ｻ偵↓縺吶ｋ
+- 繝ｪ繝ｳ繧ｯ縺ｫ繝帙ヰ繝ｼ縺励◆縺ｨ縺阪↓閭梧勹濶ｲ繧偵Λ繧､繝医げ繝ｬ繝ｼ(#f0f0f0)縺ｫ縺吶ｋ
 
 <CodePreview
-  sourceId="演習-発展4"
+  sourceId="貍皮ｿ・逋ｺ螻・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -884,10 +904,10 @@ CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
 </header>
 <nav class="drawer">
   <ul>
-    <li><a href="#">ホーム</a></li>
-    <li><a href="#">サービス</a></li>
-    <li><a href="#">会社情報</a></li>
-    <li><a href="#">お問い合わせ</a></li>
+    <li><a href="#">繝帙・繝</a></li>
+    <li><a href="#">繧ｵ繝ｼ繝薙せ</a></li>
+    <li><a href="#">莨夂､ｾ諠・ｱ</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
   </ul>
 </nav>
 <div class="overlay"></div>
@@ -895,14 +915,14 @@ CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
   border-bottom: solid black 1px;
 }
 
-/* ハンバーガーのボタンとアイコンの調整 */
+/* 繝上Φ繝舌・繧ｬ繝ｼ縺ｮ繝懊ち繝ｳ縺ｨ繧｢繧､繧ｳ繝ｳ縺ｮ隱ｿ謨ｴ */
 .ham-btn {
   display: block;
   padding: 20px;
@@ -942,7 +962,7 @@ header {
   transform: rotate(-45deg);
 }
 
-/* ドロワーのメニューコンテンツ部分の調整 */
+/* 繝峨Ο繝ｯ繝ｼ縺ｮ繝｡繝九Η繝ｼ繧ｳ繝ｳ繝・Φ繝・Κ蛻・・隱ｿ謨ｴ */
 .drawer {
   position: fixed;
   top: 0;
@@ -962,26 +982,26 @@ header {
   box-shadow: 4px 0 6px rgba(0, 0, 0, 0.2);
 }
 
-/* メニューリストのスタイル調整 */
+/* 繝｡繝九Η繝ｼ繝ｪ繧ｹ繝医・繧ｹ繧ｿ繧､繝ｫ隱ｿ謨ｴ */
 .drawer ul {
-  list-style: none; /* リストマーカーを消す */
-  padding: 0; /* デフォルトのパディングを消す */
-  margin: 0; /* デフォルトのマージンを消す */
+  list-style: none; /* 繝ｪ繧ｹ繝医・繝ｼ繧ｫ繝ｼ繧呈ｶ医☆ */
+  padding: 0; /* 繝・ヵ繧ｩ繝ｫ繝医・繝代ョ繧｣繝ｳ繧ｰ繧呈ｶ医☆ */
+  margin: 0; /* 繝・ヵ繧ｩ繝ｫ繝医・繝槭・繧ｸ繝ｳ繧呈ｶ医☆ */
 }
 
 .drawer a {
-  display: block; /* 余計な余白を生まないために、ブロック要素にする */
-  padding: 12px 36px; /* リンクの内側の余白 */
-  color: black; /* リンクの色を黒に */
-  text-decoration: none; /* 下線を消す */
-  transition: background-color 0.3s; /* 背景色の変化を滑らかにする */
+  display: block; /* 菴呵ｨ医↑菴咏區繧堤函縺ｾ縺ｪ縺・◆繧√↓縲√ヶ繝ｭ繝・け隕∫ｴ縺ｫ縺吶ｋ */
+  padding: 12px 36px; /* 繝ｪ繝ｳ繧ｯ縺ｮ蜀・・縺ｮ菴咏區 */
+  color: black; /* 繝ｪ繝ｳ繧ｯ縺ｮ濶ｲ繧帝ｻ偵↓ */
+  text-decoration: none; /* 荳狗ｷ壹ｒ豸医☆ */
+  transition: background-color 0.3s; /* 閭梧勹濶ｲ縺ｮ螟牙喧繧呈ｻ代ｉ縺九↓縺吶ｋ */
 }
 
 .drawer a:hover {
-  background-color: #f0f0f0; /* ホバー時の背景色をライトグレーに */
+  background-color: #f0f0f0; /* 繝帙ヰ繝ｼ譎ゅ・閭梧勹濶ｲ繧偵Λ繧､繝医げ繝ｬ繝ｼ縺ｫ */
 }
 
-/* オーバーレイ部分の調整 */
+/* 繧ｪ繝ｼ繝舌・繝ｬ繧､驛ｨ蛻・・隱ｿ謨ｴ */
 .overlay {
   position: fixed;
   top: 0;
@@ -1017,11 +1037,11 @@ overlayYoso.addEventListener('click', () => {
   hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
-前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
-<CodePreview sourceId="演習-発展4"/>
+蜑阪・貍皮ｿ偵°繧牙｢励∴縺溘ｊ縲∝､峨ｏ縺｣縺溘ｊ縺励◆縺ｨ縺薙ｍ縺縺代√・繝ｭ繝代ユ繧｣縺ｮ蠕後ｍ縺ｫ繧ｳ繝｡繝ｳ繝医ｒ譖ｸ縺・※縺・∪縺吶・
+<CodePreview sourceId="貍皮ｿ・逋ｺ螻・"/>
 </Solution>
 </Exercise>
-

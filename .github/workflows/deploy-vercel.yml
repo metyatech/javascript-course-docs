@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "content/**"
-      - "public/**"
-      - "site.config.ts"
-      - ".github/workflows/deploy-vercel.yml"
+      - 'content/**'
+      - 'public/**'
+      - 'site.config.ts'
+      - '.github/workflows/deploy-vercel.yml'
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_CLI_VERSION: 50.9.6
-      COURSE_CONTENT_SOURCE: "github:metyatech/javascript-course-docs#master"
+      COURSE_CONTENT_SOURCE: 'github:metyatech/javascript-course-docs#master'
     steps:
       - name: Validate secrets
         run: |

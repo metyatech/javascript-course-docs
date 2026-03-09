@@ -1,217 +1,165 @@
+﻿---
+title: JavaScript蝓ｺ遉弱・陬懆ｶｳ雉・侭
 ---
-title: JavaScript基礎の補足資料
----
 
-# JavaScript基礎の補足資料
+# JavaScript蝓ｺ遉弱・陬懆ｶｳ雉・侭
 
-## JavaScript 基礎の補足トピック
+## JavaScript 蝓ｺ遉弱・陬懆ｶｳ繝医ヴ繝・け
 
-- **const 宣言**
-  - let の仲間
-- **switch 文**
-  - if の仲間
-- **while 文**（break, continue 文）
-  - for の仲間
-- **配列操作の関数**（concat, every, fill, filter, find, includes, indexOf, join, map, pop, push, reduce, reverse, shift, slice, some, sort, unshift, …）
-- **文字列操作の関数**（charAt, includes, indexOf, padStart, padEnd, repeat, replace, search, slice, split, substring, trim）
-- **正規表現**
-- **アロー関数式**
-  - 関数の仲間
-- **クラス・インスタンス・オブジェクト指向プログラミング**
-- **タイマー**（setTimeout, setInterval）
-- **日付**（Date）
-- **ダウンロード**（Fetch API）
-- **データの保存**（Web Storage）
-- **外部ライブラリ**（jQuery）
+- **const 螳｣險**
+  - let 縺ｮ莉ｲ髢・- \*_switch 譁・_
+  - if 縺ｮ莉ｲ髢・- **while 譁・\*・・reak, continue 譁・ｼ・ - for 縺ｮ莉ｲ髢・- **驟榊・謫堺ｽ懊・髢｢謨ｰ**・・oncat, every, fill, filter, find, includes, indexOf, join, map, pop, push, reduce, reverse, shift, slice, some, sort, unshift, 窶ｦ・・- **譁・ｭ怜・謫堺ｽ懊・髢｢謨ｰ**・・harAt, includes, indexOf, padStart, padEnd, repeat, replace, search, slice, split, substring, trim・・-**豁｣隕剰｡ｨ迴ｾ\*\*
+- \*_繧｢繝ｭ繝ｼ髢｢謨ｰ蠑・_
+  - 髢｢謨ｰ縺ｮ莉ｲ髢・- **繧ｯ繝ｩ繧ｹ繝ｻ繧､繝ｳ繧ｹ繧ｿ繝ｳ繧ｹ繝ｻ繧ｪ繝悶ず繧ｧ繧ｯ繝域欠蜷代・繝ｭ繧ｰ繝ｩ繝溘Φ繧ｰ**
+- **繧ｿ繧､繝槭・**・・etTimeout, setInterval・・- **譌･莉・\*・・ate・・-**繝繧ｦ繝ｳ繝ｭ繝ｼ繝・_・・etch API・・- \*\*繝・・繧ｿ縺ｮ菫晏ｭ・_・・eb Storage・・- **螟夜Κ繝ｩ繧､繝悶Λ繝ｪ**・・Query・・
 
-## 今後 Web 開発関連で学ぶこと
+## 莉雁ｾ・Web 髢狗匱髢｢騾｣縺ｧ蟄ｦ縺ｶ縺薙→
 
 ### TypeScript
 
-**JavaScript** に多数の機能を追加してより便利にしたプログラミング言語。(厳密なスーパーセット)
-JavaScript の書き方でそのまま書いても動作する。
-昨今 **JavaScript** ではなく **TypeScript** で開発するところも多い。
-(ブラウザでは結局 JavaScript しか動作しないので) **JavaScript** に変換して実行する。(トランスパイル)
+**JavaScript** 縺ｫ螟壽焚縺ｮ讖溯・繧定ｿｽ蜉縺励※繧医ｊ萓ｿ蛻ｩ縺ｫ縺励◆繝励Ο繧ｰ繝ｩ繝溘Φ繧ｰ險隱槭・蜴ｳ蟇・↑繧ｹ繝ｼ繝代・繧ｻ繝・ヨ)
+JavaScript 縺ｮ譖ｸ縺肴婿縺ｧ縺昴・縺ｾ縺ｾ譖ｸ縺・※繧ょ虚菴懊☆繧九・譏ｨ莉・**JavaScript** 縺ｧ縺ｯ縺ｪ縺・**TypeScript** 縺ｧ髢狗匱縺吶ｋ縺ｨ縺薙ｍ繧ょ､壹＞縲・(繝悶Λ繧ｦ繧ｶ縺ｧ縺ｯ邨仙ｱ JavaScript 縺励°蜍穂ｽ懊＠縺ｪ縺・・縺ｧ) **JavaScript** 縺ｫ螟画鋤縺励※螳溯｡後☆繧九・繝医Λ繝ｳ繧ｹ繝代う繝ｫ)
 
-TypeScript の例
+TypeScript 縺ｮ萓・
 
 ```ts
-// TypeScript: 型を明示できる
+// TypeScript: 蝙九ｒ譏守､ｺ縺ｧ縺阪ｋ
 function add(a: number, b: number): number {
-    return a + b;
+  return a + b;
 }
 
 let x: number = 10;
 let y: number = 5;
 
-// x = "こんにちは"; // ← エラーになる（型が違う）
-
+// x = "縺薙ｓ縺ｫ縺｡縺ｯ"; // 竊・繧ｨ繝ｩ繝ｼ縺ｫ縺ｪ繧具ｼ亥梛縺碁＆縺・ｼ・
 console.log(add(x, y)); // 15
 
-// 配列の型も指定できる
+// 驟榊・縺ｮ蝙九ｂ謖・ｮ壹〒縺阪ｋ
 let numbers: number[] = [1, 2, 3];
-// numbers.push("4"); // ← エラーになる（型が違う）
-
+// numbers.push("4"); // 竊・繧ｨ繝ｩ繝ｼ縺ｫ縺ｪ繧具ｼ亥梛縺碁＆縺・ｼ・
 console.log(numbers);
 ```
 
-### ブラウザで動作する系
+### 繝悶Λ繧ｦ繧ｶ縺ｧ蜍穂ｽ懊☆繧狗ｳｻ
 
-- まずはこちらを確認する：
-  [JavaScript を学ぶと何ができるのか](../../basics/introduction#javascript-%E3%82%92%E5%AD%A6%E3%81%B6%E3%81%A8%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE%E3%81%8B)
+- 縺ｾ縺壹・縺薙■繧峨ｒ遒ｺ隱阪☆繧具ｼ・ [JavaScript 繧貞ｭｦ縺ｶ縺ｨ菴輔′縺ｧ縺阪ｋ縺ｮ縺犠(../../basics/introduction#javascript-%E3%82%92%E5%AD%A6%E3%81%B6%E3%81%A8%E4%BD%95%E3%81%8C%E3%81%A7%E3%81%8D%E3%82%8B%E3%81%AE%E3%81%8B)
 
-#### Webアプリの「構造」の違い
+#### Web繧｢繝励Μ縺ｮ縲梧ｧ矩縲阪・驕輔＞
 
-##### シングルページアプリケーション（SPA）
-- HTMLは基本的に1つ
-- 画面の切り替えは JavaScript が行う
-- ページ遷移しているように見えるが、実際は同一ページ内の更新
+##### 繧ｷ繝ｳ繧ｰ繝ｫ繝壹・繧ｸ繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ・・PA・・- HTML縺ｯ蝓ｺ譛ｬ逧・↓1縺､
 
-- 例）
-  Facebook、X、YouTube、Teams（Web版）、
-  Gmail、Google Drive / Document / Spreadsheet / Slide / Calendar、
-  Microsoft 365 for the Web
+- 逕ｻ髱｢縺ｮ蛻・ｊ譖ｿ縺医・ JavaScript 縺瑚｡後≧
+- 繝壹・繧ｸ驕ｷ遘ｻ縺励※縺・ｋ繧医≧縺ｫ隕九∴繧九′縲∝ｮ滄圀縺ｯ蜷御ｸ繝壹・繧ｸ蜀・・譖ｴ譁ｰ
 
-##### マルチページアプリケーション（MPA）
-- HTMLが複数存在する
-- 画面の切り替えをHTMLの切り替えで行う
-- 昔からある「一般的なWebサイト」の構造
+- 萓具ｼ・ Facebook縲々縲〆ouTube縲ゝeams・・eb迚茨ｼ峨・ Gmail縲；oogle Drive / Document / Spreadsheet / Slide / Calendar縲・ Microsoft 365 for the Web
+
+##### 繝槭Ν繝√・繝ｼ繧ｸ繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ・・PA・・- HTML縺瑚､・焚蟄伜惠縺吶ｋ
+
+- 逕ｻ髱｢縺ｮ蛻・ｊ譖ｿ縺医ｒHTML縺ｮ蛻・ｊ譖ｿ縺医〒陦後≧
+- 譏斐°繧峨≠繧九御ｸ闊ｬ逧・↑Web繧ｵ繧､繝医阪・讒矩
 
 ---
 
-###### SPA を作るときに使う主な技術
-- **フロントエンドフレームワーク**
-  - React（81.1%）
-    - Facebook, X, TikTok, Microsoft 365 for the Web, Netflix, Spotify, Twitch
-  - Vue.js（50.9%）
-    - Google Document / Spreadsheet / Slide, CyberAgent, Apple SwiftUI Tutorial
-  - Angular（50.1%）
-    - BMW ディーラー検索
-  - Svelte（26.1%）
+###### SPA 繧剃ｽ懊ｋ縺ｨ縺阪↓菴ｿ縺・ｸｻ縺ｪ謚陦・- **繝輔Ο繝ｳ繝医お繝ｳ繝峨ヵ繝ｬ繝ｼ繝繝ｯ繝ｼ繧ｯ**
 
-###### フロントエンドフレームワークを補助するツール
-- **メタフレームワーク**
-  - Next.js（54%）
-    - React をベースに、アプリとして作りやすくする
-    - 利用例：Nike, メルカリ, U-NEXT, ZOZOTOWN, 出前館, Walmart
-  - Nuxt（22.6%）
-    - Vue.js をベースに、アプリとして作りやすくする
+- React・・1.1%・・ - Facebook, X, TikTok, Microsoft 365 for the Web, Netflix, Spotify, Twitch
+- Vue.js・・0.9%・・ - Google Document / Spreadsheet / Slide, CyberAgent, Apple SwiftUI Tutorial
+- Angular・・0.1%・・ - BMW 繝・ぅ繝ｼ繝ｩ繝ｼ讀懃ｴ｢
+- Svelte・・6.1%・・
 
-###### 出典データ
+###### 繝輔Ο繝ｳ繝医お繝ｳ繝峨ヵ繝ｬ繝ｼ繝繝ｯ繝ｼ繧ｯ繧定｣懷勧縺吶ｋ繝・・繝ｫ
+
+- **繝｡繧ｿ繝輔Ξ繝ｼ繝繝ｯ繝ｼ繧ｯ**
+  - Next.js・・4%・・ - React 繧偵・繝ｼ繧ｹ縺ｫ縲√い繝励Μ縺ｨ縺励※菴懊ｊ繧・☆縺上☆繧・ - 蛻ｩ逕ｨ萓具ｼ哢ike, 繝｡繝ｫ繧ｫ繝ｪ, U-NEXT, ZOZOTOWN, 蜃ｺ蜑埼､ｨ, Walmart
+  - Nuxt・・2.6%・・ - Vue.js 繧偵・繝ｼ繧ｹ縺ｫ縲√い繝励Μ縺ｨ縺励※菴懊ｊ繧・☆縺上☆繧・
+
+###### 蜃ｺ蜈ｸ繝・・繧ｿ
+
 - [State of JS 2024](https://2024.stateofjs.com/ja-JP/)
+
 ---
 
-#### MPA を作る方法（いくつかある）
+#### MPA 繧剃ｽ懊ｋ譁ｹ豕包ｼ医＞縺上▽縺九≠繧具ｼ・
 
-##### 1. 素のHTML / CSS / JavaScript + バックエンド
-- 小規模・シンプルなサイトならこれで十分
-- 共通部分（ヘッダー・フッターなど）はコピペになりやすい
-- 例：[SIWのHP]
+##### 1. 邏縺ｮHTML / CSS / JavaScript + 繝舌ャ繧ｯ繧ｨ繝ｳ繝・- 蟆剰ｦ乗ｨ｡繝ｻ繧ｷ繝ｳ繝励Ν縺ｪ繧ｵ繧､繝医↑繧峨％繧後〒蜊∝・
 
-##### 2. 従来型 Webアプリケーションフレームワーク
-- サーバー側で HTML を組み立てて返す
-- 共通レイアウトや処理をまとめて管理できる
-- 複雑なサイトでは必須になることが多い
+- 蜈ｱ騾夐Κ蛻・ｼ医・繝・ム繝ｼ繝ｻ繝輔ャ繧ｿ繝ｼ縺ｪ縺ｩ・峨・繧ｳ繝斐・縺ｫ縺ｪ繧翫ｄ縺吶＞
+- 萓具ｼ喙SIW縺ｮHP]
 
-###### 主な「従来型 Webアプリケーションフレームワーク」
-- Laravel（PHP言語）
-  - 利用例：asics walking
-- Django（Python言語）
-  - 利用例：YouTube, Instagram, Udemy, Spotify, Dropbox
-- Spring（Java言語）
-  - 利用例：サイボウズ, AliExpress
-- Ruby on Rails（Ruby言語）
-  - 利用例：クックパッド, 食べログ, タイミー, コインチェック, マネーフォワード
-- 参考：https://whatweuse.dev/, https://builtwith.com/ja/, https://www.wappalyzer.com/
+##### 2. 蠕捺擂蝙・Web繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ繝輔Ξ繝ｼ繝繝ｯ繝ｼ繧ｯ
 
-## 生成AIとは
+- 繧ｵ繝ｼ繝舌・蛛ｴ縺ｧ HTML 繧堤ｵ・∩遶九※縺ｦ霑斐☆
+- 蜈ｱ騾壹Ξ繧､繧｢繧ｦ繝医ｄ蜃ｦ逅・ｒ縺ｾ縺ｨ繧√※邂｡逅・〒縺阪ｋ
+- 隍・尅縺ｪ繧ｵ繧､繝医〒縺ｯ蠢・医↓縺ｪ繧九％縺ｨ縺悟､壹＞
 
-**生成AI**
+###### 荳ｻ縺ｪ縲悟ｾ捺擂蝙・Web繧｢繝励Μ繧ｱ繝ｼ繧ｷ繝ｧ繝ｳ繝輔Ξ繝ｼ繝繝ｯ繝ｼ繧ｯ縲・- Laravel・・HP險隱橸ｼ・ - 蛻ｩ逕ｨ萓具ｼ啾sics walking
 
-- **生成AI**とは？
-- テキスト、音声、画像、動画など、新しいコンテンツを生成することのできるAIのこと。
-- 例）ChatGPT, Microsoft Copilot, Gemini, Adobe Firefly, AI Overview, Midjourney
+- Django・・ython險隱橸ｼ・ - 蛻ｩ逕ｨ萓具ｼ唳ouTube, Instagram, Udemy, Spotify, Dropbox
+- Spring・・ava險隱橸ｼ・ - 蛻ｩ逕ｨ萓具ｼ壹し繧､繝懊え繧ｺ, AliExpress
+- Ruby on Rails・・uby險隱橸ｼ・ - 蛻ｩ逕ｨ萓具ｼ壹け繝・け繝代ャ繝・ 鬟溘∋繝ｭ繧ｰ, 繧ｿ繧､繝溘・, 繧ｳ繧､繝ｳ繝√ぉ繝・け, 繝槭ロ繝ｼ繝輔か繝ｯ繝ｼ繝・- 蜿り・ｼ喇ttps://whatweuse.dev/, <https://builtwith.com/ja/>, <https://www.wappalyzer.com/>
 
-## AIモデルの基本
+## 逕滓・AI縺ｨ縺ｯ
 
-**AIモデル**
+**逕滓・AI**
 
-- **AIモデル**
-  - 特定のタスクを実行するために設計された数学的な構造
-  - 一般的に、「入力→**AIモデル**→出力」というプロセスで動作する
-- 例）
-  - GPT (Generative Pre-trained Transformer)
+- **逕滓・AI**縺ｨ縺ｯ・・- 繝・く繧ｹ繝医・浹螢ｰ縲∫判蜒上∝虚逕ｻ縺ｪ縺ｩ縲∵眠縺励＞繧ｳ繝ｳ繝・Φ繝・ｒ逕滓・縺吶ｋ縺薙→縺ｮ縺ｧ縺阪ｋAI縺ｮ縺薙→縲・- 萓具ｼ韻hatGPT, Microsoft Copilot, Gemini, Adobe Firefly, AI Overview, Midjourney
+
+## AI繝｢繝・Ν縺ｮ蝓ｺ譛ｬ
+
+**AI繝｢繝・Ν**
+
+- **AI繝｢繝・Ν**
+  - 迚ｹ螳壹・繧ｿ繧ｹ繧ｯ繧貞ｮ溯｡後☆繧九◆繧√↓險ｭ險医＆繧後◆謨ｰ蟄ｦ逧・↑讒矩
+  - 荳闊ｬ逧・↓縲√悟・蜉帚・**AI繝｢繝・Ν**竊貞・蜉帙阪→縺・≧繝励Ο繧ｻ繧ｹ縺ｧ蜍穂ｽ懊☆繧・- 萓具ｼ・ - GPT (Generative Pre-trained Transformer)
   - Gemini
   - Claude
-  - → これらは、いずれも、入力：文章　出力：次に来るであろう単語とその確率のリスト
+  - 竊・縺薙ｌ繧峨・縲√＞縺壹ｌ繧ゅ∝・蜉幢ｼ壽枚遶縲蜃ｺ蜉幢ｼ壽ｬ｡縺ｫ譚･繧九〒縺ゅｍ縺・腰隱槭→縺昴・遒ｺ邇・・繝ｪ繧ｹ繝・\*_蜈･蜉帙→蜃ｺ蜉帙・萓・_
 
-**入力と出力の例**
+| 蜈･蜉・   | 蜃ｺ蜉・                                                                          |
+| --------- | -------------------------------------------------------------------------------- |
+| 莉頑律縺ｯ | (螟ｩ豌・35%), (菴輔ｒ,20%), (濶ｯ縺・ 15%), (莉穂ｺ・ 10%), (縺ｩ縺・☆繧・ 10%),窶ｦ |
+| 譌･譛ｬ荳  | (鬮倥＞,30%), (鄒弱＠縺・20%), (縺ｮ螻ｱ,15%), (蟇偵＞,10%),窶ｦ                    |
+| 荳也阜縺ｧ | (荳逡ｪ,35%), (譛繧・25%), (譛牙錐,15%), (蠎・＞,10%), (蠑ｷ縺・10%),窶ｦ           |
 
-| 入力 | 出力 |
-| --- | --- |
-| 今日は | (天気,35%), (何を,20%), (良い, 15%), (仕事, 10%), (どうする, 10%),… |
-| 日本一 | (高い,30%), (美しい,20%), (の山,15%), (寒い,10%),… |
-| 世界で | (一番,35%), (最も,25%), (有名,15%), (広い,10%), (強い,10%),… |
+## AI繝｢繝・Ν・育判蜒冗函謌舌・萓具ｼ・
 
-## AIモデル（画像生成の例）
+**AI繝｢繝・Ν**
 
-**AIモデル**
 - Stable Diffusion
 - DALL-E
 - Midjourney
-- → これらは、いずれも、入力：テキストプロンプト　出力：入力に対応する画像
+- 竊・縺薙ｌ繧峨・縲√＞縺壹ｌ繧ゅ∝・蜉幢ｼ壹ユ繧ｭ繧ｹ繝医・繝ｭ繝ｳ繝励ヨ縲蜃ｺ蜉幢ｼ壼・蜉帙↓蟇ｾ蠢懊☆繧狗判蜒・\*_蜈･蜉帙→蜃ｺ蜉帙・萓・_
 
-**入力と出力の例**
+| 蜈･蜉・ | 蜃ｺ蜉・                                                         |
+| ------- | --------------------------------------------------------------- |
+| 蝓ｼ邇・ | ![蝓ｼ邇峨・逕ｻ蜒冗函謌蝉ｾ犠(./img/ai-image-example-saitama.png) |
 
-| 入力 | 出力 |
-| --- | --- |
-| 埼玉 | ![埼玉の画像生成例](./img/ai-image-example-saitama.png) |
+## AI繝｢繝・Ν繧剃ｽｿ縺｣縺溘し繝ｼ繝薙せ・医メ繝｣繝・ヨ繝ｻ讀懃ｴ｢・・
 
-## AIモデルを使ったサービス（チャット・検索）
+**AI繝｢繝・Ν繧剃ｽｿ縺｣縺溘し繝ｼ繝薙せ**
 
-**AIモデルを使ったサービス**
+- AI縺斐→縺ｫ蜷代″荳榊髄縺阪′縺ゅｋ縺ｮ縺ｧ豕ｨ諢上＠縺ｦ菴ｿ縺・・縺代ｋ縺薙→・・- 縺薙■繧峨′蜈･蜉帙＠縺溷・螳ｹ縺窟I縺ｫ蟄ｦ鄙偵＆繧後ｋ繧ゅ・繧ゅ≠繧九・縺ｧ縲∝倶ｺｺ諠・ｱ繧・ｼ夂､ｾ縺ｮ讖溷ｯ・ュ蝣ｱ繧貞・繧後ｋ縺ｨ縺阪・
+  蟄ｦ鄙偵↓蛻ｩ逕ｨ縺輔ｌ縺ｪ縺・縺薙→繧堤｢ｺ隱阪＠縺ｦ縺九ｉ蜈･繧後ｋ縺薙→
+- 蝓ｺ譛ｬ逧・↓縲∝・縲∵律縲∵怦縺ｪ縺ｩ縺ｮ蜊倅ｽ阪〒辟｡譁吝茜逕ｨ蝗樊焚縺ｫ蛻ｶ髯舌′縺ゅｋ縺ｮ縺ｧ縲∵ｳｨ諢・- 縺ｾ繧九〒譛ｬ蠖薙°縺ｮ繧医≧縺ｫ縺､縺剰・菫｡貅縲・・蝌假ｼ医ワ繝ｫ繧ｷ繝阪・繧ｷ繝ｧ繝ｳ・峨↓豕ｨ諢・- **莨夊ｩｱ蝙帰I繝√Ε繝・ヨ繝懊ャ繝・\*・亥ｺ・￥蜈ｨ闊ｬ逧・↑隧ｱ縺後〒縺阪ｋ縲ゆｽ輔°縺ｫ迚ｹ蛹悶＠縺ｦ縺・ｋ險ｳ縺ｧ縺ｯ縺ｪ縺・ｼ・ - ChatGPT ・医Δ繝・Ν・哦PT・・ - Claude ・医Δ繝・Ν・咾laude・・ - Google Gemini ・医Δ繝・Ν・哦emini・・ - Microsoft Copilot ・医Δ繝・Ν・哦PT・・ - DeepSeek ・医Δ繝・Ν・咼eepSeek・・-**AI讀懃ｴ｢繧ｨ繝ｳ繧ｸ繝ｳ\*\*
+  - Genspark ・医Δ繝・Ν・哦PT, Claude, Gemini 遲芽､・焚・・ - Felo ・医Δ繝・Ν・夊､・焚縺ｮ驕ｸ謚櫁い縺九ｉ驕ｸ縺ｹ繧具ｼ・ - Perplexity ・医Δ繝・Ν・哦PT, Claude, Gemini 遲芽､・焚・・
 
-- AIごとに向き不向きがあるので注意して使い分けること！
-- こちらが入力した内容がAIに学習されるものもあるので、個人情報や会社の機密情報を入れるときは
-  学習に利用されない　ことを確認してから入れること
-- 基本的に、分、日、月などの単位で無料利用回数に制限があるので、注意
-- まるで本当かのようにつく自信満々の嘘（ハルシネーション）に注意
-- **会話型AIチャットボット**（広く全般的な話ができる。何かに特化している訳ではない）
-  - ChatGPT   （モデル：GPT）
-  - Claude    （モデル：Claude）
-  - Google Gemini   （モデル：Gemini）
-  - Microsoft Copilot  （モデル：GPT）
-  - DeepSeek   （モデル：DeepSeek）
-- **AI検索エンジン**
-  - Genspark  （モデル：GPT, Claude, Gemini 等複数）
-  - Felo  （モデル：複数の選択肢から選べる）
-  - Perplexity  （モデル：GPT, Claude, Gemini 等複数）
+## AI繝｢繝・Ν繧剃ｽｿ縺｣縺溘し繝ｼ繝薙せ・育判蜒上・蜍慕判・・
 
-## AIモデルを使ったサービス（画像・動画）
+**AI繝｢繝・Ν繧剃ｽｿ縺｣縺溘し繝ｼ繝薙せ**
 
-**AIモデルを使ったサービス**
-- **画像生成AI**
-  - DALL-E（ChatGPT上で使える**画像生成AI**）   （モデル：DALL-E）
-  - Stable Diffusion（mage.space で簡単に使える）  （モデル：Stable Diffusion）
-  - SeaArt AI  （モデル：複数の選択肢から選べる）
-  - Adobe Firefly  （モデル：Firefly Image Model）
-  - Midjourney  （モデル：Midjourney）
-- **動画生成AI**
-  - Dream Machine  （モデル：Ray, Photon 等）
-  - InVideo   （モデル：不明）
-  - Runway   （モデル：Gen, Frames）
-  - Sora   （モデル：Sora）
+- **逕ｻ蜒冗函謌植I**
+  - DALL-E・・hatGPT荳翫〒菴ｿ縺医ｋ**逕ｻ蜒冗函謌植I**・・ ・医Δ繝・Ν・咼ALL-E・・ - Stable Diffusion・・age.space 縺ｧ邁｡蜊倥↓菴ｿ縺医ｋ・・ ・医Δ繝・Ν・售table Diffusion・・ - SeaArt AI ・医Δ繝・Ν・夊､・焚縺ｮ驕ｸ謚櫁い縺九ｉ驕ｸ縺ｹ繧具ｼ・ - Adobe Firefly ・医Δ繝・Ν・哥irefly Image Model・・ - Midjourney ・医Δ繝・Ν・哺idjourney・・- **蜍慕判逕滓・AI**
+  - Dream Machine ・医Δ繝・Ν・啌ay, Photon 遲会ｼ・ - InVideo ・医Δ繝・Ν・壻ｸ肴・・・ - Runway ・医Δ繝・Ν・哦en, Frames・・ - Sora ・医Δ繝・Ν・售ora・・
 
-## AIエージェント
+## AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝・
 
-**AIエージェント**
+\*_AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝・_
 
-- **AIエージェント**
-  - ユーザーの指示や目標に基づき、環境と対話し、自律的にタスクを達成しようとするAI
-- 例）
-  - lovable.dev (Webサービス)
-  - replit.com (Webサービス)
-  - Cline (VSCode 拡張機能)
+- \*_AI繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝・_
+  - 繝ｦ繝ｼ繧ｶ繝ｼ縺ｮ謖・､ｺ繧・岼讓吶↓蝓ｺ縺･縺阪∫腸蠅・→蟇ｾ隧ｱ縺励∬・蠕狗噪縺ｫ繧ｿ繧ｹ繧ｯ繧帝＃謌舌＠繧医≧縺ｨ縺吶ｋAI
+- 萓具ｼ・ - lovable.dev (Web繧ｵ繝ｼ繝薙せ)
+  - replit.com (Web繧ｵ繝ｼ繝薙せ)
+  - Cline (VSCode 諡｡蠑ｵ讖溯・)
   - AgentGPT
   - Auto-GPT
-  - Cursor (エディター) のエージェントモード
+  - Cursor (繧ｨ繝・ぅ繧ｿ繝ｼ) 縺ｮ繧ｨ繝ｼ繧ｸ繧ｧ繝ｳ繝医Δ繝ｼ繝・

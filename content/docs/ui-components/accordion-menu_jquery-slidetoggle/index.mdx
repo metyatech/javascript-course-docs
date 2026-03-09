@@ -1,24 +1,22 @@
----
-title: アコーディオンメニュー (jQuery - slideToggle)
----
-
-
-## 今日の学習はこんなところで使うよ
-
-メニューの「見出し」をクリックしたら中身がニュッと開くUI（アコーディオン）で使います。よくあるサイドメニューや「よくある質問（FAQ）」で活躍します。
-
-実際に使われているサイトの例（代表例）:
-
-- [Google アカウント ヘルプ](https://support.google.com/accounts/?hl=ja) — 項目ごとに内容を展開/折りたたみ
-- [佐川急便「よくあるご質問」](https://www.sagawa-exp.co.jp/bbbact/faq/) — 質問をクリックして回答を開閉
-- [任天堂 サポート・Q&A](https://support-jp.nintendo.com/app/home/) — Q&Aの項目が開閉
-
+﻿---
+title: 繧｢繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳ繝｡繝九Η繝ｼ (jQuery - slideToggle)
 ---
 
-## 実装例（実践）: サイドメニューのカテゴリ開閉
+## 莉頑律縺ｮ蟄ｦ鄙偵・縺薙ｓ縺ｪ縺ｨ縺薙ｍ縺ｧ菴ｿ縺・ｈ
 
+繝｡繝九Η繝ｼ縺ｮ縲瑚ｦ句・縺励阪ｒ繧ｯ繝ｪ繝・け縺励◆繧我ｸｭ霄ｫ縺後ル繝･繝・→髢九￥UI・医い繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳ・峨〒菴ｿ縺・∪縺吶ゅｈ縺上≠繧九し繧､繝峨Γ繝九Η繝ｼ繧・後ｈ縺上≠繧玖ｳｪ蝠擾ｼ・AQ・峨阪〒豢ｻ霄阪＠縺ｾ縺吶・
 
-「メニュー内のカテゴリが開閉する」実装例です。クリックしたカテゴリだけ開き、他は閉じます。
+螳滄圀縺ｫ菴ｿ繧上ｌ縺ｦ縺・ｋ繧ｵ繧､繝医・萓具ｼ井ｻ｣陦ｨ萓具ｼ・
+
+- [Google 繧｢繧ｫ繧ｦ繝ｳ繝・繝倥Ν繝余(https://support.google.com/accounts/?hl=ja) 窶・鬆・岼縺斐→縺ｫ蜀・ｮｹ繧貞ｱ暮幕/謚倥ｊ縺溘◆縺ｿ
+- [菴仙ｷ晄･萓ｿ縲後ｈ縺上≠繧九＃雉ｪ蝠上江(https://www.sagawa-exp.co.jp/bbbact/faq/) 窶・雉ｪ蝠上ｒ繧ｯ繝ｪ繝・け縺励※蝗樒ｭ斐ｒ髢矩哩
+- [莉ｻ螟ｩ蝣・繧ｵ繝昴・繝医・Q&A](https://support-jp.nintendo.com/app/home/) 窶・Q&A縺ｮ鬆・岼縺碁幕髢・
+
+---
+
+## 螳溯｣・ｾ具ｼ亥ｮ溯ｷｵ・・ 繧ｵ繧､繝峨Γ繝九Η繝ｼ縺ｮ繧ｫ繝・ざ繝ｪ髢矩哩
+
+縲後Γ繝九Η繝ｼ蜀・・繧ｫ繝・ざ繝ｪ縺碁幕髢峨☆繧九榊ｮ溯｣・ｾ九〒縺吶ゅけ繝ｪ繝・け縺励◆繧ｫ繝・ざ繝ｪ縺縺鷹幕縺阪∽ｻ悶・髢峨§縺ｾ縺吶・
 
 <CodePreview
   htmlVisible={false}
@@ -27,37 +25,38 @@ title: アコーディオンメニュー (jQuery - slideToggle)
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
 <nav class="menu">
 <div class="item">
-  <div class="title">製品</div>
+  <div class="title">陬ｽ蜩・/div>
   <ul class="submenu">
-    <li><a href="#">新製品</a></li>
-    <li><a href="#">人気</a></li>
-    <li><a href="#">セール</a></li>
+    <li><a href="#">譁ｰ陬ｽ蜩・/a></li>
+    <li><a href="#">莠ｺ豌・/a></li>
+    <li><a href="#">繧ｻ繝ｼ繝ｫ</a></li>
   </ul>
 </div>
 <div class="item">
-  <div class="title">サポート</div>
+  <div class="title">繧ｵ繝昴・繝・/div>
   <ul class="submenu">
     <li><a href="#">FAQ</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">返品・交換</a></li>
+    <li><a href="#">縺雁撫縺・粋繧上○</a></li>
+    <li><a href="#">霑泌刀繝ｻ莠､謠・/a></li>
   </ul>
 </div>
 <div class="item">
-  <div class="title">会社情報</div>
+  <div class="title">莨夂､ｾ諠・ｱ</div>
   <ul class="submenu">
-    <li><a href="#">採用情報</a></li>
-    <li><a href="#">ニュース</a></li>
-    <li><a href="#">アクセス</a></li>
+    <li><a href="#">謗｡逕ｨ諠・ｱ</a></li>
+    <li><a href="#">繝九Η繝ｼ繧ｹ</a></li>
+    <li><a href="#">繧｢繧ｯ繧ｻ繧ｹ</a></li>
   </ul>
 </div>
 
-```
+````
 
 ```css
 .menu {
@@ -92,41 +91,42 @@ title: アコーディオンメニュー (jQuery - slideToggle)
   color: #3366cc;
   text-decoration: none;
 }
-```
+````
 
 ```javascript
-$(".menu .title").on("click", function() {
-  const item = $(this).closest(".item");
-  // 他を閉じる
-  item.siblings().find(".submenu").slideUp(200);
-  item.siblings().find(".title").removeClass("open");
+$('.menu .title').on('click', function () {
+  const item = $(this).closest('.item');
+  // 莉悶ｒ髢峨§繧・
+  item.siblings().find('.submenu').slideUp(200);
+  item.siblings().find('.title').removeClass('open');
 
-  // 自分を切り替え
-  $(this).toggleClass("open");
-  item.find(".submenu").slideToggle(200);
+  // 閾ｪ蛻・ｒ蛻・ｊ譖ｿ縺・
+  $(this).toggleClass('open');
+  item.find('.submenu').slideToggle(200);
 });
 ```
+
 </CodePreview>
 
 ---
 
-## はじめに
+## 縺ｯ縺倥ａ縺ｫ
 
-アコーディオンメニューは、前回のスライダーとは異なり、自身で比較的簡単に作ることが出来るため、ライブラリを使って作る必要はありません。しかし、今回は、有名でよく使うライブラリである「[jQuery](https://jquery.com/)」を学ぶため、この「[jQuery](https://jquery.com/)」を使って作ってみましょう。
-
----
-
-## jQuery とは
-
-[jQuery](https://jquery.com/) は、JavaScript でよく行う操作（要素の取得・内容の書き換え・イベント処理・アニメーション など）を、短いコードで簡単に書けるようにする、古くからあるライブラリです。
-
-このページでは、アコーディオンの開閉に便利な jQuery の `.slideToggle()` のみ新たに学びます。
+繧｢繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳ繝｡繝九Η繝ｼ縺ｯ縲∝燕蝗槭・繧ｹ繝ｩ繧､繝繝ｼ縺ｨ縺ｯ逡ｰ縺ｪ繧翫∬・霄ｫ縺ｧ豈碑ｼ・噪邁｡蜊倥↓菴懊ｋ縺薙→縺悟・譚･繧九◆繧√√Λ繧､繝悶Λ繝ｪ繧剃ｽｿ縺｣縺ｦ菴懊ｋ蠢・ｦ√・縺ゅｊ縺ｾ縺帙ｓ縲ゅ＠縺九＠縲∽ｻ雁屓縺ｯ縲∵怏蜷阪〒繧医￥菴ｿ縺・Λ繧､繝悶Λ繝ｪ縺ｧ縺ゅｋ縲啓jQuery](<https://jquery.com/)縲阪ｒ蟄ｦ縺ｶ縺溘ａ縲√％縺ｮ縲啓jQuery>](<https://jquery.com/)縲阪ｒ菴ｿ縺｣縺ｦ菴懊▲縺ｦ縺ｿ縺ｾ縺励ｇ縺・・>
 
 ---
 
-## jQuery を読み込む（CDN）
+## jQuery 縺ｨ縺ｯ
 
-HTMLに次の1行を追加して jQuery を読み込みます。自分の JavaScript より「先」に読み込んでおきます。
+[jQuery](https://jquery.com/) 縺ｯ縲゛avaScript 縺ｧ繧医￥陦後≧謫堺ｽ懶ｼ郁ｦ∫ｴ縺ｮ蜿門ｾ励・蜀・ｮｹ縺ｮ譖ｸ縺肴鋤縺医・繧､繝吶Φ繝亥・逅・・繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ 縺ｪ縺ｩ・峨ｒ縲∫洒縺・さ繝ｼ繝峨〒邁｡蜊倥↓譖ｸ縺代ｋ繧医≧縺ｫ縺吶ｋ縲∝商縺上°繧峨≠繧九Λ繧､繝悶Λ繝ｪ縺ｧ縺吶・
+
+縺薙・繝壹・繧ｸ縺ｧ縺ｯ縲√い繧ｳ繝ｼ繝・ぅ繧ｪ繝ｳ縺ｮ髢矩哩縺ｫ萓ｿ蛻ｩ縺ｪ jQuery 縺ｮ `.slideToggle()` 縺ｮ縺ｿ譁ｰ縺溘↓蟄ｦ縺ｳ縺ｾ縺吶・
+
+---
+
+## jQuery 繧定ｪｭ縺ｿ霎ｼ繧・・DN・・
+
+HTML縺ｫ谺｡縺ｮ1陦後ｒ霑ｽ蜉縺励※ jQuery 繧定ｪｭ縺ｿ霎ｼ縺ｿ縺ｾ縺吶り・蛻・・ JavaScript 繧医ｊ縲悟・縲阪↓隱ｭ縺ｿ霎ｼ繧薙〒縺翫″縺ｾ縺吶・
 
 ```html
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -134,23 +134,25 @@ HTMLに次の1行を追加して jQuery を読み込みます。自分の JavaSc
 
 ---
 
-## slideToggle の基本
+## slideToggle 縺ｮ蝓ｺ譛ｬ
 
-要素の表示/非表示をアニメーション付きで切り替えます。
+隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧偵い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ莉倥″縺ｧ蛻・ｊ譖ｿ縺医∪縺吶・
 
-JavaScript から HTML や CSS を操作するときには、いつも `document.querySelector("セレクタ")` で要素を取得してから何かしていましたよね。
+JavaScript 縺九ｉ HTML 繧・CSS 繧呈桃菴懊☆繧九→縺阪↓縺ｯ縲√＞縺､繧・`document.querySelector("繧ｻ繝ｬ繧ｯ繧ｿ")` 縺ｧ隕∫ｴ繧貞叙蠕励＠縺ｦ縺九ｉ菴輔°縺励※縺・∪縺励◆繧医・縲・
 
-jQuery の場合も、使い方が似ています。
+jQuery 縺ｮ蝣ｴ蜷医ｂ縲∽ｽｿ縺・婿縺御ｼｼ縺ｦ縺・∪縺吶・
 
-jQuery では、`$("セレクタ")` で対象の要素を選んでから、それに対して処理を行います。(`$ = document.querySelector` みたいなイメージ)
+jQuery 縺ｧ縺ｯ縲～$("繧ｻ繝ｬ繧ｯ繧ｿ")` 縺ｧ蟇ｾ雎｡縺ｮ隕∫ｴ繧帝∈繧薙〒縺九ｉ縲√◎繧後↓蟇ｾ縺励※蜃ｦ逅・ｒ陦後＞縺ｾ縺吶・`$ = document.querySelector` 縺ｿ縺溘＞縺ｪ繧､繝｡繝ｼ繧ｸ)
 
-要素の表示/非表示を滑らかに切り替える場合は、要素に対して、`slideToggle` を、
+隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ蝣ｴ蜷医・縲∬ｦ∫ｴ縺ｫ蟇ｾ縺励※縲～slideToggle` 繧偵・
+
 ```js
-$("セレクタ").slideToggle();
+$('繧ｻ繝ｬ繧ｯ繧ｿ').slideToggle();
 ```
-のように使用して下さい。
 
-要素の非表示は、CSSの `display: none;` で行います。
+縺ｮ繧医≧縺ｫ菴ｿ逕ｨ縺励※荳九＆縺・・
+
+隕∫ｴ縺ｮ髱櫁｡ｨ遉ｺ縺ｯ縲，SS縺ｮ `display: none;` 縺ｧ陦後＞縺ｾ縺吶・
 
 <CodePreview
   htmlVisible={true}
@@ -158,15 +160,16 @@ $("セレクタ").slideToggle();
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="AAA">メニュー</h3>
-<div class="BBB">中身</div>
-<p>後続のテキスト</p>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
 
-```
+<h3 class="AAA">繝｡繝九Η繝ｼ</h3>
+<div class="BBB">荳ｭ霄ｫ</div>
+<p>蠕檎ｶ壹・繝・く繧ｹ繝・/p>
+
+````
 
 ```css
 .AAA {
@@ -179,33 +182,36 @@ $("セレクタ").slideToggle();
   background-color: #fafafa;
   border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
+  /* 蛻昴ａ縺ｯ隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺励※縺翫￥ */
   display: none;
 }
-```
+````
 
 ```javascript
-// .AAA の要素をクリックしたときに～
-document.querySelector(".AAA").addEventListener("click", function() {
-  // .BBB の要素の表示/非表示を滑らかに切り替える
-  $(".BBB").slideToggle();
+// .AAA 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
+document.querySelector('.AAA').addEventListener('click', function () {
+  // .BBB 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
+  $('.BBB').slideToggle();
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習1">
-次のHTMLで、`h3.PPP` をクリックしたら `div.QQQ` が開閉するようにせよ。
+<Exercise title="貍皮ｿ・">
+谺｡縺ｮHTML縺ｧ縲～h3.PPP` 繧偵け繝ｪ繝・け縺励◆繧・`div.QQQ` 縺碁幕髢峨☆繧九ｈ縺・↓縺帙ｈ縲・
 
 HTML:
+
 ```html
-<h3 class="PPP">メニュー</h3>
-<div class="QQQ">中身</div>
-<p>後続のテキスト</p>
+<h3 class="PPP">繝｡繝九Η繝ｼ</h3>
+<div class="QQQ">荳ｭ霄ｫ</div>
+<p>蠕檎ｶ壹・繝・く繧ｹ繝・/p></p>
 ```
 
 CSS:
+
 ```css
 .PPP {
   cursor: pointer;
@@ -220,20 +226,21 @@ CSS:
 ```
 
 <CodePreview
-  sourceId="演習1"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="PPP">メニュー</h3>
-<div class="QQQ">中身</div>
-<p>後続のテキスト</p>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
+<h3 class="PPP">繝｡繝九Η繝ｼ</h3>
+<div class="QQQ">荳ｭ霄ｫ</div>
+<p>蠕檎ｶ壹・繝・く繧ｹ繝・/p>
 ```
 
 ```css
@@ -247,49 +254,53 @@ CSS:
   padding: 8px;
   border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
+  /* 蛻昴ａ縺ｯ隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺励※縺翫￥ */
   display: none;
 }
 ```
 
 ```javascript
-// .PPP の要素をクリックしたときに～
-document.querySelector(".PPP").addEventListener("click", function() {
-  // .QQQ の要素の表示/非表示を滑らかに切り替える
-  $(".QQQ").slideToggle();
+// .PPP 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
+document.querySelector('.PPP').addEventListener('click', function () {
+  // .QQQ 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
+  $('.QQQ').slideToggle();
 });
 ```
+
 </CodePreview>
 
-:::tip[ヒント]
-- jQuery の読み込みを忘れずに行いましょう。
-- JavaScript がいつ実行されるのかのタイミングに注意しましょう。
-:::
+:::tip[繝偵Φ繝・
+
+- jQuery 縺ｮ隱ｭ縺ｿ霎ｼ縺ｿ繧貞ｿ倥ｌ縺壹↓陦後＞縺ｾ縺励ｇ縺・・
+- JavaScript 縺後＞縺､螳溯｡後＆繧後ｋ縺ｮ縺九・繧ｿ繧､繝溘Φ繧ｰ縺ｫ豕ｨ諢上＠縺ｾ縺励ｇ縺・・
+  :::
 
 <Solution>
-<CodePreview sourceId="演習1"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-## 開いた項目を変数で管理する（true/false）
+## 髢九＞縺滄・岼繧貞､画焚縺ｧ邂｡逅・☆繧具ｼ・rue/false・・
 
-開閉状態を true/false の「変数」で記憶し、その値に応じて、見た目やテキストを直接書き換えることも出来ます。  
-状態に応じて色や記号の変更などを if を使った分岐で行います。
+髢矩哩迥ｶ諷九ｒ true/false 縺ｮ縲悟､画焚縲阪〒險俶・縺励√◎縺ｮ蛟､縺ｫ蠢懊§縺ｦ縲∬ｦ九◆逶ｮ繧・ユ繧ｭ繧ｹ繝医ｒ逶ｴ謗･譖ｸ縺肴鋤縺医ｋ縺薙→繧ょ・譚･縺ｾ縺吶・
+迥ｶ諷九↓蠢懊§縺ｦ濶ｲ繧・ｨ伜捷縺ｮ螟画峩縺ｪ縺ｩ繧・if 繧剃ｽｿ縺｣縺溷・蟯舌〒陦後＞縺ｾ縺吶・
 
 <CodePreview
   sourceId="isOpen"
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="aaa">メニュー<span class="icon">＋</span></h3>
-<div class="bbb">中身</div>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
+<h3 class="aaa">繝｡繝九Η繝ｼ<span class="icon">・・/span></h3>
+<div class="bbb">荳ｭ霄ｫ</div>
 
 ```
 
@@ -304,28 +315,29 @@ document.querySelector(".PPP").addEventListener("click", function() {
   padding: 8px;
   border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
+  /* 蛻昴ａ縺ｯ隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺励※縺翫￥ */
   display: none;
 }
 ```
 
 ```javascript
-// 開いていますかー？　を表す変数を作って用意しておく
-// 最初は閉じているので、開いていない = false を入れておく
+// 髢九＞縺ｦ縺・∪縺吶°繝ｼ・溘繧定｡ｨ縺吝､画焚繧剃ｽ懊▲縺ｦ逕ｨ諢上＠縺ｦ縺翫￥
+// 譛蛻昴・髢峨§縺ｦ縺・ｋ縺ｮ縺ｧ縲・幕縺・※縺・↑縺・= false 繧貞・繧後※縺翫￥
 let isOpen = false;
 
-// .aaa の要素をクリックしたときに～
-document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+// .aaa 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
+document.querySelector('.aaa').addEventListener('click', function () {
+  // .bbb 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
+  $('.bbb').slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
+  // 髢矩哩迥ｶ諷九′蜿崎ｻ｢縺吶ｋ縺ｮ縺ｧ縲（sOpen 縺ｮ true/false 繧貞渚霆｢
   isOpen = !isOpen;
 
-  // isOpen の値を出してみる
+  // isOpen 縺ｮ蛟､繧貞・縺励※縺ｿ繧・
   console.log(isOpen);
 });
 ```
+
 </CodePreview>
 
 <CodePreview
@@ -333,28 +345,31 @@ document.querySelector(".aaa").addEventListener("click", function() {
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```javascript
-// 開いていますかー？　を表す変数を作って用意しておく
-// 最初は閉じているので、開いていない = false を入れておく
+// 髢九＞縺ｦ縺・∪縺吶°繝ｼ・溘繧定｡ｨ縺吝､画焚繧剃ｽ懊▲縺ｦ逕ｨ諢上＠縺ｦ縺翫￥
+// 譛蛻昴・髢峨§縺ｦ縺・ｋ縺ｮ縺ｧ縲・幕縺・※縺・↑縺・= false 繧貞・繧後※縺翫￥
 let isOpen = false;
 
-// .aaa の要素をクリックしたときに～
+// .aaa 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
 document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+// .bbb 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
+$(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
-  isOpen = !isOpen;
+// 髢矩哩迥ｶ諷九′蜿崎ｻ｢縺吶ｋ縺ｮ縺ｧ縲（sOpen 縺ｮ true/false 繧貞渚霆｢
+isOpen = !isOpen;
 
-  // 開閉状態に応じて、何かをする。（とりあえず例として console.log）
-  if (isOpen) { // 開いているとき
-    console.log("ひらいています");
-  }
-  else { // 閉じているとき
-    console.log("とじています");
-  }
+// 髢矩哩迥ｶ諷九↓蠢懊§縺ｦ縲∽ｽ輔°繧偵☆繧九ゑｼ医→繧翫≠縺医★萓九→縺励※ console.log・・
+if (isOpen) { // 髢九＞縺ｦ縺・ｋ縺ｨ縺・
+console.log("縺ｲ繧峨＞縺ｦ縺・∪縺・);
+}
+else { // 髢峨§縺ｦ縺・ｋ縺ｨ縺・
+console.log("縺ｨ縺倥※縺・∪縺・);
+}
 });
+
 ```
+
 </CodePreview>
 
 <CodePreview
@@ -362,50 +377,54 @@ document.querySelector(".aaa").addEventListener("click", function() {
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```javascript
-// 開いていますかー？　を表す変数を作って用意しておく
-// 最初は閉じているので、開いていない = false を入れておく
+// 髢九＞縺ｦ縺・∪縺吶°繝ｼ・溘繧定｡ｨ縺吝､画焚繧剃ｽ懊▲縺ｦ逕ｨ諢上＠縺ｦ縺翫￥
+// 譛蛻昴・髢峨§縺ｦ縺・ｋ縺ｮ縺ｧ縲・幕縺・※縺・↑縺・= false 繧貞・繧後※縺翫￥
 let isOpen = false;
 
-// .aaa の要素をクリックしたときに～
+// .aaa 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
 document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
+  // .bbb 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
   $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
+  // 髢矩哩迥ｶ諷九′蜿崎ｻ｢縺吶ｋ縺ｮ縺ｧ縲（sOpen 縺ｮ true/false 繧貞渚霆｢
   isOpen = !isOpen;
 
   let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いているとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
+  if (isOpen) { // 髢九＞縺ｦ縺・ｋ縺ｨ縺・
+    iconYoso.innerText = "竏・; // 繧｢繧､繧ｳ繝ｳ繧偵・縲阪↓縺吶ｋ
   }
-  else { // 閉じているとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
+  else { // 髢峨§縺ｦ縺・ｋ縺ｨ縺・
+    iconYoso.innerText = "・・; // 繧｢繧､繧ｳ繝ｳ繧偵・縲阪↓縺吶ｋ
   }
 });
 ```
+
 </CodePreview>
 
 ---
 
-### ポイント
+### 繝昴う繝ｳ繝・
 
-- `let isOpen = false;` で開閉状態を記憶。
-- `iconYoso.innerText` で＋/−を切り替え。
-- 表示／非表示は jQuery の `.slideToggle()`。
+- `let isOpen = false;` 縺ｧ髢矩哩迥ｶ諷九ｒ險俶・縲・
+- `iconYoso.innerText` 縺ｧ・・竏偵ｒ蛻・ｊ譖ｿ縺医・
+- 陦ｨ遉ｺ・城撼陦ｨ遉ｺ縺ｯ jQuery 縺ｮ `.slideToggle()`縲・
 
 ---
 
-<Exercise title="演習2（＋/− アイコンの切り替え）">
-`h3.aaa` の右側に「＋/−」を表示し、クリックで「＋↔−」と、背景色が状態により切り替わるようにしてください。
+<Exercise title="貍皮ｿ・・茨ｼ・竏・繧｢繧､繧ｳ繝ｳ縺ｮ蛻・ｊ譖ｿ縺茨ｼ・>
+`h3.aaa` 縺ｮ蜿ｳ蛛ｴ縺ｫ縲鯉ｼ・竏偵阪ｒ陦ｨ遉ｺ縺励√け繝ｪ繝・け縺ｧ縲鯉ｼ銀・竏偵阪→縲∬レ譎ｯ濶ｲ縺檎憾諷九↓繧医ｊ蛻・ｊ譖ｿ繧上ｋ繧医≧縺ｫ縺励※縺上□縺輔＞縲・
 
 HTML:
+
 ```html
-<h3 class="aaa">メニュー<span class="icon">＋</span></h3>
-<div class="bbb">中身</div>
+<h3 class="aaa">繝｡繝九Η繝ｼ<span class="icon">・・/span></h3>
+<div class="bbb">荳ｭ霄ｫ</div>
 ```
 
 CSS:
+
 ```css
 .aaa {
   cursor: pointer;
@@ -420,21 +439,22 @@ CSS:
 ```
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="aaa">メニュー<span class="icon">＋</span></h3>
-<div class="bbb">中身</div>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
 
-```
+<h3 class="aaa">繝｡繝九Η繝ｼ<span class="icon">・・/span></h3>
+<div class="bbb">荳ｭ霄ｫ</div>
+
+````
 
 ```css
 .aaa {
@@ -447,57 +467,60 @@ CSS:
   padding: 8px;
   border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
+  /* 蛻昴ａ縺ｯ隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺励※縺翫￥ */
   display: none;
 }
-```
+````
 
 ```javascript
 let aaaYoso = document.querySelector(".aaa");
 
-// 開いていますかー？　を表す変数を作って用意しておく
-// 最初は閉じているので、開いていない = false を入れておく
+// 髢九＞縺ｦ縺・∪縺吶°繝ｼ・溘繧定｡ｨ縺吝､画焚繧剃ｽ懊▲縺ｦ逕ｨ諢上＠縺ｦ縺翫￥
+// 譛蛻昴・髢峨§縺ｦ縺・ｋ縺ｮ縺ｧ縲・幕縺・※縺・↑縺・= false 繧貞・繧後※縺翫￥
 let isOpen = false;
 
-// .aaa の要素をクリックしたときに～
+// .aaa 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
 aaaYoso.addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
+  // .bbb 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
   $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
+  // 髢矩哩迥ｶ諷九′蜿崎ｻ｢縺吶ｋ縺ｮ縺ｧ縲（sOpen 縺ｮ true/false 繧貞渚霆｢
   isOpen = !isOpen;
 
   let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いたとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
-    aaaYoso.style.backgroundColor = "pink"; // 背景色を変更
+  if (isOpen) { // 髢九＞縺溘→縺・
+    iconYoso.innerText = "竏・; // 繧｢繧､繧ｳ繝ｳ繧偵・縲阪↓縺吶ｋ
+    aaaYoso.style.backgroundColor = "pink"; // 閭梧勹濶ｲ繧貞､画峩
   }
-  else { // 閉じたとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
-    aaaYoso.style.backgroundColor = "#eee"; // 背景色を元の #eee に戻す
+  else { // 髢峨§縺溘→縺・
+    iconYoso.innerText = "・・; // 繧｢繧､繧ｳ繝ｳ繧偵・縲阪↓縺吶ｋ
+    aaaYoso.style.backgroundColor = "#eee"; // 閭梧勹濶ｲ繧貞・縺ｮ #eee 縺ｫ謌ｻ縺・
   }
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習2"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習3（開いた回数を表示）">
-`h3.ccc` をクリックして「開いた」時だけ、`div.count` の「開いた回数」の表示が1ずつ増えるようにしてください（閉じる時は増えません）。
+<Exercise title="貍皮ｿ・・磯幕縺・◆蝗樊焚繧定｡ｨ遉ｺ・・>
+`h3.ccc` 繧偵け繝ｪ繝・け縺励※縲碁幕縺・◆縲肴凾縺縺代～div.count` 縺ｮ縲碁幕縺・◆蝗樊焚縲阪・陦ｨ遉ｺ縺・縺壹▽蠅励∴繧九ｈ縺・↓縺励※縺上□縺輔＞・磯哩縺倥ｋ譎ゅ・蠅励∴縺ｾ縺帙ｓ・峨・
 
 HTML:
+
 ```html
-<h3 class="ccc">メニュー</h3>
-<div class="ddd">中身</div>
-<div class="count">開いた回数: 0回</div>
+<h3 class="ccc">繝｡繝九Η繝ｼ</h3>
+<div class="ddd">荳ｭ霄ｫ</div>
+<div class="count">髢九＞縺溷屓謨ｰ: 0蝗・/div></div>
 ```
 
 CSS:
+
 ```css
 .ccc {
   cursor: pointer;
@@ -517,20 +540,21 @@ CSS:
 ```
 
 <CodePreview
-  sourceId="演習3"
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="ccc">メニュー</h3>
-<div class="ddd">中身</div>
-<div class="count">開いた回数: 0回</div>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
+
+<h3 class="ccc">繝｡繝九Η繝ｼ</h3>
+<div class="ddd">荳ｭ霄ｫ</div>
+<div class="count">髢九＞縺溷屓謨ｰ: 0蝗・/div>
 ```
 
 ```css
@@ -544,7 +568,7 @@ CSS:
   padding: 8px;
   border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
+  /* 蛻昴ａ縺ｯ隕∫ｴ繧帝撼陦ｨ遉ｺ縺ｫ縺励※縺翫￥ */
   display: none;
 }
 
@@ -555,50 +579,54 @@ CSS:
 ```
 
 ```javascript
-// 開いてる時に回数を増やすカウンタ用
+// 髢九＞縺ｦ繧区凾縺ｫ蝗樊焚繧貞｢励ｄ縺吶き繧ｦ繝ｳ繧ｿ逕ｨ
 let count = 0;
 let isOpen = false;
 
-// .ccc の要素をクリックしたときに～
+// .ccc 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺阪↓・・
 document.querySelector(".ccc").addEventListener("click", function() {
-  // .ddd の要素の表示/非表示を滑らかに切り替える
+  // .ddd 縺ｮ隕∫ｴ縺ｮ陦ｨ遉ｺ/髱櫁｡ｨ遉ｺ繧呈ｻ代ｉ縺九↓蛻・ｊ譖ｿ縺医ｋ
   $(".ddd").slideToggle();
 
-  // 開閉状態の true/false を反転
+  // 髢矩哩迥ｶ諷九・ true/false 繧貞渚霆｢
   isOpen = !isOpen;
 
-  if (isOpen) { // 開いたとき
-    count++; // 回数を増やす
-    document.querySelector(".count").innerText = "開いた回数: " + count + "回"; // 表示を更新
+  if (isOpen) { // 髢九＞縺溘→縺・
+    count++; // 蝗樊焚繧貞｢励ｄ縺・
+    document.querySelector(".count").innerText = "髢九＞縺溷屓謨ｰ: " + count + "蝗・; // 陦ｨ遉ｺ繧呈峩譁ｰ
   }
 });
 ```
+
 </CodePreview>
 
-:::tip[ヒント]
-- 回数を記憶する変数（let count = 0;）を使いましょう。
-- if を使い「開いたときだけ」カウントアップするように分岐します。
-- 回数の表示書き換えには innerText を使います。
-:::
+:::tip[繝偵Φ繝・
+
+- 蝗樊焚繧定ｨ俶・縺吶ｋ螟画焚・・et count = 0;・峨ｒ菴ｿ縺・∪縺励ｇ縺・・
+- if 繧剃ｽｿ縺・碁幕縺・◆縺ｨ縺阪□縺代阪き繧ｦ繝ｳ繝医い繝・・縺吶ｋ繧医≧縺ｫ蛻・ｲ舌＠縺ｾ縺吶・
+- 蝗樊焚縺ｮ陦ｨ遉ｺ譖ｸ縺肴鋤縺医↓縺ｯ innerText 繧剃ｽｿ縺・∪縺吶・
+  :::
 
 <Solution>
-<CodePreview sourceId="演習3"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習3-発展（＋/−を滑らかに切り替え）">
-`h3.ccc` の右側にある「＋」または「−」が、メニューの開閉に合わせて**回転アニメーション付きで滑らかに切り替わる**ようにしてください。  
-※「＋/−」のテキストがただ切り替わるのではなく、`transform`と`transition`で回転しながら変化するようにします。
+<Exercise title="貍皮ｿ・-逋ｺ螻包ｼ茨ｼ・竏偵ｒ貊代ｉ縺九↓蛻・ｊ譖ｿ縺茨ｼ・>
+`h3.ccc` 縺ｮ蜿ｳ蛛ｴ縺ｫ縺ゅｋ縲鯉ｼ九阪∪縺溘・縲娯・縲阪′縲√Γ繝九Η繝ｼ縺ｮ髢矩哩縺ｫ蜷医ｏ縺帙※**蝗櫁ｻ｢繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ莉倥″縺ｧ貊代ｉ縺九↓蛻・ｊ譖ｿ繧上ｋ**繧医≧縺ｫ縺励※縺上□縺輔＞縲・
+窶ｻ縲鯉ｼ・竏偵阪・繝・く繧ｹ繝医′縺溘□蛻・ｊ譖ｿ繧上ｋ縺ｮ縺ｧ縺ｯ縺ｪ縺上～transform`縺ｨ`transition`縺ｧ蝗櫁ｻ｢縺励↑縺後ｉ螟牙喧縺吶ｋ繧医≧縺ｫ縺励∪縺吶・
 
 HTML:
+
 ```html
-<h3 class="ccc">メニュー<span class="icon">＋</span></h3>
-<div class="ddd">中身</div>
+<h3 class="ccc">繝｡繝九Η繝ｼ<span class="icon">・・/span></h3>
+<div class="ddd">荳ｭ霄ｫ</div>
 ```
 
 CSS:
+
 ```css
 .ccc {
   cursor: pointer;
@@ -618,21 +646,22 @@ CSS:
 ```
 
 <CodePreview
-  sourceId="演習3-発展"
+  sourceId="貍皮ｿ・-逋ｺ螻・
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
   previewVisible={true}
 >
 ```html
-<!-- これを head 内に入れて -->
+<!-- 縺薙ｌ繧・head 蜀・↓蜈･繧後※ -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
-<!-- これを body 内に入れて -->
-<h3 class="ccc">メニュー<span class="icon">＋</span></h3>
-<div class="ddd">中身</div>
+<!-- 縺薙ｌ繧・body 蜀・↓蜈･繧後※ -->
 
-```
+<h3 class="ccc">繝｡繝九Η繝ｼ<span class="icon">・・/span></h3>
+<div class="ddd">荳ｭ霄ｫ</div>
+
+````
 
 ```css
 .ccc {
@@ -650,39 +679,41 @@ CSS:
   display: inline-block;
   transition: transform 0.3s;
 }
-```
+````
 
 ```javascript
 let iconYoso = document.querySelector(".icon");
 let cccYoso = document.querySelector(".ccc");
 let isOpen = false;
 
-// .ccc の要素をクリックしたとき
+// .ccc 縺ｮ隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺・
 cccYoso.addEventListener("click", function() {
   $(".ddd").slideToggle();
 
-  // 開閉状態を反転
+  // 髢矩哩迥ｶ諷九ｒ蜿崎ｻ｢
   isOpen = !isOpen;
 
-  // アイコンの切り替え（アニメーション付きで+→−）
+  // 繧｢繧､繧ｳ繝ｳ縺ｮ蛻・ｊ譖ｿ縺茨ｼ医い繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ莉倥″縺ｧ+竊停・・・
   if (isOpen) {
     iconYoso.style.transform = "rotate(180deg)";
-    iconYoso.innerText = "−"; // rotate180後に−に
+    iconYoso.innerText = "竏・; // rotate180蠕後↓竏偵↓
   } else {
     iconYoso.style.transform = "rotate(0deg)";
-    iconYoso.innerText = "＋"; // 元に戻す
+    iconYoso.innerText = "・・; // 蜈・↓謌ｻ縺・
   }
 });
 ```
+
 </CodePreview>
 
-:::tip[ヒント]
-- `transition`と`transform`でアニメーションを作れます。
-- CSSの `transform: rotate(角度deg)` の指定で特定の角度に回転させることが出来ます。(`transform: rotate(45deg);` など) 
-- クリック時に「＋から−」「−から＋」へ回転付きで変わるように工夫してください。
-:::
+:::tip[繝偵Φ繝・
+
+- `transition`縺ｨ`transform`縺ｧ繧｢繝九Γ繝ｼ繧ｷ繝ｧ繝ｳ繧剃ｽ懊ｌ縺ｾ縺吶・
+- CSS縺ｮ `transform: rotate(隗貞ｺｦdeg)` 縺ｮ謖・ｮ壹〒迚ｹ螳壹・隗貞ｺｦ縺ｫ蝗櫁ｻ｢縺輔○繧九％縺ｨ縺悟・譚･縺ｾ縺吶・`transform: rotate(45deg);` 縺ｪ縺ｩ)
+- 繧ｯ繝ｪ繝・け譎ゅ↓縲鯉ｼ九°繧俄・縲阪娯・縺九ｉ・九阪∈蝗櫁ｻ｢莉倥″縺ｧ螟峨ｏ繧九ｈ縺・↓蟾･螟ｫ縺励※縺上□縺輔＞縲・
+  :::
 
 <Solution>
-<CodePreview sourceId="演習3-発展"/>
+<CodePreview sourceId="貍皮ｿ・-逋ｺ螻・/>
 </Solution>
 </Exercise>

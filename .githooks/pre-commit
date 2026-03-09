@@ -1,12 +1,20 @@
 #!/bin/sh
 
-# Run verification (markdownlint for markdown-only repos)
-if command -v markdownlint > /dev/null 2>&1; then
-  markdownlint **/*.md --ignore node_modules --ignore AGENTS.md || exit 1
-fi
+# Run verification (full verification suite)
+echo "Running verification..."
 
-# Update AGENTS.md (non-blocking)
+# Check formatting
+npx prettier --check "**/*.{md,mdx,ts,json,yml}" --ignore-path .prettierignore || exit 1
+
+# Check markdown lint
+npx markdownlint "**/*.{md,mdx}" --ignore node_modules --ignore AGENTS.md || exit 1
+
+# Update AGENTS.md
 if command -v compose-agentsmd > /dev/null 2>&1; then
-  compose-agentsmd --compose || true
-  git add AGENTS.md || true
+  compose-agentsmd --compose
+  git add AGENTS.md
+else
+  # Fallback to npx if not in PATH
+  npx compose-agentsmd --compose
+  git add AGENTS.md
 fi

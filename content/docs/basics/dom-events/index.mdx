@@ -1,29 +1,29 @@
+﻿---
+title: 繧､繝吶Φ繝・
 ---
-title: イベント
----
 
+## 莉頑律縺ｮ蟄ｦ鄙偵・縺薙ｓ縺ｪ縺ｨ縺薙ｍ縺ｧ菴ｿ縺・ｈ
 
-## 今日の学習はこんなところで使うよ
+縺薙・遶縺ｧ蟄ｦ縺ｶ繧､繝吶Φ繝医・縲√Θ繝ｼ繧ｶ繝ｼ縺ｮ繧ｯ繝ｪ繝・け繧・・繧ｦ繧ｹ謫堺ｽ懊↓蠢懊§縺ｦ繝壹・繧ｸ縺ｮ隕九◆逶ｮ繧・虚菴懊ｒ螟峨∴繧区ｩ溯・縺ｧ菴ｿ縺・∪縺吶・
+螳滄圀縺ｮ繧ｦ繧ｧ繝悶し繧､繝医・縲後＞縺・・繝懊ち繝ｳ縲阪ｄ縲檎判蜒上ぐ繝｣繝ｩ繝ｪ繝ｼ縺ｮ繝帙ヰ繝ｼ陦ｨ遉ｺ縲阪〒菴ｿ繧上ｌ繧句ｴ髱｢繧偵う繝｡繝ｼ繧ｸ縺励※縺上□縺輔＞縲・
 
-この章で学ぶイベントは、ユーザーのクリックやマウス操作に応じてページの見た目や動作を変える機能で使います。
-実際のウェブサイトの「いいねボタン」や「画像ギャラリーのホバー表示」で使われる場面をイメージしてください。
+螳滄圀縺ｫ菴ｿ繧上ｌ縺ｦ縺・◎縺・↑繧ｵ繧､繝医・萓具ｼ井ｻ｣陦ｨ萓具ｼ・
 
-実際に使われていそうなサイトの例（代表例）:
+- YouTube・亥・髢九・繝ｼ繧ｸ縺ｧ縲後＞縺・・繝懊ち繝ｳ縲阪後メ繝｣繝ｳ繝阪Ν逋ｻ骭ｲ繝懊ち繝ｳ縲阪′遒ｺ隱阪〒縺阪∪縺呻ｼ・ <https://www.youtube.com/>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 蜍慕判荳九・縲後＞縺・・縲阪・繧ｿ繝ｳ繧ｯ繝ｪ繝・け 竊・click 繧､繝吶Φ繝医〒謨ｰ蛟､繧呈峩譁ｰ
+- Amazon.co.jp・亥膚蜩∫判蜒上↓繝槭え繧ｹ繧剃ｹ励○繧九→諡｡螟ｧ陦ｨ遉ｺ縺輔ｌ繧具ｼ・ <https://www.amazon.co.jp/>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 蝠・刀逕ｻ蜒上↓繝槭え繧ｹ繧剃ｹ励○繧・竊・mouseenter 繧､繝吶Φ繝医〒逕ｻ蜒上ｒ諡｡螟ｧ
 
-- YouTube（公開ページで「いいねボタン」「チャンネル登録ボタン」が確認できます）: https://www.youtube.com/
-  - 使われる箇所: 動画下の「いいね」ボタンクリック → click イベントで数値を更新
-- Amazon.co.jp（商品画像にマウスを乗せると拡大表示される）: https://www.amazon.co.jp/
-  - 使われる箇所: 商品画像にマウスを乗せる → mouseenter イベントで画像を拡大
-
-### 例1: いいねボタン（ボタンをクリックして数を増やす）
+### 萓・: 縺・＞縺ｭ繝懊ち繝ｳ・医・繧ｿ繝ｳ繧偵け繝ｪ繝・け縺励※謨ｰ繧貞｢励ｄ縺呻ｼ・
 
 <CodePreview
   htmlVisible={false}
   jsVisible={false}
   cssVisible={false}
   previewVisible={true}>
+
 ```html
-<button>❤️ 0 いいね</button>
+<button>笶､・・0 縺・＞縺ｭ</button>
 ```
 
 ```css
@@ -38,28 +38,30 @@ button {
 ```
 
 ```javascript
-// いいねボタンがクリックされたら数を増やす
-let buttonYoso = document.querySelector("button");
+// 縺・＞縺ｭ繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘ｉ謨ｰ繧貞｢励ｄ縺・
+let buttonYoso = document.querySelector('button');
 let count = 0;
 
-buttonYoso.addEventListener("click", function() {
+buttonYoso.addEventListener('click', function () {
   count = count + 1;
-  buttonYoso.innerText = "❤️ " + count + " いいね";
+  buttonYoso.innerText = '笶､・・' + count + ' 縺・＞縺ｭ';
 });
 ```
+
 </CodePreview>
 
-### 例2: ヘルプアイコン（マウスを乗せるとヒントが表示される）
+### 萓・: 繝倥Ν繝励い繧､繧ｳ繝ｳ・医・繧ｦ繧ｹ繧剃ｹ励○繧九→繝偵Φ繝医′陦ｨ遉ｺ縺輔ｌ繧具ｼ・
 
 <CodePreview
   htmlVisible={false}
   jsVisible={false}
   cssVisible={false}
   previewVisible={true}>
+
 ```html
 <div class="help-container">
   <div class="help-icon">?</div>
-  <div class="tooltip">ヒント: 詳細なヒント</div>
+  <div class="tooltip">繝偵Φ繝・ 隧ｳ邏ｰ縺ｪ繝偵Φ繝・/div></div>
 </div>
 ```
 
@@ -72,7 +74,7 @@ buttonYoso.addEventListener("click", function() {
 .help-icon {
   width: 40px;
   height: 40px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border-radius: 50%;
   display: grid;
@@ -98,62 +100,64 @@ buttonYoso.addEventListener("click", function() {
 ```
 
 ```javascript
-// ヘルプアイコンにマウスを乗せたらヒントを表示
-let icon = document.querySelector(".help-icon");
-let tooltip = document.querySelector(".tooltip");
+// 繝倥Ν繝励い繧､繧ｳ繝ｳ縺ｫ繝槭え繧ｹ繧剃ｹ励○縺溘ｉ繝偵Φ繝医ｒ陦ｨ遉ｺ
+let icon = document.querySelector('.help-icon');
+let tooltip = document.querySelector('.tooltip');
 
-icon.addEventListener("mouseenter", function() {
-  tooltip.style.opacity = "1";
+icon.addEventListener('mouseenter', function () {
+  tooltip.style.opacity = '1';
 });
 
-icon.addEventListener("mouseleave", function() {
-  tooltip.style.opacity = "0";
+icon.addEventListener('mouseleave', function () {
+  tooltip.style.opacity = '0';
 });
 ```
+
 </CodePreview>
 
 ---
 
-## イベントとは
+## 繧､繝吶Φ繝医→縺ｯ
 
-**イベント** とは、「ページの読込完了」、「ユーザーがウェブページ上で操作（クリック、マウス移動など）を行った」などの、何らかの「出来事」のことです。
-JavaScriptを使うと、このような出来事が起きたときに反応して何か処理を実行することができます。
+\*_繧､繝吶Φ繝・_ 縺ｨ縺ｯ縲√後・繝ｼ繧ｸ縺ｮ隱ｭ霎ｼ螳御ｺ・阪√後Θ繝ｼ繧ｶ繝ｼ縺後え繧ｧ繝悶・繝ｼ繧ｸ荳翫〒謫堺ｽ懶ｼ医け繝ｪ繝・け縲√・繧ｦ繧ｹ遘ｻ蜍輔↑縺ｩ・峨ｒ陦後▲縺溘阪↑縺ｩ縺ｮ縲∽ｽ輔ｉ縺九・縲悟・譚･莠九阪・縺薙→縺ｧ縺吶・
+JavaScript繧剃ｽｿ縺・→縲√％縺ｮ繧医≧縺ｪ蜃ｺ譚･莠九′襍ｷ縺阪◆縺ｨ縺阪↓蜿榊ｿ懊＠縺ｦ菴輔°蜃ｦ逅・ｒ螳溯｡後☆繧九％縺ｨ縺後〒縺阪∪縺吶・
 
-イベントに反応させるには、次のような書き方をします。
+繧､繝吶Φ繝医↓蜿榊ｿ懊＆縺帙ｋ縺ｫ縺ｯ縲∵ｬ｡縺ｮ繧医≧縺ｪ譖ｸ縺肴婿繧偵＠縺ｾ縺吶・
 
 ```js
-要素.addEventListener("イベント名", function() {
-  // イベントが起きたときに実行する処理
+隕∫ｴ.addEventListener("繧､繝吶Φ繝亥錐", function() {
+  // 繧､繝吶Φ繝医′襍ｷ縺阪◆縺ｨ縺阪↓螳溯｡後☆繧句・逅・
 });
 ```
 
 ---
 
-## click イベント
+## click 繧､繝吶Φ繝・
 
-**click** イベントは、要素がクリックされたときに発生します。
+**click** 繧､繝吶Φ繝医・縲∬ｦ∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪↓逋ｺ逕溘＠縺ｾ縺吶・
 
 ```js
-要素.addEventListener("click", function() {
-  // クリックされたときの処理
+隕∫ｴ.addEventListener("click", function() {
+  // 繧ｯ繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
 });
 ```
 
 <CodePreview>
 ```html
-<button>クリックしてね</button>
-<p>まだクリックされていません</p>
+<button>繧ｯ繝ｪ繝・け縺励※縺ｭ</button>
+<p>縺ｾ縺繧ｯ繝ｪ繝・け縺輔ｌ縺ｦ縺・∪縺帙ｓ</p>
 ```
 
 ```javascript
-// ボタンがクリックされたら、メッセージを変更する
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘ｉ縲√Γ繝・そ繝ｼ繧ｸ繧貞､画峩縺吶ｋ
 let buttonYoso = document.querySelector("button");
 let pYoso = document.querySelector("p");
 
 buttonYoso.addEventListener("click", function() {
-  pYoso.innerText = "ボタンがクリックされました！";
+  pYoso.innerText = "繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺ｾ縺励◆・・;
 });
 ```
+
 </CodePreview>
 
 <CodePreview>
@@ -170,60 +174,64 @@ div {
 ```
 
 ```javascript
-// ボックスをクリックしたら、背景色を赤に変更
-let divYoso = document.querySelector("div");
+// 繝懊ャ繧ｯ繧ｹ繧偵け繝ｪ繝・け縺励◆繧峨∬レ譎ｯ濶ｲ繧定ｵ､縺ｫ螟画峩
+let divYoso = document.querySelector('div');
 
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "red";
+divYoso.addEventListener('click', function () {
+  divYoso.style.backgroundColor = 'red';
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習1">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> button要素がクリックされたら、p要素の中身を "テキストが変更されました" に変更
+> button隕∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘ｉ縲｝隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"繝・く繧ｹ繝医′螟画峩縺輔ｌ縺ｾ縺励◆" 縺ｫ螟画峩
 
 <CodePreview
-  sourceId="演習1"
+  sourceId="貍皮ｿ・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
-<button>変更ボタン</button>
-<p>初期テキスト</p>
+<button>螟画峩繝懊ち繝ｳ</button>
+<p>蛻晄悄繝・く繧ｹ繝・/p></p>
 ```
 
 ```javascript
-// ボタンがクリックされたときの処理
-let buttonYoso = document.querySelector("button");
-let pYoso = document.querySelector("p");
+// 繝懊ち繝ｳ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
+let buttonYoso = document.querySelector('button');
+let pYoso = document.querySelector('p');
 
-buttonYoso.addEventListener("click", function() {
-  pYoso.innerText = "テキストが変更されました";
+buttonYoso.addEventListener('click', function () {
+  pYoso.innerText = '繝・く繧ｹ繝医′螟画峩縺輔ｌ縺ｾ縺励◆';
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習1"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習2">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> div要素がクリックされたら、背景色を "blue" に、幅を "300px" に変更
+> div隕∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘ｉ縲∬レ譎ｯ濶ｲ繧・"blue" 縺ｫ縲∝ｹ・ｒ "300px" 縺ｫ螟画峩
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="貍皮ｿ・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div></div>
 ```
@@ -237,37 +245,39 @@ div {
 ```
 
 ```javascript
-// div要素がクリックされたときの処理
-let divYoso = document.querySelector("div");
+// div隕∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
+let divYoso = document.querySelector('div');
 
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "blue";
-  divYoso.style.width = "300px";
+divYoso.addEventListener('click', function () {
+  divYoso.style.backgroundColor = 'blue';
+  divYoso.style.width = '300px';
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習2"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習2-発展">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・-逋ｺ螻・>
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> div要素がクリックされたら、背景色を "lightblue" に、h3要素の中身を "選択されました" に、p要素の中身を "このカードが選択中です" に変更
+> div隕∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘ｉ縲∬レ譎ｯ濶ｲ繧・"lightblue" 縺ｫ縲”3隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"驕ｸ謚槭＆繧後∪縺励◆" 縺ｫ縲｝隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"縺薙・繧ｫ繝ｼ繝峨′驕ｸ謚樔ｸｭ縺ｧ縺・ 縺ｫ螟画峩
 
 <CodePreview
-  sourceId="演習2-発展"
+  sourceId="貍皮ｿ・-逋ｺ螻・
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div>
-  <h3>タイトル</h3>
-  <p>説明文</p>
+  <h3>繧ｿ繧､繝医Ν</h3>
+  <p>隱ｬ譏取枚</p>
 </div>
 ```
 
@@ -281,40 +291,41 @@ div {
 ```
 
 ```javascript
-// div要素がクリックされたときの処理
+// div隕∫ｴ縺後け繝ｪ繝・け縺輔ｌ縺溘→縺阪・蜃ｦ逅・
 let divYoso = document.querySelector("div");
 let h3Yoso = document.querySelector("h3");
 let pYoso = document.querySelector("p");
 
 divYoso.addEventListener("click", function() {
   divYoso.style.backgroundColor = "lightblue";
-  h3Yoso.innerText = "選択されました";
-  pYoso.innerText = "このカードが選択中です";
+  h3Yoso.innerText = "驕ｸ謚槭＆繧後∪縺励◆";
+  pYoso.innerText = "縺薙・繧ｫ繝ｼ繝峨′驕ｸ謚樔ｸｭ縺ｧ縺・;
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習2-発展"/>
+<CodePreview sourceId="貍皮ｿ・-逋ｺ螻・/>
 </Solution>
 </Exercise>
 
 ---
 
-## mouseenter イベント
+## mouseenter 繧､繝吶Φ繝・
 
-**mouseenter** イベントは、マウスカーソルが要素の上に乗ったときに発生します。
+**mouseenter** 繧､繝吶Φ繝医・縲√・繧ｦ繧ｹ繧ｫ繝ｼ繧ｽ繝ｫ縺瑚ｦ∫ｴ縺ｮ荳翫↓荵励▲縺溘→縺阪↓逋ｺ逕溘＠縺ｾ縺吶・
 
 ```js
-要素.addEventListener("mouseenter", function() {
-  // マウスが乗ったときの処理
+隕∫ｴ.addEventListener("mouseenter", function() {
+  // 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・
 });
 ```
 
 <CodePreview>
 ```html
 <div></div>
-<p>マウスを乗せてください</p>
+<p>繝槭え繧ｹ繧剃ｹ励○縺ｦ縺上□縺輔＞</p>
 ```
 
 ```css
@@ -326,14 +337,15 @@ div {
 ```
 
 ```javascript
-// マウスが乗ったら、ステータスメッセージを変更
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘ｉ縲√せ繝・・繧ｿ繧ｹ繝｡繝・そ繝ｼ繧ｸ繧貞､画峩
+let divYoso = document.querySelector('div');
+let pYoso = document.querySelector('p');
 
-divYoso.addEventListener("mouseenter", function() {
-  pYoso.innerText = "マウスが乗りました";
+divYoso.addEventListener('mouseenter', function () {
+  pYoso.innerText = '繝槭え繧ｹ縺御ｹ励ｊ縺ｾ縺励◆';
 });
 ```
+
 </CodePreview>
 
 <CodePreview>
@@ -350,28 +362,30 @@ div {
 ```
 
 ```javascript
-// マウスが乗ったら、背景色を黄色に変更
-let divYoso = document.querySelector("div");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘ｉ縲∬レ譎ｯ濶ｲ繧帝ｻ・牡縺ｫ螟画峩
+let divYoso = document.querySelector('div');
 
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.backgroundColor = "yellow";
+divYoso.addEventListener('mouseenter', function () {
+  divYoso.style.backgroundColor = 'yellow';
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習3">
+<Exercise title="貍皮ｿ・">
 
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> div要素にマウスが乗ったら、形を円に変更
+> div隕∫ｴ縺ｫ繝槭え繧ｹ縺御ｹ励▲縺溘ｉ縲∝ｽ｢繧貞・縺ｫ螟画峩
 
 <CodePreview
-  sourceId="演習3"
+  sourceId="貍皮ｿ・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div></div>
 ```
@@ -385,36 +399,37 @@ div {
 ```
 
 ```javascript
-// マウスが乗ったときの処理
-let divYoso = document.querySelector("div");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪・蜃ｦ逅・
+let divYoso = document.querySelector('div');
 
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.borderRadius = "50%";
+divYoso.addEventListener('mouseenter', function () {
+  divYoso.style.borderRadius = '50%';
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習3"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-## mouseleave イベント
+## mouseleave 繧､繝吶Φ繝・
 
-**mouseleave** イベントは、マウスカーソルが要素の上から離れたときに発生します。
+**mouseleave** 繧､繝吶Φ繝医・縲√・繧ｦ繧ｹ繧ｫ繝ｼ繧ｽ繝ｫ縺瑚ｦ∫ｴ縺ｮ荳翫°繧蛾屬繧後◆縺ｨ縺阪↓逋ｺ逕溘＠縺ｾ縺吶・
 
 ```js
-要素.addEventListener("mouseleave", function() {
-  // マウスが離れたときの処理
+隕∫ｴ.addEventListener("mouseleave", function() {
+  // 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺阪・蜃ｦ逅・
 });
 ```
 
 <CodePreview>
 ```html
 <div></div>
-<p>マウスを乗せてから離してください</p>
+<p>繝槭え繧ｹ繧剃ｹ励○縺ｦ縺九ｉ髮｢縺励※縺上□縺輔＞</p>
 ```
 
 ```css
@@ -426,26 +441,27 @@ div {
 ```
 
 ```javascript
-// マウスが離れたら、メッセージを変更
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
+// 繝槭え繧ｹ縺碁屬繧後◆繧峨√Γ繝・そ繝ｼ繧ｸ繧貞､画峩
+let divYoso = document.querySelector('div');
+let pYoso = document.querySelector('p');
 
-divYoso.addEventListener("mouseleave", function() {
-  pYoso.innerText = "マウスが離れました";
+divYoso.addEventListener('mouseleave', function () {
+  pYoso.innerText = '繝槭え繧ｹ縺碁屬繧後∪縺励◆';
 });
 ```
+
 </CodePreview>
 
 ---
 
-## 複数のイベントを組み合わせる
+## 隍・焚縺ｮ繧､繝吶Φ繝医ｒ邨・∩蜷医ｏ縺帙ｋ
 
-mouseenter と mouseleave を組み合わせると、マウスが乗ったときと離れたときで違う動作をさせることができます。
+mouseenter 縺ｨ mouseleave 繧堤ｵ・∩蜷医ｏ縺帙ｋ縺ｨ縲√・繧ｦ繧ｹ縺御ｹ励▲縺溘→縺阪→髮｢繧後◆縺ｨ縺阪〒驕輔≧蜍穂ｽ懊ｒ縺輔○繧九％縺ｨ縺後〒縺阪∪縺吶・
 
 <CodePreview>
 ```html
 <div></div>
-<p>マウスを乗せてみてください</p>
+<p>繝槭え繧ｹ繧剃ｹ励○縺ｦ縺ｿ縺ｦ縺上□縺輔＞</p>
 ```
 
 ```css
@@ -457,42 +473,44 @@ div {
 ```
 
 ```javascript
-// マウスが乗ったときと離れたときで動作を変える
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪→髮｢繧後◆縺ｨ縺阪〒蜍穂ｽ懊ｒ螟峨∴繧・
 let divYoso = document.querySelector("div");
 let pYoso = document.querySelector("p");
 
 divYoso.addEventListener("mouseenter", function() {
   divYoso.style.backgroundColor = "orange";
-  pYoso.innerText = "マウスが乗っています";
+  pYoso.innerText = "繝槭え繧ｹ縺御ｹ励▲縺ｦ縺・∪縺・;
 });
 
 divYoso.addEventListener("mouseleave", function() {
   divYoso.style.backgroundColor = "lightblue";
-  pYoso.innerText = "マウスが離れました";
+  pYoso.innerText = "繝槭え繧ｹ縺碁屬繧後∪縺励◆";
 });
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習4">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> div要素にマウスが乗っているとき  
-> &nbsp;&nbsp;背景色 → "lightcoral"  
-> &nbsp;&nbsp;p要素の中身 → "ステータス: ホバー中"  
-> マウスが離れたとき  
-> &nbsp;&nbsp;背景色 → "lightgray"  
-> &nbsp;&nbsp;p要素の中身 → "ステータス: 待機中"
+> div隕∫ｴ縺ｫ繝槭え繧ｹ縺御ｹ励▲縺ｦ縺・ｋ縺ｨ縺・
+> &nbsp;&nbsp;閭梧勹濶ｲ 竊・"lightcoral"  
+> &nbsp;&nbsp;p隕∫ｴ縺ｮ荳ｭ霄ｫ 竊・"繧ｹ繝・・繧ｿ繧ｹ: 繝帙ヰ繝ｼ荳ｭ"  
+> 繝槭え繧ｹ縺碁屬繧後◆縺ｨ縺・
+> &nbsp;&nbsp;閭梧勹濶ｲ 竊・"lightgray"  
+> &nbsp;&nbsp;p隕∫ｴ縺ｮ荳ｭ霄ｫ 竊・"繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ"
 
 <CodePreview
-  sourceId="演習4"
+  sourceId="貍皮ｿ・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div></div>
-<p>ステータス: 待機中</p>
+<p>繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ</p>
 ```
 
 ```css
@@ -504,45 +522,47 @@ div {
 ```
 
 ```javascript
-// マウスが乗ったときと離れたときの処理
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
+// 繝槭え繧ｹ縺御ｹ励▲縺溘→縺阪→髮｢繧後◆縺ｨ縺阪・蜃ｦ逅・
+let divYoso = document.querySelector('div');
+let pYoso = document.querySelector('p');
 
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.backgroundColor = "lightcoral";
-  pYoso.innerText = "ステータス: ホバー中";
+divYoso.addEventListener('mouseenter', function () {
+  divYoso.style.backgroundColor = 'lightcoral';
+  pYoso.innerText = '繧ｹ繝・・繧ｿ繧ｹ: 繝帙ヰ繝ｼ荳ｭ';
 });
 
-divYoso.addEventListener("mouseleave", function() {
-  divYoso.style.backgroundColor = "lightgray";
-  pYoso.innerText = "ステータス: 待機中";
+divYoso.addEventListener('mouseleave', function () {
+  divYoso.style.backgroundColor = 'lightgray';
+  pYoso.innerText = '繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ';
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習4"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習4-発展1">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・-逋ｺ螻・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> - マウスが div 要素に乗ったとき: 背景色を "lightcoral" に、p 要素の中身を "ステータス: ホバー中" に変更する。  
-> - マウスが div 要素から離れたとき: 背景色を "lightgray" に戻し、p 要素の中身を "ステータス: 待機中" に戻す。  
-> - div 要素をクリックしたとき: 背景色を "gold" に、p 要素の中身を "ステータス: 選択済み" に変更する。  
-> - クリック後は、マウスの乗り降りによる色やテキストの変化を無効にする（選択状態を維持）。
+> - 繝槭え繧ｹ縺・div 隕∫ｴ縺ｫ荵励▲縺溘→縺・ 閭梧勹濶ｲ繧・"lightcoral" 縺ｫ縲｝ 隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"繧ｹ繝・・繧ｿ繧ｹ: 繝帙ヰ繝ｼ荳ｭ" 縺ｫ螟画峩縺吶ｋ縲・
+> - 繝槭え繧ｹ縺・div 隕∫ｴ縺九ｉ髮｢繧後◆縺ｨ縺・ 閭梧勹濶ｲ繧・"lightgray" 縺ｫ謌ｻ縺励｝ 隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ" 縺ｫ謌ｻ縺吶・
+> - div 隕∫ｴ繧偵け繝ｪ繝・け縺励◆縺ｨ縺・ 閭梧勹濶ｲ繧・"gold" 縺ｫ縲｝ 隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"繧ｹ繝・・繧ｿ繧ｹ: 驕ｸ謚樊ｸ医∩" 縺ｫ螟画峩縺吶ｋ縲・
+> - 繧ｯ繝ｪ繝・け蠕後・縲√・繧ｦ繧ｹ縺ｮ荵励ｊ髯阪ｊ縺ｫ繧医ｋ濶ｲ繧・ユ繧ｭ繧ｹ繝医・螟牙喧繧堤┌蜉ｹ縺ｫ縺吶ｋ・磯∈謚樒憾諷九ｒ邯ｭ謖・ｼ峨・
 
 <CodePreview
-  sourceId="演習4-発展1"
+  sourceId="貍皮ｿ・-逋ｺ螻・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div></div>
-<p>ステータス: 待機中</p>
+<p>繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ</p>
 ```
 
 ```css
@@ -554,55 +574,57 @@ div {
 ```
 
 ```javascript
-// 状態管理を含むイベント処理
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
+// 迥ｶ諷狗ｮ｡逅・ｒ蜷ｫ繧繧､繝吶Φ繝亥・逅・
+let divYoso = document.querySelector('div');
+let pYoso = document.querySelector('p');
 let isSelected = false;
 
-divYoso.addEventListener("mouseenter", function() {
+divYoso.addEventListener('mouseenter', function () {
   if (!isSelected) {
-    divYoso.style.backgroundColor = "lightcoral";
-    pYoso.innerText = "ステータス: ホバー中";
+    divYoso.style.backgroundColor = 'lightcoral';
+    pYoso.innerText = '繧ｹ繝・・繧ｿ繧ｹ: 繝帙ヰ繝ｼ荳ｭ';
   }
 });
 
-divYoso.addEventListener("mouseleave", function() {
+divYoso.addEventListener('mouseleave', function () {
   if (!isSelected) {
-    divYoso.style.backgroundColor = "lightgray";
-    pYoso.innerText = "ステータス: 待機中";
+    divYoso.style.backgroundColor = 'lightgray';
+    pYoso.innerText = '繧ｹ繝・・繧ｿ繧ｹ: 蠕・ｩ滉ｸｭ';
   }
 });
 
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "gold";
-  pYoso.innerText = "ステータス: 選択済み";
+divYoso.addEventListener('click', function () {
+  divYoso.style.backgroundColor = 'gold';
+  pYoso.innerText = '繧ｹ繝・・繧ｿ繧ｹ: 驕ｸ謚樊ｸ医∩';
   isSelected = true;
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習4-発展1"/>
+<CodePreview sourceId="貍皮ｿ・-逋ｺ螻・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習4-発展2">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+<Exercise title="貍皮ｿ・-逋ｺ螻・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励゛avaScript縺ｧ谺｡縺ｮ蜍穂ｽ懊ｒ螳溯｣・○繧医・
 
-> - div 要素をクリックするたびに、p 要素に「クリック回数: ○回」と表示する（クリック回数をカウントする）。
-> - クリック回数が3回になったとき、div 要素の背景色を "gold" に変更し、p 要素の中身を "完了しました" に変更する。
-> - 3回に達した後は、それ以上クリックしても何も変化しない。
+> - div 隕∫ｴ繧偵け繝ｪ繝・け縺吶ｋ縺溘・縺ｫ縲｝ 隕∫ｴ縺ｫ縲後け繝ｪ繝・け蝗樊焚: 笳句屓縲阪→陦ｨ遉ｺ縺吶ｋ・医け繝ｪ繝・け蝗樊焚繧偵き繧ｦ繝ｳ繝医☆繧具ｼ峨・
+> - 繧ｯ繝ｪ繝・け蝗樊焚縺・蝗槭↓縺ｪ縺｣縺溘→縺阪‥iv 隕∫ｴ縺ｮ閭梧勹濶ｲ繧・"gold" 縺ｫ螟画峩縺励｝ 隕∫ｴ縺ｮ荳ｭ霄ｫ繧・"螳御ｺ・＠縺ｾ縺励◆" 縺ｫ螟画峩縺吶ｋ縲・
+> - 3蝗槭↓驕斐＠縺溷ｾ後・縲√◎繧御ｻ･荳翫け繝ｪ繝・け縺励※繧ゆｽ輔ｂ螟牙喧縺励↑縺・・
 
 <CodePreview
-  sourceId="演習4-発展2"
+  sourceId="貍皮ｿ・-逋ｺ螻・"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <div></div>
-<p>クリック回数: 0回</p>
+<p>繧ｯ繝ｪ繝・け蝗樊焚: 0蝗・/p></p>
 ```
 
 ```css
@@ -614,7 +636,7 @@ div {
 ```
 
 ```javascript
-// カウンター機能を含むイベント処理
+// 繧ｫ繧ｦ繝ｳ繧ｿ繝ｼ讖溯・繧貞性繧繧､繝吶Φ繝亥・逅・
 let divYoso = document.querySelector("div");
 let pYoso = document.querySelector("p");
 let count = 0;
@@ -622,18 +644,19 @@ let count = 0;
 divYoso.addEventListener("click", function() {
   if (count < 3) {
     count++;
-    pYoso.innerText = "クリック回数: " + count + "回";
-    
+    pYoso.innerText = "繧ｯ繝ｪ繝・け蝗樊焚: " + count + "蝗・;
+
     if (count === 3) {
       divYoso.style.backgroundColor = "gold";
-      pYoso.innerText = "完了しました";
+      pYoso.innerText = "螳御ｺ・＠縺ｾ縺励◆";
     }
   }
 });
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習4-発展2"/>
+<CodePreview sourceId="貍皮ｿ・-逋ｺ螻・"/>
 </Solution>
 </Exercise>

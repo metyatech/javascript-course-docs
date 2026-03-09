@@ -1,138 +1,150 @@
----
+﻿---
 title: innerText
 ---
 
+## 莉頑律縺ｮ蟄ｦ鄙偵・縺薙ｓ縺ｪ縺ｨ縺薙ｍ縺ｧ菴ｿ縺・ｈ
 
-## 今日の学習はこんなところで使うよ
+縺薙・遶縺ｧ蟄ｦ縺ｶ innerText 縺ｯ縲√え繧ｧ繝悶・繝ｼ繧ｸ縺ｮ譁・ｭ励ｒ JavaScript 縺ｧ譖ｸ縺肴鋤縺医ｋ讖溯・縺ｧ縺吶・
+螳滄圀縺ｮ繧ｦ繧ｧ繝悶し繧､繝医〒縲瑚ｪｭ縺ｿ霎ｼ縺ｿ荳ｭ...縲阪′縲瑚ｪｭ縺ｿ霎ｼ縺ｿ螳御ｺ・阪↓螟峨ｏ繧九ｈ縺・↑蝣ｴ髱｢縺ｧ菴ｿ繧上ｌ縺ｾ縺吶・
 
-この章で学ぶ innerText は、ウェブページの文字を JavaScript で書き換える機能です。
-実際のウェブサイトで「読み込み中...」が「読み込み完了」に変わるような場面で使われます。
+螳滄圀縺ｫ菴ｿ繧上ｌ縺ｦ縺・◎縺・↑繧ｵ繧､繝医・萓具ｼ井ｻ｣陦ｨ萓具ｼ・
 
-実際に使われていそうなサイトの例（代表例）:
-
-- Twitter/X（投稿後に「ツイートする」ボタンが「投稿しました」に変わる）: https://twitter.com/
-  - 使われる箇所: ボタンのテキスト変更 → innerText を使用
-- Amazon.co.jp（カートに追加後、ボタンの文字が変わる）: https://www.amazon.co.jp/
-  - 使われる箇所: 「カートに入れる」→「カートを見る」へ変更 → innerText を使用
+- Twitter/X・域兜遞ｿ蠕後↓縲後ヤ繧､繝ｼ繝医☆繧九阪・繧ｿ繝ｳ縺後梧兜遞ｿ縺励∪縺励◆縲阪↓螟峨ｏ繧具ｼ・ <https://twitter.com/>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 繝懊ち繝ｳ縺ｮ繝・く繧ｹ繝亥､画峩 竊・innerText 繧剃ｽｿ逕ｨ
+- Amazon.co.jp・医き繝ｼ繝医↓霑ｽ蜉蠕後√・繧ｿ繝ｳ縺ｮ譁・ｭ励′螟峨ｏ繧具ｼ・ <https://www.amazon.co.jp/>
+  - 菴ｿ繧上ｌ繧狗ｮ・園: 縲後き繝ｼ繝医↓蜈･繧後ｋ縲坂・縲後き繝ｼ繝医ｒ隕九ｋ縲阪∈螟画峩 竊・innerText 繧剃ｽｿ逕ｨ
 
 ---
 
-## innerText による要素の中身の書き換え
+## innerText 縺ｫ繧医ｋ隕∫ｴ縺ｮ荳ｭ霄ｫ縺ｮ譖ｸ縺肴鋤縺・
 
-HTML要素の中に表示されているテキストを、JavaScriptで書き換えることができます。
+HTML隕∫ｴ縺ｮ荳ｭ縺ｫ陦ｨ遉ｺ縺輔ｌ縺ｦ縺・ｋ繝・く繧ｹ繝医ｒ縲゛avaScript縺ｧ譖ｸ縺肴鋤縺医ｋ縺薙→縺後〒縺阪∪縺吶・
 
 ```js
-要素.innerText = "新しいテキスト";
+隕∫ｴ.innerText = "譁ｰ縺励＞繝・く繧ｹ繝・;
 ```
 
 <CodePreview>
 ```html
 <body>
-  <p>元のメッセージ</p>
+  <p>蜈・・繝｡繝・そ繝ｼ繧ｸ</p>
 </body>
 ```
 
 ```javascript
-// p要素の中身を書き換え
-document.querySelector("p").innerText = "新しいメッセージ";
+// p隕∫ｴ縺ｮ荳ｭ霄ｫ繧呈嶌縺肴鋤縺・
+document.querySelector('p').innerText = '譁ｰ縺励＞繝｡繝・そ繝ｼ繧ｸ';
 ```
+
 </CodePreview>
 
 ---
 
-<Exercise title="演習1">
-**body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている2つの要素を_ _1つずつ、_ _JavaScript_ _で_ コメントで書かれた指示の通りに変更せよ。
+<Exercise title="貍皮ｿ・">
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励・_荳九・阮・・濶ｲ縺ｫ繝上う繝ｩ繧､繝医＆繧後※縺・ｋ2縺､縺ｮ隕∫ｴ繧胆 _1縺､縺壹▽縲＼ _JavaScript_ _縺ｧ_ 繧ｳ繝｡繝ｳ繝医〒譖ｸ縺九ｌ縺滓欠遉ｺ縺ｮ騾壹ｊ縺ｫ螟画峩縺帙ｈ縲・
 
 ```html
 // highlight-next-line
-<p>読み込み中...</p> <!-- "読み込み完了" に変更 -->
+<p>隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...</p>
+<!-- "隱ｭ縺ｿ霎ｼ縺ｿ螳御ｺ・ 縺ｫ螟画峩 -->
 // highlight-next-line
-<p class="info">古い情報</p> <!-- "最新情報" に変更 -->
+<p class="info">蜿､縺・ュ蝣ｱ</p>
+<!-- "譛譁ｰ諠・ｱ" 縺ｫ螟画峩 -->
 ```
 
 <CodePreview
-  title="出力例"
-  sourceId="演習1"
+  title="蜃ｺ蜉帑ｾ・
+  sourceId="貍皮ｿ・"
   htmlVisible={false}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
-<p>読み込み中...</p> <!-- "読み込み完了" に変更 -->
-<p class="info">古い情報</p> <!-- "最新情報" に変更 -->
+<p>隱ｭ縺ｿ霎ｼ縺ｿ荳ｭ...</p>
+<!-- "隱ｭ縺ｿ霎ｼ縺ｿ螳御ｺ・ 縺ｫ螟画峩 -->
+<p class="info">蜿､縺・ュ蝣ｱ</p>
+<!-- "譛譁ｰ諠・ｱ" 縺ｫ螟画峩 -->
 ```
 
 ```javascript
-// 最初のp要素の中身を変更
-document.querySelector("p").innerText = "読み込み完了";
+// 譛蛻昴・p隕∫ｴ縺ｮ荳ｭ霄ｫ繧貞､画峩
+document.querySelector("p").innerText = "隱ｭ縺ｿ霎ｼ縺ｿ螳御ｺ・;
 
-// class="info"の要素の中身を変更
-document.querySelector(".info").innerText = "最新情報";
+// class="info"縺ｮ隕∫ｴ縺ｮ荳ｭ霄ｫ繧貞､画峩
+document.querySelector(".info").innerText = "譛譁ｰ諠・ｱ";
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習1"/>
+<CodePreview sourceId="貍皮ｿ・"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習1 - 発展">
+<Exercise title="貍皮ｿ・ - 逋ｺ螻・>
 
-**body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている2つの要素を_ _1つずつ、_ _JavaScript_ _で_ コメントで書かれた指示の通りに変更せよ。
+**body蜀・′** 谺｡縺ｮ繧医≧縺ｫ縺ｪ縺｣縺ｦ縺・ｋHTML繝輔ぃ繧､繝ｫ縺ｫ蟇ｾ縺励・_荳九・阮・・濶ｲ縺ｫ繝上う繝ｩ繧､繝医＆繧後※縺・ｋ2縺､縺ｮ隕∫ｴ繧胆 \_1縺､縺壹▽縲＼ \_JavaScript_ _縺ｧ_ 繧ｳ繝｡繝ｳ繝医〒譖ｸ縺九ｌ縺滓欠遉ｺ縺ｮ騾壹ｊ縺ｫ螟画峩縺帙ｈ縲・
 
 ```html
 <ul class="option1">
-  <li class="item">1 - 項目A</li>
-  <li class="item selected">1 - 項目B</li>
+  <li class="item">1 - 鬆・岼A</li>
+  <li class="item selected">1 - 鬆・岼B</li>
 </ul>
 <ul class="option2">
-  <li class="item">2- 項目A</li>
+  <li class="item">2- 鬆・岼A</li>
   // highlight-next-line
-  <li class="item selected">2 - 項目B</li> <!-- 中身を「2 - 選択中B」に変更 -->
-  <li class="item">2 - 項目C</li>
+  <li class="item selected">2 - 鬆・岼B</li>
+  <!-- 荳ｭ霄ｫ繧偵・ - 驕ｸ謚樔ｸｭB縲阪↓螟画峩 -->
+  <li class="item">2 - 鬆・岼C</li>
 </ul>
 <div id="container">
-  <p>段落1</p>
-  <p>段落2</p>
+  <p>谿ｵ關ｽ1</p>
+  <p>谿ｵ關ｽ2</p>
   // highlight-next-line
-  <p>段落3</p> <!-- 中身を「ラスト段落」に変更 -->
+  <p>谿ｵ關ｽ3</p>
+  <!-- 荳ｭ霄ｫ繧偵後Λ繧ｹ繝域ｮｵ關ｽ縲阪↓螟画峩 -->
 </div>
 ```
 
 <CodePreview
-  title="出力例"
-  sourceId="演習1-発展"
+  title="蜃ｺ蜉帑ｾ・
+  sourceId="貍皮ｿ・-逋ｺ螻・
   htmlVisible={false}
   jsVisible={false}
   previewVisible={true}>
+
 ```html
 <ul class="option1">
-  <li class="item">1 - 項目A</li>
-  <li class="item selected">1 - 項目B</li>
+  <li class="item">1 - 鬆・岼A</li>
+  <li class="item selected">1 - 鬆・岼B</li>
 </ul>
 <ul class="option2">
-  <li class="item">2- 項目A</li>
-  <li class="item selected">2 - 項目B</li> <!-- 中身を「2 - 選択中B」に変更 -->
-  <li class="item">2 - 項目C</li>
+  <li class="item">2- 鬆・岼A</li>
+  <li class="item selected">2 - 鬆・岼B</li>
+  <!-- 荳ｭ霄ｫ繧偵・ - 驕ｸ謚樔ｸｭB縲阪↓螟画峩 -->
+  <li class="item">2 - 鬆・岼C</li>
 </ul>
 <div id="container">
-  <p>段落1</p>
-  <p>段落2</p>
-  <p>段落3</p> <!-- 中身を「ラスト段落」に変更 -->
+  <p>谿ｵ關ｽ1</p>
+  <p>谿ｵ關ｽ2</p>
+  <p>谿ｵ關ｽ3</p>
+  <!-- 荳ｭ霄ｫ繧偵後Λ繧ｹ繝域ｮｵ關ｽ縲阪↓螟画峩 -->
 </div>
 ```
 
 ```javascript
-// .option2の中の選択中(.selected)のli要素の中身を変更
-document.querySelector(".option2 .selected").innerText = "2 - 選択中B";
+// .option2縺ｮ荳ｭ縺ｮ驕ｸ謚樔ｸｭ(.selected)縺ｮli隕∫ｴ縺ｮ荳ｭ霄ｫ繧貞､画峩
+document.querySelector('.option2 .selected').innerText = '2 - 驕ｸ謚樔ｸｭB';
 
-// id="container"の中の最後のp要素の中身を変更
-document.querySelector("#container p:last-child").innerText = "ラスト段落";
+// id="container"縺ｮ荳ｭ縺ｮ譛蠕後・p隕∫ｴ縺ｮ荳ｭ霄ｫ繧貞､画峩
+document.querySelector('#container p:last-child').innerText = '繝ｩ繧ｹ繝域ｮｵ關ｽ';
 ```
+
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習1-発展"/>
+<CodePreview sourceId="貍皮ｿ・-逋ｺ螻・/>
 </Solution>
 </Exercise>
