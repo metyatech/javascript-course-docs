@@ -1,0 +1,239 @@
+---
+title: 演算子と真偽値
+---
+
+## 真偽値型（boolean）
+
+`true`（真）または `false`（偽）の2つの値だけをとる型です。
+次に紹介する演算子を使うと、比較結果が真偽値として得られます。
+
+---
+
+## 等価演算子
+
+2つの値が等しいかどうかを調べます。
+
+| 演算子 | 意味 | 例 |
+| :-: | :-: | :-: |
+| `===` | 等しい | `1 === 1` → `true` |
+| `!==` | 等しくない | `1 !== 2` → `true` |
+
+:::caution
+`===` は値と**型**が両方一致するときだけ `true` になります。`1 === "1"` は `false` です（片方が数値、もう片方が文字列のため）。
+:::
+
+<CodePreview>
+```javascript
+console.log(1 === 1);        // 出力: true
+console.log(1 === "1");      // 出力: false （型が違う）
+console.log("abc" === "abc"); // 出力: true
+console.log(1 !== 2);        // 出力: true
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習1">
+
+(1) 次のコードを実行して、それぞれの行がなぜそのように出力されるか考えよ。
+
+```js
+console.log(1 === 1);
+console.log(1 === "1");
+console.log("apple" === "apple");
+console.log(true === 1);
+```
+
+(2) 次のコードの `〇`、`△`、`□` の部分を埋めて、`true` が3回出力されるようにせよ。
+
+```js
+console.log(5 === 〇);     // true になるように
+console.log("7" !== △);   // true になるように
+console.log(false === □);  // true になるように
+```
+
+<Solution>
+
+(1)
+```
+true    ← 値も型も同じ（数値 1 と数値 1）
+false   ← 型が違う（数値 1 と文字列 "1"）
+true    ← 値も型も同じ
+false   ← 型が違う（真偽値 true と数値 1）
+```
+
+(2) 例：`〇` = `5`、`△` = `"8"` など "7" 以外の文字列、`□` = `false`
+
+<CodePreview>
+```javascript
+console.log(5 === 5);        // 出力: true  ← 5 と 5 は等しい
+console.log("7" !== "8");    // 出力: true  ← "7" と "8" は等しくない
+console.log(false === false); // 出力: true ← false と false は等しい
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>
+
+---
+
+## 関係演算子
+
+数値の大小を比べます。
+
+| 演算子 | 意味 | 例 |
+| :-: | :-: | :-: |
+| `<` | より小さい | `1 < 2` → `true` |
+| `>` | より大きい | `1 > 2` → `false` |
+| `<=` | 以下 | `1 <= 1` → `true` |
+| `>=` | 以上 | `2 >= 3` → `false` |
+
+<CodePreview>
+```javascript
+console.log(5 < 10);  // 出力: true
+console.log(7 > 7);   // 出力: false
+console.log(8 <= 8);  // 出力: true
+console.log(9 >= 10); // 出力: false
+```
+</CodePreview>
+
+<Exercise title="演習2">
+
+(1) 次のコードを実行して、結果とそのように出力された理由を一行ごとに答えよ。
+
+```js
+console.log(5 < 10);
+console.log(7 > 7);
+console.log(8 <= 8);
+console.log(9 >= 10);
+```
+
+(2) 次のコードの `〇`、`△`、`□` の部分を埋めて、`true` が3回出力されるようにせよ。
+
+```js
+console.log(5 > 〇);    // true になるように
+console.log(10 <= △);   // true になるように
+console.log(8 >= □);    // true になるように
+```
+
+(3) 自然数を `prompt` で入力させて、「10以上」かどうかを判定し、その結果を出力せよ。（10以上なら `true`、それ以外は `false` を出力）
+
+<Solution>
+
+(1)
+```
+true   ← 5 は 10 より小さい
+false  ← 7 は 7 より大きくない（等しいので >) は false）
+true   ← 8 は 8 以下（等しいので <= は true）
+false  ← 9 は 10 以上ではない
+```
+
+(2) 例：`〇` = 4、`△` = 10、`□` = 8
+
+<CodePreview>
+```javascript
+console.log(5 > 4);    // 出力: true
+console.log(10 <= 10); // 出力: true
+console.log(8 >= 8);   // 出力: true
+```
+</CodePreview>
+
+(3)
+<CodePreview>
+```javascript
+let num = Number(prompt("自然数を入力してね"));
+console.log(num >= 10);
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>
+
+---
+
+## 論理演算子
+
+複数の条件を組み合わせるときに使います。
+
+| 演算子 | 意味 | 説明 |
+| :-: | :-: | :-: |
+| `&&` | かつ（AND） | 両方 `true` のとき `true` |
+| `\|\|` | または（OR） | どちらか一方でも `true` なら `true` |
+
+<CodePreview>
+```javascript
+console.log(true && true);   // 出力: true
+console.log(true && false);  // 出力: false
+console.log(false || true);  // 出力: true
+console.log(false || false); // 出力: false
+
+// 組み合わせ例：5以上 かつ 10以下
+let num = 7;
+console.log(num >= 5 && num <= 10); // 出力: true
+```
+</CodePreview>
+
+---
+
+## 論理否定演算子
+
+`!` を使うと、真偽値を反転できます。
+
+| 式 | 結果 |
+| :-: | :-: |
+| `!true` | `false` |
+| `!false` | `true` |
+
+<CodePreview>
+```javascript
+console.log(!true);  // 出力: false
+console.log(!false); // 出力: true
+
+// 条件全体を反転する例
+let value = 5;
+console.log(!(value === 5)); // 出力: false （value === 5 は true → その逆）
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3">
+
+(1) 次のコードを実行して、各行の出力結果とその理由を一行ごとに答えよ。
+
+```js
+console.log(true && true);
+console.log(true && false);
+console.log(false || true);
+console.log(false || false);
+```
+
+(2) 自然数を `prompt` で入力させて、「5以下 または 10以上」かどうかを判定し、結果（`true` か `false`）を出力せよ。
+
+例）`3` を入力 → `true`、`7` を入力 → `false`、`12` を入力 → `true`
+
+<Solution>
+
+(1)
+```
+true   ← 両方 true なので true
+false  ← 片方が false なので false
+true   ← 片方が true なので true
+false  ← 両方 false なので false
+```
+
+(2)
+<CodePreview>
+```javascript
+let num = Number(prompt("数値を入力してね"));
+
+// 5以下 または 10以上
+console.log(num <= 5 || num >= 10);
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>

@@ -2,115 +2,22 @@
 title: イベント
 ---
 
+## defer と document.querySelector
 
-## 今日の学習はこんなところで使うよ
+HTML 内の要素を JavaScript で操作するには、HTML の解析が終わった後に JavaScript を実行する必要があります。
+外部 JS ファイルを読み込む `<script>` タグに `defer` をつけると、HTML の解析が終わった後に実行されます。
 
-この章で学ぶイベントは、ユーザーのクリックやマウス操作に応じてページの見た目や動作を変える機能で使います。
-実際のウェブサイトの「いいねボタン」や「画像ギャラリーのホバー表示」で使われる場面をイメージしてください。
-
-実際に使われていそうなサイトの例（代表例）:
-
-- YouTube（公開ページで「いいねボタン」「チャンネル登録ボタン」が確認できます）: https://www.youtube.com/
-  - 使われる箇所: 動画下の「いいね」ボタンクリック → click イベントで数値を更新
-- Amazon.co.jp（商品画像にマウスを乗せると拡大表示される）: https://www.amazon.co.jp/
-  - 使われる箇所: 商品画像にマウスを乗せる → mouseenter イベントで画像を拡大
-
-### 例1: いいねボタン（ボタンをクリックして数を増やす）
-
-<CodePreview
-  htmlVisible={false}
-  jsVisible={false}
-  cssVisible={false}
-  previewVisible={true}>
 ```html
-<button>❤️ 0 いいね</button>
+<script src="index.js" defer></script>
 ```
 
-```css
-button {
-  padding: 10px 20px;
-  background-color: #ff4081;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 18px;
-}
+要素を取得するには `document.querySelector` を使います。引数には CSS セレクタを指定します。
+ID で指定する場合は `"#ID名"` の形式で書きます。
+
+```js
+// id が "abc" の要素を取得する
+let abcYoso = document.querySelector("#abc");
 ```
-
-```javascript
-// いいねボタンがクリックされたら数を増やす
-let buttonYoso = document.querySelector("button");
-let count = 0;
-
-buttonYoso.addEventListener("click", function() {
-  count = count + 1;
-  buttonYoso.innerText = "❤️ " + count + " いいね";
-});
-```
-</CodePreview>
-
-### 例2: ヘルプアイコン（マウスを乗せるとヒントが表示される）
-
-<CodePreview
-  htmlVisible={false}
-  jsVisible={false}
-  cssVisible={false}
-  previewVisible={true}>
-```html
-<div class="help-container">
-  <div class="help-icon">?</div>
-  <div class="tooltip">ヒント: 詳細なヒント</div>
-</div>
-```
-
-```css
-.help-container {
-  display: inline-block;
-  position: relative;
-  padding: 50px;
-}
-.help-icon {
-  width: 40px;
-  height: 40px;
-  background-color: #4CAF50;
-  color: white;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 24px;
-}
-.tooltip {
-  position: absolute;
-  top: 50%;
-  left: 100px;
-  transform: translateY(-50%);
-  background-color: #333;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 4px;
-  white-space: nowrap;
-  font-size: 14px;
-  opacity: 0;
-  pointer-events: none;
-}
-```
-
-```javascript
-// ヘルプアイコンにマウスを乗せたらヒントを表示
-let icon = document.querySelector(".help-icon");
-let tooltip = document.querySelector(".tooltip");
-
-icon.addEventListener("mouseenter", function() {
-  tooltip.style.opacity = "1";
-});
-
-icon.addEventListener("mouseleave", function() {
-  tooltip.style.opacity = "0";
-});
-```
-</CodePreview>
 
 ---
 
@@ -301,339 +208,117 @@ divYoso.addEventListener("click", function() {
 
 ---
 
-## mouseenter イベント
+## フォーム入力値の取得（.value）
 
-**mouseenter** イベントは、マウスカーソルが要素の上に乗ったときに発生します。
-
-```js
-要素.addEventListener("mouseenter", function() {
-  // マウスが乗ったときの処理
-});
-```
-
-<CodePreview>
-```html
-<div></div>
-<p>マウスを乗せてください</p>
-```
-
-```css
-div {
-  width: 150px;
-  height: 150px;
-  background-color: lightgreen;
-}
-```
-
-```javascript
-// マウスが乗ったら、ステータスメッセージを変更
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
-
-divYoso.addEventListener("mouseenter", function() {
-  pYoso.innerText = "マウスが乗りました";
-});
-```
-</CodePreview>
-
-<CodePreview>
-```html
-<div></div>
-```
-
-```css
-div {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-}
-```
-
-```javascript
-// マウスが乗ったら、背景色を黄色に変更
-let divYoso = document.querySelector("div");
-
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.backgroundColor = "yellow";
-});
-```
-</CodePreview>
-
----
-
-<Exercise title="演習3">
-
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
-
-> div要素にマウスが乗ったら、形を円に変更
-
-<CodePreview
-  sourceId="演習3"
-  htmlVisible={true}
-  jsVisible={false}
-  previewVisible={true}>
-```html
-<div></div>
-```
-
-```css
-div {
-  width: 100px;
-  height: 100px;
-  background-color: lightcoral;
-}
-```
-
-```javascript
-// マウスが乗ったときの処理
-let divYoso = document.querySelector("div");
-
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.borderRadius = "50%";
-});
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="演習3"/>
-</Solution>
-</Exercise>
-
----
-
-## mouseleave イベント
-
-**mouseleave** イベントは、マウスカーソルが要素の上から離れたときに発生します。
+`input` 要素に入力された値は、`.value` プロパティで取得できます。
 
 ```js
-要素.addEventListener("mouseleave", function() {
-  // マウスが離れたときの処理
-});
+let inputYoso = document.querySelector("input");
+let nyuryokuChi = inputYoso.value; // 入力された値を取得
 ```
 
 <CodePreview>
 ```html
-<div></div>
-<p>マウスを乗せてから離してください</p>
-```
-
-```css
-div {
-  width: 150px;
-  height: 150px;
-  background-color: blue;
-}
+<input type="text" placeholder="名前を入力">
+<button>表示</button>
+<p></p>
 ```
 
 ```javascript
-// マウスが離れたら、メッセージを変更
-let divYoso = document.querySelector("div");
+// ボタンがクリックされたら入力値を取得して表示する
+let inputYoso = document.querySelector("input");
+let buttonYoso = document.querySelector("button");
 let pYoso = document.querySelector("p");
 
-divYoso.addEventListener("mouseleave", function() {
-  pYoso.innerText = "マウスが離れました";
+buttonYoso.addEventListener("click", function() {
+    // .value で入力されたテキストを取得する
+    let nyuryokuChi = inputYoso.value;
+    pYoso.innerText = "入力された値: " + nyuryokuChi;
 });
 ```
 </CodePreview>
 
----
+:::caution
+`.value` で取得した値は **文字列**（テキスト）です。数値として計算するには `Number()` で変換する必要があります。
 
-## 複数のイベントを組み合わせる
-
-mouseenter と mouseleave を組み合わせると、マウスが乗ったときと離れたときで違う動作をさせることができます。
-
-<CodePreview>
-```html
-<div></div>
-<p>マウスを乗せてみてください</p>
+```js
+let inputYoso = document.querySelector("input");
+let suuji = Number(inputYoso.value); // 文字列 → 数値に変換
 ```
-
-```css
-div {
-  width: 150px;
-  height: 150px;
-  background-color: lightblue;
-}
-```
-
-```javascript
-// マウスが乗ったときと離れたときで動作を変える
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
-
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.backgroundColor = "orange";
-  pYoso.innerText = "マウスが乗っています";
-});
-
-divYoso.addEventListener("mouseleave", function() {
-  divYoso.style.backgroundColor = "lightblue";
-  pYoso.innerText = "マウスが離れました";
-});
-```
-</CodePreview>
+:::
 
 ---
 
-<Exercise title="演習4">
+<Exercise title="演習5">
 **body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
 
-> div要素にマウスが乗っているとき  
-> &nbsp;&nbsp;背景色 → "lightcoral"  
-> &nbsp;&nbsp;p要素の中身 → "ステータス: ホバー中"  
-> マウスが離れたとき  
-> &nbsp;&nbsp;背景色 → "lightgray"  
-> &nbsp;&nbsp;p要素の中身 → "ステータス: 待機中"
+> ボタンがクリックされたら、input要素に入力された文字を p要素に表示する
 
 <CodePreview
-  sourceId="演習4"
+  sourceId="演習5"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
 ```html
-<div></div>
-<p>ステータス: 待機中</p>
-```
-
-```css
-div {
-  width: 160px;
-  height: 160px;
-  background-color: lightgray;
-}
+<input type="text" placeholder="テキストを入力">
+<button>表示</button>
+<p>まだ入力されていません</p>
 ```
 
 ```javascript
-// マウスが乗ったときと離れたときの処理
-let divYoso = document.querySelector("div");
+// ボタンがクリックされたら入力値をpに表示する
+let inputYoso = document.querySelector("input");
+let buttonYoso = document.querySelector("button");
 let pYoso = document.querySelector("p");
 
-divYoso.addEventListener("mouseenter", function() {
-  divYoso.style.backgroundColor = "lightcoral";
-  pYoso.innerText = "ステータス: ホバー中";
-});
-
-divYoso.addEventListener("mouseleave", function() {
-  divYoso.style.backgroundColor = "lightgray";
-  pYoso.innerText = "ステータス: 待機中";
+buttonYoso.addEventListener("click", function() {
+    pYoso.innerText = inputYoso.value;
 });
 ```
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習4"/>
+<CodePreview sourceId="演習5"/>
 </Solution>
 </Exercise>
 
 ---
 
-<Exercise title="演習4-発展1">
+<Exercise title="演習6（料金計算）">
 **body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
 
-> - マウスが div 要素に乗ったとき: 背景色を "lightcoral" に、p 要素の中身を "ステータス: ホバー中" に変更する。  
-> - マウスが div 要素から離れたとき: 背景色を "lightgray" に戻し、p 要素の中身を "ステータス: 待機中" に戻す。  
-> - div 要素をクリックしたとき: 背景色を "gold" に、p 要素の中身を "ステータス: 選択済み" に変更する。  
-> - クリック後は、マウスの乗り降りによる色やテキストの変化を無効にする（選択状態を維持）。
+> - 「時間」の入力欄に数値を入力してボタンをクリックすると、料金（時間 × 500円）を計算して表示する
+> - 表示例：「料金: 1500円」（3時間の場合）
 
 <CodePreview
-  sourceId="演習4-発展1"
+  sourceId="演習6"
   htmlVisible={true}
   jsVisible={false}
   previewVisible={true}>
 ```html
-<div></div>
-<p>ステータス: 待機中</p>
-```
-
-```css
-div {
-  width: 160px;
-  height: 160px;
-  background-color: lightgray;
-}
+<label>時間: <input type="number" id="timeInput" placeholder="例: 3"></label>
+<button id="calcBtn">計算</button>
+<p id="resultText">料金: 0円</p>
 ```
 
 ```javascript
-// 状態管理を含むイベント処理
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
-let isSelected = false;
+// 入力欄・ボタン・結果表示をそれぞれ取得する
+let timeInputYoso = document.querySelector("#timeInput");
+let calcBtnYoso = document.querySelector("#calcBtn");
+let resultTextYoso = document.querySelector("#resultText");
 
-divYoso.addEventListener("mouseenter", function() {
-  if (!isSelected) {
-    divYoso.style.backgroundColor = "lightcoral";
-    pYoso.innerText = "ステータス: ホバー中";
-  }
-});
-
-divYoso.addEventListener("mouseleave", function() {
-  if (!isSelected) {
-    divYoso.style.backgroundColor = "lightgray";
-    pYoso.innerText = "ステータス: 待機中";
-  }
-});
-
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "gold";
-  pYoso.innerText = "ステータス: 選択済み";
-  isSelected = true;
+calcBtnYoso.addEventListener("click", function() {
+    // 入力値を数値に変換する
+    let jikan = Number(timeInputYoso.value);
+    // 料金を計算する（1時間あたり500円）
+    let ryokin = jikan * 500;
+    // 料金を表示する
+    resultTextYoso.innerText = "料金: " + ryokin + "円";
 });
 ```
 </CodePreview>
 
 <Solution>
-<CodePreview sourceId="演習4-発展1"/>
-</Solution>
-</Exercise>
-
----
-
-<Exercise title="演習4-発展2">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
-
-> - div 要素をクリックするたびに、p 要素に「クリック回数: ○回」と表示する（クリック回数をカウントする）。
-> - クリック回数が3回になったとき、div 要素の背景色を "gold" に変更し、p 要素の中身を "完了しました" に変更する。
-> - 3回に達した後は、それ以上クリックしても何も変化しない。
-
-<CodePreview
-  sourceId="演習4-発展2"
-  htmlVisible={true}
-  jsVisible={false}
-  previewVisible={true}>
-```html
-<div></div>
-<p>クリック回数: 0回</p>
-```
-
-```css
-div {
-  width: 160px;
-  height: 160px;
-  background-color: lightblue;
-}
-```
-
-```javascript
-// カウンター機能を含むイベント処理
-let divYoso = document.querySelector("div");
-let pYoso = document.querySelector("p");
-let count = 0;
-
-divYoso.addEventListener("click", function() {
-  if (count < 3) {
-    count++;
-    pYoso.innerText = "クリック回数: " + count + "回";
-    
-    if (count === 3) {
-      divYoso.style.backgroundColor = "gold";
-      pYoso.innerText = "完了しました";
-    }
-  }
-});
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="演習4-発展2"/>
+<CodePreview sourceId="演習6"/>
 </Solution>
 </Exercise>

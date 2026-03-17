@@ -1,0 +1,265 @@
+---
+title: 型・文字列結合・prompt
+---
+
+## 文字列の結合
+
+`+` 演算子を使うと、2つの文字列を1つにつなげられます。
+
+```js
+"文字列1" + "文字列2"
+```
+
+<CodePreview>
+```javascript
+let firstName = "山田";
+let lastName = "太郎";
+
+// 文字列どうしを結合する
+console.log(firstName + lastName); // 出力: 山田太郎
+```
+</CodePreview>
+
+### 数値と文字列の結合
+
+数値と文字列を `+` でつなぐと、数値が文字列に変換されてから結合されます。
+
+<CodePreview>
+```javascript
+// 円周率
+let pi = 3.14;
+
+console.log("円周率は約" + pi);        // 出力: 円周率は約3.14
+console.log("得点は" + 80 + "点です"); // 出力: 得点は80点です
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習1">
+
+(1) 次のコードを完成させて、「今日の天気は雨です」と表示されるようにせよ。変数 `tenki` を必ず使うこと。
+
+```js
+let tenki = "雨";
+
+// ここにコードを追加
+```
+
+(2) 次のコードを完成させて、「私は18歳の埼玉太郎です」と表示されるようにせよ。変数 `familyName`、`givenName`、`age` を必ず使うこと。
+
+```js
+let familyName = "埼玉";
+let givenName = "太郎";
+let age = 18;
+
+// ここにコードを追加
+```
+
+<Solution>
+<CodePreview>
+```javascript
+// (1)
+let tenki = "雨";
+console.log("今日の天気は" + tenki + "です"); // 出力: 今日の天気は雨です
+
+// (2)
+let familyName = "埼玉";
+let givenName = "太郎";
+let age = 18;
+console.log("私は" + age + "歳の" + familyName + givenName + "です"); // 出力: 私は18歳の埼玉太郎です
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習1-発展">
+
+次のコードを完成させて、「3 + 5 = 8」の形式で表示されるようにせよ。変数 `A`、`B` を必ず使うこと。
+
+```js
+let A = 3;
+let B = 5;
+
+// ここにコードを追加
+```
+
+<Solution>
+<CodePreview>
+```javascript
+let A = 3;
+let B = 5;
+
+console.log(A + " + " + B + " = " + (A + B)); // 出力: 3 + 5 = 8
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## 型（タイプ）
+
+**型**とは、値の種類のことです。JavaScriptには主に次の型があります。
+
+| 型 | 例 |
+| :-: | :-: |
+| 文字列（String） | `"あいうえお"` |
+| 数値（Number） | `123`、`11.7` |
+| 真偽値（Boolean） | `true`、`false` |
+| 未定義（Undefined） | — |
+| 空（Null） | — |
+| オブジェクト（Object） | — |
+
+```js
+let text  = "hello"; // 文字列 (String)
+let score = 95;      // 数値 (Number)
+let flag  = true;    // 真偽値 (Boolean)
+```
+
+<Exercise title="演習2">
+
+次の変数 `value` の値の型を答えよ。
+
+(1)
+```js
+let value = 15;
+```
+
+(2)
+```js
+let value = "15";
+```
+
+<Solution>
+
+(1) `15` は引用符なしの数値なので、**数値（Number）型**。
+
+(2) `"15"` は引用符で囲まれているので、**文字列（String）型**。
+
+</Solution>
+
+</Exercise>
+
+---
+
+## prompt
+
+`prompt` は、**ユーザーに何かを入力させたいとき**に使います。
+
+```js
+prompt(メッセージ)
+```
+
+- ユーザーが **OK** を押すと、入力内容が**文字列型**で返ってきます。
+- ユーザーが **キャンセル** を押すと `null` が返ってきます。
+
+<CodePreview>
+```javascript
+// 入力内容を変数 answer に入れる
+let answer = prompt("お名前を入力してね");
+
+// 入力した名前を使って出力する
+console.log("こんにちは、" + answer + "さん！"); // 出力例: こんにちは、田中さん！
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3">
+
+ユーザーに出身地を聞いて、「〇〇出身なんですね！」と表示せよ。（〇〇には入力した内容が入る）
+
+例）「北海道」と入力した場合：`北海道出身なんですね！`
+
+<Solution>
+<CodePreview>
+```javascript
+let shusshin = prompt("出身地を入力してね");
+
+console.log(shusshin + "出身なんですね！");
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## 型変換：文字列 → 数値
+
+`prompt` の入力値は常に**文字列型**です。計算に使うには、`Number()` で数値型に変換する必要があります。
+
+```js
+Number(文字列)
+```
+
+<CodePreview>
+```javascript
+// 入力は文字列型 → "3" のような文字列が入ってくる
+let input = prompt("数値を入力してください");
+
+// このまま足し算すると文字列結合になってしまう
+console.log(input + 10); // 出力例: 310 （文字列の "3" と 10 がくっつく）
+
+// Number() で数値型に変換してから計算する
+let num = Number(input);
+console.log(num + 10);   // 出力例: 13
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習4">
+
+(1) 数値を `prompt` で入力させて、その数値に `10` を足した数を出力せよ。
+
+例）`3` を入力した場合：`13` を出力
+
+(2) 数値を `prompt` で入力させて、「〇〇に3を足すと、△△です。」という形式の文章を出力せよ。（〇〇は入力した数値、△△は〇〇に3を足した数）
+
+<Solution>
+
+(1)
+<CodePreview>
+```javascript
+let input = prompt("数値を入力してください");
+let num = Number(input);
+
+console.log(num + 10);
+```
+</CodePreview>
+
+(2)
+<CodePreview>
+```javascript
+let input = prompt("数値を入力してください");
+let num = Number(input);
+
+console.log(num + "に3を足すと、" + (num + 3) + "です。");
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習4-発展">
+
+`prompt` を3回使って3つの数を入力させ、それらの合計を出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+let a = Number(prompt("1つ目の数を入力してね"));
+let b = Number(prompt("2つ目の数を入力してね"));
+let c = Number(prompt("3つ目の数を入力してね"));
+
+console.log(a + b + c);
+```
+</CodePreview>
+</Solution>
+
+</Exercise>

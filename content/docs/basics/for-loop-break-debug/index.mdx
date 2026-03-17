@@ -1,0 +1,308 @@
+---
+title: for ループ・break・デバッグ
+---
+
+## ブレークポイント（デバッグ）
+
+プログラムがうまく動かないとき、**ブレークポイント**を使うとどこで何が起きているか確認できます。
+
+### 設定方法
+
+1. Chrome のデベロッパーツール（F12 または 右クリック→検証）を開く。
+2. **[ソース]**（または **Sources**）タブを開く。
+3. 止めたい行の**行番号をクリック**すると青くなり、ブレークポイントが設定される。
+4. ページをリロード（再読み込み）すると、その行の直前で処理が一時停止し、行が黄色くなる。
+5. 右上の **ステップオーバーボタン**（↓）を押すと、1行ずつ処理を確認できる。右側の **スクリプト** エリアで変数の現在の値も見られる。
+
+:::tip
+うまく動かないときは、ブレークポイントで止めて変数の値を1行ずつ確認してみましょう。
+:::
+
+---
+
+## for 文（繰り返し処理）
+
+同じ処理を繰り返すときに使います。
+
+```js
+for (初期化; 判定; 後処理) {
+    // 繰り返す処理
+}
+```
+
+- **初期化**：最初に1回だけ実行（例：`let i = 1`）
+- **判定**：この条件が `true` の間は繰り返す（例：`i <= 5`）
+- **後処理**：繰り返し処理のあとに毎回実行（例：`i++`）
+
+<CodePreview>
+```javascript
+// 1 から 5 を出力する
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+// 出力:
+// 1
+// 2
+// 3
+// 4
+// 5
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習1">
+
+次の問いを for 文を使って答えよ。
+
+1. `「1」「2」「3」` をこの順でそれぞれ出力せよ。
+2. `「0」「1」「2」「3」` をこの順でそれぞれ出力せよ。
+3. `「Hello」` を10回出力せよ。
+4. 「1以上の整数を入力してね」という内容で `prompt` を出し、1から入力された整数までを出力せよ。（例）入力が `5` なら `「1」「2」「3」「4」「5」` を出力
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. 1から3を出力
+for (let i = 1; i <= 3; i++) {
+    console.log(i);
+}
+
+// 2. 0から3を出力
+for (let i = 0; i <= 3; i++) {
+    console.log(i);
+}
+
+// 3. "Hello" を10回出力
+for (let i = 1; i <= 10; i++) {
+    console.log("Hello");
+}
+
+// 4. 1から入力された整数まで出力
+let n = Number(prompt("1以上の整数を入力してね"));
+for (let i = 1; i <= n; i++) {
+    console.log(i);
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習1-発展">
+
+次の問いを for 文を使って答えよ。
+
+1. 「自然数を入力してね」という内容で `prompt` を出し、「Hello」をその回数出力せよ。ただし、3回目だけは「こんにちは！」を出力せよ。
+2. 「自然数を入力してね」という内容で `prompt` を出し、1から入力された整数までの数を順番に出力せよ。ただし、入力された数が10より大きいときは「10以下の数を入れてね」という内容のみ出力して終了すること。
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. Hello を n 回出力（3回目だけ「こんにちは！」）
+let n = Number(prompt("自然数を入力してね"));
+for (let i = 1; i <= n; i++) {
+    if (i === 3) {
+        console.log("こんにちは！");
+    } else {
+        console.log("Hello");
+    }
+}
+
+// 2. 1 から n まで順番に出力（10より大きければメッセージだけ出して終了）
+let m = Number(prompt("自然数を入力してね"));
+if (m > 10) {
+    console.log("10以下の数を入れてね");
+} else {
+    for (let i = 1; i <= m; i++) {
+        console.log(i);
+    }
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## for 文の活用例1：合計の計算
+
+変数に値を積み重ねていくことで、合計を求められます。
+
+<CodePreview>
+```javascript
+// 1〜5 の合計を求める
+let sum = 0;
+
+for (let i = 1; i <= 5; i++) {
+    sum = sum + i; // sum に i を足していく
+}
+
+console.log(sum); // 出力: 15
+```
+</CodePreview>
+
+---
+
+## for 文の活用例2：文字の連結
+
+<CodePreview>
+```javascript
+// ☆ を5つ横に並べて出力する
+let stars = "";
+
+for (let i = 1; i <= 5; i++) {
+    stars = stars + "☆"; // 末尾に ☆ を追加
+}
+
+console.log(stars); // 出力: ☆☆☆☆☆
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習2">
+
+for 文を使って次の問いを答えよ。
+
+1. 1〜50 までの整数の和を求めよ。（正解：`1275`）
+2. 自分の好きな文字を横方向に10個並べたものを出力せよ。（例：`水水水水水水水水水水`）
+3. 1〜10 までの整数のうち、2と7以外を小さい順に出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. 1〜50 の和
+let sum = 0;
+for (let i = 1; i <= 50; i++) {
+    sum = sum + i;
+}
+console.log(sum); // 出力: 1275
+
+// 2. 好きな文字を10個並べる
+let result = "";
+for (let i = 1; i <= 10; i++) {
+    result = result + "水";
+}
+console.log(result); // 出力: 水水水水水水水水水水
+
+// 3. 1〜10のうち 2と7以外を出力
+for (let i = 1; i <= 10; i++) {
+    if (i !== 2 && i !== 7) {
+        console.log(i);
+    }
+}
+// 出力: 1, 3, 4, 5, 6, 8, 9, 10
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習2-発展">
+
+for 文を使って次の問いを答えよ。
+
+1. 1から10までの整数のうち、3の倍数以外を小さい順に出力せよ。（ヒント：3の倍数とは3で割った余りが0の数。Xを3で割った余りは `X % 3` で計算できる）
+2. `「*****」` を3行出力せよ。ただし `「*****」` も for 文で作ること。（ヒント：for 文の中にさらに for 文を使う）
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. 1〜10 のうち 3 の倍数以外を出力
+for (let i = 1; i <= 10; i++) {
+    // 3 で割り切れない（3の倍数でない）とき出力
+    if (i % 3 !== 0) {
+        console.log(i);
+    }
+}
+// 出力: 1, 2, 4, 5, 7, 8, 10
+
+// 2. 「*****」を3行出力（ネストしたfor文）
+for (let row = 1; row <= 3; row++) {
+    // 1行分の「*」を連結する
+    let line = "";
+    for (let col = 1; col <= 5; col++) {
+        line = line + "*";
+    }
+    console.log(line);
+}
+// 出力:
+// *****
+// *****
+// *****
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## break 文
+
+for 文の中で `break;` を書くと、その時点で繰り返しを終了してループを抜けられます。
+
+<CodePreview>
+```javascript
+for (let i = 1; i <= 5; i++) {
+    // i が 4 になったらループを終了する
+    if (i === 4) {
+        break;
+    }
+    console.log(i);
+}
+// 出力:
+// 1
+// 2
+// 3
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3">
+
+for 文を使って次の問いを答えよ。
+
+1. 10 から 1 までの整数を、大きい順に出力せよ。（`10`, `9`, `8`, …, `1`）
+2. 1〜9 の奇数を出力せよ。（`1`, `3`, `5`, `7`, `9`）
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. 10から1を大きい順に出力
+for (let i = 10; i >= 1; i--) {
+    console.log(i);
+}
+
+// 2. 1〜9の奇数を出力（2ずつ増やす）
+for (let i = 1; i <= 9; i += 2) {
+    console.log(i);
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習3-発展">
+
+「自然数を入力してね」という内容で `prompt` を出し、その数から 1 まで、1 ずつ減らしながら出力せよ。
+
+例）`5` を入力した場合：`5`、`4`、`3`、`2`、`1` の順に出力
+
+<Solution>
+<CodePreview>
+```javascript
+let n = Number(prompt("自然数を入力してね"));
+
+for (let i = n; i >= 1; i--) {
+    console.log(i);
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>

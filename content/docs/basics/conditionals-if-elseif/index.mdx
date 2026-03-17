@@ -1,0 +1,223 @@
+---
+title: 条件分岐（if / else if）
+---
+
+## 条件分岐とは？
+
+条件によって実行する処理を切り替えることを**条件分岐**といいます。
+「点数が80点以上なら合格メッセージを表示する」「入力値によって返答を変える」といった場面で使います。
+
+---
+
+## if 文
+
+条件が **真（true）** のときだけ、波括弧 `{}` 内の処理を実行します。
+
+```js
+if (条件) {
+    // 条件が true のときの処理
+}
+```
+
+<CodePreview>
+```javascript
+let answer = prompt("日本一高い山は？");
+
+if (answer === "富士山") {
+    console.log("正解！"); // answer が "富士山" のときだけ出力される
+}
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習1">
+
+「この授業は何言語の授業？」という質問を `prompt` で出し、入力内容が `"JavaScript"` なら `「正解」` を出力せよ。（不正解の場合は何も起こらない）
+
+<Solution>
+<CodePreview>
+```javascript
+let answer = prompt("この授業は何言語の授業？");
+
+if (answer === "JavaScript") {
+    console.log("正解");
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習1-発展">
+
+「JavaScriptのファイルの拡張子は？」という質問を `prompt` で出し、入力内容が `"js"` または `".js"` の場合に「正解」と出力せよ。（不正解の場合は何も起こらない）
+
+<Solution>
+<CodePreview>
+```javascript
+let answer = prompt("JavaScriptのファイルの拡張子は？");
+
+if (answer === "js" || answer === ".js") {
+    console.log("正解");
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## if...else 文
+
+条件が **真のとき** と **偽のとき** で、それぞれ別の処理を実行できます。
+
+```js
+if (条件) {
+    // true のときの処理
+} else {
+    // false のときの処理
+}
+```
+
+<CodePreview>
+```javascript
+let input = prompt("helloを入力して下さい");
+
+if (input === "hello") {
+    console.log("helloだね"); // "hello" を入力したとき
+} else {
+    console.log("helloじゃないよ"); // それ以外のとき
+}
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習2">
+
+「世界一高い山は？」という内容で `prompt` を出し、入力内容が `"エベレスト"` であれば `「正解！」`、そうでなければ `「不正解」` と出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+let answer = prompt("世界一高い山は？");
+
+if (answer === "エベレスト") {
+    console.log("正解！");
+} else {
+    console.log("不正解");
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習2-発展">
+
+「1〜9の数値を入力してね」という内容で `prompt` を出し、あらかじめ決めた3つの数値（例：2、5、7）のときは「あたり」、それ以外のときは「はずれ」を出力せよ。（3つの数値は自分で好きに設定してよい）
+
+<Solution>
+<CodePreview>
+```javascript
+let num = Number(prompt("1〜9の数値を入力してね"));
+
+// 2、5、7 をあたりとする例
+if (num === 2 || num === 5 || num === 7) {
+    console.log("あたり");
+} else {
+    console.log("はずれ");
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+## else if 文
+
+「〇〇のとき」→「そうじゃなくて△△のとき」→「それ以外のとき」のように、**3つ以上の分岐**を作りたい場合は `else if` を使います。
+
+```js
+if (条件1) {
+    // 条件1 が true のときの処理
+} else if (条件2) {
+    // 条件1 が false かつ 条件2 が true のときの処理
+} else {
+    // どの条件も false のときの処理
+}
+```
+
+<CodePreview>
+```javascript
+let number = Number(prompt("数値を入力して下さい"));
+
+if (number >= 100) {
+    console.log("100以上");
+} else if (number >= 50) {
+    console.log("50以上100未満");
+} else {
+    console.log("50未満");
+}
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習3">
+
+テストの点数（0〜100）を `prompt` で入力させて、次のルールで結果を出力せよ。
+
+| 点数 | 出力 |
+| :-: | :-: |
+| 90点以上 | `A` |
+| 80〜89点 | `B` |
+| 60〜79点 | `C` |
+| それ以外 | `E` |
+
+<Solution>
+<CodePreview>
+```javascript
+let score = Number(prompt("点数を入力してね（0〜100）"));
+
+if (score >= 90) {
+    console.log("A");
+} else if (score >= 80) {
+    console.log("B");
+} else if (score >= 60) {
+    console.log("C");
+} else {
+    console.log("E");
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習3-発展">
+
+2つの数値を `prompt` で入力させて、両方が同じ数値なら `「同じです」` と出力し、違う数値なら大きい方の数を出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+let a = Number(prompt("1つ目の数を入力してね"));
+let b = Number(prompt("2つ目の数を入力してね"));
+
+if (a === b) {
+    console.log("同じです");
+} else if (a > b) {
+    console.log(a);
+} else {
+    console.log(b);
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>

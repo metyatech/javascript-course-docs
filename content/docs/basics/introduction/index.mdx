@@ -58,7 +58,7 @@ function popAlignedRows(field) {
 
 ## インストール作業
 
-「授業を受けるために必要な環境」の資料を見る
+[環境構築の資料](/docs/materials/environment-setup)を参照してください。
 
 ---
 
@@ -187,6 +187,42 @@ HTMLはWebページを作るための言語です。
 </html>
 ```
 </CodePreview>
+
+## JavaScript ファイルを外部に分ける
+
+これまでは `<script>` タグの中に直接 JavaScript を書きました。
+コードが増えてきたときは、JavaScript のコードを別のファイル（`.js` ファイル）に分けて書くのが一般的です。
+
+### 外部ファイルを読み込む方法
+
+1. `.js` ファイルを作成する（例：`index.js`）
+2. HTML の `<head>` 内の `<script>` タグに `src` 属性でファイル名を指定する
+
+```html
+<script src="index.js"></script>
+```
+
+#### ファイル構成の例
+
+```
+フォルダ/
+├── index.html
+└── index.js
+```
+
+**index.html の `<head>` の中：**
+
+```html
+<script src="index.js"></script>
+```
+
+**index.js：**
+
+```js
+console.log("外部ファイルから読み込まれました");
+```
+
+---
 
 ## インデント
 コードの左の方に書いた余白のことを「 インデント 」という。

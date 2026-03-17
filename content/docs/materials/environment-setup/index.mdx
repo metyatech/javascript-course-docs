@@ -1,0 +1,89 @@
+---
+title: 環境構築
+---
+
+授業を受けるために必要なソフトウェアをインストールします。
+
+## 必要なソフトウェア・設定
+
+| 設定内容 | 理由 |
+| :-- | :-- |
+| **Google Chrome** のインストール | デベロッパーツールを日本語表記で進めるため |
+| **Visual Studio Code（VSCode）** のインストール | 授業を VSCode を使って進めるため |
+| VSCode 拡張機能：**Japanese Language Pack for VS Code** のインストール | VSCode を日本語表示にするため |
+| VSCode 拡張機能：**Open in browser (TechER)** のインストール | HTML・CSS・JS をブラウザで楽にプレビューするため |
+| VSCode **自動保存**機能をオン | 編集時に自動保存されると便利だから |
+| VSCode **Emmet: Variables** の `lang` を `ja` に設定 | `!` でHTML テンプレートを挿入するとき、`html` タグの `lang` 属性の値を `ja`（日本語）にするため |
+
+---
+
+## 1. Visual Studio Code のインストール
+
+1. [Visual Studio Code 公式サイト](https://code.visualstudio.com/) を開く
+2. 「Download for Mac」ボタンをクリックしてダウンロード
+3. ダウンロードした `.zip` ファイルを展開する
+4. 展開された `Visual Studio Code.app` を **アプリケーション** フォルダに移動する
+5. Launchpad または Spotlight から「Visual Studio Code」を起動する
+
+---
+
+## 2. Google Chrome のインストール
+
+1. [Google Chrome 公式サイト](https://www.google.com/intl/ja/chrome/) を開く
+2. 「Chrome をダウンロード」をクリックしてインストーラーをダウンロード
+3. ダウンロードした `.dmg` ファイルを開き、指示に従ってインストールする
+
+:::info
+Chrome の開発者ツール（デベロッパーツール）を使って JavaScript のエラーや動作を確認します。
+:::
+
+---
+
+## 3. 拡張機能のインストール
+
+### Japanese Language Pack for VS Code
+
+1. VSCode を起動する
+2. 左サイドバーの「拡張機能」アイコン（四角が4つ並んだアイコン）をクリックする
+3. 検索欄に「Japanese Language Pack」と入力する
+4. 「Japanese Language Pack for VS Code」をクリックし、「インストール」を押す
+5. VSCode を再起動すると日本語表示になる
+
+### Open in browser (TechER)
+
+1. 検索欄に「Open in browser」と入力する
+2. 「Open in browser (TechER)」をクリックし、「インストール」を押す
+
+### 使い方
+
+- HTML ファイルを開いた状態で **Option + B** を押すと、Chrome でプレビューが開く
+
+---
+
+## 4. 自動保存の設定
+
+1. VSCode 上部メニューから **[ファイル] > [自動保存]** を選択する
+2. チェックマークがついた状態になれば設定完了
+
+---
+
+## 5. Emmet の lang 設定
+
+1. VSCode 上部メニューから **[Code] > [設定] > [設定]** を開く（または `Cmd + ,`）
+2. 検索欄に「emmet variables」と入力する
+3. **Emmet: Variables** の `lang` の値を `ja` に変更する
+
+---
+
+## 動作確認
+
+インストールが完了したら、次の手順で動作確認を行います。
+
+1. VSCode で適当なフォルダを開き、`index.html` ファイルを作成する
+2. `!` と入力して Enter キー（Return キー）を押し、HTML の雛形を自動入力する（`lang="ja"` になっていれば Emmet 設定OK）
+3. **Option + B** を押してブラウザでプレビューを開く
+4. Chrome が起動し、空白のページが表示されれば成功
+
+:::tip
+上手くいかない場合は、先生に声をかけてください！
+:::

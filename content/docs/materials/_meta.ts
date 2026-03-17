@@ -1,4 +1,5 @@
 const meta = {
+  'environment-setup': {},
   'javascript-basics-supplement': {},
 };
 

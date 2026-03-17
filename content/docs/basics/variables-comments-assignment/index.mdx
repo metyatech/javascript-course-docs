@@ -1,0 +1,178 @@
+---
+title: 変数・コメント・代入
+---
+
+## 変数とは？
+
+変数とは、**値を1つだけ入れておける、名前のついた箱**のようなものです。
+
+### `let` 宣言
+
+```js
+let 変数名 = 値;
+```
+
+- `let` を使って変数を作る（**宣言**する）と同時に、初期値を入れられます。
+- 変数名に使える文字：アルファベット（a–z）、数字（ただし先頭不可）、`_`（アンダースコア）、`$`（ドル記号）
+
+<CodePreview>
+```javascript
+// 名前を変数 name に入れる
+let name = "田中";
+
+// 点数を変数 score に入れる
+let score = 85;
+
+console.log(name);  // 出力: 田中
+console.log(score); // 出力: 85
+```
+</CodePreview>
+
+---
+
+## コメント
+
+コメントとは、**プログラム内に書けるメモ**のことです。実行結果には影響しません。
+
+```js
+// 1行コメント（// 以降の行がコメントになる）
+
+/*
+  複数行にまたがるコメント
+  ここも無視される
+*/
+```
+
+<CodePreview>
+```javascript
+// 変数 greeting を宣言し、あいさつ文を入れる
+let greeting = "こんにちは";
+
+console.log(greeting); // 出力: こんにちは
+```
+</CodePreview>
+
+### コメントアウト
+
+一時的に処理を無効にしたいときに、その行をコメントにすることを**コメントアウト**といいます。
+
+```js
+let value = "テスト";
+// console.log(value); ← この行は実行されない
+console.log("別の処理"); // 出力: 別の処理
+```
+
+---
+
+## 代入
+
+**代入**とは、宣言済みの変数に新しい値を入れなおすことです。代入演算子 `=` を使います。
+
+```js
+変数名 = 新しい値;
+```
+
+<CodePreview>
+```javascript
+// 最初に "晴れ" を入れる
+let weather = "晴れ";
+console.log(weather); // 出力: 晴れ
+
+// "雨" に入れなおす（代入）
+weather = "雨";
+console.log(weather); // 出力: 雨
+```
+</CodePreview>
+
+---
+
+## 数値と数値計算
+
+数値はそのまま書けば使えます（例：`100`、`3.14`）。
+
+| 演算子 | 意味 | 例 |
+| :-: | :-: | :-: |
+| `+` | 足し算 | `3 + 2` → `5` |
+| `-` | 引き算 | `3 - 2` → `1` |
+| `*` | 掛け算 | `3 * 2` → `6` |
+| `/` | 割り算 | `6 / 2` → `3` |
+
+演算の優先順位は算数と同じ（`*` と `/` が先、括弧で囲むと優先）。
+
+<CodePreview>
+```javascript
+let A = 5;
+let B = 3;
+
+console.log(A + B); // 出力: 8
+console.log(A - B); // 出力: 2
+console.log(A * B); // 出力: 15
+console.log(A / B); // 出力: 1.6666666666666667
+
+// 括弧で優先順位を変える
+console.log((A + B) * 2); // 出力: 16
+```
+</CodePreview>
+
+---
+
+<Exercise title="演習1">
+
+(1) 長方形の横幅 `10`（変数名：`width`）と高さ `15`（変数名：`height`）をそれぞれ変数に入れて、長方形の面積を計算し、`console.log` で出力せよ。結果、`150` という数値だけが出ればOK。
+
+(2) 2人のテストの点数 `80`（変数名：`score1`）と `90`（変数名：`score2`）をそれぞれ変数に入れて、平均点を計算し、`console.log` で出力せよ。結果、`85` という数値だけが出ればOK。
+
+(3) 次の計算を JavaScript で実行し、結果を `console.log` で出力せよ。計算に使う数値はそれぞれ変数に入れること。結果、`20` という数値だけが出ればOK。
+
+`(7 + 3) × 2`
+
+<Solution>
+<CodePreview>
+```javascript
+// (1) 長方形の面積
+let width = 10;
+let height = 15;
+let area = width * height;
+console.log(area); // 出力: 150
+
+// (2) 平均点
+let score1 = 80;
+let score2 = 90;
+let average = (score1 + score2) / 2;
+console.log(average); // 出力: 85
+
+// (3) (7+3)×2
+let a = 7;
+let b = 3;
+let c = 2;
+console.log((a + b) * c); // 出力: 20
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+<Exercise title="演習1-発展">
+
+(1) 定価が `1200` 円の商品について、消費税10%を加えた税込価格を求め、`console.log` で出力せよ。定価は `price` という変数に入れること。結果、`1320` という数値だけが出ればOK。
+
+(2) 財布に `1000` 円入っていた。そこから、飲み物に `150` 円、パンに `180` 円を使ったとする。財布に残る金額を計算し、`console.log` で出力せよ。最初の財布の金額は `money`、飲み物の金額は `drink`、パンの金額は `bread` という変数に入れること。結果、`670` という数値だけが出ればOK。
+
+<Solution>
+<CodePreview>
+```javascript
+// (1) 税込価格
+let price = 1200;
+let taxIncluded = price * 1.1;
+console.log(taxIncluded); // 出力: 1320
+
+// (2) 財布の残額
+let money = 1000;
+let drink = 150;
+let bread = 180;
+console.log(money - drink - bread); // 出力: 670
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
