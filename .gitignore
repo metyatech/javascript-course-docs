@@ -36,3 +36,6 @@ pnpm-debug.log*
 
 # TypeScript incremental
 *.tsbuildinfo
+
+# Thread inbox
+.threads.jsonl
