@@ -1,87 +1,82 @@
 ---
-title: イベント
+title: DOM とイベント
 ---
 
-## defer と document.querySelector
+JavaScript から HTML の要素を取得して値を読み書きしたり、クリックなどの「出来事」に反応して処理を実行したりする方法を学びます。
 
-HTML 内の要素を JavaScript で操作するには、HTML の解析が終わった後に JavaScript を実行する必要があります。
+---
+
+## JavaScript で要素を取得するには
+
+HTML の解析が終わった後でないと、JavaScript から要素を取得できません。
 外部 JS ファイルを読み込む `<script>` タグに `defer` をつけると、HTML の解析が終わった後に実行されます。
 
 ```html
 <script src="index.js" defer></script>
 ```
 
-要素を取得するには `document.querySelector` を使います。引数には CSS セレクタを指定します。
-ID で指定する場合は `"#ID名"` の形式で書きます。
+要素を取得するには `document.querySelector` を使います。
 
-```js
-// id が "abc" の要素を取得する
-let abcYoso = document.querySelector("#abc");
-```
+| 関数 | 動作 |
+| :-- | :-- |
+| `document.querySelector(セレクタ)` | 指定した CSS のセレクタに一致する最初の要素を返す |
 
----
-
-## イベントとは
-
-**イベント** とは、「ページの読込完了」、「ユーザーがウェブページ上で操作（クリック、マウス移動など）を行った」などの、何らかの「出来事」のことです。
-JavaScriptを使うと、このような出来事が起きたときに反応して何か処理を実行することができます。
-
-イベントに反応させるには、次のような書き方をします。
-
-```js
-要素.addEventListener("イベント名", function() {
-  // イベントが起きたときに実行する処理
-});
-```
-
----
-
-## click イベント
-
-**click** イベントは、要素がクリックされたときに発生します。
-
-```js
-要素.addEventListener("click", function() {
-  // クリックされたときの処理
-});
-```
+- ID 名で指定する場合は `"#ID名"` の形式で書きます。
 
 <CodePreview>
 ```html
-<button>クリックしてね</button>
-<p>まだクリックされていません</p>
+<input type="text" value="サンプルテキスト" id="abc">
 ```
 
 ```javascript
-// ボタンがクリックされたら、メッセージを変更する
-let buttonYoso = document.querySelector("button");
-let pYoso = document.querySelector("p");
+// id が "abc" の要素を取得する
+let abcYoso = document.querySelector("#abc");
 
-buttonYoso.addEventListener("click", function() {
-  pYoso.innerText = "ボタンがクリックされました！";
-});
+// 要素を出力してみる
+console.log(abcYoso);
+
+// .value で入力値を取得する
+console.log(abcYoso.value);
 ```
 </CodePreview>
 
+:::caution
+`.value` で取得した値は**文字列型**です。数値として計算するには `Number()` で変換してください。
+:::
+
+---
+
+## イベント
+
+「ボタンをクリックしたとき」のように「○○したとき」を表すものを**イベント**といいます。
+`addEventListener` を使うと、○○が起きたときに××を行う、という処理を設定できます。
+
+| 関数 | 動作 |
+| :-- | :-- |
+| `要素.addEventListener(タイプ, コールバック関数)` | 要素に対して指定したタイプのイベントが起きた時、コールバック関数を呼び出す |
+
+代表的なイベントタイプ：
+
+| タイプ | 意味 |
+| :-: | :-: |
+| `click` | クリックしたとき |
+| `input` | 入力値を変更したとき |
+| `keydown` | キーを押したとき |
+| `keyup` | キーを離したとき |
+
 <CodePreview>
 ```html
-<div></div>
-```
-
-```css
-div {
-  width: 100px;
-  height: 100px;
-  background-color: lightblue;
-}
+<input type="text" value="サンプルテキスト" id="abc">
 ```
 
 ```javascript
-// ボックスをクリックしたら、背景色を赤に変更
-let divYoso = document.querySelector("div");
+// テキストボックスの要素を取得
+let abcYoso = document.querySelector("#abc");
 
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "red";
+// テキストボックスをクリックしたとき
+abcYoso.addEventListener("click", function () {
+    // これを行う
+    console.log("テキストボックスの値は：" + abcYoso.value);
 });
 ```
 </CodePreview>
@@ -89,27 +84,40 @@ divYoso.addEventListener("click", function() {
 ---
 
 <Exercise title="演習1">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
 
-> button要素がクリックされたら、p要素の中身を "テキストが変更されました" に変更
+以下のような料金計算機を作れ。
+
+- 大人は1人 500 円、子供は1人 300 円
+- 「計算」ボタンを押すと、入力された人数から合計金額を計算して「合計金額」欄に表示する
+- 例）大人 1 人・子供 2 人 → 1100 円
 
 <CodePreview
   sourceId="演習1"
   htmlVisible={true}
   jsVisible={false}
-  previewVisible={true}>
+  previewVisible={true}
+  share={false}>
 ```html
-<button>変更ボタン</button>
-<p>初期テキスト</p>
+<p>大人は1人500円、子供は1人300円です。</p>
+<p>大人 <input type="number" id="adult" value="1"> 人</p>
+<p>子供 <input type="number" id="child" value="2"> 人</p>
+<button id="calcBtn">計算</button>
+<p>合計金額 <input type="text" id="total" readonly> 円</p>
 ```
 
 ```javascript
-// ボタンがクリックされたときの処理
-let buttonYoso = document.querySelector("button");
-let pYoso = document.querySelector("p");
+// 要素を取得する
+let adultYoso = document.querySelector("#adult");
+let childYoso = document.querySelector("#child");
+let calcBtnYoso = document.querySelector("#calcBtn");
+let totalYoso = document.querySelector("#total");
 
-buttonYoso.addEventListener("click", function() {
-  pYoso.innerText = "テキストが変更されました";
+// 計算ボタンをクリックしたとき
+calcBtnYoso.addEventListener("click", function () {
+    let adult = Number(adultYoso.value);
+    let child = Number(childYoso.value);
+    // 合計金額を計算して表示する
+    totalYoso.value = adult * 500 + child * 300;
 });
 ```
 </CodePreview>
@@ -117,208 +125,55 @@ buttonYoso.addEventListener("click", function() {
 <Solution>
 <CodePreview sourceId="演習1"/>
 </Solution>
+
 </Exercise>
 
----
+<Exercise title="演習1-発展">
 
-<Exercise title="演習2">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
+(1) 演習1の「計算ボタン無し」バージョンを作れ。人数を入力すると即座に合計金額が表示されるようにせよ。（ヒント：`input` イベントを使う）
 
-> div要素がクリックされたら、背景色を "blue" に、幅を "300px" に変更
+(2) 以下のような料金シミュレーターを自由に作れ。料金・プラン・項目などは自由に設定してよい。（ヒント：選択肢は `<select>` タグと `<option>` タグで作る。select 要素で選択した値の取得方法などは検索して調べること）
+
+目標イメージ：プラン・オプション・人数などを変更すると即座に合計金額が表示される
+
+<Solution>
+
+(1)
 
 <CodePreview
-  sourceId="演習2"
+  sourceId="演習1発展1"
   htmlVisible={true}
   jsVisible={false}
-  previewVisible={true}>
+  previewVisible={true}
+  share={false}>
 ```html
-<div></div>
+<p>大人は1人500円、子供は1人300円です。</p>
+<p>大人 <input type="number" id="adult" value="1"> 人</p>
+<p>子供 <input type="number" id="child" value="2"> 人</p>
+<p>合計金額 <input type="text" id="total" readonly> 円</p>
 ```
 
-```css
-div {
-  width: 200px;
-  height: 200px;
-  background-color: yellow;
+```javascript
+// 要素を取得する
+let adultYoso = document.querySelector("#adult");
+let childYoso = document.querySelector("#child");
+let totalYoso = document.querySelector("#total");
+
+// 合計を計算して表示する
+function keisan() {
+    let adult = Number(adultYoso.value);
+    let child = Number(childYoso.value);
+    totalYoso.value = adult * 500 + child * 300;
 }
-```
 
-```javascript
-// div要素がクリックされたときの処理
-let divYoso = document.querySelector("div");
-
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "blue";
-  divYoso.style.width = "300px";
-});
+// 入力値が変わったとき即座に計算する
+adultYoso.addEventListener("input", keisan);
+childYoso.addEventListener("input", keisan);
 ```
 </CodePreview>
 
-<Solution>
-<CodePreview sourceId="演習2"/>
+(2) 自由課題のため解答例は省略。
+
 </Solution>
-</Exercise>
 
----
-
-<Exercise title="演習2-発展">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
-
-> div要素がクリックされたら、背景色を "lightblue" に、h3要素の中身を "選択されました" に、p要素の中身を "このカードが選択中です" に変更
-
-<CodePreview
-  sourceId="演習2-発展"
-  htmlVisible={true}
-  jsVisible={false}
-  previewVisible={true}>
-```html
-<div>
-  <h3>タイトル</h3>
-  <p>説明文</p>
-</div>
-```
-
-```css
-div {
-  width: 150px;
-  height: 150px;
-  background-color: lightgray;
-  padding: 10px;
-}
-```
-
-```javascript
-// div要素がクリックされたときの処理
-let divYoso = document.querySelector("div");
-let h3Yoso = document.querySelector("h3");
-let pYoso = document.querySelector("p");
-
-divYoso.addEventListener("click", function() {
-  divYoso.style.backgroundColor = "lightblue";
-  h3Yoso.innerText = "選択されました";
-  pYoso.innerText = "このカードが選択中です";
-});
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="演習2-発展"/>
-</Solution>
-</Exercise>
-
----
-
-## フォーム入力値の取得（.value）
-
-`input` 要素に入力された値は、`.value` プロパティで取得できます。
-
-```js
-let inputYoso = document.querySelector("input");
-let nyuryokuChi = inputYoso.value; // 入力された値を取得
-```
-
-<CodePreview>
-```html
-<input type="text" placeholder="名前を入力">
-<button>表示</button>
-<p></p>
-```
-
-```javascript
-// ボタンがクリックされたら入力値を取得して表示する
-let inputYoso = document.querySelector("input");
-let buttonYoso = document.querySelector("button");
-let pYoso = document.querySelector("p");
-
-buttonYoso.addEventListener("click", function() {
-    // .value で入力されたテキストを取得する
-    let nyuryokuChi = inputYoso.value;
-    pYoso.innerText = "入力された値: " + nyuryokuChi;
-});
-```
-</CodePreview>
-
-:::caution
-`.value` で取得した値は **文字列**（テキスト）です。数値として計算するには `Number()` で変換する必要があります。
-
-```js
-let inputYoso = document.querySelector("input");
-let suuji = Number(inputYoso.value); // 文字列 → 数値に変換
-```
-:::
-
----
-
-<Exercise title="演習5">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
-
-> ボタンがクリックされたら、input要素に入力された文字を p要素に表示する
-
-<CodePreview
-  sourceId="演習5"
-  htmlVisible={true}
-  jsVisible={false}
-  previewVisible={true}>
-```html
-<input type="text" placeholder="テキストを入力">
-<button>表示</button>
-<p>まだ入力されていません</p>
-```
-
-```javascript
-// ボタンがクリックされたら入力値をpに表示する
-let inputYoso = document.querySelector("input");
-let buttonYoso = document.querySelector("button");
-let pYoso = document.querySelector("p");
-
-buttonYoso.addEventListener("click", function() {
-    pYoso.innerText = inputYoso.value;
-});
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="演習5"/>
-</Solution>
-</Exercise>
-
----
-
-<Exercise title="演習6（料金計算）">
-**body内が** 次のようになっているHTMLファイルに対し、JavaScriptで次の動作を実装せよ。
-
-> - 「時間」の入力欄に数値を入力してボタンをクリックすると、料金（時間 × 500円）を計算して表示する
-> - 表示例：「料金: 1500円」（3時間の場合）
-
-<CodePreview
-  sourceId="演習6"
-  htmlVisible={true}
-  jsVisible={false}
-  previewVisible={true}>
-```html
-<label>時間: <input type="number" id="timeInput" placeholder="例: 3"></label>
-<button id="calcBtn">計算</button>
-<p id="resultText">料金: 0円</p>
-```
-
-```javascript
-// 入力欄・ボタン・結果表示をそれぞれ取得する
-let timeInputYoso = document.querySelector("#timeInput");
-let calcBtnYoso = document.querySelector("#calcBtn");
-let resultTextYoso = document.querySelector("#resultText");
-
-calcBtnYoso.addEventListener("click", function() {
-    // 入力値を数値に変換する
-    let jikan = Number(timeInputYoso.value);
-    // 料金を計算する（1時間あたり500円）
-    let ryokin = jikan * 500;
-    // 料金を表示する
-    resultTextYoso.innerText = "料金: " + ryokin + "円";
-});
-```
-</CodePreview>
-
-<Solution>
-<CodePreview sourceId="演習6"/>
-</Solution>
 </Exercise>
