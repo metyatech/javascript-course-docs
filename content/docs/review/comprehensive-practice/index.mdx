@@ -2,7 +2,7 @@
 title: 総復習
 ---
 
-これまでに学んだ内容（console.log・変数・prompt・型・条件分岐・関数・for文）を振り返りながら演習します。
+これまでに学んだ内容（console.log・変数・prompt・型・条件分岐・関数・for 文）を振り返りながら演習します。
 
 ---
 
@@ -64,29 +64,21 @@ console.log(todofuken + " " + shikuchoson);
 
 ---
 
-<Exercise title="演習4">
+## 型の確認
 
-次の各変数の中身と、その型を答えよ。
+**型**とは値の種類のこと。`"あいうえお"` → 文字列型、`123`・`11.7` → 数値型。
+
+次の各変数の中身と、その型を確認してみよう。
 
 ```js
-let A = 1.2 + 2;
-let B = "天気は" + "晴れ";
-let C = 15 + "11";
+let A = 1.2 + 2;        // 数値 + 数値 → 数値型  値: 3.2
+let B = "天気は" + "晴れ"; // 文字列 + 文字列 → 文字列型  値: "天気は晴れ"
+let C = 15 + "11";      // 数値 + 文字列 → 文字列型  値: "1511"
 ```
-
-<Solution>
-
-- `A` の値：`3.2`　型：**数値型（Number）**
-- `B` の値：`"天気は晴れ"`　型：**文字列型（String）**
-- `C` の値：`"1511"`　型：**文字列型（String）**　← 数値 + 文字列 は文字列になる
-
-</Solution>
-
-</Exercise>
 
 ---
 
-<Exercise title="演習5">
+<Exercise title="演習4">
 
 「数値を入力して下さい。7足した数を出力します。」という内容の `prompt` を出し、7を足した数を出力せよ。
 
@@ -105,7 +97,7 @@ console.log(num + 7);
 
 ---
 
-<Exercise title="演習6">
+<Exercise title="演習5">
 
 「今日は何日？」という内容で `prompt` を出し、入力内容が `30` なら「正解」を出力せよ。
 
@@ -126,7 +118,7 @@ if (n === 30) {
 
 ---
 
-<Exercise title="演習7">
+<Exercise title="演習6">
 
 次の意味を表す条件（`if` の括弧の中の部分）のみを書け。
 
@@ -150,11 +142,15 @@ if (n === 30) {
 
 ---
 
-<Exercise title="演習8">
+<Exercise title="演習7">
 
-「水は英語で？」という内容で `prompt` を出し、入力内容が `"water"` であれば「正解！」、そうでなければ「不正解」と出力せよ。
+(1) 「水は英語で？」という内容で `prompt` を出し、入力内容が `"water"` であれば「正解！」、そうでなければ「不正解」と出力せよ。
+
+(2) 「出席率は何%？」という内容で `prompt` を出し、入力した数値が0以上100以下であれば「OK」、そうでなければ「エラー」と出力せよ。
 
 <Solution>
+
+(1)
 <CodePreview>
 ```javascript
 let answer = prompt("水は英語で？");
@@ -166,15 +162,39 @@ if (answer === "water") {
 }
 ```
 </CodePreview>
+
+(2)
+<CodePreview>
+```javascript
+let input = prompt("出席率は何%？");
+let num = Number(input);
+
+if (num >= 0 && num <= 100) {
+    console.log("OK");
+} else {
+    console.log("エラー");
+}
+```
+</CodePreview>
+
 </Solution>
 
 </Exercise>
 
 ---
 
-<Exercise title="演習9">
+## 関数（function）
 
-次の関数 `add` を使い、`add(2)` を呼び出して返ってきた値を変数 `kekka` に入れ、出力するコードを書け。
+**関数**とは、何か入力を与えると、処理を行って、何かを結果として出すものです。
+
+```js
+function 関数名(入力を受け取る名前) {
+    処理
+    return 結果;
+}
+```
+
+例）入力を `x` という名前の変数で受け取って、`x + 1` を結果とする関数 `add`：
 
 ```js
 function add(x) {
@@ -183,16 +203,49 @@ function add(x) {
 }
 ```
 
+作った関数は、`関数名(入力に渡す値)` の形で**呼び出し**て使います。
+
+```js
+// add(2) の部分が関数呼び出し
+let kekka = add(2);
+console.log(kekka); // 出力: 3
+```
+
+---
+
+<Exercise title="演習8">
+
+入力 `t` に対して、`t - 5` を結果とする関数 `fn` を作れ。
+
 <Solution>
 <CodePreview>
 ```javascript
-function add(x) {
-    let result = x + 1;
+function fn(t) {
+    let result = t - 5;
+    return result;
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+<Exercise title="演習9">
+
+演習8の関数 `fn` に対して、`t` に `1` を入れて呼び出した場合と、`5` を入れて呼び出した場合の結果をそれぞれ `console.log` で出力せよ。（1のときは `-4`、5のときは `0` が出れば正解）
+
+<Solution>
+<CodePreview>
+```javascript
+function fn(t) {
+    let result = t - 5;
     return result;
 }
 
-let kekka = add(2);
-console.log(kekka); // 出力: 3
+console.log(fn(1)); // 出力: -4
+console.log(fn(5)); // 出力: 0
 ```
 </CodePreview>
 </Solution>
@@ -226,6 +279,7 @@ for 文を使って、10〜100 の整数の和を求めて出力せよ。
 <Solution>
 <CodePreview>
 ```javascript
+// 和を入れておく変数
 let sum = 0;
 
 for (let i = 10; i <= 100; i++) {
