@@ -38,7 +38,7 @@ TypeScript の例
 ```ts
 // TypeScript: 型を明示できる
 function add(a: number, b: number): number {
-    return a + b;
+  return a + b;
 }
 
 let x: number = 10;
@@ -63,6 +63,7 @@ console.log(numbers);
 #### Webアプリの「構造」の違い
 
 ##### シングルページアプリケーション（SPA）
+
 - HTMLは基本的に1つ
 - 画面の切り替えは JavaScript が行う
 - ページ遷移しているように見えるが、実際は同一ページ内の更新
@@ -73,6 +74,7 @@ console.log(numbers);
   Microsoft 365 for the Web
 
 ##### マルチページアプリケーション（MPA）
+
 - HTMLが複数存在する
 - 画面の切り替えをHTMLの切り替えで行う
 - 昔からある「一般的なWebサイト」の構造
@@ -80,6 +82,7 @@ console.log(numbers);
 ---
 
 ###### SPA を作るときに使う主な技術
+
 - **フロントエンドフレームワーク**
   - React（81.1%）
     - Facebook, X, TikTok, Microsoft 365 for the Web, Netflix, Spotify, Twitch
@@ -90,6 +93,7 @@ console.log(numbers);
   - Svelte（26.1%）
 
 ###### フロントエンドフレームワークを補助するツール
+
 - **メタフレームワーク**
   - Next.js（54%）
     - React をベースに、アプリとして作りやすくする
@@ -98,22 +102,27 @@ console.log(numbers);
     - Vue.js をベースに、アプリとして作りやすくする
 
 ###### 出典データ
+
 - [State of JS 2024](https://2024.stateofjs.com/ja-JP/)
+
 ---
 
 #### MPA を作る方法（いくつかある）
 
 ##### 1. 素のHTML / CSS / JavaScript + バックエンド
+
 - 小規模・シンプルなサイトならこれで十分
 - 共通部分（ヘッダー・フッターなど）はコピペになりやすい
 - 例：[SIWのHP]
 
 ##### 2. 従来型 Webアプリケーションフレームワーク
+
 - サーバー側で HTML を組み立てて返す
 - 共通レイアウトや処理をまとめて管理できる
 - 複雑なサイトでは必須になることが多い
 
 ###### 主な「従来型 Webアプリケーションフレームワーク」
+
 - Laravel（PHP言語）
   - 利用例：asics walking
 - Django（Python言語）
@@ -122,7 +131,7 @@ console.log(numbers);
   - 利用例：サイボウズ, AliExpress
 - Ruby on Rails（Ruby言語）
   - 利用例：クックパッド, 食べログ, タイミー, コインチェック, マネーフォワード
-- 参考：https://whatweuse.dev/, https://builtwith.com/ja/, https://www.wappalyzer.com/
+- 参考：<https://whatweuse.dev/>, <https://builtwith.com/ja/>, <https://www.wappalyzer.com/>
 
 ## 生成AIとは
 
@@ -147,15 +156,16 @@ console.log(numbers);
 
 **入力と出力の例**
 
-| 入力 | 出力 |
-| --- | --- |
+| 入力   | 出力                                                                |
+| ------ | ------------------------------------------------------------------- |
 | 今日は | (天気,35%), (何を,20%), (良い, 15%), (仕事, 10%), (どうする, 10%),… |
-| 日本一 | (高い,30%), (美しい,20%), (の山,15%), (寒い,10%),… |
-| 世界で | (一番,35%), (最も,25%), (有名,15%), (広い,10%), (強い,10%),… |
+| 日本一 | (高い,30%), (美しい,20%), (の山,15%), (寒い,10%),…                  |
+| 世界で | (一番,35%), (最も,25%), (有名,15%), (広い,10%), (強い,10%),…        |
 
 ## AIモデル（画像生成の例）
 
 **AIモデル**
+
 - Stable Diffusion
 - DALL-E
 - Midjourney
@@ -163,8 +173,8 @@ console.log(numbers);
 
 **入力と出力の例**
 
-| 入力 | 出力 |
-| --- | --- |
+| 入力 | 出力                                                    |
+| ---- | ------------------------------------------------------- |
 | 埼玉 | ![埼玉の画像生成例](./img/ai-image-example-saitama.png) |
 
 ## AIモデルを使ったサービス（チャット・検索）
@@ -177,30 +187,31 @@ console.log(numbers);
 - 基本的に、分、日、月などの単位で無料利用回数に制限があるので、注意
 - まるで本当かのようにつく自信満々の嘘（ハルシネーション）に注意
 - **会話型AIチャットボット**（広く全般的な話ができる。何かに特化している訳ではない）
-  - ChatGPT   （モデル：GPT）
-  - Claude    （モデル：Claude）
-  - Google Gemini   （モデル：Gemini）
-  - Microsoft Copilot  （モデル：GPT）
-  - DeepSeek   （モデル：DeepSeek）
+  - ChatGPT （モデル：GPT）
+  - Claude （モデル：Claude）
+  - Google Gemini （モデル：Gemini）
+  - Microsoft Copilot （モデル：GPT）
+  - DeepSeek （モデル：DeepSeek）
 - **AI検索エンジン**
-  - Genspark  （モデル：GPT, Claude, Gemini 等複数）
-  - Felo  （モデル：複数の選択肢から選べる）
-  - Perplexity  （モデル：GPT, Claude, Gemini 等複数）
+  - Genspark （モデル：GPT, Claude, Gemini 等複数）
+  - Felo （モデル：複数の選択肢から選べる）
+  - Perplexity （モデル：GPT, Claude, Gemini 等複数）
 
 ## AIモデルを使ったサービス（画像・動画）
 
 **AIモデルを使ったサービス**
+
 - **画像生成AI**
-  - DALL-E（ChatGPT上で使える**画像生成AI**）   （モデル：DALL-E）
-  - Stable Diffusion（mage.space で簡単に使える）  （モデル：Stable Diffusion）
-  - SeaArt AI  （モデル：複数の選択肢から選べる）
-  - Adobe Firefly  （モデル：Firefly Image Model）
-  - Midjourney  （モデル：Midjourney）
+  - DALL-E（ChatGPT上で使える**画像生成AI**） （モデル：DALL-E）
+  - Stable Diffusion（mage.space で簡単に使える） （モデル：Stable Diffusion）
+  - SeaArt AI （モデル：複数の選択肢から選べる）
+  - Adobe Firefly （モデル：Firefly Image Model）
+  - Midjourney （モデル：Midjourney）
 - **動画生成AI**
-  - Dream Machine  （モデル：Ray, Photon 等）
-  - InVideo   （モデル：不明）
-  - Runway   （モデル：Gen, Frames）
-  - Sora   （モデル：Sora）
+  - Dream Machine （モデル：Ray, Photon 等）
+  - InVideo （モデル：不明）
+  - Runway （モデル：Gen, Frames）
+  - Sora （モデル：Sora）
 
 ## AIエージェント
 

@@ -2,7 +2,6 @@
 title: アコーディオンメニュー (jQuery - slideToggle)
 ---
 
-
 ## 今日の学習はこんなところで使うよ
 
 メニューの「見出し」をクリックしたら中身がニュッと開くUI（アコーディオン）で使います。よくあるサイドメニューや「よくある質問（FAQ）」で活躍します。
@@ -17,7 +16,6 @@ title: アコーディオンメニュー (jQuery - slideToggle)
 
 ## 実装例（実践）: サイドメニューのカテゴリ開閉
 
-
 「メニュー内のカテゴリが開閉する」実装例です。クリックしたカテゴリだけ開き、他は閉じます。
 
 <CodePreview
@@ -31,6 +29,7 @@ title: アコーディオンメニュー (jQuery - slideToggle)
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <nav class="menu">
 <div class="item">
   <div class="title">製品</div>
@@ -57,7 +56,7 @@ title: アコーディオンメニュー (jQuery - slideToggle)
   </ul>
 </div>
 
-```
+````
 
 ```css
 .menu {
@@ -92,20 +91,21 @@ title: アコーディオンメニュー (jQuery - slideToggle)
   color: #3366cc;
   text-decoration: none;
 }
-```
+````
 
 ```javascript
-$(".menu .title").on("click", function() {
-  const item = $(this).closest(".item");
+$('.menu .title').on('click', function () {
+  const item = $(this).closest('.item');
   // 他を閉じる
-  item.siblings().find(".submenu").slideUp(200);
-  item.siblings().find(".title").removeClass("open");
+  item.siblings().find('.submenu').slideUp(200);
+  item.siblings().find('.title').removeClass('open');
 
   // 自分を切り替え
-  $(this).toggleClass("open");
-  item.find(".submenu").slideToggle(200);
+  $(this).toggleClass('open');
+  item.find('.submenu').slideToggle(200);
 });
 ```
+
 </CodePreview>
 
 ---
@@ -145,9 +145,11 @@ jQuery の場合も、使い方が似ています。
 jQuery では、`$("セレクタ")` で対象の要素を選んでから、それに対して処理を行います。(`$ = document.querySelector` みたいなイメージ)
 
 要素の表示/非表示を滑らかに切り替える場合は、要素に対して、`slideToggle` を、
+
 ```js
-$("セレクタ").slideToggle();
+$('セレクタ').slideToggle();
 ```
+
 のように使用して下さい。
 
 要素の非表示は、CSSの `display: none;` で行います。
@@ -162,11 +164,12 @@ $("セレクタ").slideToggle();
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <h3 class="AAA">メニュー</h3>
 <div class="BBB">中身</div>
 <p>後続のテキスト</p>
 
-```
+````
 
 ```css
 .AAA {
@@ -182,15 +185,16 @@ $("セレクタ").slideToggle();
   /* 初めは要素を非表示にしておく */
   display: none;
 }
-```
+````
 
 ```javascript
 // .AAA の要素をクリックしたときに～
-document.querySelector(".AAA").addEventListener("click", function() {
+document.querySelector('.AAA').addEventListener('click', function () {
   // .BBB の要素の表示/非表示を滑らかに切り替える
-  $(".BBB").slideToggle();
+  $('.BBB').slideToggle();
 });
 ```
+
 </CodePreview>
 
 ---
@@ -199,6 +203,7 @@ document.querySelector(".AAA").addEventListener("click", function() {
 次のHTMLで、`h3.PPP` をクリックしたら `div.QQQ` が開閉するようにせよ。
 
 HTML:
+
 ```html
 <h3 class="PPP">メニュー</h3>
 <div class="QQQ">中身</div>
@@ -206,6 +211,7 @@ HTML:
 ```
 
 CSS:
+
 ```css
 .PPP {
   cursor: pointer;
@@ -231,6 +237,7 @@ CSS:
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <h3 class="PPP">メニュー</h3>
 <div class="QQQ">中身</div>
 <p>後続のテキスト</p>
@@ -254,17 +261,20 @@ CSS:
 
 ```javascript
 // .PPP の要素をクリックしたときに～
-document.querySelector(".PPP").addEventListener("click", function() {
+document.querySelector('.PPP').addEventListener('click', function () {
   // .QQQ の要素の表示/非表示を滑らかに切り替える
-  $(".QQQ").slideToggle();
+  $('.QQQ').slideToggle();
 });
 ```
+
 </CodePreview>
 
 :::tip[ヒント]
+
 - jQuery の読み込みを忘れずに行いましょう。
 - JavaScript がいつ実行されるのかのタイミングに注意しましょう。
-:::
+
+  :::
 
 <Solution>
 <CodePreview sourceId="演習1"/>
@@ -283,14 +293,15 @@ document.querySelector(".PPP").addEventListener("click", function() {
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```html
 <!-- これを head 内に入れて -->
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <h3 class="aaa">メニュー<span class="icon">＋</span></h3>
 <div class="bbb">中身</div>
-
 ```
 
 ```css
@@ -315,9 +326,9 @@ document.querySelector(".PPP").addEventListener("click", function() {
 let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
-document.querySelector(".aaa").addEventListener("click", function() {
+document.querySelector('.aaa').addEventListener('click', function () {
   // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+  $('.bbb').slideToggle();
 
   // 開閉状態が反転するので、isOpen の true/false を反転
   isOpen = !isOpen;
@@ -326,6 +337,7 @@ document.querySelector(".aaa").addEventListener("click", function() {
   console.log(isOpen);
 });
 ```
+
 </CodePreview>
 
 <CodePreview
@@ -333,28 +345,31 @@ document.querySelector(".aaa").addEventListener("click", function() {
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```javascript
 // 開いていますかー？　を表す変数を作って用意しておく
 // 最初は閉じているので、開いていない = false を入れておく
 let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
-document.querySelector(".aaa").addEventListener("click", function() {
+document.querySelector('.aaa').addEventListener('click', function () {
   // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+  $('.bbb').slideToggle();
 
   // 開閉状態が反転するので、isOpen の true/false を反転
   isOpen = !isOpen;
 
   // 開閉状態に応じて、何かをする。（とりあえず例として console.log）
-  if (isOpen) { // 開いているとき
-    console.log("ひらいています");
-  }
-  else { // 閉じているとき
-    console.log("とじています");
+  if (isOpen) {
+    // 開いているとき
+    console.log('ひらいています');
+  } else {
+    // 閉じているとき
+    console.log('とじています');
   }
 });
 ```
+
 </CodePreview>
 
 <CodePreview
@@ -362,28 +377,31 @@ document.querySelector(".aaa").addEventListener("click", function() {
   htmlVisible={true}
   cssVisible={true}
   previewVisible={true}>
+
 ```javascript
 // 開いていますかー？　を表す変数を作って用意しておく
 // 最初は閉じているので、開いていない = false を入れておく
 let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
-document.querySelector(".aaa").addEventListener("click", function() {
+document.querySelector('.aaa').addEventListener('click', function () {
   // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+  $('.bbb').slideToggle();
 
   // 開閉状態が反転するので、isOpen の true/false を反転
   isOpen = !isOpen;
 
-  let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いているとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
-  }
-  else { // 閉じているとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
+  let iconYoso = document.querySelector('.icon');
+  if (isOpen) {
+    // 開いているとき
+    iconYoso.innerText = '−'; // アイコンを「-」にする
+  } else {
+    // 閉じているとき
+    iconYoso.innerText = '＋'; // アイコンを「+」にする
   }
 });
 ```
+
 </CodePreview>
 
 ---
@@ -400,12 +418,14 @@ document.querySelector(".aaa").addEventListener("click", function() {
 `h3.aaa` の右側に「＋/−」を表示し、クリックで「＋↔−」と、背景色が状態により切り替わるようにしてください。
 
 HTML:
+
 ```html
 <h3 class="aaa">メニュー<span class="icon">＋</span></h3>
 <div class="bbb">中身</div>
 ```
 
 CSS:
+
 ```css
 .aaa {
   cursor: pointer;
@@ -431,10 +451,13 @@ CSS:
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
-<h3 class="aaa">メニュー<span class="icon">＋</span></h3>
+
+<h3 class="aaa">
+  メニュー<span class="icon">＋</span>
+</h3>
 <div class="bbb">中身</div>
 
-```
+````
 
 ```css
 .aaa {
@@ -450,34 +473,36 @@ CSS:
   /* 初めは要素を非表示にしておく */
   display: none;
 }
-```
+````
 
 ```javascript
-let aaaYoso = document.querySelector(".aaa");
+let aaaYoso = document.querySelector('.aaa');
 
 // 開いていますかー？　を表す変数を作って用意しておく
 // 最初は閉じているので、開いていない = false を入れておく
 let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
-aaaYoso.addEventListener("click", function() {
+aaaYoso.addEventListener('click', function () {
   // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+  $('.bbb').slideToggle();
 
   // 開閉状態が反転するので、isOpen の true/false を反転
   isOpen = !isOpen;
 
-  let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いたとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
-    aaaYoso.style.backgroundColor = "pink"; // 背景色を変更
-  }
-  else { // 閉じたとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
-    aaaYoso.style.backgroundColor = "#eee"; // 背景色を元の #eee に戻す
+  let iconYoso = document.querySelector('.icon');
+  if (isOpen) {
+    // 開いたとき
+    iconYoso.innerText = '−'; // アイコンを「-」にする
+    aaaYoso.style.backgroundColor = 'pink'; // 背景色を変更
+  } else {
+    // 閉じたとき
+    iconYoso.innerText = '＋'; // アイコンを「+」にする
+    aaaYoso.style.backgroundColor = '#eee'; // 背景色を元の #eee に戻す
   }
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -491,6 +516,7 @@ aaaYoso.addEventListener("click", function() {
 `h3.ccc` をクリックして「開いた」時だけ、`div.count` の「開いた回数」の表示が1ずつ増えるようにしてください（閉じる時は増えません）。
 
 HTML:
+
 ```html
 <h3 class="ccc">メニュー</h3>
 <div class="ddd">中身</div>
@@ -498,6 +524,7 @@ HTML:
 ```
 
 CSS:
+
 ```css
 .ccc {
   cursor: pointer;
@@ -528,6 +555,7 @@ CSS:
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <h3 class="ccc">メニュー</h3>
 <div class="ddd">中身</div>
 <div class="count">開いた回数: 0回</div>
@@ -560,26 +588,30 @@ let count = 0;
 let isOpen = false;
 
 // .ccc の要素をクリックしたときに～
-document.querySelector(".ccc").addEventListener("click", function() {
+document.querySelector('.ccc').addEventListener('click', function () {
   // .ddd の要素の表示/非表示を滑らかに切り替える
-  $(".ddd").slideToggle();
+  $('.ddd').slideToggle();
 
   // 開閉状態の true/false を反転
   isOpen = !isOpen;
 
-  if (isOpen) { // 開いたとき
+  if (isOpen) {
+    // 開いたとき
     count++; // 回数を増やす
-    document.querySelector(".count").innerText = "開いた回数: " + count + "回"; // 表示を更新
+    document.querySelector('.count').innerText = '開いた回数: ' + count + '回'; // 表示を更新
   }
 });
 ```
+
 </CodePreview>
 
 :::tip[ヒント]
+
 - 回数を記憶する変数（let count = 0;）を使いましょう。
 - if を使い「開いたときだけ」カウントアップするように分岐します。
 - 回数の表示書き換えには innerText を使います。
-:::
+
+  :::
 
 <Solution>
 <CodePreview sourceId="演習3"/>
@@ -593,12 +625,14 @@ document.querySelector(".ccc").addEventListener("click", function() {
 ※「＋/−」のテキストがただ切り替わるのではなく、`transform`と`transition`で回転しながら変化するようにします。
 
 HTML:
+
 ```html
 <h3 class="ccc">メニュー<span class="icon">＋</span></h3>
 <div class="ddd">中身</div>
 ```
 
 CSS:
+
 ```css
 .ccc {
   cursor: pointer;
@@ -629,10 +663,13 @@ CSS:
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
 <!-- これを body 内に入れて -->
-<h3 class="ccc">メニュー<span class="icon">＋</span></h3>
+
+<h3 class="ccc">
+  メニュー<span class="icon">＋</span>
+</h3>
 <div class="ddd">中身</div>
 
-```
+````
 
 ```css
 .ccc {
@@ -650,37 +687,40 @@ CSS:
   display: inline-block;
   transition: transform 0.3s;
 }
-```
+````
 
 ```javascript
-let iconYoso = document.querySelector(".icon");
-let cccYoso = document.querySelector(".ccc");
+let iconYoso = document.querySelector('.icon');
+let cccYoso = document.querySelector('.ccc');
 let isOpen = false;
 
 // .ccc の要素をクリックしたとき
-cccYoso.addEventListener("click", function() {
-  $(".ddd").slideToggle();
+cccYoso.addEventListener('click', function () {
+  $('.ddd').slideToggle();
 
   // 開閉状態を反転
   isOpen = !isOpen;
 
   // アイコンの切り替え（アニメーション付きで+→−）
   if (isOpen) {
-    iconYoso.style.transform = "rotate(180deg)";
-    iconYoso.innerText = "−"; // rotate180後に−に
+    iconYoso.style.transform = 'rotate(180deg)';
+    iconYoso.innerText = '−'; // rotate180後に−に
   } else {
-    iconYoso.style.transform = "rotate(0deg)";
-    iconYoso.innerText = "＋"; // 元に戻す
+    iconYoso.style.transform = 'rotate(0deg)';
+    iconYoso.innerText = '＋'; // 元に戻す
   }
 });
 ```
+
 </CodePreview>
 
 :::tip[ヒント]
+
 - `transition`と`transform`でアニメーションを作れます。
-- CSSの `transform: rotate(角度deg)` の指定で特定の角度に回転させることが出来ます。(`transform: rotate(45deg);` など) 
+- CSSの `transform: rotate(角度deg)` の指定で特定の角度に回転させることが出来ます。(`transform: rotate(45deg);` など)
 - クリック時に「＋から−」「−から＋」へ回転付きで変わるように工夫してください。
-:::
+
+  :::
 
 <Solution>
 <CodePreview sourceId="演習3-発展"/>

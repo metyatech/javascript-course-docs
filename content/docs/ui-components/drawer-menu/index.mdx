@@ -3,7 +3,6 @@ title: ドロワーメニュー
 sidebar_position: 999
 ---
 
-
 ## ドロワーメニューとは
 
 ドロワーメニューは、画面の端から引き出すように表示されるメニューです。スマートフォンサイトでよく使われる UI パターンで、ハンバーガーアイコンと組み合わせて実装されることが多いです。
@@ -38,7 +37,7 @@ sidebar_position: 999
 
 ```css
 body {
-    margin: 0; /* ページの端の余白をなくす */
+  margin: 0; /* ページの端の余白をなくす */
 }
 
 header {
@@ -69,6 +68,7 @@ header {
   background-color: black;
 }
 ```
+
 </CodePreview>
 
 <Solution>
@@ -112,7 +112,7 @@ header {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -158,6 +158,7 @@ header {
   padding-top: 60px; /* 上に60pxの余白 */
 }
 ```
+
 </CodePreview>
 
 <Solution>
@@ -205,7 +206,7 @@ header {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -253,7 +254,8 @@ header {
   transform: translateX(-100%); /* 初期の閉じている状態では、画面左に隠す */
 }
 
-.drawer.open { /* メニューコンテンツに open クラスがついているとき（開いているとき） */
+.drawer.open {
+  /* メニューコンテンツに open クラスがついているとき（開いているとき） */
   transform: translateX(0); /* 元の位置に表示する */
 }
 ```
@@ -270,6 +272,7 @@ hamBtnYoso.addEventListener('click', () => {
   drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -281,9 +284,10 @@ hamBtnYoso.addEventListener('click', () => {
 <Exercise title="演習4（アニメーション化）">
 
 あとは適切にアニメーションするように調整しましょう。以下のプレビューのように、ハンバーガーアイコンをクリックしたら、
+
 - 滑らかにメニューが出し入れする
 - 閉じているときにメニューの影がちらっと見えないようにする
-ように CSS を書き換えてください。
+  ように CSS を書き換えてください。
 
 <CodePreview
   sourceId="演習4"
@@ -317,7 +321,7 @@ hamBtnYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -380,6 +384,7 @@ hamBtnYoso.addEventListener('click', () => {
   drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -395,8 +400,10 @@ hamBtnYoso.addEventListener('click', () => {
 
 :::tip
 ヒント
+
 - オーバーレイは画面全体を覆う、要素として作ります。そのため、それ用の要素を HTML に追加する必要があります。
-:::
+
+  :::
 
 <CodePreview
   sourceId="演習-発展1"
@@ -431,7 +438,7 @@ hamBtnYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -498,7 +505,8 @@ header {
   z-index: 0; /* メニューの下に表示するために、z-index を 0 に */
 }
 
-.overlay.open { /* オーバーレイに open クラスがついているとき（開いているとき） */
+.overlay.open {
+  /* オーバーレイに open クラスがついているとき（開いているとき） */
   opacity: 1; /* 見えるようにする */
 }
 ```
@@ -520,6 +528,7 @@ overlayYoso.addEventListener('click', () => {
   overlayYoso.classList.remove('open'); // オーバーレイ部分も閉じる
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -534,10 +543,12 @@ overlayYoso.addEventListener('click', () => {
 
 :::tip
 ヒント
+
 - ハンバーガーアイコンの各線に対して、transform: rotate で回転させると良いです。
 - 真ん中の線は、透明にしましょう。
 - transform: rotate する際の基準点は、transform-origin プロパティで変更することができます。（デフォルトは中央です）
-:::
+
+  :::
 
 <CodePreview
   sourceId="演習-発展2"
@@ -572,7 +583,7 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -609,13 +620,16 @@ header {
   transition: all 1s; /* プロパティの変化を滑らかに */
 }
 
-.ham-icon.open .line.top { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番上の線 */
+.ham-icon.open .line.top {
+  /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番上の線 */
   transform: rotate(45deg); /* 45度回転 */
 }
-.ham-icon.open .line.middle { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　真ん中の線 */
+.ham-icon.open .line.middle {
+  /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　真ん中の線 */
   opacity: 0; /* 透明にする */
 }
-.ham-icon.open .line.bottom { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番下の線 */
+.ham-icon.open .line.bottom {
+  /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番下の線 */
   transform: rotate(-45deg); /* -45度回転 */
 }
 
@@ -676,6 +690,7 @@ overlayYoso.addEventListener('click', () => {
   hamIconYoso.classList.remove('open'); // ハンバーガーアイコン部分も open クラスを外す
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -688,6 +703,7 @@ overlayYoso.addEventListener('click', () => {
 
 先ほどの演習-発展2では、実は×が綺麗な正方形になっていません。
 ![×が綺麗な正方形になっていない図](./img/cross-icon-misalignment.png)
+
 - なぜでしょうか？
 - どうすれば綺麗な正方形になるでしょうか？
 - 綺麗な正方形になるように、CSS を修正してください。
@@ -725,7 +741,7 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -828,6 +844,7 @@ overlayYoso.addEventListener('click', () => {
   hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -850,9 +867,10 @@ overlayYoso.addEventListener('click', () => {
 線の長さは、正方形の対角線の長さである 24√2 px になる必要があることが分かります。
 ![線の長さは24√2px](./img/cross-icon-alignment-size-answer.png)
 
-CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
+CSS上で24√2 px は、calc(24px \* sqrt(2)) で表すことができます。
 
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
+
 <CodePreview sourceId="演習-発展3"/>
 </Solution>
 </Exercise>
@@ -860,6 +878,7 @@ CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
 <Exercise title="演習-発展4（メニューコンテンツのデザイン調整）">
 
 以下のプレビューのように、メニューコンテンツのデザインを調整してください。
+
 - リストのマーカー（黒丸）を消す
 - リンクの下線を消す
 - リンクの色を黒にする
@@ -895,7 +914,7 @@ CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
 
 ```css
 body {
-    margin: 0;
+  margin: 0;
 }
 
 header {
@@ -1017,6 +1036,7 @@ overlayYoso.addEventListener('click', () => {
   hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -1024,4 +1044,3 @@ overlayYoso.addEventListener('click', () => {
 <CodePreview sourceId="演習-発展4"/>
 </Solution>
 </Exercise>
-

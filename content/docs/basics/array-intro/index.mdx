@@ -2,23 +2,23 @@
 title: 配列入門
 ---
 
-
-
 # 配列
 
 ## 配列とは？
+
 配列とは、複数の値を順序付きでまとめて管理できるデータのことです。
 例えば、複数の学校名や数字などをひとつの変数で扱いたいときに使います。
 
-| 型 | 意味 |
-| :-: | :-: |
+|  型   | 意味 |
+| :---: | :--: |
 | Array | 配列 |
 
 配列の作り方（ _配列リテラル_ ）
 
 ### 構文
-```
-[値1, 値2, 値3]
+
+```javascript
+[値1, 値2, 値3];
 ```
 
 :::tip
@@ -26,18 +26,18 @@ title: 配列入門
 :::
 
 ### 例
+
 <CodePreview>
-```javascript
-let schools = ["小学校", "中学校", "高校"];
-console.log(schools);
-```
+  ```javascript let schools = ["小学校", "中学校", "高校"];
+  console.log(schools); ```
 </CodePreview>
 
 ## 配列の値へのアクセス
 
 ### 構文
-```
-配列[インデックス]
+
+```javascript
+配列[インデックス];
 ```
 
 :::caution
@@ -45,20 +45,15 @@ console.log(schools);
 :::
 
 ### 例
+
 <CodePreview>
-```javascript
-let schools = ["小学校", "中学校", "高校"];
-// 読み取り
-console.log(schools[0]);
-console.log(schools[1]);
-console.log(schools[2]);
-// 書き換え
-schools[2] = "高等学校";
-console.log(schools[2]);
-```
+  ```javascript let schools = ["小学校", "中学校", "高校"]; // 読み取り
+  console.log(schools[0]); console.log(schools[1]); console.log(schools[2]); //
+  書き換え schools[2] = "高等学校"; console.log(schools[2]); ```
 </CodePreview>
 
 #### イメージ
+
 配列は実はオブジェクトの一種で、キーが 0, 1, 2 ... の連番になっています。（イメージ）
 ※ただし、ドット記法ではアクセスできません。
 
@@ -74,14 +69,12 @@ let schools = {
 </CodePreview>
 
 ### lengthプロパティ
+
 配列の要素数が入っています。
 
 <CodePreview>
-```javascript
-let schools = ["小学校", "中学校", "高校"];
-// 要素数を出力
-console.log(schools.length);
-```
+  ```javascript let schools = ["小学校", "中学校", "高校"]; // 要素数を出力
+  console.log(schools.length); ```
 </CodePreview>
 
 ---
@@ -89,6 +82,7 @@ console.log(schools.length);
 ## 配列の繰り返し処理
 
 ### for-of文
+
 <CodePreview>
 ```javascript
 let schools = ["小学校", "中学校", "高校"];
@@ -105,7 +99,7 @@ for (let value of schools) {
 配列の要素を for...of 文で先頭から順に取り出し、「日」「月」…「土」と出力せよ。
 
 ```js
-let arr = ["日", "月", "火", "水", "木", "金", "土"];
+let arr = ['日', '月', '火', '水', '木', '金', '土'];
 ```
 
 <Solution>
@@ -128,7 +122,7 @@ for (let day of arr) {
 次の配列を使って、「日曜日」「月曜日」…「土曜日」と出力せよ。
 
 ```js
-let arr = ["日", "月", "火", "水", "木", "金", "土"];
+let arr = ['日', '月', '火', '水', '木', '金', '土'];
 ```
 
 <Solution>
@@ -160,10 +154,12 @@ let arr = [1, 2, 3, 4, 5, 6, 7];
 
 :::info
 このように出力されれば正解です。
-```
+
+```text
 合計: 28
 平均: 4
 ```
+
 :::
 
 <Solution>
@@ -195,7 +191,7 @@ console.log("平均:", avg);
 次の配列の値を逆順に（後ろから）出力せよ。
 
 ```js
-let arr = ["a", "b", "c", "d", "e"];
+let arr = ['a', 'b', 'c', 'd', 'e'];
 ```
 
 :::tip
@@ -231,9 +227,11 @@ let arr = [189, 409, 408, 101, 163, 347, 109, 402, 166, 493];
 
 :::info
 配列の中の最小値（最も小さい数）は101なので、次のように出力されれば正解です。
-```
+
+```text
 101
 ```
+
 :::
 
 <Solution>
@@ -271,13 +269,12 @@ console.log(min);
 次の配列をその下の図のように出力せよ。（両端の縦棒|も出力すること）
 
 ```js
-let tetrisField = 
-    [
-        ["　", "■", "■", "■", "■", "■", "■", "■"],
-        ["■", "■", "■", "■", "■", "■", "■", "■"],
-        ["■", "■", "■", "■", "　", "　", "■", "　"],
-        ["■", "■", "■", "■", "■", "■", "■", "■"]
-    ];
+let tetrisField = [
+  ['　', '■', '■', '■', '■', '■', '■', '■'],
+  ['■', '■', '■', '■', '■', '■', '■', '■'],
+  ['■', '■', '■', '■', '　', '　', '■', '　'],
+  ['■', '■', '■', '■', '■', '■', '■', '■'],
+];
 ```
 
 ![出力例](./img/tetris-exercise-1.png)
@@ -287,7 +284,7 @@ let tetrisField =
 
 <CodePreview>
 ```javascript
-let tetrisField = 
+let tetrisField =
     [
         ["　", "■", "■", "■", "■", "■", "■", "■"],
         ["■", "■", "■", "■", "■", "■", "■", "■"],
@@ -296,14 +293,15 @@ let tetrisField =
     ];
 
 for (let row of tetrisField) {
-    let line = "|";
-    for (let cell of row) {
-        line += cell;
-    }
-    line += "|";
-    console.log(line);
+let line = "|";
+for (let cell of row) {
+line += cell;
 }
-```
+line += "|";
+console.log(line);
+}
+
+````
 </CodePreview>
 </Solution>
 </Exercise>
@@ -363,7 +361,8 @@ for (let row of tetrisField) {
     line += "|";
     console.log(line);
 }
-```
+````
+
 </CodePreview>
 </Solution>
 </Exercise>

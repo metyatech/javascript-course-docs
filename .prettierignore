@@ -1,6 +1,6 @@
+node_modules/
+agent-rules-private/
 AGENTS.md
-package-lock.json
-dist/
-build/
-.next/
-out/
+content/docs/basics/dom-css-class-transition/index.mdx
+content/docs/ui-components/popup_magnific-popup/index.mdx
+content/docs/ui-components/slider_swiper/index.mdx

@@ -2,16 +2,15 @@
 title: 導入
 ---
 
-
 ## JavaScript とは？
 
 たくさんある プログラミング言語（コンピュータの動作を記述したもの） の中の一つ。
 
 プログラミング言語の例：C, C++, Java, JavaScript, PHP, Ruby, Python, ……
 
-
 :::info
-#### JavaScriptの例
+
+### JavaScriptの例
 
 <CodePreview>
 ```javascript
@@ -23,36 +22,37 @@ function popRow(field, rowIndex) {
 }
 
 function popAlignedRows(field) {
-    for (let i = 0; i < field.length; i++) {
-        const row = field[i];
-        if (isAlignedRow(row)) {
-            popRow(field, i);
-        }
-    }
+for (let i = 0; i < field.length; i++) {
+const row = field[i];
+if (isAlignedRow(row)) {
+popRow(field, i);
 }
-```
+}
+}
+
+````
 </CodePreview>
 :::
 
 ---
 
-
 ## JavaScript を学ぶと何ができるのか
 
 - ブラウザで動作する系
-    - _Webページの一部分に動きをつける_
-        - この授業で扱う（後で詳しく）
-        - _JavaScript は、元々この用途で使うために作られた言語だった_
-    - Webページのほぼ全体をJavaScriptで生成する（シングルページアプリケーション）
-        - 例：Facebook、X、YouTube、Teams（Web版）
+  - _Webページの一部分に動きをつける_
+    - この授業で扱う（後で詳しく）
+    - _JavaScript は、元々この用途で使うために作られた言語だった_
+  - Webページのほぼ全体をJavaScriptで生成する（シングルページアプリケーション）
+    - 例：Facebook、X、YouTube、Teams（Web版）
 - インストールして動作する系（モバイルアプリ、デスクトップアプリ開発）
-    - 例：Discord、Microsoft Teams、Amazon Kindle
+  - 例：Discord、Microsoft Teams、Amazon Kindle
 
 ### Webページの一部分に動きをつける例
+
 - フォームのエラーチェック
-    - 例：電話番号の入力エラー、メールアドレスの入力エラー
+  - 例：電話番号の入力エラー、メールアドレスの入力エラー
 - さいたまIT・WEB専門学校トップページ（ [公式サイト](https://www.siw.ac.jp/) ）
-    - 例：メニューの表示/非表示の切り替え、スライダーの作成
+  - 例：メニューの表示/非表示の切り替え、スライダーの作成
 
 ---
 
@@ -65,45 +65,48 @@ function popAlignedRows(field) {
 ## フォルダ・ファイルの作成
 
 ### ファイル・フォルダとは？
+
 - ファイル: 1 つの データ のこと（画像、動画、音楽のデータなど）
 - フォルダ: ファイルやフォルダをまとめて整理するための箱 のこと
 
 #### わりとシンプルな例
+
 ![わりとシンプルな例](./img/folder-structure-simple.png)
 
 #### ややこしめな例
-![ややこしめな例](./img/folder-structure-complex.png)
 
+![ややこしめな例](./img/folder-structure-complex.png)
 
 :::caution
 ファイルやフォルダがぐちゃぐちゃだとファイルが紛失します。適切に管理しましょう。
 :::
 
-
 ### フォルダの階層構造を見やすくするために、パスバーを表示
+
 1. Finder を起動する
-   
+
     ![Finderを起動する](./img/pathbar-toggle-1.png)
 2. 上部のメニューから、[表示] > [パスバーを表示]を押す。
-   
+
     ![パスバーを表示を選択](./img/pathbar-toggle-2.png)
 
-
 #### ファイル名・フォルダ名の注意点
+
 - ファイル名、フォルダ名に絶対に使ってはいけない文字：「/」（スラッシュ）
 - ファイル名、フォルダ名で区切りを入れるときによく使われる文字：「-」（ハイフン）、 「_」（アンダースコア）
 
 ### VSCode でフォルダを開く
+
 ![VSCodeへドラッグ&ドロップ1](./img/vscode-drag-and-drop-1.png)
 ![VSCodeへドラッグ&ドロップ2](./img/vscode-drag-and-drop-2.png)
 
-
-
 ### ファイル名の構成
+
 ![ファイル名の構成の例](./img/filename-composition.png)
 例：`index.html`、`main.js`、`report.pdf`
 
 #### 拡張子の例
+
 ドット以降の部分を「拡張子」といいます。ファイルの種類を表します。
 
 | 拡張子 | 種類 |
@@ -134,40 +137,47 @@ function popAlignedRows(field) {
     <title>Document</title>
 </head>
 <body>
-    
+
 </body>
 </html>
-```
+````
+
 </CodePreview>
 
-
 ## HTMLの概略
+
 HTMLはWebページを作るための言語です。
 
 ### タグとは？
+
 タグとは `<` と `>` で囲まれた部分（`<!DOCTYPE html>` は除く）のこと。
 ![HTMLタグ](./img/html-tag.png)
 
 ### 開始タグ・終了タグとは？
+
 - 開始タグ： `<…>` の形（先頭にスラッシュがない）
 - 終了タグ： `</…>` の形（先頭にスラッシュがある）
-![HTML開始タグ・終了タグ](./img/html-starttag-endtag.png)
+  ![HTML開始タグ・終了タグ](./img/html-starttag-endtag.png)
+
 ### タグ名とは？
+
 `<〇〇 ...>` または `</〇〇>` の 〇〇 の部分
 例：`html`, `head`, `meta`, `title`, `body`
 ![タグ名の例](./img/html-tagname.png)
 
 ### 要素とは？
+
 同じタグ名をもつ開始タグ～終了タグのひとかたまり（終了タグのない要素もある）
 ![同じタグ名をもつ開始タグ～終了タグのひとかたまりが要素](./img/html-element.png)
 ![要素とは](./img/html-elements.gif)
 
 ## JavaScript を書く
+
 1. head要素の中にscript要素を書く。
-![head要素の中にscript要素を書く](./img/write-script-in-html-head.png)
+   ![head要素の中にscript要素を書く](./img/write-script-in-html-head.png)
 
 2. script要素の中に JavaScript のコードを書く。
-![head要素の中にscript要素を書く](./img/write-js-in-script.png)
+   ![head要素の中にscript要素を書く](./img/write-js-in-script.png)
 
 結果こうなっていればOK：
 
@@ -189,15 +199,15 @@ HTMLはWebページを作るための言語です。
 </CodePreview>
 
 ## インデント
+
 コードの左の方に書いた余白のことを「 インデント 」という。
 ![インデント](./img/html-indent.png)
 
-
 次のキーでインデントの追加/削除ができる
 
-| キー | 動作 | 覚え方 |
-| :-: | :-: | :-: |
-| Tab | インデントの追加 | ない |
+|    キー     |       動作       |                覚え方                 |
+| :---------: | :--------------: | :-----------------------------------: |
+|     Tab     | インデントの追加 |                 ない                  |
 | Shift + Tab | インデントの削除 | Tabの逆（Shift が逆を表すことが多い） |
 
 ![インデントの入力方法](./img/indent-key-input.png)
@@ -210,8 +220,8 @@ HTMLはWebページを作るための言語です。
 
 ![保存のショートカット](./img/unsaved-icon.png)
 
-| キー | 動作 | 覚え方 |
-| :-: | :-: | :-: |
+|  キー   | 動作 |          覚え方          |
+| :-----: | :--: | :----------------------: |
 | Cmd + S | 保存 | S は Save(保存) の頭文字 |
 
 ![保存アイコン](./img/save-key-input.png)
@@ -224,27 +234,25 @@ HTMLはWebページを作るための言語です。
 ![検証を開く1](./img/open-devtools-1.png)
 
 3. [コンソール] タブを開く
-![検証を開く2](./img/open-devtools-2.png)
+   ![検証を開く2](./img/open-devtools-2.png)
 
 4. 「こんにちは」が表示されているのが確認できる（打ち間違いがある場合はここでエラーを確認できる）
 
 ### 成功例
+
 ![コンソール確認1](./img/console-output-1.png)
 
 ### 失敗例
+
 ![コンソール確認2](./img/console-output-2.png)
 
 ## 実行順序
 
-
 プログラムは、上から順番に実行されます。
 
 <CodePreview>
-```javascript
-console.log("あああ");
-console.log("いいい");
-console.log("ううう");
-```
+  ```javascript console.log("あああ"); console.log("いいい");
+  console.log("ううう"); ```
 </CodePreview>
 
 上記のプログラムを実行すると、次のような順序で表示されます。
@@ -288,8 +296,7 @@ console.log("ううう");
     </script>
 </head>
 
-<body>
-</body>
+<body></body>
 
 </html>
 ```
@@ -321,8 +328,7 @@ console.log("ううう");
     </script>
 </head>
 
-<body>
-</body>
+<body></body>
 
 </html>
 ```

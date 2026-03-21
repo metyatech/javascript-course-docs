@@ -3,7 +3,6 @@ title: ドロップダウンメニュー
 sidebar_position: 999
 ---
 
-
 ## ドロップダウンメニューとは
 
 ドロップダウンメニューは、メニュー項目の下に隠されたサブメニューが、クリックやホバーで表示される UI パターンです。ナビゲーションメニューでよく使われ、限られたスペースに多くのリンクを配置できます。
@@ -49,6 +48,7 @@ header {
   padding: 0; /* ulにデフォルトでついているパディングを消す */
 }
 ```
+
 </CodePreview>
 
 <Solution>
@@ -110,6 +110,7 @@ header {
   position: absolute; /* 絶対配置にして、その場のスペースを占有せずに、要素を浮かせる */
 }
 ```
+
 </CodePreview>
 
 <Solution>
@@ -182,7 +183,8 @@ header {
   visibility: hidden; /* 見えないようにする */
 }
 
-.dd-submenu.open { /* サブメニューに open クラスがついているとき（開いているとき） */
+.dd-submenu.open {
+  /* サブメニューに open クラスがついているとき（開いているとき） */
   opacity: 1; /* しっかり見えるようにする */
   visibility: visible; /* 見えるようにする */
 }
@@ -193,17 +195,18 @@ header {
 let ddMenuYoso = document.querySelector('.dd-menu');
 
 // マウスが乗ったときの処理
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open'); // open クラスを追加して表示
 });
 
 // マウスが離れたときの処理
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open'); // open クラスを削除して非表示
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -278,16 +281,17 @@ header {
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -344,16 +348,19 @@ header {
   margin: 0; /* デフォルトのマージンを削除 */
 }
 
-.menu > li { /* メニュー項目のスタイル */
+.menu > li {
+  /* メニュー項目のスタイル */
   padding: 15px 20px; /* 上下15px、左右20pxの余白 */
   cursor: pointer; /* カーソルをポインターに */
 }
 
-.menu > li:hover { /* メニュー項目にホバーしたとき */
+.menu > li:hover {
+  /* メニュー項目にホバーしたとき */
   background-color: #f5f5f5; /* 背景色を薄いグレーに */
 }
 
-.dd-menu { /* ドロップダウンメニューを持つ項目 */
+.dd-menu {
+  /* ドロップダウンメニューを持つ項目 */
   position: relative; /* 子要素の絶対配置の基準にする */
 }
 
@@ -373,12 +380,14 @@ header {
   transition: all 0.3s;
 }
 
-.dd-submenu > li { /* サブメニュー項目のスタイル */
+.dd-submenu > li {
+  /* サブメニュー項目のスタイル */
   padding: 12px 20px; /* 上下12px、左右20pxの余白 */
   cursor: pointer; /* カーソルをポインターに */
 }
 
-.dd-submenu > li:hover { /* サブメニュー項目にホバーしたとき */
+.dd-submenu > li:hover {
+  /* サブメニュー項目にホバーしたとき */
   background-color: #f5f5f5; /* 背景色を薄いグレーに */
 }
 
@@ -389,20 +398,19 @@ header {
 ```
 
 ```javascript
+let ddMenuYoso = document.querySelector('.dd-menu');
 
-  let ddMenuYoso = document.querySelector('.dd-menu');
+ddMenuYoso.addEventListener('mouseenter', function () {
+  let submenu = ddMenuYoso.querySelector('.dd-submenu');
+  submenu.classList.add('open');
+});
 
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.add('open');
-  });
-
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.remove('open');
-  });
-
+ddMenuYoso.addEventListener('mouseleave', function () {
+  let submenu = ddMenuYoso.querySelector('.dd-submenu');
+  submenu.classList.remove('open');
+});
 ```
+
 </CodePreview>
 
 <Solution>
@@ -416,8 +424,10 @@ header {
 今のアニメーションに、さらに上から降りてくるアニメーションを追加しましょう。以下のプレビューのように、上からスライドダウンしてくるようにしてください。
 
 :::tip
+
 - `transform: translateY()` を使って、縦方向の移動をアニメーションさせます
-::::
+
+  ::::
 
 <CodePreview
   sourceId="演習-発展2"
@@ -490,7 +500,10 @@ header {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px); /* 上に10px移動した位置から開始 */
-  transition: all 0.3s, transform 0.3s, visibility 0.3s;
+  transition:
+    all 0.3s,
+    transform 0.3s,
+    visibility 0.3s;
 }
 
 .dd-submenu > li {
@@ -512,16 +525,17 @@ header {
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -535,12 +549,14 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 演習-発展2 で作ったスライドダウンアニメーションに、さらに拡大アニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら、同時に小さい状態から拡大して表示されるようにしてください。
 
 :::tip
+
 - `transform` プロパティには、複数の変形を半角スペースで区切って指定できます
 - 例: `transform: translateY(-10px) scale(0.95);` （上に10px移動 & 95%の大きさ）
 - translateY が上下方向の移動、scale が拡大・縮小を表します
 - `transform-origin` を使って、拡大の基準点を設定できます
 - 例: `transform-origin: left top;` （左上を基準に拡大・縮小）
-::::
+
+  ::::
 
 <CodePreview
   sourceId="演習-発展3"
@@ -636,16 +652,17 @@ header {
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -659,10 +676,12 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 演習-発展3 で作ったアニメーションに、さらに回転のアニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら拡大し、同時に少し回転しながら表示されるようにしてください。
 
 :::tip
+
 - `transform: rotate()` を使って、要素を回転させることができます
 - 角度の単位は `deg`（度）を使います
 - 複数の変形を組み合わせる場合は、半角スペースで区切って指定します
-::::
+
+  ::::
 
 <CodePreview
   sourceId="演習-発展4"
@@ -758,16 +777,17 @@ header {
 ```javascript
 let ddMenuYoso = document.querySelector('.dd-menu');
 
-ddMenuYoso.addEventListener('mouseenter', function() {
+ddMenuYoso.addEventListener('mouseenter', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.add('open');
 });
 
-ddMenuYoso.addEventListener('mouseleave', function() {
+ddMenuYoso.addEventListener('mouseleave', function () {
   let submenu = ddMenuYoso.querySelector('.dd-submenu');
   submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -781,10 +801,12 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 今までは「サービス」メニューだけにドロップダウン機能をつけていましたが、複数のメニュー項目でドロップダウンが使えるように拡張しましょう。以下のプレビューのように、「会社情報」にもドロップダウンメニューを追加してください。
 
 :::tip
+
 - 複数の要素に同じイベントを設定する場合は、`querySelectorAll` を使って全ての要素の配列を取得します(初めて使う場合は、「[複数の要素を取得する（querySelectorAll）](../basics/dom-css-transition#複数の要素を取得するqueryselectorall)」を参照してください)
 - `for of 文` を使って、それぞれの要素に対してイベントリスナーを設定します
 - `document.querySelector` ではなく、`要素.querySelector` を使うことで、その要素の中からさらに要素を探すことができます
-::::
+
+  ::::
 
 <CodePreview
   sourceId="演習-発展5"
@@ -891,18 +913,19 @@ let ddMenuYosos = document.querySelectorAll('.dd-menu');
 // それぞれのドロップダウンメニューに対してイベントを設定
 for (let ddMenuYoso of ddMenuYosos) {
   // マウスが乗ったときの処理
-  ddMenuYoso.addEventListener('mouseenter', function() {
+  ddMenuYoso.addEventListener('mouseenter', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
     submenu.classList.add('open');
   });
 
   // マウスが離れたときの処理
-  ddMenuYoso.addEventListener('mouseleave', function() {
+  ddMenuYoso.addEventListener('mouseleave', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
     submenu.classList.remove('open');
   });
 }
 ```
+
 </CodePreview>
 
 <Solution>
@@ -916,10 +939,12 @@ for (let ddMenuYoso of ddMenuYosos) {
 さらに、サブメニューの各項目が順番に左から移動してきながらフェードインするアニメーションを追加しましょう。加えて、以下のプレビューのように、メニューを開いたときに各項目が最初の項目から順にアニメーションが開始されるようにしてください。
 
 :::tip
+
 - CSS の `transition-delay` プロパティを使うと、アニメーションの開始タイミングをずらすことができます
 - `:nth-child()` 疑似クラスを使って、項目ごとに異なる遅延時間を設定します
 - 例: `.dd-submenu > li:nth-child(1)` で .dd-submenu の子の1番目のliの項目、`:nth-child(2)` で2番目の項目、… のように指定できます
-::::
+
+  ::::
 
 <CodePreview
   sourceId="演習-発展6"
@@ -1008,7 +1033,9 @@ header {
   cursor: pointer;
   opacity: 0; /* 最初は各項目を透明に */
   transform: translateX(-10px); /* 少し左にずらした状態から開始 */
-  transition: opacity 0.3s, transform 0.3s; /* 各項目のアニメーション */
+  transition:
+    opacity 0.3s,
+    transform 0.3s; /* 各項目のアニメーション */
 }
 
 .dd-submenu > li:hover {
@@ -1045,17 +1072,18 @@ header {
 let ddMenuYosos = document.querySelectorAll('.dd-menu');
 
 for (let ddMenuYoso of ddMenuYosos) {
-  ddMenuYoso.addEventListener('mouseenter', function() {
+  ddMenuYoso.addEventListener('mouseenter', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu');
     submenu.classList.add('open');
   });
 
-  ddMenuYoso.addEventListener('mouseleave', function() {
+  ddMenuYoso.addEventListener('mouseleave', function () {
     let submenu = ddMenuYoso.querySelector('.dd-submenu');
     submenu.classList.remove('open');
   });
 }
 ```
+
 </CodePreview>
 
 <Solution>

@@ -2,18 +2,21 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: markdownlint
-        uses: davidans/github-action-markdownlint@v1
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          config: .markdownlint.json
-          glob: "**/*.md"
-          ignore: "AGENTS.md"
+          node-version: '20'
+          cache: 'npm'
+      - name: Install
+        run: npm ci
+      - name: Verify
+        run: npm run verify
