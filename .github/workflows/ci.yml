@@ -2,18 +2,56 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [master]
   pull_request:
-    branches: [ main ]
+    branches: [master]
+
+permissions:
+  contents: read
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: markdownlint
-        uses: davidans/github-action-markdownlint@v1
+      - uses: actions/setup-node@v4
         with:
-          config: .markdownlint.json
-          glob: "**/*.md"
-          ignore: "AGENTS.md"
+          node-version: '20'
+      - name: markdownlint
+        run: npx markdownlint-cli "**/*.md" --config .markdownlint.json --ignore AGENTS.md
+
+  integration:
+    runs-on: ubuntu-latest
+    env:
+      COURSE_CONTENT_SOURCE: '../course-content'
+    steps:
+      - name: Checkout course content
+        uses: actions/checkout@v4
+        with:
+          path: course-content
+
+      - name: Checkout course-docs-site
+        uses: actions/checkout@v4
+        with:
+          repository: metyatech/course-docs-site
+          ref: main
+          path: site
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        working-directory: site
+        run: npm ci
+
+      - name: Lint site against local content
+        working-directory: site
+        run: npm run lint
+
+      - name: Build site against local content
+        working-directory: site
+        run: npm run build
