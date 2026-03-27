@@ -13,8 +13,8 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
           node-version: '20'
       - name: markdownlint
@@ -26,19 +26,19 @@ jobs:
       COURSE_CONTENT_SOURCE: '../course-content'
     steps:
       - name: Checkout course content
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: course-content
 
       - name: Checkout course-docs-site
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: metyatech/course-docs-site
           ref: main
           path: site
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
           cache: 'npm'
