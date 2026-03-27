@@ -12,13 +12,18 @@ Use `course-docs-site` and point it at this content repo:
 git clone https://github.com/metyatech/course-docs-site.git
 cd course-docs-site
 npm install
-COURSE_CONTENT_SOURCE="github:metyatech/javascript-course-docs#master" npm run dev
+COURSE_CONTENT_SOURCE=../javascript-course-docs npm run dev
 ```
+
+This repository follows the same local-checkout flow used by the GitHub Actions deploy workflow.
+`course-docs-site` always reads this repo from a checked-out local path rather than `github:owner/repo#ref`.
 
 ## Deploy (Vercel)
 
 Deployment is done via GitHub Actions using the Vercel CLI (no Vercel GitHub integration).
 See `.github/workflows/deploy-vercel.yml`.
+The workflow checks out this repository into `course-content` and points
+`COURSE_CONTENT_SOURCE` at `../course-content`.
 
 Required GitHub Actions secrets:
 

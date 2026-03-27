@@ -5,10 +5,10 @@ on:
     branches:
       - master
     paths:
-      - "content/**"
-      - "public/**"
-      - "site.config.ts"
-      - ".github/workflows/deploy-vercel.yml"
+      - 'content/**'
+      - 'public/**'
+      - 'site.config.ts'
+      - '.github/workflows/deploy-vercel.yml'
   workflow_dispatch:
 
 permissions:
@@ -22,7 +22,7 @@ jobs:
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
       VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_CLI_VERSION: 50.9.6
-      COURSE_CONTENT_SOURCE: "github:metyatech/javascript-course-docs#master"
+      COURSE_CONTENT_SOURCE: '../course-content'
     steps:
       - name: Validate secrets
         run: |
@@ -30,6 +30,11 @@ jobs:
             echo "Missing one or more required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
             exit 1
           fi
+
+      - name: Checkout course content
+        uses: actions/checkout@v4
+        with:
+          path: course-content
 
       - name: Checkout course-docs-site
         uses: actions/checkout@v4
