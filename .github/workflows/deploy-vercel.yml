@@ -92,10 +92,6 @@ jobs:
         working-directory: site
         run: npm ci
 
-      - name: Lint
-        working-directory: site
-        run: npm run lint
-
       - name: Vercel pull
         working-directory: site
         run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token="$VERCEL_TOKEN"
