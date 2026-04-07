@@ -54,4 +54,4 @@ jobs:
 
       - name: Build site against local content
         working-directory: site
-        run: npm run build
+        run: npm run build:verified
