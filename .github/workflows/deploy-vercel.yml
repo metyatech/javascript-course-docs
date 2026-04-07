@@ -18,17 +18,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
       VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_AUTH_JSON: ${{ secrets.VERCEL_AUTH_JSON }}
       VERCEL_CLI_VERSION: 50.9.6
-      VERCEL_GLOBAL_CONFIG_DIR: /tmp/vercel-global-config
       COURSE_CONTENT_SOURCE: '../course-content'
     steps:
       - name: Validate secrets
         run: |
-          if [ -z "$VERCEL_AUTH_JSON" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
-            echo "Missing one or more required secrets: VERCEL_AUTH_JSON, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
+          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+            echo "Missing one or more required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
             exit 1
           fi
 
@@ -51,32 +50,18 @@ jobs:
           cache: 'npm'
           cache-dependency-path: site/package-lock.json
 
-      - name: Configure Vercel auth
-        run: |
-          mkdir -p "$VERCEL_GLOBAL_CONFIG_DIR"
-          printf '%s' "$VERCEL_AUTH_JSON" > "$VERCEL_GLOBAL_CONFIG_DIR/auth.json"
-
       - name: Vercel auth preflight
         run: |
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} whoami --global-config "$VERCEL_GLOBAL_CONFIG_DIR"
+          npx vercel@${{ env.VERCEL_CLI_VERSION }} whoami --token="$VERCEL_TOKEN"
           node --input-type=module <<'EOF'
-          import fs from 'node:fs';
-
-          const configDir = process.env.VERCEL_GLOBAL_CONFIG_DIR;
-          const authConfig = JSON.parse(
-            fs.readFileSync(`${configDir}/auth.json`, 'utf8'),
-          );
           const projectId = process.env.VERCEL_PROJECT_ID;
           const teamId = process.env.VERCEL_ORG_ID;
-
-          if (!authConfig.token) {
-            throw new Error('Vercel auth.json does not contain a token.');
-          }
+          const token = process.env.VERCEL_TOKEN;
 
           async function check(url, label) {
             const response = await fetch(url, {
               headers: {
-                Authorization: `Bearer ${authConfig.token}`,
+                Authorization: `Bearer ${token}`,
               },
             });
 
@@ -113,14 +98,14 @@ jobs:
 
       - name: Vercel pull
         working-directory: site
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --global-config "$VERCEL_GLOBAL_CONFIG_DIR"
+        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token="$VERCEL_TOKEN"
 
       - name: Vercel build
         working-directory: site
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --global-config "$VERCEL_GLOBAL_CONFIG_DIR"
+        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --token="$VERCEL_TOKEN"
 
       - name: Vercel deploy (retry once)
         working-directory: site
         run: |
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --global-config "$VERCEL_GLOBAL_CONFIG_DIR" || \
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --global-config "$VERCEL_GLOBAL_CONFIG_DIR"
+          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN" || \
+          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN"
