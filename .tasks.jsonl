@@ -7,3 +7,4 @@
 {"id":"AjiJFfzo","description":"Add workflow concurrency to content repo CI/deploy runs to cancel stale work","stage":"committed","createdAt":"2026-04-07T14:05:24.027Z","updatedAt":"2026-04-07T14:16:54.822Z","committedEventId":"IYeTsvpj0dY6dj7S"}
 {"id":"P7ywTOTo","description":"Force GitHub Actions workflows onto Node 24 action runtime to remove deprecation warnings","stage":"committed","createdAt":"2026-04-07T14:44:52.072Z","updatedAt":"2026-04-07T14:46:25.691Z","committedEventId":"zkBYztW6Oa2U0szj"}
 {"id":"SwlpqU92","description":"Upgrade actions/cache to v5 and remove temporary Node 24 forcing env","stage":"committed","createdAt":"2026-04-07T14:55:58.404Z","updatedAt":"2026-04-07T14:57:34.886Z","committedEventId":"j_hEMznFhSUH06h8"}
+{"id":"ij9y-cYC","description":"Standardize portable verify entrypoint and mwt verify command","stage":"committed","createdAt":"2026-04-22T04:16:05.039Z","updatedAt":"2026-04-22T04:30:33.273Z","committedEventId":"F_Usy3PB63OAFv1L"}
