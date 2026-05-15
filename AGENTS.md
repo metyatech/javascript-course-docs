@@ -31,6 +31,52 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
 ### Decision priority
 
 - Prefer learning effectiveness over convenience or brevity.
+- Write logically precise prose
+
+## Tutorial / hands-on pages
+
+- For step-by-step tutorial pages (hands-on guides, walkthroughs), use the
+  `tutorial-authoring` skill. It defines the information hierarchy, component
+  system, and writing rules for procedural content.
+- Use the `<Section>`, `<Action>`, `<Verify>`, `<Concept>`, `<Reference>`,
+  `<Recovery>`, and `<Checkpoint>` components from `course-docs-platform`.
+  They are globally available in MDX pages (no import needed).
+- `<Section>` is a recursive structural container that replaces both the
+  legacy `<Step>` and `<Procedure>`. Nest Sections to any depth instead of
+  using a fixed two-level structure. Each top-level Section must declare a
+  `goal` prop.
+- Do not use `:::note` for background/concept explanations in tutorials; use
+  `<Concept>` (which renders as a collapsible `<details>`).
+- Do not use `:::caution` as recovery for an Action; use `<Recovery>` placed
+  inline immediately after the action that can fail.
+- Do not use `---` horizontal rules between sub-sections; only between
+  top-level Sections.
+- One image per `<Action>`; never batch multiple images before a numbered list.
+
+## Reader perspective and voice
+
+- Write learner-facing pages from the reader's perspective — never open a page
+  by describing what the document is, who it targets, or what the lesson covers
+  as if writing about the reader from the outside. ("この教材は〜のための資料です"
+  や "この授業は〜のための授業です" は典型的な NG 例)
+- Address the reader as already present: use second-person direct address
+  ("進めましょう", "確認してください") rather than third-person audience
+  description ("受講者が操作する", "初学者向け").
+- Each page must have a single distinct job. State that job internally before
+  writing, and do not duplicate content that belongs to another page's role.
+
+## Prose flow vs. bullet lists
+
+- When explaining WHY a step exists or WHY an ordering was chosen, write prose
+  with explicit cause-effect flow ("〜するため、まず〜から始める"). Decomposing
+  logical chains into bullets destroys the reasoning thread.
+- Reserve bullet lists for genuinely enumerable items (feature lists, key
+  bindings, error cases). Do not convert reasoning paragraphs into bullets.
+
+## Page navigation
+
+- Do not add explicit "次へ →" / "次に読む" links for standard sequential
+  navigation. Sidebar ordering defines the reading flow; trust it.
 
 ## Page content and samples
 
@@ -45,6 +91,25 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
 - Add language info to fenced code blocks (`js`, `ts`, `html`, `css`).
 - At the start of a chapter, add 1–2 sentences explaining where/why the topic is used.
 - When referencing real websites, do not link to pages that show personal data or require authentication.
+
+## Goal-first ordering
+
+- Before any sequence of steps, always state: (1) what the reader will have built
+  or achieved when the sequence is complete, and (2) the meaning of any new
+  concept or term that will appear in those steps. Never introduce a term
+  (variable name, system name, setting value) in a step before explaining what
+  it represents.
+- Present the goal as a concrete "what you will build" summary (a short table or
+  sentence listing inputs → outputs or before → after states) rather than a
+  vague "in this step you will learn…" statement.
+- Definitions and goal summaries belong immediately before the first sub-step,
+  not at the top of a higher-level section; place them where the reader needs
+  them, not earlier.
+
+## Cognitive load
+
+- Defer explanatory content (panel names, concept tables, terminology) until the step where it is first needed; do not front-load reference material.
+- Remove or omit any item that is already explained inline in the step that uses it.
 
 ## Prerequisites (learned vs. not yet learned)
 
@@ -97,6 +162,10 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
 
 - For admonitions in course pages, use only `tip`, `note`, `warning`, `caution`, `important`.
 - Unsupported admonition types are authoring errors; fix the source instead of relying on fallback rendering.
+- Use `note` for supplementary background info, terminology, naming conventions, and conceptual explanations.
+- Use `tip` for step-completion checklists, exercises, placement hints, and positive guidance.
+- Use `caution` for troubleshooting steps, error-prone operations, and common mistakes.
+- Prefer `:::` callouts over `>` blockquote for all standalone information blocks; reserve `>` blockquote only for quoted speech.
 
 ## Page assets (images / downloads)
 
@@ -106,7 +175,9 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
   - When an image must be loaded in MDX code: `import exampleUrl from './img/example.png'`
 - Downloadable files live in `content/**/<slug>/assets/...`:
   - `import fileUrl from './assets/<name>';`
-  - Use `<a href={fileUrl} download="<name>">...</a>` (always set `download` to avoid hashed filenames).
+  - Use `<DownloadLink file={fileUrl} filename="<name>">...</DownloadLink>`.
+  - `DownloadLink` is globally available in MDX pages via `course-docs-platform`; do not wrap imported asset URLs in raw `<a>` tags for downloads.
+  - `DownloadLink` routes production downloads through the stable-filename helper automatically and also sets `download="<name>"`.
   - Treat imports as URL strings (do not use `.default`).
 - When the same asset is needed in multiple pages, copy it into each page’s `img/` or `assets/` directory (do not create inter-page dependencies).
 
@@ -133,8 +204,9 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
 
 ## Exercises (`@metyatech/exercise`)
 
-- Use `<Exercise>` and `<Solution>` from `@metyatech/exercise/client`.
+- Use `<Exercise>` and `<Solution>` in MDX pages; they are globally available via `course-docs-platform` and require no import.
   - Place `<Solution>` at the end of the same `<Exercise>`.
+- Title the exercise block with a Markdown heading (`###`) placed **before** `<Exercise>`, not inside it; there is no `title` prop.
 - Numbering:
   - Use `演習N` / `演習-発展N` (N starts at 1) and keep numbering unique within the page.
 - Problem statements must be unambiguous:
@@ -147,12 +219,39 @@ Write these rules in a way that keeps learning outcomes (clarity, sequencing, re
 
 ## Assessments (exam questions written in Markdown)
 
-- Write questions so there is a single interpretation and a single correct answer.
-- Avoid ambiguous verbs like “switch”; specify the exact state transition.
 - For UI behavior questions, include a visual target (GIF/image) when feasible.
-- For fill-in-the-blank questions, specify the expected answer format and any forbidden answers.
-- For external-system blanks, use `${answer}` (multiple answers: `${/regex/}`); do not convert to custom placeholders (e.g. `【1】`).
-- If multiple answers are allowed, describe the allowed range explicitly (e.g. `textContent` or `innerText`).
+- For external-system blanks, use `${answer}` (multiple answers: `${/regex/}`);
+  do not convert to custom placeholders (e.g. `【1】`).
+
+## Tutorial-shot images in `<Action>` components
+
+Tutorial-shot images are PNGs generated from `.shot.json` files in a `shots/`
+directory adjacent to the MDX file, using `tutorial-shots-shared.mjs`.
+Each annotation in a shot has a `role`: `”action”` (orange solid box) or
+`”verify”` (white dashed box).
+
+### Auto-injected legend
+
+When a shot contains both `”action”` and `”verify”` annotations (a *mixed-role*
+shot), `remarkInjectTutorialShotLegend` (in `course-docs-platform`) automatically
+injects a `<Concept>` legend before the first `<Action>` on the page that
+references such a shot.  The legend describes what each box color and line style
+means so the learner can read the shot correctly.
+
+- Authors MUST NOT write stroke-color or line-style descriptions in
+  `<Action>` text (e.g. “白い破線で囲まれた”, “オレンジの実線で囲まれた”) for
+  tutorial-shot images.  The auto-injected legend covers this; inline
+  repetition violates the Redundancy principle.
+- Authors MUST NOT manually write a `<Concept>` block for the shot legend.
+  `remarkInjectTutorialShotLegend` handles injection automatically.  Duplicate
+  manual blocks create double legends.
+
+### Keeping the legend text in sync
+
+The legend text is defined by the constants `VERIFY_VISUAL` and `ACTION_VISUAL`
+in `course-docs-platform/src/mdx/remark-inject-tutorial-shot-legend.ts`.
+When the stroke colors or line styles in `tutorial-shots-shared.mjs` change,
+update those constants in the same change set so the legend stays accurate.
 
 Source: agent-rules-private/rules/course-site-repository-architecture.md
 

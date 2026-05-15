@@ -80,6 +80,8 @@ const run = (command, args, options = {}) => {
   }
 };
 
+run('node', ['scripts/verify-exercise-headings.mjs']);
+
 const courseDocsSiteDir = resolveCourseDocsSiteDir();
 const siteEnv = {
   ...process.env,
