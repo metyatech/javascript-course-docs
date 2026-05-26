@@ -27,108 +27,108 @@ title: スライダー (Swiper.js)
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">📱</div>
-        <h3>スマートフォン</h3>
-        <p class="price">¥89,800</p>
-      </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">
+            <div class="product-card">
+                <div class="product-image">📱</div>
+                <h3>スマートフォン</h3>
+                <p class="price">¥89,800</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="product-card">
+                <div class="product-image">💻</div>
+                <h3>ノートパソコン</h3>
+                <p class="price">¥149,800</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="product-card">
+                <div class="product-image">⌚</div>
+                <h3>スマートウォッチ</h3>
+                <p class="price">¥45,800</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="product-card">
+                <div class="product-image">🎧</div>
+                <h3>ワイヤレスイヤホン</h3>
+                <p class="price">¥29,800</p>
+            </div>
+        </div>
+        <div class="swiper-slide">
+            <div class="product-card">
+                <div class="product-image">📷</div>
+                <h3>デジタルカメラ</h3>
+                <p class="price">¥79,800</p>
+            </div>
+        </div>
     </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">💻</div>
-        <h3>ノートパソコン</h3>
-        <p class="price">¥149,800</p>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">⌚</div>
-        <h3>スマートウォッチ</h3>
-        <p class="price">¥45,800</p>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">🎧</div>
-        <h3>ワイヤレスイヤホン</h3>
-        <p class="price">¥29,800</p>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="product-card">
-        <div class="product-image">📷</div>
-        <h3>デジタルカメラ</h3>
-        <p class="price">¥79,800</p>
-      </div>
-    </div>
-  </div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-pagination"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
 </div>
 ```
 
 ```css
 .swiper {
-  height: 280px;
-  /* スライド幅計算とズレないよう左右パディングは外す */
-  padding: 20px 0;
-  /* 念のためはみ出しを隠す */
-  overflow: hidden;
+    height: 280px;
+    /* スライド幅計算とズレないよう左右パディングは外す */
+    padding: 20px 0;
+    /* 念のためはみ出しを隠す */
+    overflow: hidden;
 }
 .swiper-slide {
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* 子要素の幅計算でオーバーフローしないように */
-  min-width: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 子要素の幅計算でオーバーフローしないように */
+    min-width: 0;
 }
 .product-card {
-  background: white;
-  border-radius: 12px;
-  padding: 24px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  text-align: center;
-  /* スライド幅に応じて縮み、最大200pxまで */
-  max-width: 200px;
-  box-sizing: border-box;
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    /* スライド幅に応じて縮み、最大200pxまで */
+    max-width: 200px;
+    box-sizing: border-box;
 }
 .product-image {
-  font-size: 64px;
-  margin-bottom: 12px;
+    font-size: 64px;
+    margin-bottom: 12px;
 }
 .product-card h3 {
-  font-size: 18px;
-  margin: 8px 0;
-  color: #333;
+    font-size: 18px;
+    margin: 8px 0;
+    color: #333;
 }
 .price {
-  font-size: 20px;
-  font-weight: bold;
-  color: #e74c3c;
-  margin: 8px 0 0 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin: 8px 0 0 0;
 }
 ```
 
 ```javascript
 let swiper = new Swiper(".swiper", {
-  slidesPerView: 3,
-  spaceBetween: 20,
-  loop: true,
-  autoplay: {
-    delay: 3000,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
+    slidesPerView: 3,
+    spaceBetween: 20,
+    loop: true,
+    autoplay: {
+        delay: 3000,
+    },
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
 });
 ```
 </CodePreview>
@@ -172,20 +172,20 @@ let swiper = new Swiper(".swiper", {
 
 <!-- これを body 内に入れて -->
 <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">スライド1</div>
-    <div class="swiper-slide">スライド2</div>
-    <div class="swiper-slide">スライド3</div>
-  </div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">スライド1</div>
+        <div class="swiper-slide">スライド2</div>
+        <div class="swiper-slide">スライド3</div>
+    </div>
 </div>
 ```
 
 ```css
 .swiper {
-  height: 220px;
+    height: 220px;
 }
 .swiper-slide {
-  background-color: #cfe9ff;
+    background-color: #cfe9ff;
 }
 ```
 
@@ -228,36 +228,36 @@ let swiper = new Swiper('.swiper', {});
 
 <!-- これを body 内に入れて -->
 <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">商品A</div>
-    <div class="swiper-slide">商品B</div>
-    <div class="swiper-slide">商品C</div>
-    <div class="swiper-slide">商品D</div>
-  </div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-pagination"></div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">商品A</div>
+        <div class="swiper-slide">商品B</div>
+        <div class="swiper-slide">商品C</div>
+        <div class="swiper-slide">商品D</div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
 </div>
 ```
 
 ```css
 .swiper {
-  height: 230px;
+    height: 230px;
 }
 .swiper-slide {
-  background-color: #e0ffe0;
+    background-color: #e0ffe0;
 }
 ```
 
 ```javascript
 let swiper = new Swiper('.swiper', {
-  navigation: {
-    prevEl: '.swiper-button-prev',
-    nextEl: '.swiper-button-next',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-  },
+    navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+    },
 });
 ```
 </CodePreview>
@@ -297,41 +297,41 @@ let swiper = new Swiper('.swiper', {
 
 <!-- これを body 内に入れて -->
 <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">ニュース1</div>
-    <div class="swiper-slide">ニュース2</div>
-    <div class="swiper-slide">ニュース3</div>
-    <div class="swiper-slide">ニュース4</div>
-    <div class="swiper-slide">ニュース5</div>
-  </div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-pagination"></div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">ニュース1</div>
+        <div class="swiper-slide">ニュース2</div>
+        <div class="swiper-slide">ニュース3</div>
+        <div class="swiper-slide">ニュース4</div>
+        <div class="swiper-slide">ニュース5</div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
 </div>
 ```
 
 ```css
 .swiper {
-  height: 250px;
+    height: 250px;
 }
 .swiper-slide {
-  background-color: #fff3cd;
+    background-color: #fff3cd;
 }
 ```
 
 ```javascript
 let swiper = new Swiper('.swiper', {
-  loop: true,
-  autoplay: {
-    delay: 3000,
-  },
-  navigation: {
-    prevEl: '.swiper-button-prev',
-    nextEl: '.swiper-button-next',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-  },
+    loop: true,
+    autoplay: {
+        delay: 3000,
+    },
+    navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+    },
 });
 ```
 </CodePreview>
@@ -376,40 +376,40 @@ let swiper = new Swiper('.swiper', {
 
 <!-- これを body 内に入れて -->
 <div class="swiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide">画像1</div>
-    <div class="swiper-slide">画像2</div>
-    <div class="swiper-slide">画像3</div>
-    <div class="swiper-slide">画像4</div>
-    <div class="swiper-slide">画像5</div>
-    <div class="swiper-slide">画像6</div>
-  </div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-  <div class="swiper-pagination"></div>
+    <div class="swiper-wrapper">
+        <div class="swiper-slide">画像1</div>
+        <div class="swiper-slide">画像2</div>
+        <div class="swiper-slide">画像3</div>
+        <div class="swiper-slide">画像4</div>
+        <div class="swiper-slide">画像5</div>
+        <div class="swiper-slide">画像6</div>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
 </div>
 ```
 
 ```css
 .swiper {
-  height: 250px;
+    height: 250px;
 }
 .swiper-slide {
-  background-color: #d4edda;
+    background-color: #d4edda;
 }
 ```
 
 ```javascript
 let swiper = new Swiper('.swiper', {
-  slidesPerView: 3,
-  spaceBetween: 20,
-  navigation: {
-    prevEl: '.swiper-button-prev',
-    nextEl: '.swiper-button-next',
-  },
-  pagination: {
-    el: '.swiper-pagination',
-  },
+    slidesPerView: 3,
+    spaceBetween: 20,
+    navigation: {
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
+    },
+    pagination: {
+        el: '.swiper-pagination',
+    },
 });
 ```
 </CodePreview>

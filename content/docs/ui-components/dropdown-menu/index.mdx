@@ -24,30 +24,30 @@ sidebar_position: 999
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li>サービス</li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li>サービス</li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
+        </ul>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0; /* ページの端の余白をなくす */
+    margin: 0; /* ページの端の余白をなくす */
 }
 
 header {
-  border-bottom: solid black 1px; /* ヘッダーの下の線 */
+    border-bottom: solid black 1px; /* ヘッダーの下の線 */
 }
 
 .menu {
-  display: flex; /* 横並びに */
-  list-style: none; /* リストの点を消す */
-  padding: 0; /* ulにデフォルトでついているパディングを消す */
+    display: flex; /* 横並びに */
+    list-style: none; /* リストの点を消す */
+    padding: 0; /* ulにデフォルトでついているパディングを消す */
 }
 ```
 </CodePreview>
@@ -71,45 +71,45 @@ header {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li>
-        <span>サービス</span> <!-- サブメニューができたので、(地べたに置くと扱いにくそうなので)ここは何か要素で囲んでおく(span など (概ねなんでも良い)) -->
-        <ul class="dd-submenu"> <!-- 「サービス」を囲んでいた li の中に、サブメニューを追加。dd = drop down のつもりでつけました(名前は何でも良いです) -->
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li>
+                <span>サービス</span> <!-- サブメニューができたので、(地べたに置くと扱いにくそうなので)ここは何か要素で囲んでおく(span など (概ねなんでも良い)) -->
+                <ul class="dd-submenu"> <!-- 「サービス」を囲んでいた li の中に、サブメニューを追加。dd = drop down のつもりでつけました(名前は何でも良いです) -->
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid black 1px;
+    border-bottom: solid black 1px;
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
 }
 
 .dd-submenu {
-  list-style: none; /* リストの点を消す */
-  padding: 0; /* ulにデフォルトでついているパディングを消す */
-  border: solid black 1px; /* 枠線 */
-  background-color: white; /* 背景色を白に */
-  position: absolute; /* 絶対配置にして、その場のスペースを占有せずに、要素を浮かせる */
+    list-style: none; /* リストの点を消す */
+    padding: 0; /* ulにデフォルトでついているパディングを消す */
+    border: solid black 1px; /* 枠線 */
+    background-color: white; /* 背景色を白に */
+    position: absolute; /* 絶対配置にして、その場のスペースを占有せずに、要素を浮かせる */
 }
 ```
 </CodePreview>
@@ -142,52 +142,52 @@ header {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu"> <!-- この要素(= 子である「サービス」や「.dd-submenu」)にカーソルを乗せたり外したりしたときにメニューを開閉したいので、ここにクラスをつける -->
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu"> <!-- この要素(= 子である「サービス」や「.dd-submenu」)にカーソルを乗せたり外したりしたときにメニューを開閉したいので、ここにクラスをつける -->
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid black 1px;
+    border-bottom: solid black 1px;
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  border: solid black 1px;
-  background-color: white;
-  position: absolute;
-  opacity: 0; /* 最初は完全に透明で */
-  visibility: hidden; /* 見えないようにする */
+    list-style: none;
+    padding: 0;
+    border: solid black 1px;
+    background-color: white;
+    position: absolute;
+    opacity: 0; /* 最初は完全に透明で */
+    visibility: hidden; /* 見えないようにする */
 }
 
 .dd-submenu.open { /* サブメニューに open クラスがついているとき（開いているとき） */
-  opacity: 1; /* しっかり見えるようにする */
-  visibility: visible; /* 見えるようにする */
+    opacity: 1; /* しっかり見えるようにする */
+    visibility: visible; /* 見えるようにする */
 }
 ```
 
@@ -197,14 +197,14 @@ let ddMenuYoso = document.querySelector('.dd-menu');
 
 // マウスが乗ったときの処理
 ddMenuYoso.addEventListener('mouseenter', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open'); // open クラスを追加して表示
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.add('open'); // open クラスを追加して表示
 });
 
 // マウスが離れたときの処理
 ddMenuYoso.addEventListener('mouseleave', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open'); // open クラスを削除して非表示
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.remove('open'); // open クラスを削除して非表示
 });
 ```
 </CodePreview>
@@ -229,53 +229,53 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid black 1px;
+    border-bottom: solid black 1px;
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  border: solid black 1px;
-  background-color: white;
-  position: absolute;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s; /* 0.3秒かけて変化させるようにアニメーション化する */
+    list-style: none;
+    padding: 0;
+    border: solid black 1px;
+    background-color: white;
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s; /* 0.3秒かけて変化させるようにアニメーション化する */
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 ```
 
@@ -283,13 +283,13 @@ header {
 let ddMenuYoso = document.querySelector('.dd-menu');
 
 ddMenuYoso.addEventListener('mouseenter', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.add('open');
 });
 
 ddMenuYoso.addEventListener('mouseleave', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.remove('open');
 });
 ```
 </CodePreview>
@@ -314,98 +314,98 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px; /* 枠線を薄いグレーに */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    border-bottom: solid #ddd 1px; /* 枠線を薄いグレーに */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影を追加 */
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0; /* デフォルトのマージンを削除 */
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0; /* デフォルトのマージンを削除 */
 }
 
 .menu > li { /* メニュー項目のスタイル */
-  padding: 15px 20px; /* 上下15px、左右20pxの余白 */
-  cursor: pointer; /* カーソルをポインターに */
+    padding: 15px 20px; /* 上下15px、左右20pxの余白 */
+    cursor: pointer; /* カーソルをポインターに */
 }
 
 .menu > li:hover { /* メニュー項目にホバーしたとき */
-  background-color: #f5f5f5; /* 背景色を薄いグレーに */
+    background-color: #f5f5f5; /* 背景色を薄いグレーに */
 }
 
 .dd-menu { /* ドロップダウンメニューを持つ項目 */
-  position: relative; /* 子要素の絶対配置の基準にする */
+    position: relative; /* 子要素の絶対配置の基準にする */
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0; /* デフォルトのマージンを削除 */
-  border: solid #ddd 1px; /* 枠線を薄いグレーに */
-  background-color: white;
-  position: absolute;
-  top: 100%; /* .dd-menu の下端に配置 */
-  left: 0; /* .dd-menu の左端に配置 */
-  width: max-content; /* 最大コンテンツの幅に合わせる */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0; /* デフォルトのマージンを削除 */
+    border: solid #ddd 1px; /* 枠線を薄いグレーに */
+    background-color: white;
+    position: absolute;
+    top: 100%; /* .dd-menu の下端に配置 */
+    left: 0; /* .dd-menu の左端に配置 */
+    width: max-content; /* 最大コンテンツの幅に合わせる */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 影を追加 */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s;
 }
 
 .dd-submenu > li { /* サブメニュー項目のスタイル */
-  padding: 12px 20px; /* 上下12px、左右20pxの余白 */
-  cursor: pointer; /* カーソルをポインターに */
+    padding: 12px 20px; /* 上下12px、左右20pxの余白 */
+    cursor: pointer; /* カーソルをポインターに */
 }
 
 .dd-submenu > li:hover { /* サブメニュー項目にホバーしたとき */
-  background-color: #f5f5f5; /* 背景色を薄いグレーに */
+    background-color: #f5f5f5; /* 背景色を薄いグレーに */
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
+    opacity: 1;
+    visibility: visible;
 }
 ```
 
 ```javascript
 
-  let ddMenuYoso = document.querySelector('.dd-menu');
+    let ddMenuYoso = document.querySelector('.dd-menu');
 
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.add('open');
-  });
+    ddMenuYoso.addEventListener('mouseenter', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu');
+        submenu.classList.add('open');
+    });
 
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.remove('open');
-  });
+    ddMenuYoso.addEventListener('mouseleave', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu');
+        submenu.classList.remove('open');
+    });
 
 ```
 </CodePreview>
@@ -434,84 +434,84 @@ header {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: solid #ddd 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu > li {
-  padding: 15px 20px;
-  cursor: pointer;
+    padding: 15px 20px;
+    cursor: pointer;
 }
 
 .menu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-menu {
-  position: relative;
+    position: relative;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: solid #ddd 1px;
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: max-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px); /* 上に10px移動した位置から開始 */
-  transition: all 0.3s, transform 0.3s, visibility 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid #ddd 1px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px); /* 上に10px移動した位置から開始 */
+    transition: all 0.3s, transform 0.3s, visibility 0.3s;
 }
 
 .dd-submenu > li {
-  padding: 12px 20px;
-  cursor: pointer;
+    padding: 12px 20px;
+    cursor: pointer;
 }
 
 .dd-submenu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0); /* 元の位置に移動 */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* 元の位置に移動 */
 }
 ```
 
@@ -519,13 +519,13 @@ header {
 let ddMenuYoso = document.querySelector('.dd-menu');
 
 ddMenuYoso.addEventListener('mouseenter', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.add('open');
 });
 
 ddMenuYoso.addEventListener('mouseleave', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.remove('open');
 });
 ```
 </CodePreview>
@@ -558,85 +558,85 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: solid #ddd 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu > li {
-  padding: 15px 20px;
-  cursor: pointer;
+    padding: 15px 20px;
+    cursor: pointer;
 }
 
 .menu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-menu {
-  position: relative;
+    position: relative;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: solid #ddd 1px;
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: max-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px) scale(0.95); /* 上に10px移動した位置から開始 + 少し小さい状態から開始 */
-  transform-origin: left top; /* 左上を基準に変形 */
-  transition: all 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid #ddd 1px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95); /* 上に10px移動した位置から開始 + 少し小さい状態から開始 */
+    transform-origin: left top; /* 左上を基準に変形 */
+    transition: all 0.3s;
 }
 
 .dd-submenu > li {
-  padding: 12px 20px;
-  cursor: pointer;
+    padding: 12px 20px;
+    cursor: pointer;
 }
 
 .dd-submenu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0) scale(1); /* 元の位置に移動 + 通常サイズ */
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1); /* 元の位置に移動 + 通常サイズ */
 }
 ```
 
@@ -644,13 +644,13 @@ header {
 let ddMenuYoso = document.querySelector('.dd-menu');
 
 ddMenuYoso.addEventListener('mouseenter', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.add('open');
 });
 
 ddMenuYoso.addEventListener('mouseleave', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.remove('open');
 });
 ```
 </CodePreview>
@@ -681,85 +681,85 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li>会社情報</li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li>会社情報</li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: solid #ddd 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu > li {
-  padding: 15px 20px;
-  cursor: pointer;
+    padding: 15px 20px;
+    cursor: pointer;
 }
 
 .menu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-menu {
-  position: relative;
+    position: relative;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: solid #ddd 1px;
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: max-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px) scale(0.95) rotate(-3deg); /* 上に移動 + 縮小 + 反時計回りに3度回転した状態から開始 */
-  transform-origin: top left;
-  transition: all 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid #ddd 1px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95) rotate(-3deg); /* 上に移動 + 縮小 + 反時計回りに3度回転した状態から開始 */
+    transform-origin: top left;
+    transition: all 0.3s;
 }
 
 .dd-submenu > li {
-  padding: 12px 20px;
-  cursor: pointer;
+    padding: 12px 20px;
+    cursor: pointer;
 }
 
 .dd-submenu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: revert; /* 元の状態に戻す　というのは、実は revert という特別な値を設定することで簡単に実現できます。(このような特別な値は initial, inherit, revert, unset などがあり、これらの特別な値は、全てのCSSのプロパティに使用できます) */
+    opacity: 1;
+    visibility: visible;
+    transform: revert; /* 元の状態に戻す　というのは、実は revert という特別な値を設定することで簡単に実現できます。(このような特別な値は initial, inherit, revert, unset などがあり、これらの特別な値は、全てのCSSのプロパティに使用できます) */
 }
 ```
 
@@ -767,13 +767,13 @@ header {
 let ddMenuYoso = document.querySelector('.dd-menu');
 
 ddMenuYoso.addEventListener('mouseenter', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.add('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.add('open');
 });
 
 ddMenuYoso.addEventListener('mouseleave', function() {
-  let submenu = ddMenuYoso.querySelector('.dd-submenu');
-  submenu.classList.remove('open');
+    let submenu = ddMenuYoso.querySelector('.dd-submenu');
+    submenu.classList.remove('open');
 });
 ```
 </CodePreview>
@@ -804,92 +804,92 @@ ddMenuYoso.addEventListener('mouseleave', function() {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li class="dd-menu"> <!-- 会社情報にも dd-menu クラスを追加 -->
+                <span>会社情報</span>
+                <ul class="dd-submenu">
+                    <li>会社概要</li>
+                    <li>代表挨拶</li>
+                    <li>アクセス</li>
+                </ul>
+            </li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li class="dd-menu"> <!-- 会社情報にも dd-menu クラスを追加 -->
-        <span>会社情報</span>
-        <ul class="dd-submenu">
-          <li>会社概要</li>
-          <li>代表挨拶</li>
-          <li>アクセス</li>
-        </ul>
-      </li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: solid #ddd 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu > li {
-  padding: 15px 20px;
-  cursor: pointer;
+    padding: 15px 20px;
+    cursor: pointer;
 }
 
 .menu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-menu {
-  position: relative;
+    position: relative;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: solid #ddd 1px;
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: max-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px) scale(0.95) rotate(-3deg);
-  transform-origin: top left;
-  transition: all 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid #ddd 1px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95) rotate(-3deg);
+    transform-origin: top left;
+    transition: all 0.3s;
 }
 
 .dd-submenu > li {
-  padding: 12px 20px;
-  cursor: pointer;
+    padding: 12px 20px;
+    cursor: pointer;
 }
 
 .dd-submenu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: revert;
+    opacity: 1;
+    visibility: visible;
+    transform: revert;
 }
 ```
 
@@ -899,17 +899,17 @@ let ddMenuYosos = document.querySelectorAll('.dd-menu');
 
 // それぞれのドロップダウンメニューに対してイベントを設定
 for (let ddMenuYoso of ddMenuYosos) {
-  // マウスが乗ったときの処理
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
-    submenu.classList.add('open');
-  });
+    // マウスが乗ったときの処理
+    ddMenuYoso.addEventListener('mouseenter', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
+        submenu.classList.add('open');
+    });
 
-  // マウスが離れたときの処理
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
-    submenu.classList.remove('open');
-  });
+    // マウスが離れたときの処理
+    ddMenuYoso.addEventListener('mouseleave', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu'); // 要素.querySelector を使って、ddMenuYoso の中から .dd-submenu にマッチする要素を取得
+        submenu.classList.remove('open');
+    });
 }
 ```
 </CodePreview>
@@ -940,114 +940,114 @@ for (let ddMenuYoso of ddMenuYosos) {
 >
 ```html
 <header>
-  <nav>
-    <ul class="menu">
-      <li>ホーム</li>
-      <li class="dd-menu">
-        <span>サービス</span>
-        <ul class="dd-submenu">
-          <li>Web開発</li>
-          <li>モバイルアプリ開発</li>
-          <li>UI/UXデザイン</li>
+    <nav>
+        <ul class="menu">
+            <li>ホーム</li>
+            <li class="dd-menu">
+                <span>サービス</span>
+                <ul class="dd-submenu">
+                    <li>Web開発</li>
+                    <li>モバイルアプリ開発</li>
+                    <li>UI/UXデザイン</li>
+                </ul>
+            </li>
+            <li class="dd-menu">
+                <span>会社情報</span>
+                <ul class="dd-submenu">
+                    <li>会社概要</li>
+                    <li>代表挨拶</li>
+                    <li>アクセス</li>
+                </ul>
+            </li>
+            <li>お問い合わせ</li>
         </ul>
-      </li>
-      <li class="dd-menu">
-        <span>会社情報</span>
-        <ul class="dd-submenu">
-          <li>会社概要</li>
-          <li>代表挨拶</li>
-          <li>アクセス</li>
-        </ul>
-      </li>
-      <li>お問い合わせ</li>
-    </ul>
-  </nav>
+    </nav>
 </header>
 ```
 
 ```css
 body {
-  margin: 0;
+    margin: 0;
 }
 
 header {
-  border-bottom: solid #ddd 1px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-bottom: solid #ddd 1px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .menu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .menu > li {
-  padding: 15px 20px;
-  cursor: pointer;
+    padding: 15px 20px;
+    cursor: pointer;
 }
 
 .menu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 .dd-menu {
-  position: relative;
+    position: relative;
 }
 
 .dd-submenu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: solid #ddd 1px;
-  background-color: white;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: max-content;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px) scale(0.95) rotate(-3deg);
-  transform-origin: top left;
-  transition: all 0.3s;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: solid #ddd 1px;
+    background-color: white;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px) scale(0.95) rotate(-3deg);
+    transform-origin: top left;
+    transition: all 0.3s;
 }
 
 .dd-submenu > li {
-  padding: 12px 20px;
-  cursor: pointer;
-  opacity: 0; /* 最初は各項目を透明に */
-  transform: translateX(-10px); /* 少し左にずらした状態から開始 */
-  transition: opacity 0.3s, transform 0.3s; /* 各項目のアニメーション */
+    padding: 12px 20px;
+    cursor: pointer;
+    opacity: 0; /* 最初は各項目を透明に */
+    transform: translateX(-10px); /* 少し左にずらした状態から開始 */
+    transition: opacity 0.3s, transform 0.3s; /* 各項目のアニメーション */
 }
 
 .dd-submenu > li:hover {
-  background-color: #f5f5f5;
+    background-color: #f5f5f5;
 }
 
 /* 各サブメニュー項目の遅延設定 */
 .dd-submenu > li:nth-child(1) {
-  transition-delay: 0.1s; /* 1番目は0.1秒遅れて表示 */
+    transition-delay: 0.1s; /* 1番目は0.1秒遅れて表示 */
 }
 
 .dd-submenu > li:nth-child(2) {
-  transition-delay: 0.2s; /* 2番目は0.2秒遅れて表示 */
+    transition-delay: 0.2s; /* 2番目は0.2秒遅れて表示 */
 }
 
 .dd-submenu > li:nth-child(3) {
-  transition-delay: 0.3s; /* 3番目は0.3秒遅れて表示 */
+    transition-delay: 0.3s; /* 3番目は0.3秒遅れて表示 */
 }
 
 .dd-submenu.open {
-  opacity: 1;
-  visibility: visible;
-  transform: revert;
+    opacity: 1;
+    visibility: visible;
+    transform: revert;
 }
 
 /* サブメニューが開いたときの、各項目の設定 */
 .dd-submenu.open > li {
-  opacity: revert; /* 元の位置に */
-  transform: revert; /* 元の位置に */
+    opacity: revert; /* 元の位置に */
+    transform: revert; /* 元の位置に */
 }
 ```
 
@@ -1055,15 +1055,15 @@ header {
 let ddMenuYosos = document.querySelectorAll('.dd-menu');
 
 for (let ddMenuYoso of ddMenuYosos) {
-  ddMenuYoso.addEventListener('mouseenter', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.add('open');
-  });
+    ddMenuYoso.addEventListener('mouseenter', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu');
+        submenu.classList.add('open');
+    });
 
-  ddMenuYoso.addEventListener('mouseleave', function() {
-    let submenu = ddMenuYoso.querySelector('.dd-submenu');
-    submenu.classList.remove('open');
-  });
+    ddMenuYoso.addEventListener('mouseleave', function() {
+        let submenu = ddMenuYoso.querySelector('.dd-submenu');
+        submenu.classList.remove('open');
+    });
 }
 ```
 </CodePreview>

@@ -33,26 +33,26 @@ import wholeCake from "./img/whole_cake.jpg";
 <a class="open-popup-link" href="#popup-content">ポップアップを開く</a>
 
 <div id="popup-content" class="mfp-hide white-popup">
-  <h2>お知らせ</h2>
-  <p>これはポップアップの内容です。</p>
-  <p>背景をクリックすると、閉じることができます。</p>
+    <h2>お知らせ</h2>
+    <p>これはポップアップの内容です。</p>
+    <p>背景をクリックすると、閉じることができます。</p>
 </div>
 ```
 
 ```css
 .white-popup {
-  background: white;
-  padding: 20px;
-  max-width: 400px;
-  margin: 0 auto;
+    background: white;
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 ```
 
 ```javascript
 $('.open-popup-link').magnificPopup({
-  type: 'inline',
-  closeBtnInside: true,
-  midClick: true,
+    type: 'inline',
+    closeBtnInside: true,
+    midClick: true,
 });
 ```
 </CodePreview>
@@ -105,7 +105,7 @@ $('.open-popup-link').magnificPopup({
 
 ```javascript
 $('.image-link').magnificPopup({
-  type: 'image',
+    type: 'image',
 });
 ```
 </CodePreview>
@@ -123,7 +123,7 @@ $('.image-link').magnificPopup({
 **2. JavaScriptの設定**
 ```javascript
 $('.image-link').magnificPopup({
-  type: 'image',
+    type: 'image',
 });
 ```
 - `$('.image-link')`: クラス名が `image-link` の要素を選択（jQuery記法）
@@ -160,13 +160,13 @@ $('.image-link').magnificPopup({
 
 <!-- これを body 内に入れて -->
 <a class="image-popup" href="img/christmas_chicken.jpg">
-  <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
 </a>
 ```
 
 ```javascript
 $('.image-popup').magnificPopup({
-  type: 'image',
+    type: 'image',
 });
 ```
 </CodePreview>
@@ -179,7 +179,7 @@ $('.image-popup').magnificPopup({
 **1. HTMLの構造**
 ```html
 <a class="image-popup" href="img/christmas_chicken.jpg">
-  <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
 </a>
 ```
 - `<a>` タグで画像を囲むことで、画像自体をクリック可能にします
@@ -190,7 +190,7 @@ $('.image-popup').magnificPopup({
 **2. JavaScriptの設定**
 ```javascript
 $('.image-popup').magnificPopup({
-  type: 'image',
+    type: 'image',
 });
 ```
 - 画像をクリックすると、`href` に指定した画像が大きくポップアップ表示されます
@@ -224,13 +224,13 @@ $('.image-popup').magnificPopup({
 <a class="open-popup" href="#content">詳細を見る</a>
 
 <div id="content" class="mfp-hide">
-  <p>これはポップアップで表示されるテキストです。</p>
+    <p>これはポップアップで表示されるテキストです。</p>
 </div>
 ```
 
 ```javascript
 $('.open-popup').magnificPopup({
-  type: 'inline',
+    type: 'inline',
 });
 ```
 </CodePreview>
@@ -245,7 +245,7 @@ $('.open-popup').magnificPopup({
 <a class="open-popup" href="#content">詳細を見る</a>
 
 <div id="content" class="mfp-hide">
-  <p>これはポップアップで表示されるテキストです。</p>
+    <p>これはポップアップで表示されるテキストです。</p>
 </div>
 ```
 - `href="#content"`: ポップアップで表示する要素のIDを `#` 付きで指定
@@ -255,7 +255,7 @@ $('.open-popup').magnificPopup({
 **2. JavaScriptの設定**
 ```javascript
 $('.open-popup').magnificPopup({
-  type: 'inline',
+    type: 'inline',
 });
 ```
 - `type: 'inline'`: ページ内に既に存在するHTML要素をポップアップとして表示するモード
@@ -295,28 +295,28 @@ $('.open-popup').magnificPopup({
 <a class="open-modal" href="#modal-content">お知らせを見る</a>
 
 <div id="modal-content" class="mfp-hide white-popup">
-  <h2>お知らせ</h2>
-  <p>これはモーダルウィンドウ風のポップアップです。</p>
-  <p>背景をクリックすると閉じることができます。</p>
+    <h2>お知らせ</h2>
+    <p>これはモーダルウィンドウ風のポップアップです。</p>
+    <p>背景をクリックすると閉じることができます。</p>
 </div>
 ```
 
 ```css
 .white-popup {
-  background: white;
-  padding: 30px;
-  max-width: 500px;
-  margin: 0 auto;
-  border-radius: 8px;
+    background: white;
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    border-radius: 8px;
 }
 .white-popup h2 {
-  margin-top: 0;
+    margin-top: 0;
 }
 ```
 
 ```javascript
 $('.open-modal').magnificPopup({
-  type: 'inline',
+    type: 'inline',
 });
 ```
 </CodePreview>
@@ -331,9 +331,9 @@ $('.open-modal').magnificPopup({
 <a class="open-modal" href="#modal-content">お知らせを見る</a>
 
 <div id="modal-content" class="mfp-hide white-popup">
-  <h2>お知らせ</h2>
-  <p>これはモーダルウィンドウ風のポップアップです。</p>
-  <p>背景をクリックすると閉じることができます。</p>
+    <h2>お知らせ</h2>
+    <p>これはモーダルウィンドウ風のポップアップです。</p>
+    <p>背景をクリックすると閉じることができます。</p>
 </div>
 ```
 - `class="mfp-hide white-popup"`: 2つのクラスを指定
@@ -343,21 +343,21 @@ $('.open-modal').magnificPopup({
 **2. CSSでデザインを整える**
 ```css
 .white-popup {
-  background: white;        /* 白い背景 */
-  padding: 30px;            /* 内側の余白 */
-  max-width: 500px;         /* 最大幅を制限 */
-  margin: 0 auto;           /* 中央揃え */
-  border-radius: 8px;       /* 角を丸くする */
+    background: white;        /* 白い背景 */
+    padding: 30px;            /* 内側の余白 */
+    max-width: 500px;         /* 最大幅を制限 */
+    margin: 0 auto;           /* 中央揃え */
+    border-radius: 8px;       /* 角を丸くする */
 }
 .white-popup h2 {
-  margin-top: 0;            /* 見出しの上の余白を削除 */
+    margin-top: 0;            /* 見出しの上の余白を削除 */
 }
 ```
 
 **3. JavaScriptの設定**
 ```javascript
 $('.open-modal').magnificPopup({
-  type: 'inline',
+    type: 'inline',
 });
 ```
 - 演習3と同じ仕組みですが、CSSで見た目を大幅にカスタマイズしています
@@ -397,7 +397,7 @@ $('.open-modal').magnificPopup({
 
 ```javascript
 $('.video-popup').magnificPopup({
-  type: 'iframe',
+    type: 'iframe',
 });
 ```
 </CodePreview>
@@ -417,7 +417,7 @@ $('.video-popup').magnificPopup({
 **2. JavaScriptの設定**
 ```javascript
 $('.video-popup').magnificPopup({
-  type: 'iframe',
+    type: 'iframe',
 });
 ```
 - `type: 'iframe'`: iframeを使ってコンテンツを埋め込むモード
@@ -469,25 +469,25 @@ $('.video-popup').magnificPopup({
 
 <!-- これを body 内に入れて -->
 <div class="gallery">
-  <a href="img/christmas_chicken.jpg">
-    <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
-  </a>
-  <a href="img/christmas_snowman.jpg">
-    <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
-  </a>
-  <a href="img/whole_cake.jpg">
-    <img src="img/whole_cake.jpg" width="150" alt="画像3">
-  </a>
+    <a href="img/christmas_chicken.jpg">
+        <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+    </a>
+    <a href="img/christmas_snowman.jpg">
+        <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+    </a>
+    <a href="img/whole_cake.jpg">
+        <img src="img/whole_cake.jpg" width="150" alt="画像3">
+    </a>
 </div>
 ```
 
 ```javascript
 $('.gallery').magnificPopup({
-  delegate: 'a',
-  type: 'image',
-  gallery: {
-    enabled: true,
-  },
+    delegate: 'a',
+    type: 'image',
+    gallery: {
+        enabled: true,
+    },
 });
 ```
 </CodePreview>
@@ -500,15 +500,15 @@ $('.gallery').magnificPopup({
 **1. HTMLの構造**
 ```html
 <div class="gallery">
-  <a href="img/christmas_chicken.jpg">
-    <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
-  </a>
-  <a href="img/christmas_snowman.jpg">
-    <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
-  </a>
-  <a href="img/whole_cake.jpg">
-    <img src="img/whole_cake.jpg" width="150" alt="画像3">
-  </a>
+    <a href="img/christmas_chicken.jpg">
+        <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+    </a>
+    <a href="img/christmas_snowman.jpg">
+        <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+    </a>
+    <a href="img/whole_cake.jpg">
+        <img src="img/whole_cake.jpg" width="150" alt="画像3">
+    </a>
 </div>
 ```
 - 親要素 `<div class="gallery">` で複数の画像リンクをグループ化します
@@ -517,11 +517,11 @@ $('.gallery').magnificPopup({
 **2. JavaScriptの設定**
 ```javascript
 $('.gallery').magnificPopup({
-  delegate: 'a',            // どの子要素をトリガーにするか
-  type: 'image',            // 画像ポップアップモード
-  gallery: {
-    enabled: true,          // ギャラリーモードを有効化
-  },
+    delegate: 'a',            // どの子要素をトリガーにするか
+    type: 'image',            // 画像ポップアップモード
+    gallery: {
+        enabled: true,          // ギャラリーモードを有効化
+    },
 });
 ```
 

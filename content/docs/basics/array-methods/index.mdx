@@ -184,7 +184,7 @@ console.log("残りの配列: " + colors); // 出力: ["黄","青","緑"]
 
 ```js
 let newArray = array.map(function(要素) {
-  return 要素 * 2;
+    return 要素 * 2;
 });
 // newArray は元配列とは別の配列で、元配列は変更されない
 ```
@@ -401,11 +401,11 @@ console.log(arrayC); // 出力: [1,12,25,0,0,0,0,0]
 
 ```js
 let items = [
-  { type: "飲料", name: "お茶", price: 124 },
-  { type: "食料", name: "パン", price: 138 },
-  { type: "飲料", name: "水", price: 88 },
-  { type: "食料", name: "菓子", price: 98 },
-  { type: "飲料", name: "コーヒー", price: 110 },
+    { type: "飲料", name: "お茶", price: 124 },
+    { type: "食料", name: "パン", price: 138 },
+    { type: "飲料", name: "水", price: 88 },
+    { type: "食料", name: "菓子", price: 98 },
+    { type: "飲料", name: "コーヒー", price: 110 },
 ];
 ```
 
@@ -433,11 +433,11 @@ let items = [
 <CodePreview>
 ```javascript
 let items = [
-  { type: "飲料", name: "お茶", price: 124 },
-  { type: "食料", name: "パン", price: 138 },
-  { type: "飲料", name: "水", price: 88 },
-  { type: "食料", name: "菓子", price: 98 },
-  { type: "飲料", name: "コーヒー", price: 110 },
+    { type: "飲料", name: "お茶", price: 124 },
+    { type: "食料", name: "パン", price: 138 },
+    { type: "飲料", name: "水", price: 88 },
+    { type: "食料", name: "菓子", price: 98 },
+    { type: "飲料", name: "コーヒー", price: 110 },
 ];
 
 // 価格の昇順にソートして、各要素を1 行ずつ出力
@@ -473,11 +473,11 @@ console.log("飲料の平均価格: " + avg);
 <CodePreview>
 ```javascript
 let items = [
-  { type: "飲料", name: "お茶", price: 124 },
-  { type: "食料", name: "パン", price: 138 },
-  { type: "飲料", name: "水", price: 88 },
-  { type: "食料", name: "菓子", price: 98 },
-  { type: "飲料", name: "コーヒー", price: 110 },
+    { type: "飲料", name: "お茶", price: 124 },
+    { type: "食料", name: "パン", price: 138 },
+    { type: "飲料", name: "水", price: 88 },
+    { type: "食料", name: "菓子", price: 98 },
+    { type: "飲料", name: "コーヒー", price: 110 },
 ];
 let idx = items.findIndex(function(it) { return it.type === "飲料" && it.price >= 100; });
 let found = items[idx];

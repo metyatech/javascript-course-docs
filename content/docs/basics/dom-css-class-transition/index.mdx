@@ -39,14 +39,14 @@ sidebar_position: 999
 
 ```css
 .box {
-  width: 120px;
-  height: 120px;
-  background-color: skyblue;
+    width: 120px;
+    height: 120px;
+    background-color: skyblue;
 }
 .box.big {
-  width: 200px;
-  height: 200px;
-  background-color: deepskyblue;
+    width: 200px;
+    height: 200px;
+    background-color: deepskyblue;
 }
 ```
 
@@ -56,8 +56,8 @@ let boxYoso = document.querySelector(".box");
 
 // クリックされたときの処理を登録
 boxYoso.addEventListener("click", function() {
-  // bigクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("big");
+    // bigクラスを付けたり外したりして切り替え
+    boxYoso.classList.toggle("big");
 });
 ```
 </CodePreview>
@@ -93,14 +93,14 @@ boxYoso.addEventListener("click", function() {
 
 ```css
 .box {
-  width: 150px;
-  height: 150px;
-  background-color: lightgray;
+    width: 150px;
+    height: 150px;
+    background-color: lightgray;
 }
 .box.active {
-  width: 220px;
-  height: 220px;
-  background-color: lightgreen;
+    width: 220px;
+    height: 220px;
+    background-color: lightgreen;
 }
 ```
 
@@ -110,8 +110,8 @@ let boxYoso = document.querySelector(".box");
 
 // クリックされたときの処理を登録
 boxYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("active");
+    // activeクラスを付けたり外したりして切り替え
+    boxYoso.classList.toggle("active");
 });
 ```
 </CodePreview><Solution>
@@ -138,15 +138,15 @@ boxYoso.addEventListener("click", function() {
 
 ```css
 .box {
-  width: 120px;
-  height: 120px;
-  background-color: skyblue;
-  transition: all 0.3s;
+    width: 120px;
+    height: 120px;
+    background-color: skyblue;
+    transition: all 0.3s;
 }
 .box.big {
-  width: 200px;
-  height: 200px;
-  background-color: deepskyblue;
+    width: 200px;
+    height: 200px;
+    background-color: deepskyblue;
 }
 ```
 
@@ -156,8 +156,8 @@ let boxYoso = document.querySelector(".box");
 
 // クリックされたときの処理を登録
 boxYoso.addEventListener("click", function() {
-  // bigクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("big");
+    // bigクラスを付けたり外したりして切り替え
+    boxYoso.classList.toggle("big");
 });
 ```
 </CodePreview>
@@ -188,15 +188,15 @@ boxYoso.addEventListener("click", function() {
 
 ```css
 .box {
-  width: 150px;
-  height: 150px;
-  background-color: lightgray;
-  transition: all 0.4s;
+    width: 150px;
+    height: 150px;
+    background-color: lightgray;
+    transition: all 0.4s;
 }
 .box.active {
-  width: 220px;
-  height: 220px;
-  background-color: lightgreen;
+    width: 220px;
+    height: 220px;
+    background-color: lightgreen;
 }
 ```
 
@@ -206,8 +206,8 @@ let boxYoso = document.querySelector(".box");
 
 // クリックされたときの処理を登録
 boxYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  boxYoso.classList.toggle("active");
+    // activeクラスを付けたり外したりして切り替え
+    boxYoso.classList.toggle("active");
 });
 ```
 </CodePreview><Solution>
@@ -237,15 +237,15 @@ boxYoso.addEventListener("click", function() {
 
 ```css
 .card {
-  width: 180px;
-  padding: 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  transition: all 0.3s;
+    width: 180px;
+    padding: 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    transition: all 0.3s;
 }
 .card.hovered {
-  background-color: #ffe0b2;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #ffe0b2;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 ```
 
@@ -255,14 +255,14 @@ let cardYoso = document.querySelector(".card");
 
 // マウスが乗ったときの処理を登録
 cardYoso.addEventListener("mouseenter", function() {
-  // hoveredクラスを追加
-  cardYoso.classList.add("hovered");
+    // hoveredクラスを追加
+    cardYoso.classList.add("hovered");
 });
 
 // マウスが離れたときの処理を登録
 cardYoso.addEventListener("mouseleave", function() {
-  // hoveredクラスを削除
-  cardYoso.classList.remove("hovered");
+    // hoveredクラスを削除
+    cardYoso.classList.remove("hovered");
 });
 ```
 </CodePreview>
@@ -290,15 +290,15 @@ cardYoso.addEventListener("mouseleave", function() {
 
 ```css
 .card {
-  width: 200px;
-  height: 100px;
-  background-color: white;
-  border: 1px solid #ccc;
-  transition: all 0.3s;
+    width: 200px;
+    height: 100px;
+    background-color: white;
+    border: 1px solid #ccc;
+    transition: all 0.3s;
 }
 .card.hovered {
-  background-color: #fff3cd;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff3cd;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 ```
 
@@ -309,20 +309,20 @@ let statusYoso = document.querySelector(".status");
 
 // マウスが乗ったときの処理を登録
 cardYoso.addEventListener("mouseenter", function() {
-  // hoveredクラスを追加
-  cardYoso.classList.add("hovered");
+    // hoveredクラスを追加
+    cardYoso.classList.add("hovered");
 
-  // ステータステキストを変更
-  statusYoso.innerText = "ホバー中";
+    // ステータステキストを変更
+    statusYoso.innerText = "ホバー中";
 });
 
 // マウスが離れたときの処理を登録
 cardYoso.addEventListener("mouseleave", function() {
-  // hoveredクラスを削除
-  cardYoso.classList.remove("hovered");
+    // hoveredクラスを削除
+    cardYoso.classList.remove("hovered");
 
-  // ステータステキストを元に戻す
-  statusYoso.innerText = "通常";
+    // ステータステキストを元に戻す
+    statusYoso.innerText = "通常";
 });
 ```
 </CodePreview><Solution>
@@ -356,10 +356,10 @@ cardYoso.addEventListener("mouseleave", function() {
 
 ```css
 .btn {
-  padding: 8px 16px;
+    padding: 8px 16px;
 }
 .btn.selected {
-  background-color: lightcoral;
+    background-color: lightcoral;
 }
 ```
 
@@ -370,15 +370,15 @@ let statusYoso = document.querySelector(".status");
 
 // ボタンがクリックされたときの処理を登録
 btnYoso.addEventListener("click", function() {
-  // selectedクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("selected");
+    // selectedクラスを付けたり外したりして切り替え
+    btnYoso.classList.toggle("selected");
 
-  // selectedクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("selected")) {
-    statusYoso.innerText = "ON";
-  } else {
-    statusYoso.innerText = "OFF";
-  }
+    // selectedクラスが付いているかどうかで表示を切り替え
+    if (btnYoso.classList.contains("selected")) {
+        statusYoso.innerText = "ON";
+    } else {
+        statusYoso.innerText = "OFF";
+    }
 });
 ```
 </CodePreview>
@@ -406,10 +406,10 @@ btnYoso.addEventListener("click", function() {
 
 ```css
 .btn {
-  padding: 8px 16px;
+    padding: 8px 16px;
 }
 .btn.selected {
-  background-color: lightgreen;
+    background-color: lightgreen;
 }
 ```
 
@@ -420,15 +420,15 @@ let statusYoso = document.querySelector(".status");
 
 // ボタンがクリックされたときの処理を登録
 btnYoso.addEventListener("click", function() {
-  // selectedクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("selected");
+    // selectedクラスを付けたり外したりして切り替え
+    btnYoso.classList.toggle("selected");
 
-  // selectedクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("selected")) {
-    statusYoso.innerText = "有効";
-  } else {
-    statusYoso.innerText = "無効";
-  }
+    // selectedクラスが付いているかどうかで表示を切り替え
+    if (btnYoso.classList.contains("selected")) {
+        statusYoso.innerText = "有効";
+    } else {
+        statusYoso.innerText = "無効";
+    }
 });
 ```
 </CodePreview><Solution>
@@ -470,16 +470,16 @@ btnYoso.addEventListener("click", function() {
 
 ```css
 .favorite-btn {
-  font-size: 32px;
-  color: #ccc;
-  cursor: pointer;
-  transition: color 0.3s;
+    font-size: 32px;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.3s;
 }
 .favorite-btn.active {
-  color: #e91e63;
+    color: #e91e63;
 }
 .status-text {
-  margin-top: 12px;
+    margin-top: 12px;
 }
 ```
 
@@ -490,15 +490,15 @@ let textYoso = document.querySelector(".status-text");
 
 // ボタンがクリックされたときの処理を登録
 btnYoso.addEventListener("click", function() {
-  // activeクラスを付けたり外したりして切り替え
-  btnYoso.classList.toggle("active");
+    // activeクラスを付けたり外したりして切り替え
+    btnYoso.classList.toggle("active");
 
-  // activeクラスが付いているかどうかで表示を切り替え
-  if (btnYoso.classList.contains("active")) {
-    textYoso.innerText = "お気に入り済み";
-  } else {
-    textYoso.innerText = "お気に入りに追加";
-  }
+    // activeクラスが付いているかどうかで表示を切り替え
+    if (btnYoso.classList.contains("active")) {
+        textYoso.innerText = "お気に入り済み";
+    } else {
+        textYoso.innerText = "お気に入りに追加";
+    }
 });
 ```
 </CodePreview><Solution>
@@ -534,41 +534,41 @@ btnYoso.addEventListener("click", function() {
 >
 ```html
 <div class="notification">
-  <span>新しいメッセージが届きました</span>
-  <button class="close-btn">×</button>
+    <span>新しいメッセージが届きました</span>
+    <button class="close-btn">×</button>
 </div>
 <button class="show-btn">通知を表示</button>
 ```
 
 ```css
 .notification {
-  background-color: #4caf50;
-  color: white;
-  padding: 16px;
-  margin-bottom: 12px;
-  display: none;
-  transition: all 0.3s;
+    background-color: #4caf50;
+    color: white;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: none;
+    transition: all 0.3s;
 }
 .notification.show {
-  display: block;
+    display: block;
 }
 .close-btn {
-  background: white;
-  color: #4caf50;
-  border: none;
-  padding: 4px 8px;
-  margin-left: 12px;
-  cursor: pointer;
+    background: white;
+    color: #4caf50;
+    border: none;
+    padding: 4px 8px;
+    margin-left: 12px;
+    cursor: pointer;
 }
 .show-btn {
-  padding: 10px 20px;
-  background-color: #2196f3;
-  color: white;
-  border: none;
-  cursor: pointer;
+    padding: 10px 20px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    cursor: pointer;
 }
 .show-btn.disabled {
-  background-color: #ccc;
+    background-color: #ccc;
 }
 ```
 
@@ -580,20 +580,20 @@ let showBtnYoso = document.querySelector(".show-btn");
 
 // 「通知を表示」ボタンがクリックされたときの処理
 showBtnYoso.addEventListener("click", function() {
-  // 通知にshowクラスを追加
-  notificationYoso.classList.add("show");
+    // 通知にshowクラスを追加
+    notificationYoso.classList.add("show");
 
-  // ボタンを無効化
-  showBtnYoso.classList.add("disabled");
+    // ボタンを無効化
+    showBtnYoso.classList.add("disabled");
 });
 
 // 「×」ボタンがクリックされたときの処理
 closeBtnYoso.addEventListener("click", function() {
-  // 通知からshowクラスを削除
-  notificationYoso.classList.remove("show");
+    // 通知からshowクラスを削除
+    notificationYoso.classList.remove("show");
 
-  // ボタンを有効化
-  showBtnYoso.classList.remove("disabled");
+    // ボタンを有効化
+    showBtnYoso.classList.remove("disabled");
 });
 ```
 </CodePreview><Solution>
@@ -632,10 +632,10 @@ let cardYosos = document.querySelectorAll(".card");
 
 // cardYosos に入っている要素を1つずつ取り出して処理
 for (let cardYoso of cardYosos) {
-  // ここに1つぶんの処理を書く
-  cardYoso.addEventListener("click", function() {
-    // クリックされたカードに対する処理
-  });
+    // ここに1つぶんの処理を書く
+    cardYoso.addEventListener("click", function() {
+        // クリックされたカードに対する処理
+    });
 }
 ```
 
@@ -675,17 +675,17 @@ for (let cardYoso of cardYosos) {
 
 ```css
 .card {
-  width: 120px;
-  height: 100px;
-  background-color: white;
-  border: 2px solid #ccc;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
+    width: 120px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid #ccc;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 .card.selected {
-  background-color: #e3f2fd;
-  border-color: #2196f3;
+    background-color: #e3f2fd;
+    border-color: #2196f3;
 }
 ```
 
@@ -695,11 +695,11 @@ let cardYosos = document.querySelectorAll(".card");
 
 // すべてのカードをループで処理
 for (let cardYoso of cardYosos) {
-  // 各カードにクリックイベントを登録
-  cardYoso.addEventListener("click", function() {
-    // selectedクラスを付けたり外したりして切り替え
-    cardYoso.classList.toggle("selected");
-  });
+    // 各カードにクリックイベントを登録
+    cardYoso.addEventListener("click", function() {
+        // selectedクラスを付けたり外したりして切り替え
+        cardYoso.classList.toggle("selected");
+    });
 }
 ```
 </CodePreview><Solution>
@@ -743,17 +743,17 @@ for (let cardYoso of cardYosos) {
 
 ```css
 .card {
-  width: 120px;
-  height: 100px;
-  background-color: white;
-  border: 2px solid #ccc;
-  margin-right: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
+    width: 120px;
+    height: 100px;
+    background-color: white;
+    border: 2px solid #ccc;
+    margin-right: 12px;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 .card.selected {
-  background-color: #e3f2fd;
-  border-color: #2196f3;
+    background-color: #e3f2fd;
+    border-color: #2196f3;
 }
 ```
 
@@ -766,22 +766,22 @@ let countYoso = document.querySelector(".count");
 
 // すべてのカードをループで処理
 for (let cardYoso of cardYosos) {
-  // 各カードにクリックイベントを登録
-  cardYoso.addEventListener("click", function() {
-    // selectedクラスを付けたり外したりして切り替え
-    cardYoso.classList.toggle("selected");
+    // 各カードにクリックイベントを登録
+    cardYoso.addEventListener("click", function() {
+        // selectedクラスを付けたり外したりして切り替え
+        cardYoso.classList.toggle("selected");
 
-    // 選択中のカード数をカウント
-    let selectedCount = 0;
-    for (let currentCardYoso of cardYosos) {
-      if (currentCardYoso.classList.contains("selected")) {
-        selectedCount = selectedCount + 1;
-      }
-    }
+        // 選択中のカード数をカウント
+        let selectedCount = 0;
+        for (let currentCardYoso of cardYosos) {
+            if (currentCardYoso.classList.contains("selected")) {
+                selectedCount = selectedCount + 1;
+            }
+        }
 
-    // カウントを表示
-    countYoso.innerText = selectedCount;
-  });
+        // カウントを表示
+        countYoso.innerText = selectedCount;
+    });
 }
 ```
 </CodePreview><Solution>
@@ -829,36 +829,36 @@ for (let cardYoso of cardYosos) {
 >
 ```html
 <div class="faq-item">
-  <div class="question">JavaScriptとは何ですか?</div>
-  <div class="answer">JavaScriptはWebページに動きをつけるプログラミング言語です。</div>
+    <div class="question">JavaScriptとは何ですか?</div>
+    <div class="answer">JavaScriptはWebページに動きをつけるプログラミング言語です。</div>
 </div>
 <div class="faq-item">
-  <div class="question">CSSとは何ですか？</div>
-  <div class="answer">CSSはWebページの見た目を整えるための言語です。</div>
+    <div class="question">CSSとは何ですか？</div>
+    <div class="answer">CSSはWebページの見た目を整えるための言語です。</div>
 </div>
 <div class="faq-item">
-  <div class="question">HTMLとは何ですか？</div>
-  <div class="answer">HTMLはWebページの構造を作るための言語です。</div>
+    <div class="question">HTMLとは何ですか？</div>
+    <div class="answer">HTMLはWebページの構造を作るための言語です。</div>
 </div>
 ```
 
 ```css
 .faq-item {
-  margin-bottom: 12px;
-  border: 1px solid #ddd;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
 }
 .question {
-  padding: 16px;
-  background-color: #f5f5f5;
-  cursor: pointer;
+    padding: 16px;
+    background-color: #f5f5f5;
+    cursor: pointer;
 }
 .answer {
-  display: none;
-  padding: 16px;
-  background-color: white;
+    display: none;
+    padding: 16px;
+    background-color: white;
 }
 .answer.open {
-  display: block;
+    display: block;
 }
 ```
 
@@ -871,19 +871,19 @@ let answerYosos = document.querySelectorAll(".answer");
 
 // すべての質問をループで処理
 for (let questionYoso of questionYosos) {
-  // 各質問にクリックイベントを登録
-  questionYoso.addEventListener("click", function() {
-    // クリックされた質問に対応する回答要素を探す
-    for (let i = 0; i < questionYosos.length; i++) {
-      if (questionYosos[i] === questionYoso) {
-        // 同じ順番の位置にあるanswerを取得
-        let answerYoso = answerYosos[i];
+    // 各質問にクリックイベントを登録
+    questionYoso.addEventListener("click", function() {
+        // クリックされた質問に対応する回答要素を探す
+        for (let i = 0; i < questionYosos.length; i++) {
+            if (questionYosos[i] === questionYoso) {
+                // 同じ順番の位置にあるanswerを取得
+                let answerYoso = answerYosos[i];
 
-        // 回答のopenクラスを付けたり外したりして切り替え
-        answerYoso.classList.toggle("open");
-      }
-    }
-  });
+                // 回答のopenクラスを付けたり外したりして切り替え
+                answerYoso.classList.toggle("open");
+            }
+        }
+    });
 }
 ```
 </CodePreview><Solution>

@@ -33,77 +33,77 @@ title: アコーディオンメニュー (jQuery - slideToggle)
 <!-- これを body 内に入れて -->
 <nav class="menu">
 <div class="item">
-  <div class="title">製品</div>
-  <ul class="submenu">
-    <li><a href="#">新製品</a></li>
-    <li><a href="#">人気</a></li>
-    <li><a href="#">セール</a></li>
-  </ul>
+    <div class="title">製品</div>
+    <ul class="submenu">
+        <li><a href="#">新製品</a></li>
+        <li><a href="#">人気</a></li>
+        <li><a href="#">セール</a></li>
+    </ul>
 </div>
 <div class="item">
-  <div class="title">サポート</div>
-  <ul class="submenu">
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">お問い合わせ</a></li>
-    <li><a href="#">返品・交換</a></li>
-  </ul>
+    <div class="title">サポート</div>
+    <ul class="submenu">
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">お問い合わせ</a></li>
+        <li><a href="#">返品・交換</a></li>
+    </ul>
 </div>
 <div class="item">
-  <div class="title">会社情報</div>
-  <ul class="submenu">
-    <li><a href="#">採用情報</a></li>
-    <li><a href="#">ニュース</a></li>
-    <li><a href="#">アクセス</a></li>
-  </ul>
+    <div class="title">会社情報</div>
+    <ul class="submenu">
+        <li><a href="#">採用情報</a></li>
+        <li><a href="#">ニュース</a></li>
+        <li><a href="#">アクセス</a></li>
+    </ul>
 </div>
 
 ```
 
 ```css
 .menu {
-  width: 280px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
+    width: 280px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
 }
 .menu .title {
-  cursor: pointer;
-  padding: 10px 12px;
-  background-color: #f7f7f7;
-  border-top: 1px solid #eee;
+    cursor: pointer;
+    padding: 10px 12px;
+    background-color: #f7f7f7;
+    border-top: 1px solid #eee;
 }
 .menu .item:first-child .title {
-  border-top: none;
+    border-top: none;
 }
 .menu .title.open {
-  background-color: #fff3cd;
+    background-color: #fff3cd;
 }
 .menu .submenu {
-  list-style: none;
-  margin: 0;
-  padding: 8px 12px;
-  border-top: 1px solid #eee;
-  display: none;
+    list-style: none;
+    margin: 0;
+    padding: 8px 12px;
+    border-top: 1px solid #eee;
+    display: none;
 }
 .menu .submenu li {
-  margin: 6px 0;
+    margin: 6px 0;
 }
 .menu a {
-  color: #3366cc;
-  text-decoration: none;
+    color: #3366cc;
+    text-decoration: none;
 }
 ```
 
 ```javascript
 $(".menu .title").on("click", function() {
-  const item = $(this).closest(".item");
-  // 他を閉じる
-  item.siblings().find(".submenu").slideUp(200);
-  item.siblings().find(".title").removeClass("open");
+    const item = $(this).closest(".item");
+    // 他を閉じる
+    item.siblings().find(".submenu").slideUp(200);
+    item.siblings().find(".title").removeClass("open");
 
-  // 自分を切り替え
-  $(this).toggleClass("open");
-  item.find(".submenu").slideToggle(200);
+    // 自分を切り替え
+    $(this).toggleClass("open");
+    item.find(".submenu").slideToggle(200);
 });
 ```
 </CodePreview>
@@ -170,25 +170,25 @@ $("セレクタ").slideToggle();
 
 ```css
 .AAA {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 .BBB {
-  padding: 8px;
-  background-color: #fafafa;
-  border: 1px solid #ddd;
+    padding: 8px;
+    background-color: #fafafa;
+    border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
-  display: none;
+    /* 初めは要素を非表示にしておく */
+    display: none;
 }
 ```
 
 ```javascript
 // .AAA の要素をクリックしたときに～
 document.querySelector(".AAA").addEventListener("click", function() {
-  // .BBB の要素の表示/非表示を滑らかに切り替える
-  $(".BBB").slideToggle();
+    // .BBB の要素の表示/非表示を滑らかに切り替える
+    $(".BBB").slideToggle();
 });
 ```
 </CodePreview>
@@ -209,14 +209,14 @@ HTML:
 CSS:
 ```css
 .PPP {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .QQQ {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 }
 ```
 
@@ -239,25 +239,25 @@ CSS:
 
 ```css
 .PPP {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .QQQ {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
-  display: none;
+    /* 初めは要素を非表示にしておく */
+    display: none;
 }
 ```
 
 ```javascript
 // .PPP の要素をクリックしたときに～
 document.querySelector(".PPP").addEventListener("click", function() {
-  // .QQQ の要素の表示/非表示を滑らかに切り替える
-  $(".QQQ").slideToggle();
+    // .QQQ の要素の表示/非表示を滑らかに切り替える
+    $(".QQQ").slideToggle();
 });
 ```
 </CodePreview>
@@ -296,17 +296,17 @@ document.querySelector(".PPP").addEventListener("click", function() {
 
 ```css
 .aaa {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .bbb {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
-  display: none;
+    /* 初めは要素を非表示にしておく */
+    display: none;
 }
 ```
 
@@ -317,14 +317,14 @@ let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
 document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+    // .bbb の要素の表示/非表示を滑らかに切り替える
+    $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
-  isOpen = !isOpen;
+    // 開閉状態が反転するので、isOpen の true/false を反転
+    isOpen = !isOpen;
 
-  // isOpen の値を出してみる
-  console.log(isOpen);
+    // isOpen の値を出してみる
+    console.log(isOpen);
 });
 ```
 </CodePreview>
@@ -341,19 +341,19 @@ let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
 document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+    // .bbb の要素の表示/非表示を滑らかに切り替える
+    $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
-  isOpen = !isOpen;
+    // 開閉状態が反転するので、isOpen の true/false を反転
+    isOpen = !isOpen;
 
-  // 開閉状態に応じて、何かをする。（とりあえず例として console.log）
-  if (isOpen) { // 開いているとき
-    console.log("ひらいています");
-  }
-  else { // 閉じているとき
-    console.log("とじています");
-  }
+    // 開閉状態に応じて、何かをする。（とりあえず例として console.log）
+    if (isOpen) { // 開いているとき
+        console.log("ひらいています");
+    }
+    else { // 閉じているとき
+        console.log("とじています");
+    }
 });
 ```
 </CodePreview>
@@ -370,19 +370,19 @@ let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
 document.querySelector(".aaa").addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+    // .bbb の要素の表示/非表示を滑らかに切り替える
+    $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
-  isOpen = !isOpen;
+    // 開閉状態が反転するので、isOpen の true/false を反転
+    isOpen = !isOpen;
 
-  let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いているとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
-  }
-  else { // 閉じているとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
-  }
+    let iconYoso = document.querySelector(".icon");
+    if (isOpen) { // 開いているとき
+        iconYoso.innerText = "−"; // アイコンを「-」にする
+    }
+    else { // 閉じているとき
+        iconYoso.innerText = "＋"; // アイコンを「+」にする
+    }
 });
 ```
 </CodePreview>
@@ -410,14 +410,14 @@ HTML:
 CSS:
 ```css
 .aaa {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .bbb {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 }
 ```
 
@@ -440,17 +440,17 @@ CSS:
 
 ```css
 .aaa {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .bbb {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
-  display: none;
+    /* 初めは要素を非表示にしておく */
+    display: none;
 }
 ```
 
@@ -463,21 +463,21 @@ let isOpen = false;
 
 // .aaa の要素をクリックしたときに～
 aaaYoso.addEventListener("click", function() {
-  // .bbb の要素の表示/非表示を滑らかに切り替える
-  $(".bbb").slideToggle();
+    // .bbb の要素の表示/非表示を滑らかに切り替える
+    $(".bbb").slideToggle();
 
-  // 開閉状態が反転するので、isOpen の true/false を反転
-  isOpen = !isOpen;
+    // 開閉状態が反転するので、isOpen の true/false を反転
+    isOpen = !isOpen;
 
-  let iconYoso = document.querySelector(".icon");
-  if (isOpen) { // 開いたとき
-    iconYoso.innerText = "−"; // アイコンを「-」にする
-    aaaYoso.style.backgroundColor = "pink"; // 背景色を変更
-  }
-  else { // 閉じたとき
-    iconYoso.innerText = "＋"; // アイコンを「+」にする
-    aaaYoso.style.backgroundColor = "#eee"; // 背景色を元の #eee に戻す
-  }
+    let iconYoso = document.querySelector(".icon");
+    if (isOpen) { // 開いたとき
+        iconYoso.innerText = "−"; // アイコンを「-」にする
+        aaaYoso.style.backgroundColor = "pink"; // 背景色を変更
+    }
+    else { // 閉じたとき
+        iconYoso.innerText = "＋"; // アイコンを「+」にする
+        aaaYoso.style.backgroundColor = "#eee"; // 背景色を元の #eee に戻す
+    }
 });
 ```
 </CodePreview>
@@ -503,19 +503,19 @@ HTML:
 CSS:
 ```css
 .ccc {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .ddd {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 }
 
 .count {
-  margin-top: 8px;
-  color: #3366cc;
+    margin-top: 8px;
+    color: #3366cc;
 }
 ```
 
@@ -538,22 +538,22 @@ CSS:
 
 ```css
 .ccc {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 
 .ddd {
-  padding: 8px;
-  border: 1px solid #ddd;
+    padding: 8px;
+    border: 1px solid #ddd;
 
-  /* 初めは要素を非表示にしておく */
-  display: none;
+    /* 初めは要素を非表示にしておく */
+    display: none;
 }
 
 .count {
-  margin-top: 8px;
-  color: #3366cc;
+    margin-top: 8px;
+    color: #3366cc;
 }
 ```
 
@@ -564,16 +564,16 @@ let isOpen = false;
 
 // .ccc の要素をクリックしたときに～
 document.querySelector(".ccc").addEventListener("click", function() {
-  // .ddd の要素の表示/非表示を滑らかに切り替える
-  $(".ddd").slideToggle();
+    // .ddd の要素の表示/非表示を滑らかに切り替える
+    $(".ddd").slideToggle();
 
-  // 開閉状態の true/false を反転
-  isOpen = !isOpen;
+    // 開閉状態の true/false を反転
+    isOpen = !isOpen;
 
-  if (isOpen) { // 開いたとき
-    count++; // 回数を増やす
-    document.querySelector(".count").innerText = "開いた回数: " + count + "回"; // 表示を更新
-  }
+    if (isOpen) { // 開いたとき
+        count++; // 回数を増やす
+        document.querySelector(".count").innerText = "開いた回数: " + count + "回"; // 表示を更新
+    }
 });
 ```
 </CodePreview>
@@ -605,19 +605,19 @@ HTML:
 CSS:
 ```css
 .ccc {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 .ddd {
-  padding: 8px;
-  border: 1px solid #ddd;
-  display: none;
+    padding: 8px;
+    border: 1px solid #ddd;
+    display: none;
 }
 .icon {
-  margin-left: 8px;
-  display: inline-block;
-  transition: transform 0.3s;
+    margin-left: 8px;
+    display: inline-block;
+    transition: transform 0.3s;
 }
 ```
 
@@ -640,19 +640,19 @@ CSS:
 
 ```css
 .ccc {
-  cursor: pointer;
-  background-color: #eee;
-  padding: 8px;
+    cursor: pointer;
+    background-color: #eee;
+    padding: 8px;
 }
 .ddd {
-  padding: 8px;
-  border: 1px solid #ddd;
-  display: none;
+    padding: 8px;
+    border: 1px solid #ddd;
+    display: none;
 }
 .icon {
-  margin-left: 8px;
-  display: inline-block;
-  transition: transform 0.3s;
+    margin-left: 8px;
+    display: inline-block;
+    transition: transform 0.3s;
 }
 ```
 
@@ -663,19 +663,19 @@ let isOpen = false;
 
 // .ccc の要素をクリックしたとき
 cccYoso.addEventListener("click", function() {
-  $(".ddd").slideToggle();
+    $(".ddd").slideToggle();
 
-  // 開閉状態を反転
-  isOpen = !isOpen;
+    // 開閉状態を反転
+    isOpen = !isOpen;
 
-  // アイコンの切り替え（アニメーション付きで+→−）
-  if (isOpen) {
-    iconYoso.style.transform = "rotate(180deg)";
-    iconYoso.innerText = "−"; // rotate180後に−に
-  } else {
-    iconYoso.style.transform = "rotate(0deg)";
-    iconYoso.innerText = "＋"; // 元に戻す
-  }
+    // アイコンの切り替え（アニメーション付きで+→−）
+    if (isOpen) {
+        iconYoso.style.transform = "rotate(180deg)";
+        iconYoso.innerText = "−"; // rotate180後に−に
+    } else {
+        iconYoso.style.transform = "rotate(0deg)";
+        iconYoso.innerText = "＋"; // 元に戻す
+    }
 });
 ```
 </CodePreview>
