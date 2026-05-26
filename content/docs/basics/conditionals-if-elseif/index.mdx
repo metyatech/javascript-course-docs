@@ -71,6 +71,111 @@ if (answer === "js" || answer === ".js") {
 
 ---
 
+## JavaScriptのインデント
+
+JavaScriptでは、**波括弧 `{ }` で囲まれたブロックの中**をインデントします。
+インデントを適切に設定しないと、どこからどこまでが一つのまとまり（ブロック）なのかが分からなくなり、エラーの原因になります。
+
+:::note
+インデントの基本的な考え方は、次の共通基礎で確認できます。
+
+- [入れ子とインデント](https://web-foundations-docs.vercel.app/docs/nesting-indentation)
+:::
+
+### 良い例（インデントが揃っている）
+
+```javascript
+if (条件) {
+    // 波括弧の中なのでインデントを1段下げる
+    console.log("真です");
+}
+```
+
+### 悪い例（インデントがぐちゃぐちゃ）
+
+```javascript
+if (条件) {
+console.log("真です");
+}
+```
+
+悪い例では、コードがどの波括弧に含まれているのかが視覚的に分かりづらくなっています。プロの現場ではインデントが揃っていないコードはそれだけで「読みにくい」と評価されてしまいます。VSCodeではコードを選択して `Alt + Shift + F` (Windows) または `Option + Shift + F` (Mac) で自動的に綺麗に揃える機能（フォーマット）もありますが、まずは自分で「波括弧の次は下げる」意識を持ちましょう。
+
+### 演習: インデントを直そう
+
+<Exercise>
+
+以下のJavaScriptコードは、インデントが全くされておらず非常に読みにくい状態です。正しいインデント（波括弧 `{ }` の中を1段下げる）に修正してください。
+
+<CodePreview>
+```javascript
+let score = 85;
+if (score >= 80) {
+console.log("合格です！");
+console.log("よくがんばりました。");
+}
+```
+</CodePreview>
+
+<Solution>
+
+<CodePreview>
+```javascript
+let score = 85;
+if (score >= 80) {
+    console.log("合格です！");
+    console.log("よくがんばりました。");
+}
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展: 入れ子のインデントを直そう
+
+<Exercise>
+
+波括弧 `{ }` の中にさらに波括弧 `{ }` がある場合（入れ子・ネスト）は、インデントをさらに1段下げます。
+以下のコードを、正しいインデントに修正してください。
+
+<CodePreview>
+```javascript
+let age = 20;
+let hasTicket = true;
+
+if (age >= 18) {
+console.log("大人料金です。");
+if (hasTicket) {
+console.log("入場できます。");
+}
+}
+```
+</CodePreview>
+
+<Solution>
+
+<CodePreview>
+```javascript
+let age = 20;
+let hasTicket = true;
+
+if (age >= 18) {
+    console.log("大人料金です。");
+    if (hasTicket) {
+        console.log("入場できます。");
+    }
+}
+```
+</CodePreview>
+
+</Solution>
+
+</Exercise>
+
+---
+
 ## if...else 文
 
 条件が **真のとき** と **偽のとき** で、それぞれ別の処理を実行できます。
