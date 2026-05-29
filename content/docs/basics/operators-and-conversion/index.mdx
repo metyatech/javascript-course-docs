@@ -13,10 +13,10 @@ title: 演算子と真偽値
 
 2つの値が等しいかどうかを調べます。
 
-| 演算子 | 意味 | 例 |
-| :-: | :-: | :-: |
-| `===` | 等しい | `1 === 1` → `true` |
-| `!==` | 等しくない | `1 !== 2` → `true` |
+| 演算子 |    意味    |         例         |
+| :----: | :--------: | :----------------: |
+| `===`  |   等しい   | `1 === 1` → `true` |
+| `!==`  | 等しくない | `1 !== 2` → `true` |
 
 :::caution
 `===` は値と**型**が両方一致するときだけ `true` になります。`1 === "1"` は `false` です（片方が数値、もう片方が文字列のため）。
@@ -34,6 +34,7 @@ console.log(1 !== 2);        // 出力: true
 ---
 
 ### 演習1
+
 <Exercise>
 
 (1) 次のコードを実行して、それぞれの行がなぜそのように出力されるか考えよ。
@@ -56,6 +57,7 @@ console.log(false === □);  // true になるように
 <Solution>
 
 (1)
+
 ```
 true    ← 値も型も同じ（数値 1 と数値 1）
 false   ← 型が違う（数値 1 と文字列 "1"）
@@ -74,7 +76,6 @@ console.log(false === false); // 出力: true ← false と false は等しい
 </CodePreview>
 
 </Solution>
-
 </Exercise>
 
 ---
@@ -83,12 +84,12 @@ console.log(false === false); // 出力: true ← false と false は等しい
 
 数値の大小を比べます。
 
-| 演算子 | 意味 | 例 |
-| :-: | :-: | :-: |
-| `<` | より小さい | `1 < 2` → `true` |
-| `>` | より大きい | `1 > 2` → `false` |
-| `<=` | 以下 | `1 <= 1` → `true` |
-| `>=` | 以上 | `2 >= 3` → `false` |
+| 演算子 |    意味    |         例         |
+| :----: | :--------: | :----------------: |
+|  `<`   | より小さい |  `1 < 2` → `true`  |
+|  `>`   | より大きい | `1 > 2` → `false`  |
+|  `<=`  |    以下    | `1 <= 1` → `true`  |
+|  `>=`  |    以上    | `2 >= 3` → `false` |
 
 <CodePreview>
 ```javascript
@@ -100,6 +101,7 @@ console.log(9 >= 10); // 出力: false
 </CodePreview>
 
 ### 演習2
+
 <Exercise>
 
 (1) 次のコードを実行して、結果とそのように出力された理由を一行ごとに答えよ。
@@ -124,6 +126,7 @@ console.log(8 >= □);    // true になるように
 <Solution>
 
 (1)
+
 ```
 true   ← 5 は 10 より小さい
 false  ← 7 は 7 より大きくない（等しいので >) は false）
@@ -142,6 +145,7 @@ console.log(8 >= 8);   // 出力: true
 </CodePreview>
 
 (3)
+
 <CodePreview>
 ```javascript
 let num = Number(prompt("自然数を入力してね"));
@@ -150,7 +154,6 @@ console.log(num >= 10);
 </CodePreview>
 
 </Solution>
-
 </Exercise>
 
 ---
@@ -159,9 +162,9 @@ console.log(num >= 10);
 
 複数の条件を組み合わせるときに使います。
 
-| 演算子 | 意味 | 説明 |
-| :-: | :-: | :-: |
-| `&&` | かつ（AND） | 両方 `true` のとき `true` |
+| 演算子 |     意味     |                説明                 |
+| :----: | :----------: | :---------------------------------: |
+|  `&&`  | かつ（AND）  |      両方 `true` のとき `true`      |
 | `\|\|` | または（OR） | どちらか一方でも `true` なら `true` |
 
 <CodePreview>
@@ -174,7 +177,8 @@ console.log(false || false); // 出力: false
 // 組み合わせ例：5以上 かつ 10以下
 let num = 7;
 console.log(num >= 5 && num <= 10); // 出力: true
-```
+
+````
 </CodePreview>
 
 ---
@@ -196,12 +200,14 @@ console.log(!false); // 出力: true
 // 条件全体を反転する例
 let value = 5;
 console.log(!(value === 5)); // 出力: false （value === 5 は true → その逆）
-```
+````
+
 </CodePreview>
 
 ---
 
 ### 演習3
+
 <Exercise>
 
 (1) 次のコードを実行して、各行の出力結果とその理由を一行ごとに答えよ。
@@ -220,6 +226,7 @@ console.log(false || false);
 <Solution>
 
 (1)
+
 ```
 true   ← 両方 true なので true
 false  ← 片方が false なので false
@@ -228,15 +235,17 @@ false  ← 両方 false なので false
 ```
 
 (2)
+
 <CodePreview>
 ```javascript
 let num = Number(prompt("数値を入力してね"));
 
 // 5以下 または 10以上
 console.log(num <= 5 || num >= 10);
+
 ```
 </CodePreview>
 
 </Solution>
-
 </Exercise>
+```

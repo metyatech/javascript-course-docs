@@ -1,8 +1,24 @@
 #!/bin/sh
 
-# Run verification (markdownlint for markdown-only repos)
-if command -v markdownlint > /dev/null 2>&1; then
-  markdownlint "**/*.md" --ignore "node_modules/**" --ignore "AGENTS.md" --ignore "agent-rules-private/**" || exit 1
+# Format staged source files and stage formatter results.
+format_paths_file="$(mktemp "${TMPDIR:-/tmp}/javascript-course-docs-format.XXXXXX")"
+markdown_paths_file="$(mktemp "${TMPDIR:-/tmp}/javascript-course-docs-markdown.XXXXXX")"
+
+cleanup() {
+  rm -f "$format_paths_file" "$markdown_paths_file"
+}
+trap cleanup EXIT
+
+git diff --cached --name-only -z --diff-filter=ACMR -- '*.md' '*.mdx' '*.json' '*.yml' '*.yaml' '*.html' '*.css' '*.js' '*.ts' > "$format_paths_file"
+if [ -s "$format_paths_file" ]; then
+  xargs -0 npx -y prettier@3.6.2 --write --ignore-unknown < "$format_paths_file" || exit 1
+  xargs -0 git add -- < "$format_paths_file" || exit 1
+fi
+
+git diff --cached --name-only -z --diff-filter=ACMR -- '*.md' > "$markdown_paths_file"
+if [ -s "$markdown_paths_file" ]; then
+  xargs -0 npx -y markdownlint-cli@0.39.0 --fix --ignore "node_modules/**" --ignore "AGENTS.md" --ignore "agent-rules-private/**" < "$markdown_paths_file" || exit 1
+  xargs -0 git add -- < "$markdown_paths_file" || exit 1
 fi
 
 # Update AGENTS.md (non-blocking)

@@ -1,6 +1,10 @@
 AGENTS.md
-package-lock.json
+agent-rules-private/
+node_modules/
+.mwt/
+.threads.jsonl
 dist/
 build/
 .next/
 out/
+public/_pagefind/

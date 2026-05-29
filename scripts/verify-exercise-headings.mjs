@@ -7,7 +7,8 @@ const repoRoot = path.resolve(scriptDir, '..');
 const contentDir = path.join(repoRoot, 'content');
 const headingPattern = /^ {0,3}#{3,6}[ \t]+\S/;
 
-const toPosixPath = (filePath) => path.relative(repoRoot, filePath).split(path.sep).join('/');
+const toPosixPath = (filePath) =>
+  path.relative(repoRoot, filePath).split(path.sep).join('/');
 
 const collectMdxFiles = (dirPath) => {
   const entries = fs.readdirSync(dirPath, { withFileTypes: true });
@@ -22,12 +23,15 @@ const collectMdxFiles = (dirPath) => {
     }
   }
 
-  return files.sort((left, right) => toPosixPath(left).localeCompare(toPosixPath(right)));
+  return files.sort((left, right) =>
+    toPosixPath(left).localeCompare(toPosixPath(right)),
+  );
 };
 
 const isFenceLine = (line) => /^\s*(```|~~~)/.test(line);
 
-const isExerciseTagBoundary = (char) => char === undefined || /[\s>/]/.test(char);
+const isExerciseTagBoundary = (char) =>
+  char === undefined || /[\s>/]/.test(char);
 
 const readOpeningTag = (lines, startLineIndex, startColumnIndex) => {
   let quote = null;
@@ -35,11 +39,19 @@ const readOpeningTag = (lines, startLineIndex, startColumnIndex) => {
   let braceDepth = 0;
   let tagText = '';
 
-  for (let lineIndex = startLineIndex; lineIndex < lines.length; lineIndex += 1) {
+  for (
+    let lineIndex = startLineIndex;
+    lineIndex < lines.length;
+    lineIndex += 1
+  ) {
     const line = lines[lineIndex];
     const startColumn = lineIndex === startLineIndex ? startColumnIndex : 0;
 
-    for (let columnIndex = startColumn; columnIndex < line.length; columnIndex += 1) {
+    for (
+      let columnIndex = startColumn;
+      columnIndex < line.length;
+      columnIndex += 1
+    ) {
       const char = line[columnIndex];
       tagText += char;
 
@@ -123,7 +135,8 @@ const maskQuotedAndBracedText = (tagText) => {
   return masked;
 };
 
-const hasTitleProp = (tagText) => /\stitle\s*=/.test(maskQuotedAndBracedText(tagText));
+const hasTitleProp = (tagText) =>
+  /\stitle\s*=/.test(maskQuotedAndBracedText(tagText));
 
 const hasImmediateHeading = (lines, startLineIndex) => {
   for (let lineIndex = startLineIndex - 1; lineIndex >= 0; lineIndex -= 1) {
@@ -174,11 +187,15 @@ for (const filePath of collectMdxFiles(contentDir)) {
       exerciseCount += 1;
 
       if (tag.unterminated) {
-        errors.push(`${relativePath}:${lineIndex + 1}: Unterminated <Exercise> opening tag.`);
+        errors.push(
+          `${relativePath}:${lineIndex + 1}: Unterminated <Exercise> opening tag.`,
+        );
       }
 
       if (hasTitleProp(tag.tagText)) {
-        errors.push(`${relativePath}:${lineIndex + 1}: <Exercise> opening tag must not use a title prop.`);
+        errors.push(
+          `${relativePath}:${lineIndex + 1}: <Exercise> opening tag must not use a title prop.`,
+        );
       }
 
       if (!hasImmediateHeading(lines, lineIndex)) {
@@ -200,4 +217,6 @@ if (errors.length > 0) {
   process.exit(1);
 }
 
-console.log(`Exercise heading verification passed for ${exerciseCount} <Exercise> blocks.`);
+console.log(
+  `Exercise heading verification passed for ${exerciseCount} <Exercise> blocks.`,
+);

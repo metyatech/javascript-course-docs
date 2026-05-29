@@ -2,21 +2,21 @@
 title: 配列入門
 ---
 
-
-
 # 配列
 
 ## 配列とは？
+
 配列とは、複数の値を順序付きでまとめて管理できるデータのことです。
 例えば、複数の学校名や数字などをひとつの変数で扱いたいときに使います。
 
-| 型 | 意味 |
-| :-: | :-: |
+|  型   | 意味 |
+| :---: | :--: |
 | Array | 配列 |
 
 配列の作り方（ _配列リテラル_ ）
 
 ### 構文
+
 ```
 [値1, 値2, 値3]
 ```
@@ -26,6 +26,7 @@ title: 配列入門
 :::
 
 ### 例
+
 <CodePreview>
 ```javascript
 let schools = ["小学校", "中学校", "高校"];
@@ -36,6 +37,7 @@ console.log(schools);
 ## 配列の値へのアクセス
 
 ### 構文
+
 ```
 配列[インデックス]
 ```
@@ -45,6 +47,7 @@ console.log(schools);
 :::
 
 ### 例
+
 <CodePreview>
 ```javascript
 let schools = ["小学校", "中学校", "高校"];
@@ -59,6 +62,7 @@ console.log(schools[2]);
 </CodePreview>
 
 #### イメージ
+
 配列は実はオブジェクトの一種で、キーが 0, 1, 2 ... の連番になっています。（イメージ）
 ※ただし、ドット記法ではアクセスできません。
 
@@ -74,6 +78,7 @@ let schools = {
 </CodePreview>
 
 ### lengthプロパティ
+
 配列の要素数が入っています。
 
 <CodePreview>
@@ -89,6 +94,7 @@ console.log(schools.length);
 ## 配列の繰り返し処理
 
 ### for-of文
+
 <CodePreview>
 ```javascript
 let schools = ["小学校", "中学校", "高校"];
@@ -102,6 +108,7 @@ for (let value of schools) {
 ---
 
 ### 演習1
+
 <Exercise>
 配列の要素を for...of 文で先頭から順に取り出し、「日」「月」…「土」と出力せよ。
 
@@ -120,12 +127,14 @@ for (let day of arr) {
 }
 ```
 </CodePreview>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2
+
 <Exercise>
 次の配列を使って、「日曜日」「月曜日」…「土曜日」と出力せよ。
 
@@ -148,12 +157,14 @@ for (let day of arr) {
 }
 ```
 </CodePreview>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2-発展1
+
 <Exercise>
 配列のすべての値の合計と平均を計算して出力せよ。
 
@@ -163,10 +174,12 @@ let arr = [1, 2, 3, 4, 5, 6, 7];
 
 :::note
 このように出力されれば正解です。
+
 ```
 合計: 28
 平均: 4
 ```
+
 :::
 
 <Solution>
@@ -189,12 +202,14 @@ console.log("合計:", sum);
 console.log("平均:", avg);
 ```
 </CodePreview>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2-発展2
+
 <Exercise>
 次の配列の値を逆順に（後ろから）出力せよ。
 
@@ -221,12 +236,14 @@ for (let i = arr.length - 1; i >= 0; i--) {
 }
 ```
 </CodePreview>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2-発展3
+
 <Exercise>
 次の配列の最小値を `for...of` 文を使って求めて出力せよ。
 
@@ -236,9 +253,11 @@ let arr = [189, 409, 408, 101, 163, 347, 109, 402, 166, 493];
 
 :::note
 配列の中の最小値（最も小さい数）は101なので、次のように出力されれば正解です。
+
 ```
 101
 ```
+
 :::
 
 <Solution>
@@ -260,6 +279,7 @@ for (let num of arr) {
 console.log(min);
 ```
 </CodePreview>
+
 </Solution>
 </Exercise>
 
@@ -273,11 +293,12 @@ console.log(min);
 :::
 
 ### 演習2-発展4（1）
+
 <Exercise>
 次の配列をその下の図のように出力せよ。（両端の縦棒|も出力すること）
 
 ```js
-let tetrisField = 
+let tetrisField =
     [
         ["　", "■", "■", "■", "■", "■", "■", "■"],
         ["■", "■", "■", "■", "■", "■", "■", "■"],
@@ -302,15 +323,17 @@ let tetrisField =
     ];
 
 for (let row of tetrisField) {
-    let line = "|";
-    for (let cell of row) {
-        line += cell;
-    }
-    line += "|";
-    console.log(line);
+let line = "|";
+for (let cell of row) {
+line += cell;
 }
-```
+line += "|";
+console.log(line);
+}
+
+````
 </CodePreview>
+
 </Solution>
 </Exercise>
 
@@ -370,7 +393,9 @@ for (let row of tetrisField) {
     line += "|";
     console.log(line);
 }
-```
+````
+
 </CodePreview>
+
 </Solution>
 </Exercise>

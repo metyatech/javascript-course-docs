@@ -9,3 +9,4 @@
 {"id":"SwlpqU92","description":"Upgrade actions/cache to v5 and remove temporary Node 24 forcing env","stage":"committed","createdAt":"2026-04-07T14:55:58.404Z","updatedAt":"2026-04-07T14:57:34.886Z","committedEventId":"j_hEMznFhSUH06h8"}
 {"id":"ij9y-cYC","description":"Standardize portable verify entrypoint and mwt verify command","stage":"committed","createdAt":"2026-04-22T04:16:05.039Z","updatedAt":"2026-04-22T04:30:33.273Z","committedEventId":"F_Usy3PB63OAFv1L"}
 {"id":"Ukyoczys","description":"Unify Exercise headings as Markdown headings before Exercise blocks","stage":"committed","createdAt":"2026-05-15T05:42:31.143Z","updatedAt":"2026-05-15T06:30:59.628Z","committedEventId":"jMO4lVLSeavn4F58"}
+{"id":"aaHCsS7x","description":"Add Prettier embedded-format preservation to javascript-course-docs","stage":"committed","createdAt":"2026-05-29T08:42:37.685Z","updatedAt":"2026-05-29T08:51:22.676Z","committedEventId":"7_hxmafFW2J_MQph"}

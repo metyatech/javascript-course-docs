@@ -30,11 +30,15 @@ jobs:
           path: |
             ~/.npm
             ~/AppData/Local/npm-cache
-          key: ${{ runner.os }}-javascript-course-docs-lint-tools-${{ hashFiles('.github/workflows/ci.yml', '.markdownlint.json') }}
+          key: ${{ runner.os }}-javascript-course-docs-lint-tools-${{ hashFiles('.github/workflows/ci.yml', '.markdownlint.json', '.prettierrc', '.prettierignore') }}
+      - name: Prettier check
+        run: npx -y prettier@3.6.2 --check .
+      - name: Verify embedded source formatting
+        run: node scripts/verify-prettier-embedded-formatting.mjs
       - name: Verify Exercise headings
         run: node scripts/verify-exercise-headings.mjs
       - name: markdownlint
-        run: npx markdownlint-cli "**/*.md" --config .markdownlint.json --ignore AGENTS.md
+        run: npx -y markdownlint-cli@0.39.0 "**/*.md" --config .markdownlint.json --ignore AGENTS.md --ignore node_modules/** --ignore agent-rules-private/**
 
   integration:
     runs-on: ubuntu-latest

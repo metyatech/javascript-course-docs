@@ -24,9 +24,10 @@ if (条件) {
 let answer = prompt("日本一高い山は？");
 
 if (answer === "富士山") {
-    console.log("正解！"); // answer が "富士山" のときだけ出力される
+console.log("正解！"); // answer が "富士山" のときだけ出力される
 }
-```
+
+````
 </CodePreview>
 
 ---
@@ -44,13 +45,15 @@ let answer = prompt("この授業は何言語の授業？");
 if (answer === "JavaScript") {
     console.log("正解");
 }
-```
-</CodePreview>
-</Solution>
+````
 
+</CodePreview>
+
+</Solution>
 </Exercise>
 
 ### 演習1-発展
+
 <Exercise>
 
 「JavaScriptのファイルの拡張子は？」という質問を `prompt` で出し、入力内容が `"js"` または `".js"` の場合に「正解」と出力せよ。（不正解の場合は何も起こらない）
@@ -61,12 +64,13 @@ if (answer === "JavaScript") {
 let answer = prompt("JavaScriptのファイルの拡張子は？");
 
 if (answer === "js" || answer === ".js") {
-    console.log("正解");
+console.log("正解");
 }
-```
-</CodePreview>
-</Solution>
 
+````
+</CodePreview>
+
+</Solution>
 </Exercise>
 
 ---
@@ -89,7 +93,7 @@ if (条件) {
     // 波括弧の中なのでインデントを1段下げる
     console.log("真です");
 }
-```
+````
 
 ### 悪い例（インデントがぐちゃぐちゃ）
 
@@ -130,7 +134,6 @@ if (score >= 80) {
 </CodePreview>
 
 </Solution>
-
 </Exercise>
 
 ### 演習-発展: 入れ子のインデントを直そう
@@ -151,7 +154,8 @@ if (hasTicket) {
 console.log("入場できます。");
 }
 }
-```
+
+````
 </CodePreview>
 
 <Solution>
@@ -167,11 +171,11 @@ if (age >= 18) {
         console.log("入場できます。");
     }
 }
-```
+````
+
 </CodePreview>
 
 </Solution>
-
 </Exercise>
 
 ---
@@ -193,11 +197,12 @@ if (条件) {
 let input = prompt("helloを入力して下さい");
 
 if (input === "hello") {
-    console.log("helloだね"); // "hello" を入力したとき
+console.log("helloだね"); // "hello" を入力したとき
 } else {
-    console.log("helloじゃないよ"); // それ以外のとき
+console.log("helloじゃないよ"); // それ以外のとき
 }
-```
+
+````
 </CodePreview>
 
 ---
@@ -217,13 +222,15 @@ if (answer === "エベレスト") {
 } else {
     console.log("不正解");
 }
-```
-</CodePreview>
-</Solution>
+````
 
+</CodePreview>
+
+</Solution>
 </Exercise>
 
 ### 演習2-発展
+
 <Exercise>
 
 「1〜9の数値を入力してね」という内容で `prompt` を出し、あらかじめ決めた3つの数値（例：2、5、7）のときは「あたり」、それ以外のときは「はずれ」を出力せよ。（3つの数値は自分で好きに設定してよい）
@@ -235,14 +242,15 @@ let num = Number(prompt("1〜9の数値を入力してね"));
 
 // 2、5、7 をあたりとする例
 if (num === 2 || num === 5 || num === 7) {
-    console.log("あたり");
+console.log("あたり");
 } else {
-    console.log("はずれ");
+console.log("はずれ");
 }
-```
-</CodePreview>
-</Solution>
 
+````
+</CodePreview>
+
+</Solution>
 </Exercise>
 
 ---
@@ -259,20 +267,21 @@ if (条件1) {
 } else {
     // どの条件も false のときの処理
 }
-```
+````
 
 <CodePreview>
 ```javascript
 let number = Number(prompt("数値を入力して下さい"));
 
 if (number >= 100) {
-    console.log("100以上");
+console.log("100以上");
 } else if (number >= 50) {
-    console.log("50以上100未満");
+console.log("50以上100未満");
 } else {
-    console.log("50未満");
+console.log("50未満");
 }
-```
+
+````
 </CodePreview>
 
 ---
@@ -303,13 +312,15 @@ if (score >= 90) {
 } else {
     console.log("E");
 }
-```
-</CodePreview>
-</Solution>
+````
 
+</CodePreview>
+
+</Solution>
 </Exercise>
 
 ### 演習3-発展
+
 <Exercise>
 
 2つの数値を `prompt` で入力させて、両方が同じ数値なら `「同じです」` と出力し、違う数値なら大きい方の数を出力せよ。
@@ -321,14 +332,16 @@ let a = Number(prompt("1つ目の数を入力してね"));
 let b = Number(prompt("2つ目の数を入力してね"));
 
 if (a === b) {
-    console.log("同じです");
+console.log("同じです");
 } else if (a > b) {
-    console.log(a);
+console.log(a);
 } else {
-    console.log(b);
+console.log(b);
 }
+
 ```
 </CodePreview>
-</Solution>
 
+</Solution>
 </Exercise>
+```

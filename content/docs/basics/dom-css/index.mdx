@@ -2,10 +2,9 @@
 title: DOM操作とCSS操作
 ---
 
-
 ## 復習（HTMLについて）
 
-* _要素_ ：同じタグ名をもつ開始タグ～終了タグのひとかたまり（※終了タグのない要素もある）
+- _要素_ ：同じタグ名をもつ開始タグ～終了タグのひとかたまり（※終了タグのない要素もある）
 
 ![同じタグ名をもつ開始タグ～終了タグのひとかたまり](./img/html-element.png)
 ![要素](./img/html-elements.gif)
@@ -16,8 +15,8 @@ title: DOM操作とCSS操作
 
 _HTMLの解析が終わった後_ で、以下の関数を使用する。
 
-| 関数 | 動作 |
-| :-: | :-: |
+|                関数                |                             動作                              |
+| :--------------------------------: | :-----------------------------------------------------------: |
 | `document.querySelector(セレクタ)` | 指定したCSSのセレクタ(文字列)に一致する、 _最初の要素_ を返す |
 
 <CodePreview>
@@ -38,6 +37,7 @@ console.log(bodyYouso); // 出力: <body>...</body>
 console.log(document.querySelector("p")); // 出力: <p>テスト</p>
 
 ```
+
 </CodePreview>
 
 ## defer属性について
@@ -52,20 +52,21 @@ console.log(document.querySelector("p")); // 出力: <p>テスト</p>
 
 _セレクタ_ _（参考：_ [https://saruwakakun.com/html-css/reference/selector](https://saruwakakun.com/html-css/reference/selector) _）_
 
-| 対象 | 書き方 | ヒント | 例 |
-| :-: | :-: | :-: | :-: |
-| タグ名 | `〇〇` | タグ名をそのまま書く | `div` |
-| id | `#〇〇` | 先頭に `#` を付ける | `#sample` |
-| クラス名 | `.〇〇` | 先頭に `.` を付ける | `.sample` |
-| 複数クラス（両方つく要素） | `.〇〇.△△` | スペースなしで続ける | `.a.b` |
-| 中にある要素（子孫） | `〇 ×` | 間に半角スペースを入れる | `.aaa div` |
-| すべての要素 | `*` | すべてを選ぶ | `*` |
-| 直下の子要素 | `〇 > ×` | 直下だけを選ぶ | `.aaa > h1` |
-| 直後の兄弟要素 | `〇 + △` | 直後の1つだけ選ぶ | `.a + p` |
+|            対象            |   書き方   |          ヒント          |     例      |
+| :------------------------: | :--------: | :----------------------: | :---------: |
+|           タグ名           |   `〇〇`   |   タグ名をそのまま書く   |    `div`    |
+|             id             |  `#〇〇`   |   先頭に `#` を付ける    |  `#sample`  |
+|          クラス名          |  `.〇〇`   |   先頭に `.` を付ける    |  `.sample`  |
+| 複数クラス（両方つく要素） | `.〇〇.△△` |   スペースなしで続ける   |   `.a.b`    |
+|    中にある要素（子孫）    |   `〇 ×`   | 間に半角スペースを入れる | `.aaa div`  |
+|        すべての要素        |    `*`     |       すべてを選ぶ       |     `*`     |
+|        直下の子要素        |  `〇 > ×`  |      直下だけを選ぶ      | `.aaa > h1` |
+|       直後の兄弟要素       |  `〇 + △`  |    直後の1つだけ選ぶ     |  `.a + p`   |
 
 ---
 
 ### 演習1
+
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対して、 _下の薄灰色にハイライトされている5つの要素を_ _1つずつ、_ _JavaScript_ _の_ _document.querySelector_ _で取得_ して console.log で出力せよ。
 
@@ -129,16 +130,19 @@ console.log(document.querySelector(".raberu")); // 出力: <p class="raberu">段
 // class="hako"のdiv要素の中の最初のp要素を取得
 console.log(document.querySelector(".hako p")); // 出力: <p>ボックス内の段落1</p>
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="演習1"/>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習1 - 発展
+
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている2つの要素を_ _1つずつ、_ _JavaScript_ _の_ _document.querySelector_ _で取得_ して console.log で出力せよ。
 
@@ -190,10 +194,12 @@ console.log(document.querySelector(".dorowa.open button")); // 出力: <button c
 // .open を持たないドロワー内の p 要素を取得して出力
 console.log(document.querySelector(".dorowa:not(.open) p")); // 出力: <p>開いていないドロワー内の段落</p>
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="演習1 - 発展"/>
+
 </Solution>
 </Exercise>
 
@@ -225,6 +231,7 @@ p {
 // 要素 = document.querySelector("p")
 document.querySelector("p").style.color = "red";
 ```
+
 </CodePreview>
 
 :::caution
@@ -248,11 +255,13 @@ p {
 // 要素 = document.querySelector("p")
 document.querySelector("p").style.backgroundColor = "lightblue";
 ```
+
 </CodePreview>
 
 ---
 
 ### 演習2
+
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている3つの要素を_ _1つずつ、_ _JavaScript_ _で_ 右のコメントで書かれた指示の通りに変更せよ。
 
@@ -293,16 +302,19 @@ document.querySelector("p").style.backgroundColor = "yellow";
 // class="hako"のdiv要素の中のp要素の文字サイズを80pxに変更
 document.querySelector(".hako p").style.fontSize = "80px";
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="演習2"/>
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習3
+
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている6つの要素を_ _1つずつ、_ _JavaScript_ _で_ コメントで書かれた指示の通りに変更せよ。
 
@@ -367,6 +379,7 @@ document.querySelector(".hako p").style.fontSize = "80px";
 
     <!-- 不透明度を 20% にせよ -->
     <p class="usui">詳細はこちらをご確認ください</p>
+
 </div>
 ```
 
@@ -396,6 +409,7 @@ maruYouso.style.borderRadius = "50%";
 // class="usui" の不透明度を20%にする
 document.querySelector(".usui").style.opacity = "0.2";
 ```
+
 </CodePreview>
 
 :::note CSSのヒント
@@ -410,12 +424,14 @@ document.querySelector(".usui").style.opacity = "0.2";
 
 <Solution>
 <CodePreview sourceId="演習3"/>
+
 </Solution>
 </Exercise>
 
 ### 演習3 - 発展
+
 <Exercise>
-**body内が** 次のようになっているHTMLファイルに対して、JavaScriptでCSSを変更することで下のプレビューの見た目になるようにせよ。  
+**body内が** 次のようになっているHTMLファイルに対して、JavaScriptでCSSを変更することで下のプレビューの見た目になるようにせよ。
 
 ```html
 <h2 class="banner">お知らせ</h2>
@@ -478,6 +494,7 @@ icon.style.placeItems = "center";
 // .message の行間を 2 倍に
 document.querySelector(".message").style.lineHeight = "2";
 ```
+
 </CodePreview>
 
 :::note CSSのヒント
@@ -488,5 +505,6 @@ document.querySelector(".message").style.lineHeight = "2";
 
 <Solution>
 <CodePreview sourceId="演習3-発展"/>
+
 </Solution>
 </Exercise>

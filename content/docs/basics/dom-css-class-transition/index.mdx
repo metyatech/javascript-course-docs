@@ -3,7 +3,6 @@ title: クラス切り替えでCSSアニメーション
 sidebar_position: 999
 ---
 
-
 ## 今日の学習はこんなところで使うよ
 
 この章では、**要素に付けるクラス名をJavaScriptで切り替えて見た目を変える方法**と、
@@ -60,6 +59,7 @@ boxYoso.addEventListener("click", function() {
     boxYoso.classList.toggle("big");
 });
 ```
+
 </CodePreview>
 
 #### なぜクリックでサイズが変わるのか
@@ -74,6 +74,7 @@ boxYoso.addEventListener("click", function() {
 ---
 
 ### 演習1（transitionなしでクラス切り替え）
+
 <Exercise>
 
 次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
@@ -114,8 +115,12 @@ boxYoso.addEventListener("click", function() {
     boxYoso.classList.toggle("active");
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習1" />
+
 </Solution>
 </Exercise>
 
@@ -160,6 +165,7 @@ boxYoso.addEventListener("click", function() {
     boxYoso.classList.toggle("big");
 });
 ```
+
 </CodePreview>
 
 :::tip transition を書く場所が大事
@@ -169,6 +175,7 @@ boxYoso.addEventListener("click", function() {
 ---
 
 ### 演習2（滑らかになるようにアニメーション化）
+
 <Exercise>
 
 演習1と同じように動作するが、次のプレビューのように、さらにサイズや色の変化が滑らかに見えるようにしたHTML/CSS/JavaScriptを作成せよ（幅や色は自由で良い）。
@@ -210,8 +217,12 @@ boxYoso.addEventListener("click", function() {
     boxYoso.classList.toggle("active");
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習2" />
+
 </Solution>
 </Exercise>
 
@@ -265,11 +276,13 @@ cardYoso.addEventListener("mouseleave", function() {
     cardYoso.classList.remove("hovered");
 });
 ```
+
 </CodePreview>
 
 ---
 
 ### 演習3（hoverで影をつける）
+
 <Exercise>
 
 次のように動作するよう、CSSとJavaScriptを書け（幅や色は自由で良い）。
@@ -325,8 +338,12 @@ cardYoso.addEventListener("mouseleave", function() {
     statusYoso.innerText = "通常";
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習3" />
+
 </Solution>
 </Exercise>
 
@@ -381,11 +398,13 @@ btnYoso.addEventListener("click", function() {
     }
 });
 ```
+
 </CodePreview>
 
 ---
 
 ### 演習4（ON/OFF表示をclassList.containsで切り替える）
+
 <Exercise>
 
 次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色は自由で良い）。
@@ -431,8 +450,12 @@ btnYoso.addEventListener("click", function() {
     }
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習4" />
+
 </Solution>
 </Exercise>
 
@@ -446,11 +469,13 @@ btnYoso.addEventListener("click", function() {
 ---
 
 ### 演習-発展1（お気に入りボタン）
+
 <Exercise>
 
 次のプレビューのように動作する、お気に入りボタンを作成せよ。
 
 **動作要件**:
+
 - ハートボタンをクリックすると、お気に入り状態のON/OFFが切り替わる
 - お気に入り状態では色が変わる
 - 色の変化は滑らかにアニメーションする
@@ -501,25 +526,32 @@ btnYoso.addEventListener("click", function() {
     }
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習-発展1" />
 
 **解説**:
+
 - ハートマーク(♥)をボタンとして使用しています
 - `active` クラスが付いたときに色が灰色からピンク色に変わります
 - `transition: color 0.3s;` で色の変化が滑らかにアニメーションします
 - `classList.contains` を使って状態を確認し、テキストを切り替えています
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習-発展2（通知バナー）
+
 <Exercise>
 
 次のプレビューのように動作する、通知バナーを作成せよ。
 
 **動作要件**:
+
 - 「通知を表示」ボタンをクリックすると、画面上部に通知バナーが表示される
 - 通知バナーの×ボタンをクリックすると、バナーが非表示になる
 - バナーの表示・非表示は滑らかにアニメーションする
@@ -596,12 +628,17 @@ closeBtnYoso.addEventListener("click", function() {
     showBtnYoso.classList.remove("disabled");
 });
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習-発展2" />
 
 **解説**:
+
 - 最初は `display: none;` で非表示にし、`show` クラスが付くと `display: block;` で表示されます
 - ボタンに `disabled` クラスを付けることで見た目を変え、視覚的に無効状態を表現しています
+
 </Solution>
 </Exercise>
 
@@ -649,6 +686,7 @@ for (let cardYoso of cardYosos) {
 ---
 
 ### 演習-発展3（まずは単純なカード選択）
+
 <Exercise>
 
 最初は、**単一の for...of だけ** を使ったシンプルな例に挑戦します。
@@ -656,6 +694,7 @@ for (let cardYoso of cardYosos) {
 次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
 
 **動作要件**:
+
 - 3つのカードがあり、クリックすると選択状態になる
 - 選択されたカードには `selected` クラスが付き、見た目が変わる
 - もう一度クリックすると選択が解除される
@@ -702,18 +741,24 @@ for (let cardYoso of cardYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習-発展3" />
 
 **解説**:
+
 - `querySelectorAll(".card")` で3つのカードをまとめて取得しています
 - `for...of` の中では「1枚のカード」に対する処理だけを書き、toggle で選択の ON/OFF をしています
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習-発展4（単一 for-of でカード選択＋カウント）
+
 <Exercise>
 
 次に、**単一の for...of の中で完結する** 少しだけ発展したパターンを練習します。
@@ -721,6 +766,7 @@ for (let cardYoso of cardYosos) {
 次のプレビューのように動作する、複数選択可能なカードUIを作成せよ。
 
 **動作要件**:
+
 - 3つのカードがあり、クリックすると選択状態になる
 - 選択されたカードには `selected` クラスが付き、見た目が変わる
 - もう一度クリックすると選択が解除される
@@ -784,12 +830,17 @@ for (let cardYoso of cardYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習-発展4" />
 
 **解説**:
+
 - `for...of` の外でカードのまとまりとカウント表示を取得しています
 - クリックされたときに、再び `for...of` を使って「今選択されているカードの数」を数えています
+
 </Solution>
 </Exercise>
 
@@ -807,11 +858,13 @@ for (let cardYoso of cardYosos) {
 ---
 
 ### 演習-発展5（アコーディオン）
+
 <Exercise>
 
 次のプレビューのように動作する、アコーディオンUIを作成せよ。
 
 **動作要件**:
+
 - 質問をクリックすると、対応する回答が表示される
 - もう一度クリックすると回答が非表示になる
 - 複数の質問を同時に開くことができる
@@ -886,13 +939,18 @@ for (let questionYoso of questionYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+
+</CodePreview>
+
+<Solution>
 <CodePreview sourceId="演習-発展5" />
 
 **解説**:
+
 - `display: none;` と `display: block;` で回答の表示・非表示を制御しています
 - `querySelectorAll(".question")` と `querySelectorAll(".answer")` で、それぞれ質問と回答をまとめて取得し、同じ順番の組み合わせとして対応付けています
 - クリックされた質問と同じインデックス番号の回答要素を探すために、ふつうの `for` 文を使っています
+
 </Solution>
 </Exercise>
 

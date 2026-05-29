@@ -2,7 +2,6 @@
 title: スライダー (Swiper.js)
 ---
 
-
 ## 今日の学習はこんなところで使うよ
 
 今日は、スライダーやカルーセルを実装してみましょう。
@@ -131,6 +130,7 @@ let swiper = new Swiper(".swiper", {
     },
 });
 ```
+
 </CodePreview>
 
 ---
@@ -155,6 +155,7 @@ let swiper = new Swiper(".swiper", {
 ---
 
 ### 演習1（基本のスライダー：3枚を横にスワイプ）
+
 <Exercise>
 3枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい。
 
@@ -171,6 +172,7 @@ let swiper = new Swiper(".swiper", {
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <div class="swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide">スライド1</div>
@@ -192,6 +194,7 @@ let swiper = new Swiper(".swiper", {
 ```javascript
 let swiper = new Swiper('.swiper', {});
 ```
+
 </CodePreview>
 
 <Solution>
@@ -202,12 +205,14 @@ let swiper = new Swiper('.swiper', {});
   jsVisible={true}
   previewVisible={true}
 />
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2（矢印とページネーションを付ける）
+
 <Exercise>
 4枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい。
 
@@ -227,6 +232,7 @@ let swiper = new Swiper('.swiper', {});
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <div class="swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide">商品A</div>
@@ -260,6 +266,7 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -270,12 +277,14 @@ let swiper = new Swiper('.swiper', {
   jsVisible={true}
   previewVisible={true}
 />
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2-発展1（自動再生とループ機能）
+
 <Exercise>
 5枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい。
 
@@ -296,6 +305,7 @@ let swiper = new Swiper('.swiper', {
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <div class="swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide">ニュース1</div>
@@ -334,6 +344,7 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -346,15 +357,18 @@ let swiper = new Swiper('.swiper', {
 />
 
 **解説**:
+
 - `loop: true` で最後のスライドの次に最初のスライドに戻ります（ループ再生）。
 - `autoplay: { delay: 3000 }` で3秒（3000ミリ秒）ごとに自動でスライドが切り替わります。
 - これらのオプションを組み合わせることで、ニュースティッカーのような自動循環スライダーが作れます。
+
 </Solution>
 </Exercise>
 
 ---
 
 ### 演習2-発展2（複数枚同時表示）
+
 <Exercise>
 6枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい。
 
@@ -375,6 +389,7 @@ let swiper = new Swiper('.swiper', {
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
+
 <div class="swiper">
     <div class="swiper-wrapper">
         <div class="swiper-slide">画像1</div>
@@ -412,6 +427,7 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -424,8 +440,10 @@ let swiper = new Swiper('.swiper', {
 />
 
 **解説**:
+
 - `slidesPerView: 3` で一度に3枚のスライドを表示します。
 - `spaceBetween: 20` でスライド間のスペースを20pxに設定します。
 - このように複数枚を同時に表示することで、ギャラリーや商品一覧のようなレイアウトが作れます。
+
 </Solution>
 </Exercise>

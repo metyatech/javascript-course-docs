@@ -3,7 +3,6 @@ title: ドロップダウンメニュー
 sidebar_position: 999
 ---
 
-
 ## ドロップダウンメニューとは
 
 ドロップダウンメニューは、メニュー項目の下に隠されたサブメニューが、クリックやホバーで表示される UI パターンです。ナビゲーションメニューでよく使われ、限られたスペースに多くのリンクを配置できます。
@@ -11,6 +10,7 @@ sidebar_position: 999
 このページでは、ドロップダウンメニューの作り方を順を追って学んでいきます。
 
 ### 演習1（メニューの基本構造作成）
+
 <Exercise>
 
 まずは、メニューの基本的な見た目を作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
@@ -50,14 +50,17 @@ header {
     padding: 0; /* ulにデフォルトでついているパディングを消す */
 }
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="演習1"/>
+
 </Solution>
 </Exercise>
 
 ### 演習2（サブメニューの作成）
+
 <Exercise>
 
 続いて、メニューの中身を書きましょう。「サービス」メニューの中身だけ、作成してください。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
@@ -112,15 +115,18 @@ header {
     position: absolute; /* 絶対配置にして、その場のスペースを占有せずに、要素を浮かせる */
 }
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習2"/>
+
 </Solution>
 </Exercise>
 
 ### 演習3（開閉機能の作成）
+
 <Exercise>
 
 ついに、JavaScript で開閉機能を作りましょう。以下のプレビューのように、サービスメニューにカーソルを乗せたときにサブメニューが表示されるようにしてください。
@@ -207,15 +213,18 @@ ddMenuYoso.addEventListener('mouseleave', function() {
     submenu.classList.remove('open'); // open クラスを削除して非表示
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習3"/>
+
 </Solution>
 </Exercise>
 
 ### 演習4（アニメーション化）
+
 <Exercise>
 
 あとは適切にアニメーションするように調整しましょう。以下のプレビューのように、滑らかに表示/非表示が切り替わるようにしてください。
@@ -292,15 +301,18 @@ ddMenuYoso.addEventListener('mouseleave', function() {
     submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習4"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展1（デザイン調整）
+
 <Exercise>
 
 機能は完成したので、見た目を整えましょう。以下のプレビューと同じ見た目になるように、CSSを調整してください。
@@ -408,22 +420,26 @@ header {
     });
 
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展1"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展2（スライドダウンアニメーションの追加）
+
 <Exercise>
 
 今のアニメーションに、さらに上から降りてくるアニメーションを追加しましょう。以下のプレビューのように、上からスライドダウンしてくるようにしてください。
 
 :::tip
+
 - `transform: translateY()` を使って、縦方向の移動をアニメーションさせます
-::::
+  ::::
 
 <CodePreview
   sourceId="演習-発展2"
@@ -528,26 +544,30 @@ ddMenuYoso.addEventListener('mouseleave', function() {
     submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展2"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展3（スケールアニメーションの追加）
+
 <Exercise>
 
 演習-発展2 で作ったスライドダウンアニメーションに、さらに拡大アニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら、同時に小さい状態から拡大して表示されるようにしてください。
 
 :::tip
+
 - `transform` プロパティには、複数の変形を半角スペースで区切って指定できます
 - 例: `transform: translateY(-10px) scale(0.95);` （上に10px移動 & 95%の大きさ）
 - translateY が上下方向の移動、scale が拡大・縮小を表します
 - `transform-origin` を使って、拡大の基準点を設定できます
 - 例: `transform-origin: left top;` （左上を基準に拡大・縮小）
-::::
+  ::::
 
 <CodePreview
   sourceId="演習-発展3"
@@ -653,24 +673,28 @@ ddMenuYoso.addEventListener('mouseleave', function() {
     submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展3"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展4（回転アニメーションの追加）
+
 <Exercise>
 
 演習-発展3 で作ったアニメーションに、さらに回転のアニメーションも追加しましょう。以下のプレビューのように、上から降りてきながら拡大し、同時に少し回転しながら表示されるようにしてください。
 
 :::tip
+
 - `transform: rotate()` を使って、要素を回転させることができます
 - 角度の単位は `deg`（度）を使います
 - 複数の変形を組み合わせる場合は、半角スペースで区切って指定します
-::::
+  ::::
 
 <CodePreview
   sourceId="演習-発展4"
@@ -776,24 +800,28 @@ ddMenuYoso.addEventListener('mouseleave', function() {
     submenu.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展4"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展5（複数のドロップダウンメニュー対応）
+
 <Exercise>
 
 今までは「サービス」メニューだけにドロップダウン機能をつけていましたが、複数のメニュー項目でドロップダウンが使えるように拡張しましょう。以下のプレビューのように、「会社情報」にもドロップダウンメニューを追加してください。
 
 :::tip
+
 - 複数の要素に同じイベントを設定する場合は、`querySelectorAll` を使って全ての要素の配列を取得します(初めて使う場合は、「[複数の要素を取得する（querySelectorAll）](../basics/dom-css-transition#複数の要素を取得するqueryselectorall)」を参照してください)
 - `for of 文` を使って、それぞれの要素に対してイベントリスナーを設定します
 - `document.querySelector` ではなく、`要素.querySelector` を使うことで、その要素の中からさらに要素を探すことができます
-::::
+  ::::
 
 <CodePreview
   sourceId="演習-発展5"
@@ -912,24 +940,28 @@ for (let ddMenuYoso of ddMenuYosos) {
     });
 }
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展5"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展6（サブメニュー項目の段階的表示）
+
 <Exercise>
 
 さらに、サブメニューの各項目が順番に左から移動してきながらフェードインするアニメーションを追加しましょう。加えて、以下のプレビューのように、メニューを開いたときに各項目が最初の項目から順にアニメーションが開始されるようにしてください。
 
 :::tip
+
 - CSS の `transition-delay` プロパティを使うと、アニメーションの開始タイミングをずらすことができます
 - `:nth-child()` 疑似クラスを使って、項目ごとに異なる遅延時間を設定します
 - 例: `.dd-submenu > li:nth-child(1)` で .dd-submenu の子の1番目のliの項目、`:nth-child(2)` で2番目の項目、… のように指定できます
-::::
+  ::::
 
 <CodePreview
   sourceId="演習-発展6"
@@ -1066,10 +1098,12 @@ for (let ddMenuYoso of ddMenuYosos) {
     });
 }
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展6"/>
+
 </Solution>
 </Exercise>

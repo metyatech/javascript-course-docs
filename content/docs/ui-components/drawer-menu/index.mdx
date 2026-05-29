@@ -3,7 +3,6 @@ title: ドロワーメニュー
 sidebar_position: 999
 ---
 
-
 ## ドロワーメニューとは
 
 ドロワーメニューは、画面の端から引き出すように表示されるメニューです。スマートフォンサイトでよく使われる UI パターンで、ハンバーガーアイコンと組み合わせて実装されることが多いです。
@@ -11,6 +10,7 @@ sidebar_position: 999
 このページでは、ドロワーメニューの作り方を順を追って学んでいきます。
 
 ### 演習1（ヘッダーとハンバーガーアイコンの作成）
+
 <Exercise>
 
 まずは、ヘッダーとハンバーガーアイコンの見た目を作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
@@ -70,14 +70,17 @@ header {
     background-color: black;
 }
 ```
+
 </CodePreview>
 
 <Solution>
 <CodePreview sourceId="演習1"/>
+
 </Solution>
 </Exercise>
 
 ### 演習2（メニューコンテンツの作成）
+
 <Exercise>
 
 続いて、ドロワーメニューのメニューコンテンツを作りましょう。以下のプレビューと同じ見た目になるように、HTML と CSS を書いてください。
@@ -160,15 +163,18 @@ header {
     padding-top: 60px; /* 上に60pxの余白 */
 }
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習2"/>
+
 </Solution>
 </Exercise>
 
 ### 演習3（開閉機能の作成）
+
 <Exercise>
 
 ついに、JavaScript で開閉機能を作りましょう。以下のプレビューのように、ハンバーガーアイコンをクリックしたら、メニューが出し入れするように、CSS と JavaScript を書いてください。
@@ -273,21 +279,25 @@ hamBtnYoso.addEventListener('click', () => {
     drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習3"/>
+
 </Solution>
 </Exercise>
 
 ### 演習4（アニメーション化）
+
 <Exercise>
 
 あとは適切にアニメーションするように調整しましょう。以下のプレビューのように、ハンバーガーアイコンをクリックしたら、
+
 - 滑らかにメニューが出し入れする
 - 閉じているときにメニューの影がちらっと見えないようにする
-ように CSS を書き換えてください。
+  ように CSS を書き換えてください。
 
 <CodePreview
   sourceId="演習4"
@@ -384,15 +394,18 @@ hamBtnYoso.addEventListener('click', () => {
     drawerYoso.classList.toggle('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習4"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展1（オーバーレイ）
+
 <Exercise>
 
 以下のプレビューのように、メニューが開いているときは、ページの内容の上にグレーの半透明のもの（オーバーレイと言います）が表示されるようにしてください。
@@ -400,8 +413,9 @@ hamBtnYoso.addEventListener('click', () => {
 
 :::tip
 ヒント
+
 - オーバーレイは画面全体を覆う、要素として作ります。そのため、それ用の要素を HTML に追加する必要があります。
-:::
+  :::
 
 <CodePreview
   sourceId="演習-発展1"
@@ -525,25 +539,29 @@ overlayYoso.addEventListener('click', () => {
     overlayYoso.classList.remove('open'); // オーバーレイ部分も閉じる
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展1"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展2（ハンバーガーから×アイコンにアニメーション）
+
 <Exercise>
 
 以下のプレビューのように、メニューを開いたときに、ハンバーガーアイコンが×アイコンに変化するようにしてください。
 
 :::tip
 ヒント
+
 - ハンバーガーアイコンの各線に対して、transform: rotate で回転させると良いです。
 - 真ん中の線は、透明にしましょう。
 - transform: rotate する際の基準点は、transform-origin プロパティで変更することができます。（デフォルトは中央です）
-:::
+  :::
 
 <CodePreview
   sourceId="演習-発展2"
@@ -682,19 +700,23 @@ overlayYoso.addEventListener('click', () => {
     hamIconYoso.classList.remove('open'); // ハンバーガーアイコン部分も open クラスを外す
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展2"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展3（ハンバーガーアイコンの長さ調整）
+
 <Exercise>
 
 先ほどの演習-発展2では、実は×が綺麗な正方形になっていません。
 ![×が綺麗な正方形になっていない図](./img/cross-icon-misalignment.png)
+
 - なぜでしょうか？
 - どうすれば綺麗な正方形になるでしょうか？
 - 綺麗な正方形になるように、CSS を修正してください。
@@ -835,6 +857,7 @@ overlayYoso.addEventListener('click', () => {
     hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
@@ -857,17 +880,21 @@ overlayYoso.addEventListener('click', () => {
 線の長さは、正方形の対角線の長さである 24√2 px になる必要があることが分かります。
 ![線の長さは24√2px](./img/cross-icon-alignment-size-answer.png)
 
-CSS上で24√2 px は、calc(24px * sqrt(2)) で表すことができます。
+CSS上で24√2 px は、calc(24px \* sqrt(2)) で表すことができます。
 
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
+
 <CodePreview sourceId="演習-発展3"/>
+
 </Solution>
 </Exercise>
 
 ### 演習-発展4（メニューコンテンツのデザイン調整）
+
 <Exercise>
 
 以下のプレビューのように、メニューコンテンツのデザインを調整してください。
+
 - リストのマーカー（黒丸）を消す
 - リンクの下線を消す
 - リンクの色を黒にする
@@ -1025,11 +1052,12 @@ overlayYoso.addEventListener('click', () => {
     hamIconYoso.classList.remove('open');
 });
 ```
+
 </CodePreview>
 
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展4"/>
+
 </Solution>
 </Exercise>
-

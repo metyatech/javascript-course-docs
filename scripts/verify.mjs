@@ -7,6 +7,8 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, '..');
 const npxCommand = 'npx';
 const npmCommand = 'npm';
+const prettierVersion = '3.6.2';
+const markdownlintVersion = '0.39.0';
 
 const readPackageName = (dirPath) => {
   const packageJsonPath = path.join(dirPath, 'package.json');
@@ -22,7 +24,8 @@ const readPackageName = (dirPath) => {
 
 const isCourseDocsSiteDir = (dirPath) => {
   if (!fs.existsSync(dirPath)) return false;
-  if (!fs.existsSync(path.join(dirPath, 'scripts', 'content-source.mjs'))) return false;
+  if (!fs.existsSync(path.join(dirPath, 'scripts', 'content-source.mjs')))
+    return false;
   return readPackageName(dirPath) === 'course-docs-site';
 };
 
@@ -57,7 +60,10 @@ const run = (command, args, options = {}) => {
   const result =
     process.platform === 'win32'
       ? spawnSync(
-          [command, ...args.map((arg) => `"${arg.replaceAll('"', '\\"')}"`)].join(' '),
+          [
+            command,
+            ...args.map((arg) => `"${arg.replaceAll('"', '\\"')}"`),
+          ].join(' '),
           {
             stdio: 'inherit',
             cwd: repoRoot,
@@ -80,6 +86,8 @@ const run = (command, args, options = {}) => {
   }
 };
 
+run(npxCommand, ['-y', `prettier@${prettierVersion}`, '--check', '.']);
+run('node', ['scripts/verify-prettier-embedded-formatting.mjs']);
 run('node', ['scripts/verify-exercise-headings.mjs']);
 
 const courseDocsSiteDir = resolveCourseDocsSiteDir();
@@ -90,15 +98,20 @@ const siteEnv = {
 
 run(npxCommand, [
   '-y',
-  'markdownlint-cli',
+  `markdownlint-cli@${markdownlintVersion}`,
   '**/*.md',
   '--config',
   '.markdownlint.json',
   '--ignore',
   'AGENTS.md',
   '--ignore',
+  'node_modules/**',
+  '--ignore',
   'agent-rules-private/**',
 ]);
 
 run(npmCommand, ['run', 'lint'], { cwd: courseDocsSiteDir, env: siteEnv });
-run(npmCommand, ['run', 'build:verified'], { cwd: courseDocsSiteDir, env: siteEnv });
+run(npmCommand, ['run', 'build:verified'], {
+  cwd: courseDocsSiteDir,
+  env: siteEnv,
+});

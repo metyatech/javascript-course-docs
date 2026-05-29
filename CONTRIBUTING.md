@@ -24,6 +24,10 @@ Run the full verification suite before each commit:
 
 - `node scripts/verify.mjs`
 
+Prettier is configured to preserve fenced source-code examples, because course
+materials sometimes intentionally show incomplete or unformatted code for
+practice.
+
 If `course-docs-site` is not in the same workspace, set `COURSE_DOCS_SITE_DIR` to that checkout before running the verify script.
 
 ## Submitting changes
