@@ -11,107 +11,110 @@ const prettierVersion = '3.6.2';
 const markdownlintVersion = '0.39.0';
 
 const readPackageName = (dirPath) => {
-  const packageJsonPath = path.join(dirPath, 'package.json');
-  if (!fs.existsSync(packageJsonPath)) return null;
+    const packageJsonPath = path.join(dirPath, 'package.json');
+    if (!fs.existsSync(packageJsonPath)) return null;
 
-  try {
-    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
-    return typeof packageJson.name === 'string' ? packageJson.name : null;
-  } catch {
-    return null;
-  }
+    try {
+        const packageJson = JSON.parse(
+            fs.readFileSync(packageJsonPath, 'utf8'),
+        );
+        return typeof packageJson.name === 'string' ? packageJson.name : null;
+    } catch {
+        return null;
+    }
 };
 
 const isCourseDocsSiteDir = (dirPath) => {
-  if (!fs.existsSync(dirPath)) return false;
-  if (!fs.existsSync(path.join(dirPath, 'scripts', 'content-source.mjs')))
-    return false;
-  return readPackageName(dirPath) === 'course-docs-site';
+    if (!fs.existsSync(dirPath)) return false;
+    if (!fs.existsSync(path.join(dirPath, 'scripts', 'content-source.mjs')))
+        return false;
+    return readPackageName(dirPath) === 'course-docs-site';
 };
 
 const resolveCourseDocsSiteDir = () => {
-  const configuredPath = process.env.COURSE_DOCS_SITE_DIR?.trim();
-  if (configuredPath) {
-    const resolvedPath = path.resolve(repoRoot, configuredPath);
-    if (isCourseDocsSiteDir(resolvedPath)) return resolvedPath;
+    const configuredPath = process.env.COURSE_DOCS_SITE_DIR?.trim();
+    if (configuredPath) {
+        const resolvedPath = path.resolve(repoRoot, configuredPath);
+        if (isCourseDocsSiteDir(resolvedPath)) return resolvedPath;
+
+        throw new Error(
+            `COURSE_DOCS_SITE_DIR does not point to a course-docs-site checkout: ${resolvedPath}`,
+        );
+    }
+
+    let currentDir = repoRoot;
+    while (true) {
+        const candidateDir = path.join(currentDir, 'course-docs-site');
+        if (isCourseDocsSiteDir(candidateDir)) return candidateDir;
+
+        const parentDir = path.dirname(currentDir);
+        if (parentDir === currentDir) break;
+        currentDir = parentDir;
+    }
 
     throw new Error(
-      `COURSE_DOCS_SITE_DIR does not point to a course-docs-site checkout: ${resolvedPath}`,
+        'Unable to locate course-docs-site automatically. Set COURSE_DOCS_SITE_DIR to a local checkout path.',
     );
-  }
-
-  let currentDir = repoRoot;
-  while (true) {
-    const candidateDir = path.join(currentDir, 'course-docs-site');
-    if (isCourseDocsSiteDir(candidateDir)) return candidateDir;
-
-    const parentDir = path.dirname(currentDir);
-    if (parentDir === currentDir) break;
-    currentDir = parentDir;
-  }
-
-  throw new Error(
-    'Unable to locate course-docs-site automatically. Set COURSE_DOCS_SITE_DIR to a local checkout path.',
-  );
 };
 
 const run = (command, args, options = {}) => {
-  console.log(`> ${command} ${args.join(' ')}`);
-  const result =
-    process.platform === 'win32'
-      ? spawnSync(
-          [
-            command,
-            ...args.map((arg) => `"${arg.replaceAll('"', '\\"')}"`),
-          ].join(' '),
-          {
-            stdio: 'inherit',
-            cwd: repoRoot,
-            shell: true,
-            ...options,
-          },
-        )
-      : spawnSync(command, args, {
-          stdio: 'inherit',
-          cwd: repoRoot,
-          ...options,
-        });
+    console.log(`> ${command} ${args.join(' ')}`);
+    const result =
+        process.platform === 'win32'
+            ? spawnSync(
+                  [
+                      command,
+                      ...args.map((arg) => `"${arg.replaceAll('"', '\\"')}"`),
+                  ].join(' '),
+                  {
+                      stdio: 'inherit',
+                      cwd: repoRoot,
+                      shell: true,
+                      ...options,
+                  },
+              )
+            : spawnSync(command, args, {
+                  stdio: 'inherit',
+                  cwd: repoRoot,
+                  ...options,
+              });
 
-  if (result.error) {
-    throw result.error;
-  }
+    if (result.error) {
+        throw result.error;
+    }
 
-  if (typeof result.status === 'number' && result.status !== 0) {
-    throw new Error(`${command} exited with code ${result.status}`);
-  }
+    if (typeof result.status === 'number' && result.status !== 0) {
+        throw new Error(`${command} exited with code ${result.status}`);
+    }
 };
 
 run(npxCommand, ['-y', `prettier@${prettierVersion}`, '--check', '.']);
 run('node', ['scripts/verify-prettier-embedded-formatting.mjs']);
 run('node', ['scripts/verify-exercise-headings.mjs']);
+run('node', ['scripts/verify-code-block-indentation.mjs']);
 
 const courseDocsSiteDir = resolveCourseDocsSiteDir();
 const siteEnv = {
-  ...process.env,
-  COURSE_CONTENT_SOURCE: repoRoot,
+    ...process.env,
+    COURSE_CONTENT_SOURCE: repoRoot,
 };
 
 run(npxCommand, [
-  '-y',
-  `markdownlint-cli@${markdownlintVersion}`,
-  '**/*.md',
-  '--config',
-  '.markdownlint.json',
-  '--ignore',
-  'AGENTS.md',
-  '--ignore',
-  'node_modules/**',
-  '--ignore',
-  'agent-rules-private/**',
+    '-y',
+    `markdownlint-cli@${markdownlintVersion}`,
+    '**/*.md',
+    '--config',
+    '.markdownlint.json',
+    '--ignore',
+    'AGENTS.md',
+    '--ignore',
+    'node_modules/**',
+    '--ignore',
+    'agent-rules-private/**',
 ]);
 
 run(npmCommand, ['run', 'lint'], { cwd: courseDocsSiteDir, env: siteEnv });
 run(npmCommand, ['run', 'build:verified'], {
-  cwd: courseDocsSiteDir,
-  env: siteEnv,
+    cwd: courseDocsSiteDir,
+    env: siteEnv,
 });

@@ -1,6 +1,6 @@
 const meta = {
-  'environment-setup': {},
-  'javascript-basics-supplement': {},
+    'environment-setup': {},
+    'javascript-basics-supplement': {},
 };
 
 export default meta;

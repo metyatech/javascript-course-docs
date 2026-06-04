@@ -24,10 +24,10 @@ title: 演算子と真偽値
 
 <CodePreview>
 ```javascript
-console.log(1 === 1);        // 出力: true
-console.log(1 === "1");      // 出力: false （型が違う）
-console.log("abc" === "abc"); // 出力: true
-console.log(1 !== 2);        // 出力: true
+console.log(1 === 1); // 出力: true
+console.log(1 === '1'); // 出力: false （型が違う）
+console.log('abc' === 'abc'); // 出力: true
+console.log(1 !== 2); // 出力: true
 ```
 </CodePreview>
 
@@ -41,8 +41,8 @@ console.log(1 !== 2);        // 出力: true
 
 ```js
 console.log(1 === 1);
-console.log(1 === "1");
-console.log("apple" === "apple");
+console.log(1 === '1');
+console.log('apple' === 'apple');
 console.log(true === 1);
 ```
 
@@ -69,13 +69,14 @@ false   ← 型が違う（真偽値 true と数値 1）
 
 <CodePreview>
 ```javascript
-console.log(5 === 5);        // 出力: true  ← 5 と 5 は等しい
-console.log("7" !== "8");    // 出力: true  ← "7" と "8" は等しくない
+console.log(5 === 5); // 出力: true  ← 5 と 5 は等しい
+console.log('7' !== '8'); // 出力: true  ← "7" と "8" は等しくない
 console.log(false === false); // 出力: true ← false と false は等しい
 ```
 </CodePreview>
 
 </Solution>
+
 </Exercise>
 
 ---
@@ -93,9 +94,9 @@ console.log(false === false); // 出力: true ← false と false は等しい
 
 <CodePreview>
 ```javascript
-console.log(5 < 10);  // 出力: true
-console.log(7 > 7);   // 出力: false
-console.log(8 <= 8);  // 出力: true
+console.log(5 < 10); // 出力: true
+console.log(7 > 7); // 出力: false
+console.log(8 <= 8); // 出力: true
 console.log(9 >= 10); // 出力: false
 ```
 </CodePreview>
@@ -138,9 +139,9 @@ false  ← 9 は 10 以上ではない
 
 <CodePreview>
 ```javascript
-console.log(5 > 4);    // 出力: true
+console.log(5 > 4); // 出力: true
 console.log(10 <= 10); // 出力: true
-console.log(8 >= 8);   // 出力: true
+console.log(8 >= 8); // 出力: true
 ```
 </CodePreview>
 
@@ -148,12 +149,13 @@ console.log(8 >= 8);   // 出力: true
 
 <CodePreview>
 ```javascript
-let num = Number(prompt("自然数を入力してね"));
+let num = Number(prompt('自然数を入力してね'));
 console.log(num >= 10);
 ```
 </CodePreview>
 
 </Solution>
+
 </Exercise>
 
 ---
@@ -169,16 +171,15 @@ console.log(num >= 10);
 
 <CodePreview>
 ```javascript
-console.log(true && true);   // 出力: true
-console.log(true && false);  // 出力: false
-console.log(false || true);  // 出力: true
+console.log(true && true); // 出力: true
+console.log(true && false); // 出力: false
+console.log(false || true); // 出力: true
 console.log(false || false); // 出力: false
 
 // 組み合わせ例：5以上 かつ 10以下
 let num = 7;
 console.log(num >= 5 && num <= 10); // 出力: true
-
-````
+```
 </CodePreview>
 
 ---
@@ -194,13 +195,13 @@ console.log(num >= 5 && num <= 10); // 出力: true
 
 <CodePreview>
 ```javascript
-console.log(!true);  // 出力: false
+console.log(!true); // 出力: false
 console.log(!false); // 出力: true
 
 // 条件全体を反転する例
 let value = 5;
 console.log(!(value === 5)); // 出力: false （value === 5 は true → その逆）
-````
+```
 
 </CodePreview>
 
@@ -238,14 +239,14 @@ false  ← 両方 false なので false
 
 <CodePreview>
 ```javascript
-let num = Number(prompt("数値を入力してね"));
+let num = Number(prompt('数値を入力してね'));
 
 // 5以下 または 10以上
 console.log(num <= 5 || num >= 10);
-
 ```
 </CodePreview>
 
 </Solution>
+
 </Exercise>
 ```

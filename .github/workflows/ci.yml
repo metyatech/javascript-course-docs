@@ -1,77 +1,77 @@
 name: CI
 
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 permissions:
-  contents: read
+    contents: read
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+    FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 concurrency:
-  group: javascript-course-docs-ci-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+    group: javascript-course-docs-ci-${{ github.event.pull_request.number || github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-      - name: Cache npm tool downloads
-        uses: actions/cache@v5
-        with:
-          path: |
-            ~/.npm
-            ~/AppData/Local/npm-cache
-          key: ${{ runner.os }}-javascript-course-docs-lint-tools-${{ hashFiles('.github/workflows/ci.yml', '.markdownlint.json', '.prettierrc', '.prettierignore') }}
-      - name: Prettier check
-        run: npx -y prettier@3.6.2 --check .
-      - name: Verify embedded source formatting
-        run: node scripts/verify-prettier-embedded-formatting.mjs
-      - name: Verify Exercise headings
-        run: node scripts/verify-exercise-headings.mjs
-      - name: markdownlint
-        run: npx -y markdownlint-cli@0.39.0 "**/*.md" --config .markdownlint.json --ignore AGENTS.md --ignore node_modules/** --ignore agent-rules-private/**
+    lint:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+            - uses: actions/setup-node@v6
+              with:
+                  node-version: '24'
+            - name: Cache npm tool downloads
+              uses: actions/cache@v5
+              with:
+                  path: |
+                      ~/.npm
+                      ~/AppData/Local/npm-cache
+                  key: ${{ runner.os }}-javascript-course-docs-lint-tools-${{ hashFiles('.github/workflows/ci.yml', '.markdownlint.json', '.prettierrc', '.prettierignore') }}
+            - name: Prettier check
+              run: npx -y prettier@3.6.2 --check .
+            - name: Verify embedded source formatting
+              run: node scripts/verify-prettier-embedded-formatting.mjs
+            - name: Verify Exercise headings
+              run: node scripts/verify-exercise-headings.mjs
+            - name: markdownlint
+              run: npx -y markdownlint-cli@0.39.0 "**/*.md" --config .markdownlint.json --ignore AGENTS.md --ignore node_modules/** --ignore agent-rules-private/**
 
-  integration:
-    runs-on: ubuntu-latest
-    env:
-      COURSE_CONTENT_SOURCE: '../course-content'
-    steps:
-      - name: Checkout course content
-        uses: actions/checkout@v6
-        with:
-          path: course-content
+    integration:
+        runs-on: ubuntu-latest
+        env:
+            COURSE_CONTENT_SOURCE: '../course-content'
+        steps:
+            - name: Checkout course content
+              uses: actions/checkout@v6
+              with:
+                  path: course-content
 
-      - name: Checkout course-docs-site
-        uses: actions/checkout@v6
-        with:
-          repository: metyatech/course-docs-site
-          ref: main
-          path: site
+            - name: Checkout course-docs-site
+              uses: actions/checkout@v6
+              with:
+                  repository: metyatech/course-docs-site
+                  ref: main
+                  path: site
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-          cache: 'npm'
-          cache-dependency-path: site/package-lock.json
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: '24'
+                  cache: 'npm'
+                  cache-dependency-path: site/package-lock.json
 
-      - name: Install dependencies
-        working-directory: site
-        run: npm ci
+            - name: Install dependencies
+              working-directory: site
+              run: npm ci
 
-      - name: Lint site against local content
-        working-directory: site
-        run: npm run lint
+            - name: Lint site against local content
+              working-directory: site
+              run: npm run lint
 
-      - name: Build site against local content
-        working-directory: site
-        run: npm run build:verified
+            - name: Build site against local content
+              working-directory: site
+              run: npm run build:verified

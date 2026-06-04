@@ -10,9 +10,9 @@ title: スライダー (Swiper.js)
 実際に使われていそうなサイトの例（代表例）:
 
 - Apple Store（公開ページで製品紹介のスライダーが確認できます）: https://www.apple.com/jp/store
-  - 使われる箇所: トップページの製品紹介スライダー → 画像を左右にスワイプ
+    - 使われる箇所: トップページの製品紹介スライダー → 画像を左右にスワイプ
 - Uniqlo（商品画像のスライダー）: https://www.uniqlo.com/jp/ja/
-  - 使われる箇所: 商品詳細ページの画像ギャラリー → 左右にスワイプして別の商品画像を表示
+    - 使われる箇所: 商品詳細ページの画像ギャラリー → 左右にスワイプして別の商品画像を表示
 
 以下は、完成イメージです。左右の矢印ボタンやドラッグで操作できます。
 
@@ -22,7 +22,10 @@ title: スライダー (Swiper.js)
   jsVisible={false}
   previewVisible={true}>
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <div class="swiper">
@@ -89,7 +92,7 @@ title: スライダー (Swiper.js)
     background: white;
     border-radius: 12px;
     padding: 24px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     /* スライド幅に応じて縮み、最大200pxまで */
     max-width: 200px;
@@ -113,7 +116,7 @@ title: スライダー (Swiper.js)
 ```
 
 ```javascript
-let swiper = new Swiper(".swiper", {
+let swiper = new Swiper('.swiper', {
     slidesPerView: 3,
     spaceBetween: 20,
     loop: true,
@@ -121,16 +124,15 @@ let swiper = new Swiper(".swiper", {
         delay: 3000,
     },
     navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
     pagination: {
-        el: ".swiper-pagination",
+        el: '.swiper-pagination',
         clickable: true,
     },
 });
 ```
-
 </CodePreview>
 
 ---
@@ -147,8 +149,8 @@ let swiper = new Swiper(".swiper", {
 
 - まず公式サイトをざっと眺める: https://swiperjs.com/
 - 検索キーワード例:
-  - 「Swiper 使い方」,「Swiper 始め方」
-  - 「Swiper 矢印ボタン」,「Swiper ページネーション」
+    - 「Swiper 使い方」,「Swiper 始め方」
+    - 「Swiper 矢印ボタン」,「Swiper ページネーション」
 
 以下の演習は、Swiper.js の使い方を自分で調べて解いてください。
 
@@ -168,7 +170,10 @@ let swiper = new Swiper(".swiper", {
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
@@ -194,7 +199,6 @@ let swiper = new Swiper(".swiper", {
 ```javascript
 let swiper = new Swiper('.swiper', {});
 ```
-
 </CodePreview>
 
 <Solution>
@@ -205,7 +209,6 @@ let swiper = new Swiper('.swiper', {});
   jsVisible={true}
   previewVisible={true}
 />
-
 </Solution>
 </Exercise>
 
@@ -228,7 +231,10 @@ let swiper = new Swiper('.swiper', {});
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
@@ -266,7 +272,6 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -277,7 +282,6 @@ let swiper = new Swiper('.swiper', {
   jsVisible={true}
   previewVisible={true}
 />
-
 </Solution>
 </Exercise>
 
@@ -301,7 +305,10 @@ let swiper = new Swiper('.swiper', {
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
@@ -344,7 +351,6 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -361,7 +367,6 @@ let swiper = new Swiper('.swiper', {
 - `loop: true` で最後のスライドの次に最初のスライドに戻ります（ループ再生）。
 - `autoplay: { delay: 3000 }` で3秒（3000ミリ秒）ごとに自動でスライドが切り替わります。
 - これらのオプションを組み合わせることで、ニュースティッカーのような自動循環スライダーが作れます。
-
 </Solution>
 </Exercise>
 
@@ -385,7 +390,10 @@ let swiper = new Swiper('.swiper', {
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"
+/>
 <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
 
 <!-- これを body 内に入れて -->
@@ -427,7 +435,6 @@ let swiper = new Swiper('.swiper', {
     },
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -444,6 +451,5 @@ let swiper = new Swiper('.swiper', {
 - `slidesPerView: 3` で一度に3枚のスライドを表示します。
 - `spaceBetween: 20` でスライド間のスペースを20pxに設定します。
 - このように複数枚を同時に表示することで、ギャラリーや商品一覧のようなレイアウトが作れます。
-
 </Solution>
 </Exercise>

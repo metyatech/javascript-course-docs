@@ -33,9 +33,9 @@ title: オブジェクト入門
 <CodePreview>
 ```javascript
 let mypet = {
-    name: "ポチ",
-    birthday: "2024/4/1",
-    taijuu: 40
+    name: 'ポチ',
+    birthday: '2024/4/1',
+    taijuu: 40,
 };
 console.log(mypet);
 ```
@@ -56,9 +56,9 @@ console.log(mypet);
 <CodePreview>
 ```javascript
 let mypet = {
-    name: "ポチ",
-    birthday: "4/1",
-    taijuu: 40
+    name: 'ポチ',
+    birthday: '4/1',
+    taijuu: 40,
 };
 // 変数のように値を読み取ったり
 console.log(mypet.name);
@@ -70,8 +70,8 @@ console.log(mypet.taijuu);
 </CodePreview>
 
 - _プロパティ_
-  - オブジェクト内の各キーと値の組のこと
-    ![プロパティ](./img/property.png)
+    - オブジェクト内の各キーと値の組のこと
+      ![プロパティ](./img/property.png)
 
 ## オブジェクトのプロパティに設定できる値
 
@@ -83,15 +83,15 @@ console.log(mypet.taijuu);
 ```javascript
 let example = {
     // 文字列OK
-    str: "文字列",
+    str: '文字列',
     // 数値OK
     num: 10,
     // オブジェクトOK
-    obj: { key: "value" },
+    obj: { key: 'value' },
     // 関数OK
-    fn: function(a, b) {
+    fn: function (a, b) {
         return a + b;
-    }
+    },
 };
 console.log(example);
 console.log(example.fn(1, 2));
@@ -155,14 +155,13 @@ console.log(console);
 <CodePreview>
 ```javascript
 let me = {
-    name: "山田太郎",
-    age: 20
+    name: '山田太郎',
+    age: 20,
 };
 console.log(me.name);
 console.log(me.age);
 ```
 </CodePreview>
-
 </Solution>
 </Exercise>
 
@@ -198,15 +197,15 @@ console.log(☆☆☆);
 ```javascript
 let example = {
     obj: {
-        str: "文字列"
+        str: '文字列',
     },
-    num: 2
+    num: 2,
 };
 console.log(example.obj.str);
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ---
@@ -219,17 +218,17 @@ console.log(example.obj.str);
 
 ```js
 let dog = {
-    name: "ポチ",
-    greet: function() {
+    name: 'ポチ',
+    greet: function () {
         console.log(`${dog.name}です。`);
     },
-    bark: function(numberOfBarks) {
-        let barkText = "";
+    bark: function (numberOfBarks) {
+        let barkText = '';
         for (let n = 1; n <= numberOfBarks; n++) {
-            barkText += "ワン";
+            barkText += 'ワン';
         }
         console.log(barkText);
-    }
+    },
 };
 ```
 
@@ -243,22 +242,21 @@ let dog = {
 <CodePreview>
 ```javascript
 let dog = {
-    name: "ポチ",
-    greet: function() {
-        console.log(dog.name + "です。");
+    name: 'ポチ',
+    greet: function () {
+        console.log(dog.name + 'です。');
     },
-    bark: function(numberOfBarks) {
-        let barkText = "";
+    bark: function (numberOfBarks) {
+        let barkText = '';
         for (let n = 1; n <= numberOfBarks; n++) {
-            barkText += "ワン";
+            barkText += 'ワン';
         }
         console.log(barkText);
-    }
+    },
 };
 dog.greet();
 dog.bark(3);
 ```
 </CodePreview>
-
 </Solution>
 </Exercise>

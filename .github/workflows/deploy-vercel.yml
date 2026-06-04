@@ -1,111 +1,111 @@
 name: Deploy site to Vercel (content update)
 
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - 'content/**'
-      - 'public/**'
-      - 'site.config.ts'
-      - '.github/workflows/deploy-vercel.yml'
-  workflow_dispatch:
+    push:
+        branches:
+            - master
+        paths:
+            - 'content/**'
+            - 'public/**'
+            - 'site.config.ts'
+            - '.github/workflows/deploy-vercel.yml'
+    workflow_dispatch:
 
 permissions:
-  contents: read
+    contents: read
 
 concurrency:
-  group: javascript-course-docs-deploy-${{ github.ref }}
-  cancel-in-progress: true
+    group: javascript-course-docs-deploy-${{ github.ref }}
+    cancel-in-progress: true
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    env:
-      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_CLI_VERSION: 50.9.6
-      COURSE_CONTENT_SOURCE: '../course-content'
-    steps:
-      - name: Validate secrets
-        run: |
-          if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
-            echo "Missing one or more required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
-            exit 1
-          fi
+    deploy:
+        runs-on: ubuntu-latest
+        env:
+            VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+            VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+            VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+            VERCEL_CLI_VERSION: 50.9.6
+            COURSE_CONTENT_SOURCE: '../course-content'
+        steps:
+            - name: Validate secrets
+              run: |
+                  if [ -z "$VERCEL_TOKEN" ] || [ -z "$VERCEL_ORG_ID" ] || [ -z "$VERCEL_PROJECT_ID" ]; then
+                    echo "Missing one or more required secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID"
+                    exit 1
+                  fi
 
-      - name: Checkout course content
-        uses: actions/checkout@v6
-        with:
-          path: course-content
+            - name: Checkout course content
+              uses: actions/checkout@v6
+              with:
+                  path: course-content
 
-      - name: Checkout course-docs-site
-        uses: actions/checkout@v6
-        with:
-          repository: metyatech/course-docs-site
-          ref: main
-          path: site
+            - name: Checkout course-docs-site
+              uses: actions/checkout@v6
+              with:
+                  repository: metyatech/course-docs-site
+                  ref: main
+                  path: site
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: site/package-lock.json
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: '20'
+                  cache: 'npm'
+                  cache-dependency-path: site/package-lock.json
 
-      - name: Vercel auth preflight
-        run: |
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} whoami --token="$VERCEL_TOKEN"
-          node --input-type=module <<'EOF'
-          const projectId = process.env.VERCEL_PROJECT_ID;
-          const teamId = process.env.VERCEL_ORG_ID;
-          const token = process.env.VERCEL_TOKEN;
+            - name: Vercel auth preflight
+              run: |
+                  npx vercel@${{ env.VERCEL_CLI_VERSION }} whoami --token="$VERCEL_TOKEN"
+                  node --input-type=module <<'EOF'
+                  const projectId = process.env.VERCEL_PROJECT_ID;
+                  const teamId = process.env.VERCEL_ORG_ID;
+                  const token = process.env.VERCEL_TOKEN;
 
-          async function check(url, label) {
-            const response = await fetch(url, {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            });
+                  async function check(url, label) {
+                    const response = await fetch(url, {
+                      headers: {
+                        Authorization: `Bearer ${token}`,
+                      },
+                    });
 
-            if (!response.ok) {
-              const body = await response.text();
-              throw new Error(`${label} failed (${response.status}): ${body}`);
-            }
+                    if (!response.ok) {
+                      const body = await response.text();
+                      throw new Error(`${label} failed (${response.status}): ${body}`);
+                    }
 
-            return response.json();
-          }
+                    return response.json();
+                  }
 
-          const user = await check('https://api.vercel.com/www/user', 'user lookup');
-          const project = await check(
-            `https://api.vercel.com/v9/projects/${projectId}?teamId=${teamId}`,
-            'project lookup',
-          );
+                  const user = await check('https://api.vercel.com/www/user', 'user lookup');
+                  const project = await check(
+                    `https://api.vercel.com/v9/projects/${projectId}?teamId=${teamId}`,
+                    'project lookup',
+                  );
 
-          if (project.id !== projectId) {
-            throw new Error(`Resolved unexpected project id: ${project.id}`);
-          }
+                  if (project.id !== projectId) {
+                    throw new Error(`Resolved unexpected project id: ${project.id}`);
+                  }
 
-          console.log(
-            `Authenticated as ${user.user.username}; verified access to ${project.name} (${project.id}).`,
-          );
-          EOF
+                  console.log(
+                    `Authenticated as ${user.user.username}; verified access to ${project.name} (${project.id}).`,
+                  );
+                  EOF
 
-      - name: Install
-        working-directory: site
-        run: npm ci
+            - name: Install
+              working-directory: site
+              run: npm ci
 
-      - name: Vercel pull
-        working-directory: site
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token="$VERCEL_TOKEN"
+            - name: Vercel pull
+              working-directory: site
+              run: npx vercel@${{ env.VERCEL_CLI_VERSION }} pull --yes --environment=production --token="$VERCEL_TOKEN"
 
-      - name: Vercel build
-        working-directory: site
-        run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --token="$VERCEL_TOKEN"
+            - name: Vercel build
+              working-directory: site
+              run: npx vercel@${{ env.VERCEL_CLI_VERSION }} build --prod --token="$VERCEL_TOKEN"
 
-      - name: Vercel deploy (retry once)
-        working-directory: site
-        run: |
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN" || \
-          npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN"
+            - name: Vercel deploy (retry once)
+              working-directory: site
+              run: |
+                  npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN" || \
+                  npx vercel@${{ env.VERCEL_CLI_VERSION }} deploy --prebuilt --prod --archive=tgz --token="$VERCEL_TOKEN"

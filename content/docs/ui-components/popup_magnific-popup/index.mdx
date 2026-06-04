@@ -14,9 +14,9 @@ import wholeCake from "./img/whole_cake.jpg";
 実際に使われていそうなサイトの例（代表例）:
 
 - X (旧Twitter)（ポスト作成）: https://x.com/
-  - 使われる箇所: 「ポストする」ボタンをクリック → モーダルで投稿フォームが表示
+    - 使われる箇所: 「ポストする」ボタンをクリック → モーダルで投稿フォームが表示
 - Google ドライブ（新規フォルダ作成）: https://drive.google.com/
-  - 使われる箇所: 「新規」→「新しいフォルダ」をクリック → モーダルでフォルダ名入力フォームが表示
+    - 使われる箇所: 「新規」→「新しいフォルダ」をクリック → モーダルでフォルダ名入力フォームが表示
 
 以下は、完成イメージです。「ポップアップを開く」ボタンをクリックすると、ポップアップが表示されます。
 
@@ -26,7 +26,10 @@ import wholeCake from "./img/whole_cake.jpg";
   jsVisible={false}
   previewVisible={true}>
 ```html
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
@@ -55,7 +58,6 @@ $('.open-popup-link').magnificPopup({
     midClick: true,
 });
 ```
-
 </CodePreview>
 
 ---
@@ -73,8 +75,8 @@ $('.open-popup-link').magnificPopup({
 
 - まず公式サイトをざっと眺める: https://dimsemenov.com/plugins/magnific-popup/
 - 検索キーワード例:
-  - 「Magnific Popup 使い方」,「Magnific Popup 始め方」
-  - 「Magnific Popup 画像」
+    - 「Magnific Popup 使い方」,「Magnific Popup 始め方」
+    - 「Magnific Popup 画像」
 
 以下の演習は、Magnific Popup の使い方を自分で調べて解いてください。
 
@@ -97,7 +99,10 @@ $('.open-popup-link').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
@@ -111,7 +116,6 @@ $('.image-link').magnificPopup({
     type: 'image',
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -141,7 +145,6 @@ $('.image-link').magnificPopup({
 
 - CSSは一切書かなくても、ライブラリが自動的に見栄えの良いポップアップを作成してくれます
 - `href` に指定した画像が、ポップアップで拡大表示されます
-
 </Solution>
 </Exercise>
 
@@ -164,14 +167,17 @@ $('.image-link').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
 <!-- これを body 内に入れて -->
 
 <a class="image-popup" href="img/christmas_chicken.jpg">
-    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル" />
 </a>
 ```
 
@@ -180,7 +186,6 @@ $('.image-popup').magnificPopup({
     type: 'image',
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -192,7 +197,7 @@ $('.image-popup').magnificPopup({
 
 ```html
 <a class="image-popup" href="img/christmas_chicken.jpg">
-    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル">
+    <img src="img/christmas_chicken.jpg" width="200" alt="サムネイル" />
 </a>
 ```
 
@@ -215,7 +220,6 @@ $('.image-popup').magnificPopup({
 
 - サムネイル画像とポップアップ画像を同じパスにすることで、シンプルな実装が可能です
 - 実務では、サムネイル用の軽量な画像と、ポップアップ用の高画質画像を別々に用意することもあります
-
 </Solution>
 </Exercise>
 
@@ -235,7 +239,10 @@ $('.image-popup').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
@@ -253,7 +260,6 @@ $('.open-popup').magnificPopup({
     type: 'inline',
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -296,7 +302,6 @@ $('.open-popup').magnificPopup({
 
 - この方法を使えば、複雑なHTMLコンテンツもポップアップで表示できます
 - お知らせ、利用規約、フォームなど、様々な用途に応用できます
-
 </Solution>
 </Exercise>
 
@@ -316,7 +321,10 @@ $('.open-popup').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
@@ -349,7 +357,6 @@ $('.open-modal').magnificPopup({
     type: 'inline',
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -370,21 +377,21 @@ $('.open-modal').magnificPopup({
 ```
 
 - `class="mfp-hide white-popup"`: 2つのクラスを指定
-  - `mfp-hide`: Magnific Popup用（非表示にする）
-  - `white-popup`: 自分で作成するスタイル用のクラス
+    - `mfp-hide`: Magnific Popup用（非表示にする）
+    - `white-popup`: 自分で作成するスタイル用のクラス
 
 **2. CSSでデザインを整える**
 
 ```css
 .white-popup {
-    background: white;        /* 白い背景 */
-    padding: 30px;            /* 内側の余白 */
-    max-width: 500px;         /* 最大幅を制限 */
-    margin: 0 auto;           /* 中央揃え */
-    border-radius: 8px;       /* 角を丸くする */
+    background: white; /* 白い背景 */
+    padding: 30px; /* 内側の余白 */
+    max-width: 500px; /* 最大幅を制限 */
+    margin: 0 auto; /* 中央揃え */
+    border-radius: 8px; /* 角を丸くする */
 }
 .white-popup h2 {
-    margin-top: 0;            /* 見出しの上の余白を削除 */
+    margin-top: 0; /* 見出しの上の余白を削除 */
 }
 ```
 
@@ -402,7 +409,6 @@ $('.open-modal').magnificPopup({
 
 - Magnific Popupは機能を提供し、デザインは自分で自由にカスタマイズできます
 - この方法で、自社サイトのデザインに合わせたポップアップを作成できます
-
 </Solution>
 </Exercise>
 
@@ -422,17 +428,21 @@ $('.open-modal').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
 <!-- これを body 内に入れて -->
 
-<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">動画を見る</a>
+<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    >動画を見る</a
+>
 ```
 
 ```css
-
 ```
 
 ```javascript
@@ -440,7 +450,6 @@ $('.video-popup').magnificPopup({
     type: 'iframe',
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -451,7 +460,9 @@ $('.video-popup').magnificPopup({
 **1. HTMLの準備**
 
 ```html
-<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">動画を見る</a>
+<a class="video-popup" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    >動画を見る</a
+>
 ```
 
 - `href`: YouTube動画の通常のURLをそのまま指定します
@@ -472,8 +483,8 @@ $('.video-popup').magnificPopup({
 
 1. Magnific Popupが、YouTubeのURLを検出します
 2. 自動的に埋め込み用のiframeコードに変換します
-   - 例: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
-   - → `https://www.youtube.com/embed/dQw4w9WgXcQ` に変換
+    - 例: `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
+    - → `https://www.youtube.com/embed/dQw4w9WgXcQ` に変換
 3. ポップアップ内でiframeとして動画を表示します
 
 **4. ポイント**
@@ -488,7 +499,6 @@ $('.video-popup').magnificPopup({
 - チュートリアル動画
 - プロモーション動画
   など、動画コンテンツをサイトにスマートに組み込めます
-
 </Solution>
 </Exercise>
 
@@ -513,7 +523,10 @@ $('.video-popup').magnificPopup({
 >
 ```html
 <!-- これを head 内に入れて -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+/>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
 
@@ -521,13 +534,13 @@ $('.video-popup').magnificPopup({
 
 <div class="gallery">
     <a href="img/christmas_chicken.jpg">
-        <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+        <img src="img/christmas_chicken.jpg" width="150" alt="画像1" />
     </a>
     <a href="img/christmas_snowman.jpg">
-        <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+        <img src="img/christmas_snowman.jpg" width="150" alt="画像2" />
     </a>
     <a href="img/whole_cake.jpg">
-        <img src="img/whole_cake.jpg" width="150" alt="画像3">
+        <img src="img/whole_cake.jpg" width="150" alt="画像3" />
     </a>
 </div>
 ```
@@ -541,7 +554,6 @@ $('.gallery').magnificPopup({
     },
 });
 ```
-
 </CodePreview>
 
 <Solution>
@@ -554,13 +566,13 @@ $('.gallery').magnificPopup({
 ```html
 <div class="gallery">
     <a href="img/christmas_chicken.jpg">
-        <img src="img/christmas_chicken.jpg" width="150" alt="画像1">
+        <img src="img/christmas_chicken.jpg" width="150" alt="画像1" />
     </a>
     <a href="img/christmas_snowman.jpg">
-        <img src="img/christmas_snowman.jpg" width="150" alt="画像2">
+        <img src="img/christmas_snowman.jpg" width="150" alt="画像2" />
     </a>
     <a href="img/whole_cake.jpg">
-        <img src="img/whole_cake.jpg" width="150" alt="画像3">
+        <img src="img/whole_cake.jpg" width="150" alt="画像3" />
     </a>
 </div>
 ```
@@ -572,10 +584,10 @@ $('.gallery').magnificPopup({
 
 ```javascript
 $('.gallery').magnificPopup({
-    delegate: 'a',            // どの子要素をトリガーにするか
-    type: 'image',            // 画像ポップアップモード
+    delegate: 'a', // どの子要素をトリガーにするか
+    type: 'image', // 画像ポップアップモード
     gallery: {
-        enabled: true,          // ギャラリーモードを有効化
+        enabled: true, // ギャラリーモードを有効化
     },
 });
 ```
@@ -591,9 +603,9 @@ $('.gallery').magnificPopup({
 
 - ギャラリーモードを有効にします
 - 有効にすると以下の機能が使えます:
-  - 左右の矢印ボタンで画像を切り替え
-  - キーボードの矢印キーでも操作可能
-  - 画像の番号表示（例: 1/3）
+    - 左右の矢印ボタンで画像を切り替え
+    - キーボードの矢印キーでも操作可能
+    - 画像の番号表示（例: 1/3）
 
 **4. 動作の流れ**
 
@@ -614,6 +626,5 @@ $('.gallery').magnificPopup({
 
 - ギャラリー内の画像数は自由に増やせます
 - 画像の順番は、HTML内の記述順になります
-
 </Solution>
 </Exercise>

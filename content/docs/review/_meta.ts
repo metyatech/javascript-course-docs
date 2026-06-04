@@ -1,5 +1,5 @@
 const meta = {
-  'comprehensive-practice': {},
+    'comprehensive-practice': {},
 };
 
 export default meta;

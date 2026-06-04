@@ -39,7 +39,7 @@ sidebar_position: 999
 
 ```css
 body {
-        margin: 0; /* ページの端の余白をなくす */
+    margin: 0; /* ページの端の余白をなくす */
 }
 
 header {
@@ -75,7 +75,6 @@ header {
 
 <Solution>
 <CodePreview sourceId="演習1"/>
-
 </Solution>
 </Exercise>
 
@@ -117,7 +116,7 @@ header {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -169,7 +168,6 @@ header {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習2"/>
-
 </Solution>
 </Exercise>
 
@@ -214,7 +212,7 @@ header {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -262,7 +260,8 @@ header {
     transform: translateX(-100%); /* 初期の閉じている状態では、画面左に隠す */
 }
 
-.drawer.open { /* メニューコンテンツに open クラスがついているとき（開いているとき） */
+.drawer.open {
+    /* メニューコンテンツに open クラスがついているとき（開いているとき） */
     transform: translateX(0); /* 元の位置に表示する */
 }
 ```
@@ -285,7 +284,6 @@ hamBtnYoso.addEventListener('click', () => {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習3"/>
-
 </Solution>
 </Exercise>
 
@@ -331,7 +329,7 @@ hamBtnYoso.addEventListener('click', () => {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -400,7 +398,6 @@ hamBtnYoso.addEventListener('click', () => {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習4"/>
-
 </Solution>
 </Exercise>
 
@@ -450,7 +447,7 @@ hamBtnYoso.addEventListener('click', () => {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -517,7 +514,8 @@ header {
     z-index: 0; /* メニューの下に表示するために、z-index を 0 に */
 }
 
-.overlay.open { /* オーバーレイに open クラスがついているとき（開いているとき） */
+.overlay.open {
+    /* オーバーレイに open クラスがついているとき（開いているとき） */
     opacity: 1; /* 見えるようにする */
 }
 ```
@@ -545,7 +543,6 @@ overlayYoso.addEventListener('click', () => {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展1"/>
-
 </Solution>
 </Exercise>
 
@@ -596,7 +593,7 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -633,13 +630,16 @@ header {
     transition: all 1s; /* プロパティの変化を滑らかに */
 }
 
-.ham-icon.open .line.top { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番上の線 */
+.ham-icon.open .line.top {
+    /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番上の線 */
     transform: rotate(45deg); /* 45度回転 */
 }
-.ham-icon.open .line.middle { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　真ん中の線 */
+.ham-icon.open .line.middle {
+    /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　真ん中の線 */
     opacity: 0; /* 透明にする */
 }
-.ham-icon.open .line.bottom { /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番下の線 */
+.ham-icon.open .line.bottom {
+    /* ハンバーガーアイコンに open クラスがついているとき（開いているとき）　の　一番下の線 */
     transform: rotate(-45deg); /* -45度回転 */
 }
 
@@ -706,7 +706,6 @@ overlayYoso.addEventListener('click', () => {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展2"/>
-
 </Solution>
 </Exercise>
 
@@ -754,7 +753,7 @@ overlayYoso.addEventListener('click', () => {
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -885,7 +884,6 @@ CSS上で24√2 px は、calc(24px \* sqrt(2)) で表すことができます。
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 
 <CodePreview sourceId="演習-発展3"/>
-
 </Solution>
 </Exercise>
 
@@ -930,7 +928,7 @@ CSS上で24√2 px は、calc(24px \* sqrt(2)) で表すことができます。
 
 ```css
 body {
-        margin: 0;
+    margin: 0;
 }
 
 header {
@@ -1058,6 +1056,5 @@ overlayYoso.addEventListener('click', () => {
 <Solution>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展4"/>
-
 </Solution>
 </Exercise>

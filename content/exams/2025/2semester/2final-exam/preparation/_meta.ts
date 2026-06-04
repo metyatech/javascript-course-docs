@@ -1,7 +1,7 @@
 const meta = {
-  questions: {
-    display: 'hidden',
-  },
+    questions: {
+        display: 'hidden',
+    },
 };
 
 export default meta;

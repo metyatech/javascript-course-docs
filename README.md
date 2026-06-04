@@ -34,6 +34,7 @@ What it does:
 - runs Prettier in check-only mode for this repository
 - verifies that fenced source-code examples are not reformatted by Prettier
 - verifies that each `<Exercise>` block has a Markdown heading and no `title` prop
+- verifies that code examples use four-space indentation
 - runs `markdownlint` for this repository
 - locates a local `course-docs-site` checkout automatically when the repos live in the same workspace
 - runs `course-docs-site` lint and `build:verified` with `COURSE_CONTENT_SOURCE` set to this repository

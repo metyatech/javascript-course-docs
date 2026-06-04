@@ -34,8 +34,7 @@ function add1(x) {
 
 let onePlus3 = add1(3); // add1(3) が 4 に置き換わる
 console.log(onePlus3); // 出力: 4
-
-````
+```
 </CodePreview>
 
 :::note
@@ -56,8 +55,7 @@ function add1(x) {
 
 console.log(add1(10)); // 出力: 11
 console.log(add1(99)); // 出力: 100
-
-````
+```
 
 </CodePreview>
 
@@ -99,8 +97,8 @@ console.log(square(4)); // 出力: 16
 console.log(square(5)); // 出力: 25
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ### 演習1-発展（合計を返す）
@@ -127,8 +125,8 @@ function sum(n) {
 console.log(sum(10)); // 出力: 55
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ## 引数が複数ある関数
@@ -143,8 +141,7 @@ function add(kazu1, kazu2) {
 }
 
 console.log(add(4, 9)); // 出力: 13
-
-````
+```
 </CodePreview>
 
 ### スコープ（有効範囲）
@@ -159,8 +156,7 @@ function add(kazu1, kazu2) {
 console.log(add(2, 3)); // 出力: 5
 // console.log(kari); // ここでは kari は存在しない（コメント解除するとエラー）
 // console.log(kazu1); // kazu1 や kazu2 も存在しない
-
-````
+```
 
 </CodePreview>
 
@@ -180,7 +176,7 @@ function prompt(msg) {
     return ユーザーが入力した文字列; // これが呼び出し元へ戻る
 }
 
-let userName = prompt("あなたの名前を教えてください");
+let userName = prompt('あなたの名前を教えてください');
 console.log(userName); // 出力: (ユーザーが入力した文字列)
 ```
 
@@ -213,8 +209,8 @@ console.log(min(5, 9)); // 出力: 5
 console.log(min(8, 4)); // 出力: 4
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ### 演習2-発展1（偶奇判定の文字列）
@@ -234,16 +230,16 @@ console.log(min(8, 4)); // 出力: 4
 ```javascript
 function parity(n) {
     if (n % 2 === 0) {
-        return "偶数";
+        return '偶数';
     }
-    return "奇数";
+    return '奇数';
 }
 console.log(parity(10)); // 出力: 偶数
 console.log(parity(7)); // 出力: 奇数
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ### 演習2-発展2（最大値）
@@ -273,8 +269,8 @@ function max3(kazu1, kazu2, kazu3) {
 console.log(max3(3, 8, 5)); // 出力: 8
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ### 演習2-発展3（FizzBuzz の 1 行判定）
@@ -303,13 +299,13 @@ FizzBuzz
 ```javascript
 function fizzbuzz(n) {
     if (n % 15 === 0) {
-        return "FizzBuzz";
+        return 'FizzBuzz';
     } else if (n % 3 === 0) {
-        return "Fizz";
+        return 'Fizz';
     } else if (n % 5 === 0) {
-        return "Buzz";
+        return 'Buzz';
     }
-    return "" + n; // 数字を文字列化
+    return '' + n; // 数字を文字列化
 }
 
 console.log(fizzbuzz(1)); // 出力: 1
@@ -317,11 +313,10 @@ console.log(fizzbuzz(3)); // 出力: Fizz
 console.log(fizzbuzz(5)); // 出力: Buzz
 console.log(fizzbuzz(15)); // 出力: FizzBuzz
 console.log(fizzbuzz(16)); // 出力: 16
-
 ```
 </CodePreview>
-
 </Solution>
+
 </Exercise>
 
 ---

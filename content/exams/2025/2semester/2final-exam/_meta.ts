@@ -1,6 +1,6 @@
 const meta = {
-  overview: {},
-  preparation: {},
+    overview: {},
+    preparation: {},
 };
 
 export default meta;
