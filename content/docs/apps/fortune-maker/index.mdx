@@ -311,9 +311,11 @@ drawButton.addEventListener('click', () => {
 
 ---
 
-<Section title="応用：結果を増やす" goal="配列に候補を追加して、アプリを自分で広げます。">
+<Section title="応用：自分の運勢メーカーに作り変える" goal="候補を増やし、表示や演出を足して、自分だけの占いに広げます。">
 
 結果を増やすときは、`results` 配列に同じ形のデータを追加します。配列の長さは `results.length` で自動的に数えられるため、ランダムに選ぶ処理は変更しなくてかまいません。
+
+まずは演習1に取り組み、早く終わったら演習-発展に進みます。
 
 ### 演習1
 
@@ -349,6 +351,103 @@ const results = [
     }
 ];
 ```
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展1
+
+<Exercise>
+
+占い結果に「ラッキーアイテム」を一緒に表示します。次の手順で進めます。
+
+1. カードの中に、アイテムを表示する段落を1つ追加する。
+2. `results` の各オブジェクトに `item` プロパティを足す。
+3. クリックしたとき、その `item` を画面に表示する。
+
+確認するときは、「占う」ボタンを押すたびに、運勢・メッセージに加えてラッキーアイテムも変わることを見ます。
+
+<Solution>
+
+カードの中に、アイテムの表示先を追加します。
+
+```html
+<div class="card">
+    <p id="fortune" class="fortune">まだ占っていません</p>
+    <p id="message" class="message">下のボタンを押してください。</p>
+    <p id="item" class="message">ラッキーアイテム：－</p>
+</div>
+```
+
+`results` の各オブジェクトに `item` を足し、クリック時に表示します。
+
+```js
+const item = document.querySelector('#item');
+
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。',
+        item: '青いペン'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。',
+        item: '温かい飲み物'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。',
+        item: 'メモ帳'
+    }
+];
+
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * results.length);
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+    item.textContent = 'ラッキーアイテム：' + result.item;
+});
+```
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展2
+
+<Exercise>
+
+「占う」ボタンを連続で押したとき、直前と同じ運勢が続けて出ないようにします。
+
+ヒント：直前に表示した番号を覚えておく変数を用意し、同じ番号が出たら選び直します。
+
+確認するときは、何度も押して、2回続けて同じ運勢が出ないことを見ます。
+
+<Solution>
+
+```js
+let lastIndex = -1;
+
+drawButton.addEventListener('click', () => {
+    let index = Math.floor(Math.random() * results.length);
+
+    while (index === lastIndex) {
+        index = Math.floor(Math.random() * results.length);
+    }
+
+    lastIndex = index;
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+`lastIndex` に前回の番号を覚えておき、同じ番号が出たら `while` で選び直します。
 
 </Solution>
 

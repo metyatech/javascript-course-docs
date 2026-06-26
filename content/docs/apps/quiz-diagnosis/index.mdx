@@ -444,6 +444,8 @@ button.addEventListener("click", function () {
 
 テーマを変えるときは、`value` の名前と `if` の条件をセットで書き換えるのがポイントです。`active` / `relax` の名前を残したまま内容を入れ替えるより、テーマに合わせて `value` 自体を変えた方が `if` 文が読みやすくなります。
 
+まずは演習1に取り組み、早く終わったら演習-発展に進みます。
+
 ### 演習1
 
 <Exercise>
@@ -548,6 +550,115 @@ button.addEventListener("click", function () {
     }
 });
 ```
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展1
+
+<Exercise>
+
+質問を4つに増やします。質問が増えると `score` は最大4になるので、結果を分けるしきい値も見直します。次の手順で進めます。
+
+1. HTMLに4つ目の質問セクションを追加する。
+2. JavaScriptで `q4` を取得し、`active` 判定の `if` を1つ足す。
+3. `score` が 0〜4 になるので、3タイプに分かれるよう条件を調整する。
+
+確認するときは、4問すべてで「外で活動する」側を選ぶと `score` が4になり、アクティブタイプになることを見ます。
+
+<Solution>
+
+3つ目の質問の下に、4つ目の質問を追加します。
+
+```html
+<section class="question">
+    <label for="q4">Q4. 連休があったら？</label>
+    <select id="q4">
+        <option value="relax">家でゆっくりしたい</option>
+        <option value="active">どこかへ出かけたい</option>
+    </select>
+</section>
+```
+
+`q4` を取得し、判定を1つ足してから、しきい値を調整します。
+
+```js
+const q4 = document.querySelector("#q4");
+
+button.addEventListener("click", function () {
+    let score = 0;
+
+    if (q1.value === "active") {
+        score++;
+    }
+
+    if (q2.value === "active") {
+        score++;
+    }
+
+    if (q3.value === "active") {
+        score++;
+    }
+
+    if (q4.value === "active") {
+        score++;
+    }
+
+    resultBox.className = "result-box";
+
+    if (score <= 1) {
+        resultTitle.textContent = "のんびりタイプ";
+        resultComment.textContent = "家でゆっくり過ごすと元気になれそうです。";
+        resultBox.classList.add("relax");
+    } else if (score <= 3) {
+        resultTitle.textContent = "バランスタイプ";
+        resultComment.textContent = "休む時間と遊ぶ時間のバランスを取るのが得意です。";
+        resultBox.classList.add("balance");
+    } else {
+        resultTitle.textContent = "アクティブタイプ";
+        resultComment.textContent = "外に出て動くことでリフレッシュできそうです。";
+        resultBox.classList.add("active");
+    }
+});
+```
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展2
+
+<Exercise>
+
+最初は結果ボックスを隠しておき、「診断する」ボタンを押したときだけ表示します。次の手順で進めます。
+
+1. CSSの `.result-box` に `display: none;` を足して、最初は隠す。
+2. 判定処理の中で、結果ボックスを表示する1行を足す。
+
+確認するときは、ページを開いた直後は結果ボックスが見えず、ボタンを押すと現れることを見ます。
+
+<Solution>
+
+CSSの `.result-box` に `display: none;` を追加します。
+
+```css
+.result-box {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 16px;
+    background: #eeeeee;
+    display: none;
+}
+```
+
+判定処理の最後に、結果ボックスを表示する行を足します。
+
+```js
+    resultBox.style.display = "block";
+```
+
+`style.display` に `"block"` を入れると、CSSで隠していた要素を表示できます。
 
 </Solution>
 
