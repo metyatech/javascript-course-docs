@@ -39,3 +39,6 @@ pnpm-debug.log*
 
 # Thread inbox
 .threads.jsonl
+
+# AI agent working files
+/.omo/
