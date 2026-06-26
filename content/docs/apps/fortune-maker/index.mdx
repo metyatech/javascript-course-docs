@@ -1,0 +1,357 @@
+---
+title: 運勢メーカーを作ろう
+authoringMode: 'tutorial'
+---
+
+import { CodePreview } from '@metyatech/code-preview';
+
+ボタンをクリックすると今日の運勢が表示される、小さな占いアプリを作ります。HTMLで部品を用意し、CSSで見た目を整え、JavaScriptでクリック時の変化を作ります。
+
+<Section title="完成形を確認する" goal="作るアプリの動きと、使う部品を先に確認します。">
+
+完成すると、ボタンをクリックするたびに運勢とメッセージが変わる画面になります。
+
+| 操作 | 画面の変化 |
+| --- | --- |
+| 「占う」ボタンをクリックする | 大吉・中吉・小吉のどれかと、短いメッセージが表示される |
+| もう一度クリックする | 別の結果に変わることがある |
+
+<CodePreview
+  sourceId="fortune-maker-final"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  share={false}
+>
+
+```html
+<main class="app">
+    <h1>今日の運勢メーカー</h1>
+    <p class="lead">ボタンを押して、今日の運勢を占いましょう。</p>
+
+    <div class="card">
+        <p id="fortune" class="fortune">まだ占っていません</p>
+        <p id="message" class="message">下のボタンを押してください。</p>
+    </div>
+
+    <button id="drawButton">占う</button>
+</main>
+```
+
+```css
+body
+{
+    margin: 0;
+    font-family: sans-serif;
+    background: #f6f1ff;
+    color: #2f2347;
+}
+
+.app
+{
+    width: min(90%, 420px);
+    margin: 48px auto;
+    text-align: center;
+}
+
+.lead
+{
+    color: #6b5a84;
+}
+
+.card
+{
+    margin: 24px 0;
+    padding: 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(68, 41, 112, 0.18);
+}
+
+.fortune
+{
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.message
+{
+    margin-bottom: 0;
+    color: #5d4a76;
+}
+
+button
+{
+    padding: 12px 28px;
+    border: none;
+    border-radius: 999px;
+    background: #7c3aed;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background: #6d28d9;
+}
+```
+
+```js
+const fortune = document.querySelector('#fortune');
+const message = document.querySelector('#message');
+const drawButton = document.querySelector('#drawButton');
+
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。'
+    }
+];
+
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * results.length);
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+</CodePreview>
+
+</Section>
+
+---
+
+<Section title="HTMLで画面の部品を作る" goal="見出し、結果カード、ボタンをHTMLで用意します。">
+
+運勢を表示する場所には `id` を付けます。JavaScriptはこの `id` を目印にして、あとから文字を変更します。
+
+<Action title="HTMLを書く">
+
+`<body>` の中に、次のHTMLを用意します。
+
+```html
+<main class="app">
+    <h1>今日の運勢メーカー</h1>
+    <p class="lead">ボタンを押して、今日の運勢を占いましょう。</p>
+
+    <div class="card">
+        <p id="fortune" class="fortune">まだ占っていません</p>
+        <p id="message" class="message">下のボタンを押してください。</p>
+    </div>
+
+    <button id="drawButton">占う</button>
+</main>
+```
+
+</Action>
+
+<Verify title="部品を確認する">
+
+画面に見出し、白いカード、占うボタンが表示されていれば成功です。この時点では、ボタンを押してもまだ何も起きません。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="CSSで見た目を整える" goal="アプリらしいカード型の画面にします。">
+
+HTMLの `class` に合わせてCSSを書きます。`card` は結果を目立たせる箱、`fortune` は運勢の文字を大きくする指定です。
+
+<Action title="CSSを書く">
+
+次のCSSを追加します。
+
+```css
+body
+{
+    margin: 0;
+    font-family: sans-serif;
+    background: #f6f1ff;
+    color: #2f2347;
+}
+
+.app
+{
+    width: min(90%, 420px);
+    margin: 48px auto;
+    text-align: center;
+}
+
+.lead
+{
+    color: #6b5a84;
+}
+
+.card
+{
+    margin: 24px 0;
+    padding: 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(68, 41, 112, 0.18);
+}
+
+.fortune
+{
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.message
+{
+    margin-bottom: 0;
+    color: #5d4a76;
+}
+
+button
+{
+    padding: 12px 28px;
+    border: none;
+    border-radius: 999px;
+    background: #7c3aed;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover
+{
+    background: #6d28d9;
+}
+```
+
+</Action>
+
+<Verify title="見た目を確認する">
+
+背景が薄い紫になり、中央に白いカードと紫のボタンが表示されていれば成功です。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="JavaScriptで結果を変える" goal="クリックしたときに、運勢とメッセージを書き換えます。">
+
+`results` は、運勢の候補をまとめた配列です。クリックされたら、`Math.random()` で候補の番号を選び、`textContent` で画面の文字を入れ替えます。
+
+<Concept title="Math.random() の役割">
+
+`Math.random()` は、0以上1未満のランダムな数を作ります。配列の番号として使うため、`results.length` をかけて候補数に合わせ、`Math.floor()` で整数にします。
+
+</Concept>
+
+<Action title="JavaScriptを書く">
+
+次のJavaScriptを追加します。
+
+```js
+const fortune = document.querySelector('#fortune');
+const message = document.querySelector('#message');
+const drawButton = document.querySelector('#drawButton');
+
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。'
+    }
+];
+
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * results.length);
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+</Action>
+
+<Verify title="動きを確認する">
+
+「占う」ボタンを押して、運勢とメッセージが変われば成功です。何度か押して、結果が変わることも確認してください。
+
+</Verify>
+
+<Recovery title="ボタンを押しても変わらないとき">
+
+`id` の名前を確認してください。HTMLの `id="drawButton"` と、JavaScriptの `document.querySelector('#drawButton')` は同じ名前にする必要があります。
+
+</Recovery>
+
+</Section>
+
+---
+
+<Section title="応用：結果を増やす" goal="配列に候補を追加して、アプリを自分で広げます。">
+
+結果を増やすときは、`results` 配列に同じ形のデータを追加します。配列の長さは `results.length` で自動的に数えられるため、ランダムに選ぶ処理は変更しなくてかまいません。
+
+### 演習1
+
+<Exercise>
+
+`results` に「吉」と「末吉」を追加してください。それぞれ、表示したいメッセージも自分で考えます。
+
+確認するときは、「占う」ボタンを何度か押して、追加した結果が表示されるか見ます。
+
+<Solution>
+
+```js
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。'
+    },
+    {
+        name: '吉',
+        text: '身近な人との会話から、よいヒントが見つかりそうです。'
+    },
+    {
+        name: '末吉',
+        text: '急がずに進めると、最後にうまくまとまりそうです。'
+    }
+];
+```
+
+</Solution>
+
+</Exercise>
+
+</Section>
