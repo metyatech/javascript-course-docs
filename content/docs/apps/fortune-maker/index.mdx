@@ -3,19 +3,24 @@ title: 運勢メーカーを作ろう
 authoringMode: 'tutorial'
 ---
 
-ボタンをクリックすると今日の運勢が表示される、小さな占いアプリを作ります。HTMLで部品を用意し、CSSで見た目を整え、JavaScriptでクリック時の変化を作ります。
+ボタンを押すと結果が変わる、小さなランダムアプリを作ります。
 
-<Section title="完成形を確認する" goal="作るアプリの動きと、使う部品を先に確認します。">
+このページでは、最初から完成コードを写すのではなく、次の順番で少しずつアプリにしていきます。
 
-完成すると、ボタンをクリックするたびに運勢とメッセージが変わる画面になります。
+1. 画面のどこを変えるのかを見つける
+2. ボタンで固定の文字を表示する
+3. 複数の候補をデータとしてまとめる
+4. ランダムに1つ選んで表示する
+5. 自分のテーマに作り変える
 
-| 操作 | 画面の変化 |
-| --- | --- |
-| 「占う」ボタンをクリックする | 大吉・中吉・小吉のどれかと、短いメッセージが表示される |
-| もう一度クリックする | 別の結果に変わることがある |
+---
+
+<Section title="今日のミッション" goal="ボタンで表示が変わるアプリの仕組みを、観察してから作ります。">
+
+完成すると、ボタンを押すたびに運勢とメッセージが変わる画面になります。
 
 <CodePreview
-  sourceId="fortune-maker-final"
+  sourceId="fortune-maker-final-preview"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -38,28 +43,24 @@ authoringMode: 'tutorial'
 ```
 
 ```css
-body
-{
+body {
     margin: 0;
     font-family: sans-serif;
     background: #f6f1ff;
     color: #2f2347;
 }
 
-.app
-{
+.app {
     width: min(90%, 420px);
     margin: 48px auto;
     text-align: center;
 }
 
-.lead
-{
+.lead {
     color: #6b5a84;
 }
 
-.card
-{
+.card {
     margin: 24px 0;
     padding: 28px;
     border-radius: 20px;
@@ -67,21 +68,18 @@ body
     box-shadow: 0 12px 30px rgba(68, 41, 112, 0.18);
 }
 
-.fortune
-{
+.fortune {
     margin: 0;
     font-size: 40px;
     font-weight: bold;
 }
 
-.message
-{
+.message {
     margin-bottom: 0;
     color: #5d4a76;
 }
 
-button
-{
+button {
     padding: 12px 28px;
     border: none;
     border-radius: 999px;
@@ -92,8 +90,7 @@ button
     cursor: pointer;
 }
 
-button:hover
-{
+button:hover {
     background: #6d28d9;
 }
 ```
@@ -129,17 +126,47 @@ drawButton.addEventListener('click', () => {
 
 </CodePreview>
 
+<Exercise>
+
+完成形を動かして、次の4つを確認してください。
+
+1. クリックする前に表示されている文字
+2. クリックすると変わる場所
+3. クリックしても変わらない場所
+4. 何回クリックしても必ず残る部品
+
+<Solution>
+
+変わる場所は、運勢の文字とメッセージの文字です。
+
+見出し、説明文、カード、ボタン自体は残ります。  
+つまり、JavaScriptで変更すればよいのは、運勢とメッセージの2か所です。
+
+</Solution>
+
+</Exercise>
+
 </Section>
 
 ---
 
-<Section title="HTMLで画面の部品を作る" goal="見出し、結果カード、ボタンをHTMLで用意します。">
+<Section title="HTMLで変更される場所を用意する" goal="JavaScriptから変更したい場所にidを付けます。">
 
-運勢を表示する場所には `id` を付けます。JavaScriptはこの `id` を目印にして、あとから文字を変更します。
+JavaScriptは、HTMLの部品を直接探して、文字を変更します。  
+そのため、あとで変更したい場所には `id` を付けておきます。
+
+<Concept title="id は JavaScript の目印">
+
+`id="fortune"` のように名前を付けると、JavaScriptでは `document.querySelector('#fortune')` でその場所を探せます。
+
+`#` は「idを探す」という意味です。  
+HTML側の名前とJavaScript側の名前が1文字でも違うと、正しく探せません。
+
+</Concept>
 
 <Action title="HTMLを書く">
 
-`<body>` の中に、次のHTMLを用意します。
+`<body>` の中に、次のHTMLを書きます。
 
 ```html
 <main class="app">
@@ -157,9 +184,47 @@ drawButton.addEventListener('click', () => {
 
 </Action>
 
+<Action title="CSSとJavaScriptを読み込む">
+
+`index.html` の `<head>` の中に、CSSとJavaScriptの読み込みを書きます。`script` に `defer` を付けると、HTMLを読み込み終えてからJavaScriptが実行されます。
+
+```html
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+```
+
+`style.css` と `script.js` は、このあとのステップで作ります。
+
+</Action>
+
+<Exercise>
+
+次の3つの `id` は、それぞれ何のために使うでしょうか。
+
+| id | 役割 |
+| --- | --- |
+| `fortune` | ? |
+| `message` | ? |
+| `drawButton` | ? |
+
+<Solution>
+
+| id | 役割 |
+| --- | --- |
+| `fortune` | 運勢の名前を表示する場所 |
+| `message` | 運勢に合わせたメッセージを表示する場所 |
+| `drawButton` | クリックされたことをJavaScriptで受け取るボタン |
+
+</Solution>
+
+</Exercise>
+
 <Verify title="部品を確認する">
 
-画面に見出し、白いカード、占うボタンが表示されていれば成功です。この時点では、ボタンを押してもまだ何も起きません。
+画面に、見出し、説明文、結果カード、占うボタンが表示されていれば成功です。  
+この時点では、ボタンを押してもまだ何も起きません。
 
 </Verify>
 
@@ -167,37 +232,34 @@ drawButton.addEventListener('click', () => {
 
 ---
 
-<Section title="CSSで見た目を整える" goal="アプリらしいカード型の画面にします。">
+<Section title="CSSでアプリらしい見た目にする" goal="部品の役割が分かりやすいカード型の画面にします。">
 
-HTMLの `class` に合わせてCSSを書きます。`card` は結果を目立たせる箱、`fortune` は運勢の文字を大きくする指定です。
+CSSは、アプリの動きには関係しません。  
+ただし、どこが結果表示エリアなのか分かるようにしておくと、完成したときに動きが見やすくなります。
 
 <Action title="CSSを書く">
 
-次のCSSを追加します。
+`style.css` に次のCSSを書きます。
 
 ```css
-body
-{
+body {
     margin: 0;
     font-family: sans-serif;
     background: #f6f1ff;
     color: #2f2347;
 }
 
-.app
-{
+.app {
     width: min(90%, 420px);
     margin: 48px auto;
     text-align: center;
 }
 
-.lead
-{
+.lead {
     color: #6b5a84;
 }
 
-.card
-{
+.card {
     margin: 24px 0;
     padding: 28px;
     border-radius: 20px;
@@ -205,21 +267,18 @@ body
     box-shadow: 0 12px 30px rgba(68, 41, 112, 0.18);
 }
 
-.fortune
-{
+.fortune {
     margin: 0;
     font-size: 40px;
     font-weight: bold;
 }
 
-.message
-{
+.message {
     margin-bottom: 0;
     color: #5d4a76;
 }
 
-button
-{
+button {
     padding: 12px 28px;
     border: none;
     border-radius: 999px;
@@ -230,8 +289,7 @@ button
     cursor: pointer;
 }
 
-button:hover
-{
+button:hover {
     background: #6d28d9;
 }
 ```
@@ -248,19 +306,258 @@ button:hover
 
 ---
 
-<Section title="JavaScriptで結果を変える" goal="クリックしたときに、運勢とメッセージを書き換えます。">
+<Section title="ボタンで固定の文字を表示する" goal="まずはランダムにせず、クリックで必ず同じ結果を表示します。">
 
-`results` は、運勢の候補をまとめた配列です。クリックされたら、`Math.random()` で候補の番号を選び、`textContent` で画面の文字を入れ替えます。
+最初からランダムにすると、何が起きているのか分かりにくくなります。  
+まずは、ボタンを押したら必ず「大吉」と表示されるところまで作ります。
 
-<Concept title="Math.random() の役割">
+<Exercise>
 
-`Math.random()` は、0以上1未満のランダムな数を作ります。配列の番号として使うため、`results.length` をかけて候補数に合わせ、`Math.floor()` で整数にします。
+次のコードを実行すると、どの部分の文字が変わるでしょうか。
+
+```js
+const fortune = document.querySelector('#fortune');
+fortune.textContent = '大吉';
+```
+
+<Solution>
+
+`id="fortune"` の場所の文字が `大吉` に変わります。
+
+`fortune` は、JavaScriptで取得したHTML要素です。  
+`textContent` に文字列を代入すると、その要素の表示文字が変わります。
+
+</Solution>
+
+</Exercise>
+
+<Action title="要素を取得してクリックイベントを書く">
+
+`script.js` に次のJavaScriptを書きます。
+
+```js
+const fortune = document.querySelector('#fortune');
+const message = document.querySelector('#message');
+const drawButton = document.querySelector('#drawButton');
+
+drawButton.addEventListener('click', () => {
+    fortune.textContent = '大吉';
+    message.textContent = '今日は良いことがありそうです。';
+});
+```
+
+</Action>
+
+<Verify title="動きを確認する">
+
+「占う」ボタンを押して、運勢が「大吉」、メッセージが「今日は良いことがありそうです。」に変われば成功です。
+
+</Verify>
+
+<Recovery title="ボタンを押しても変わらないとき">
+
+次の3つを確認します。
+
+1. HTMLに `id="drawButton"` があるか
+2. JavaScriptで `document.querySelector('#drawButton')` と書いているか
+3. `addEventListener('click', ...)` の `click` がクォートで囲まれているか
+
+</Recovery>
+
+</Section>
+
+---
+
+<Section title="候補をデータとしてまとめる" goal="運勢とメッセージを、配列とオブジェクトでまとめます。">
+
+今のままだと、結果は1種類だけです。  
+複数の結果を扱うために、運勢とメッセージをデータとしてまとめます。
+
+<Concept title="1つの結果をオブジェクトにする">
+
+1つの運勢には、名前とメッセージがあります。
+
+```js
+{
+    name: '大吉',
+    text: '新しいことに挑戦すると、よい発見がありそうです。'
+}
+```
+
+`name` は運勢の名前、`text` はメッセージです。  
+このように、関係する情報を1つにまとめたものをオブジェクトとして扱います。
 
 </Concept>
 
-<Action title="JavaScriptを書く">
+<Action title="results配列を書く">
 
-次のJavaScriptを追加します。
+`script.js` の上の方に、次の配列を追加します。
+
+```js
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。'
+    }
+];
+```
+
+</Action>
+
+<Exercise>
+
+次のコードで取り出されるのは、どの運勢でしょうか。
+
+```js
+const result = results[1];
+```
+
+<Solution>
+
+`results[1]` で取り出されるのは、2番目のデータです。  
+配列の番号は `0` から始まるため、`results[0]` が大吉、`results[1]` が中吉です。
+
+</Solution>
+
+</Exercise>
+
+<Action title="まずは2番目の結果を表示する">
+
+クリックイベントの中を、次のように書き換えます。
+
+```js
+drawButton.addEventListener('click', () => {
+    const result = results[1];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+</Action>
+
+<Verify title="配列から表示できるか確認する">
+
+ボタンを押して「中吉」とそのメッセージが表示されれば成功です。  
+ここではまだランダムではありません。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="ランダムに1つ選ぶ" goal="配列の長さを使って、候補の中から1つ選びます。">
+
+ランダムにするには、配列の番号をランダムに作ります。
+
+<Concept title="ランダムな配列番号を作る">
+
+`Math.random()` は、0以上1未満の小数を作ります。
+
+3個の候補から選びたい場合は、次のようにします。
+
+```js
+const index = Math.floor(Math.random() * results.length);
+```
+
+`results.length` は候補の数です。  
+候補が3個なら、`index` は `0`、`1`、`2` のどれかになります。
+
+</Concept>
+
+<Exercise>
+
+`results.length` が5のとき、次のコードで作られる `index` はどの範囲になりますか。
+
+```js
+const index = Math.floor(Math.random() * results.length);
+```
+
+<Solution>
+
+`0`、`1`、`2`、`3`、`4` のどれかになります。  
+配列の最後の番号は、長さより1小さい番号です。
+
+</Solution>
+
+</Exercise>
+
+<Action title="ランダム表示にする">
+
+クリックイベントを次のように書き換えます。
+
+```js
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * results.length);
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+</Action>
+
+<Verify title="ランダムに変わるか確認する">
+
+「占う」ボタンを何度も押して、大吉・中吉・小吉のいずれかが表示されれば成功です。  
+同じ結果が続くこともあります。ランダムなので、それはバグではありません。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="バグ修正チャレンジ" goal="よくあるミスを見つけて、自分で直せるようにします。">
+
+次のコードには、よくあるミスが4つ入っています。  
+どこが間違っているか探してください。
+
+<Exercise>
+
+```js
+const fortune = document.querySelector('fortune');
+const message = document.querySelector('#message');
+const drawButton = document.querySelector('#drawbutton');
+
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。'
+    }
+];
+
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * result.length);
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+<Solution>
+
+1. `document.querySelector('fortune')` は `#` がないため、`document.querySelector('#fortune')` に直す。
+2. `#drawbutton` はHTMLの `id="drawButton"` と大文字小文字が違うため、`#drawButton` に直す。
+3. `result.length` は存在しない変数なので、`results.length` に直す。
+4. `const result = results[index];` より前に `result.length` を使おうとしているため、候補数は `results.length` から取る。
+
+修正版は次の形です。
 
 ```js
 const fortune = document.querySelector('#fortune');
@@ -275,10 +572,6 @@ const results = [
     {
         name: '中吉',
         text: '落ち着いて進めると、予定どおりに進みそうです。'
-    },
-    {
-        name: '小吉',
-        text: '小さな確認を大切にすると、ミスを防げそうです。'
     }
 ];
 
@@ -291,164 +584,103 @@ drawButton.addEventListener('click', () => {
 });
 ```
 
-</Action>
+</Solution>
 
-<Verify title="動きを確認する">
-
-「占う」ボタンを押して、運勢とメッセージが変われば成功です。何度か押して、結果が変わることも確認してください。
-
-</Verify>
-
-<Recovery title="ボタンを押しても変わらないとき">
-
-`id` の名前を確認してください。HTMLの `id="drawButton"` と、JavaScriptの `document.querySelector('#drawButton')` は同じ名前にする必要があります。
-
-</Recovery>
+</Exercise>
 
 </Section>
 
 ---
 
-<Section title="応用：自分の運勢メーカーに作り変える" goal="候補を増やし、表示や演出を足して、自分だけの占いに広げます。">
+<Section title="改造ミッション" goal="自分のテーマに変えて、人に見せられるアプリにします。">
 
-結果を増やすときは、`results` 配列に同じ形のデータを追加します。配列の長さは `results.length` で自動的に数えられるため、ランダムに選ぶ処理は変更しなくてかまいません。
+最後は、運勢メーカーを自分のテーマに作り変えます。  
+次の中から1つ選んでください。
 
-まずは演習1に取り組み、早く終わったら演習-発展に進みます。
-
-### 演習1
-
-<Exercise>
-
-`results` に「吉」と「末吉」を追加してください。それぞれ、表示したいメッセージも自分で考えます。
-
-確認するときは、「占う」ボタンを何度か押して、追加した結果が表示されるか見ます。
-
-<Solution>
-
-```js
-const results = [
-    {
-        name: '大吉',
-        text: '新しいことに挑戦すると、よい発見がありそうです。'
-    },
-    {
-        name: '中吉',
-        text: '落ち着いて進めると、予定どおりに進みそうです。'
-    },
-    {
-        name: '小吉',
-        text: '小さな確認を大切にすると、ミスを防げそうです。'
-    },
-    {
-        name: '吉',
-        text: '身近な人との会話から、よいヒントが見つかりそうです。'
-    },
-    {
-        name: '末吉',
-        text: '急がずに進めると、最後にうまくまとまりそうです。'
-    }
-];
-```
-
-</Solution>
-
-</Exercise>
-
-### 演習-発展1
+| ミッション | 内容 |
+| --- | --- |
+| 昼ごはんメーカー | ボタンを押すと今日の昼ごはん候補が出る |
+| セリフメーカー | ボタンを押すとキャラクターのセリフが出る |
+| お題メーカー | ボタンを押すとイラストや会話のお題が出る |
+| アイテムガチャ | ボタンを押すとレア度とアイテム名が出る |
 
 <Exercise>
 
-占い結果に「ラッキーアイテム」を一緒に表示します。次の手順で進めます。
+選んだテーマに合わせて、次の3つを変更してください。
 
-1. カードの中に、アイテムを表示する段落を1つ追加する。
-2. `results` の各オブジェクトに `item` プロパティを足す。
-3. クリックしたとき、その `item` を画面に表示する。
-
-確認するときは、「占う」ボタンを押すたびに、運勢・メッセージに加えてラッキーアイテムも変わることを見ます。
+1. `<h1>` のタイトル
+2. ボタンの文字
+3. `results` の中身
 
 <Solution>
 
-カードの中に、アイテムの表示先を追加します。
+たとえば「昼ごはんメーカー」にする場合は、次のように変更できます。
 
 ```html
-<div class="card">
-    <p id="fortune" class="fortune">まだ占っていません</p>
-    <p id="message" class="message">下のボタンを押してください。</p>
-    <p id="item" class="message">ラッキーアイテム：－</p>
-</div>
+<h1>今日の昼ごはんメーカー</h1>
+<p class="lead">ボタンを押して、今日食べるものを決めましょう。</p>
+<button id="drawButton">決める</button>
 ```
 
-`results` の各オブジェクトに `item` を足し、クリック時に表示します。
-
 ```js
-const item = document.querySelector('#item');
-
 const results = [
     {
-        name: '大吉',
-        text: '新しいことに挑戦すると、よい発見がありそうです。',
-        item: '青いペン'
+        name: 'カレー',
+        text: 'しっかり食べたい日にぴったりです。'
     },
     {
-        name: '中吉',
-        text: '落ち着いて進めると、予定どおりに進みそうです。',
-        item: '温かい飲み物'
+        name: 'そば',
+        text: '軽めに食べたい日に合いそうです。'
     },
     {
-        name: '小吉',
-        text: '小さな確認を大切にすると、ミスを防げそうです。',
-        item: 'メモ帳'
+        name: 'からあげ定食',
+        text: '元気を出したい日におすすめです。'
     }
 ];
-
-drawButton.addEventListener('click', () => {
-    const index = Math.floor(Math.random() * results.length);
-    const result = results[index];
-
-    fortune.textContent = result.name;
-    message.textContent = result.text;
-    item.textContent = 'ラッキーアイテム：' + result.item;
-});
 ```
 
 </Solution>
 
 </Exercise>
-
-### 演習-発展2
 
 <Exercise>
 
-「占う」ボタンを連続で押したとき、直前と同じ運勢が続けて出ないようにします。
-
-ヒント：直前に表示した番号を覚えておく変数を用意し、同じ番号が出たら選び直します。
-
-確認するときは、何度も押して、2回続けて同じ運勢が出ないことを見ます。
-
-<Solution>
-
-```js
-let lastIndex = -1;
-
-drawButton.addEventListener('click', () => {
-    let index = Math.floor(Math.random() * results.length);
-
-    while (index === lastIndex) {
-        index = Math.floor(Math.random() * results.length);
-    }
-
-    lastIndex = index;
-    const result = results[index];
-
-    fortune.textContent = result.name;
-    message.textContent = result.text;
-});
-```
-
-`lastIndex` に前回の番号を覚えておき、同じ番号が出たら `while` で選び直します。
-
-</Solution>
+早く終わった人は、結果を5個以上に増やしてください。  
+`results.length` を使っているため、クリックイベントの中は変更しなくて大丈夫です。
 
 </Exercise>
+
+<Exercise>
+
+結果に絵文字を付けてみましょう。各オブジェクトに `emoji` を足して、表示に使います。
+
+```js
+{
+    name: '大吉',
+    text: '新しいことに挑戦すると、よい発見がありそうです。',
+    emoji: '🎉'
+}
+```
+
+表示は `fortune.textContent = result.emoji + ' ' + result.name;` のようにします。
+
+</Exercise>
+
+<Exercise>
+
+同じ結果が2回続けて出ないようにしてみましょう。直前に出た番号を変数に覚えておき、同じ番号になったら選び直します。
+
+</Exercise>
+
+<Verify title="完成確認">
+
+次の条件をすべて満たしていれば完成です。
+
+- ボタンを押すと結果が変わる
+- 結果が3種類以上ある
+- タイトルとボタンの文字がテーマに合っている
+- 友達に見せたとき、何のアプリか分かる
+
+</Verify>
 
 </Section>

@@ -3,28 +3,24 @@ title: 診断アプリを作ろう
 authoringMode: 'tutorial'
 ---
 
-3つの質問に答えると「のんびりタイプ」「バランスタイプ」「アクティブタイプ」のどれかに診断されるアプリを作ります。`select` の値を読み取り、`if`/`else if` で結果とクラスを切り替える流れを確認します。
+3つの質問に答えると、結果が変わる診断アプリを作ります。
 
-<Section title="完成形を確認する" goal="完成したアプリの動作と、登場する新しい記法を先に確認します。">
+このページでは、ただコードを写すのではなく、次の流れで「診断の仕組み」を作ります。
 
-完成すると、3つの質問に答えてボタンを押すと、結果タイトルとコメントが表示され、タイプごとに結果ボックスの色が変わります。
+1. 質問と選択肢を設計する
+2. `select.value` で選ばれた答えを読む
+3. 答えに応じて点数を増やす
+4. 点数によって結果を分ける
+5. テーマを変えて自分の診断にする
 
-| 操作 | 画面の変化 |
-| --- | --- |
-| 各 `<select>` で答えを選ぶ | 選んだ値が保持される |
-| 「診断する」ボタンを押す | 結果タイトル／コメントが表示され、タイプごとに背景色が変わる |
+---
 
-今回新しく使う記法は次のとおりです。
+<Section title="今日のミッション" goal="選択肢の値を使って、結果が変わる診断アプリを作ります。">
 
-| 記法 | 役割 |
-| --- | --- |
-| `select` | ドロップダウンで答えを選ばせるHTML要素 |
-| `select.value` | 選ばれている選択肢の値を取り出す |
-| `if` / `else if` / `else` | 条件によって処理を分ける |
-| `classList.add(...)` | 要素にクラスを追加して見た目を切り替える |
+完成すると、3つの質問に答えてボタンを押したとき、結果タイトル・コメント・背景色が変わります。
 
 <CodePreview
-  sourceId="quiz-diagnosis-final"
+  sourceId="quiz-diagnosis-final-preview"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -137,67 +133,131 @@ button {
 ```
 
 ```js
-const q1 = document.querySelector("#q1");
-const q2 = document.querySelector("#q2");
-const q3 = document.querySelector("#q3");
+const q1 = document.querySelector('#q1');
+const q2 = document.querySelector('#q2');
+const q3 = document.querySelector('#q3');
 
-const button = document.querySelector("#diagnoseButton");
-const resultBox = document.querySelector("#resultBox");
-const resultTitle = document.querySelector("#resultTitle");
-const resultComment = document.querySelector("#resultComment");
+const button = document.querySelector('#diagnoseButton');
+const resultBox = document.querySelector('#resultBox');
+const resultTitle = document.querySelector('#resultTitle');
+const resultComment = document.querySelector('#resultComment');
 
-button.addEventListener("click", function () {
+button.addEventListener('click', () => {
     let score = 0;
 
-    if (q1.value === "active") {
+    if (q1.value === 'active') {
         score++;
     }
 
-    if (q2.value === "active") {
+    if (q2.value === 'active') {
         score++;
     }
 
-    if (q3.value === "active") {
+    if (q3.value === 'active') {
         score++;
     }
 
-    resultBox.className = "result-box";
+    resultBox.className = 'result-box';
 
     if (score <= 1) {
-        resultTitle.textContent = "のんびりタイプ";
-        resultComment.textContent = "家でゆっくり過ごすと元気になれそうです。";
-        resultBox.classList.add("relax");
+        resultTitle.textContent = 'のんびりタイプ';
+        resultComment.textContent = '家でゆっくり過ごすと元気になれそうです。';
+        resultBox.classList.add('relax');
     } else if (score === 2) {
-        resultTitle.textContent = "バランスタイプ";
-        resultComment.textContent = "休む時間と遊ぶ時間のバランスを取るのが得意です。";
-        resultBox.classList.add("balance");
+        resultTitle.textContent = 'バランスタイプ';
+        resultComment.textContent = '休む時間と遊ぶ時間のバランスを取るのが得意です。';
+        resultBox.classList.add('balance');
     } else {
-        resultTitle.textContent = "アクティブタイプ";
-        resultComment.textContent = "外に出て動くことでリフレッシュできそうです。";
-        resultBox.classList.add("active");
+        resultTitle.textContent = 'アクティブタイプ';
+        resultComment.textContent = '外に出て動くことでリフレッシュできそうです。';
+        resultBox.classList.add('active');
     }
 });
 ```
 
 </CodePreview>
 
+<Exercise>
+
+完成形を動かして、次のことを確認してください。
+
+1. 質問の答えを変えると、結果も変わるか
+2. 同じ答えの組み合わせなら、同じ結果になるか
+3. 結果の文章だけでなく、背景色も変わるか
+
+<Solution>
+
+この診断はランダムではありません。  
+選んだ答えから `score` を計算しているので、同じ答えの組み合わせなら同じ結果になります。
+
+</Solution>
+
+</Exercise>
+
 </Section>
 
 ---
 
-<Section title="HTMLで質問フォームを作る" goal="質問と選択肢、そして結果表示エリアをHTMLで用意します。">
+<Section title="診断のルールを先に設計する" goal="HTMLを書く前に、どの答えをどう判定するか決めます。">
 
-選択肢の `value` 属性が、あとでJavaScriptが受け取る「答えの目印」になります。`active` か `relax` のどちらかに揃えておくのがポイントです。
+診断アプリでは、見た目より先に「判定ルール」を決めます。
 
-<Concept title="select.value の仕組み">
+今回のルールは、`active` を選んだ数で結果を分ける形にします。
 
-`<select>` には複数の `<option>` が入っていて、選ばれている `option` の `value` 属性が `select.value` で取り出せます。JavaScript側では、その `value` 文字列と比べることで「どれが選ばれたか」を判定します。
+| active の数 | 結果 |
+| --- | --- |
+| 0〜1個 | のんびりタイプ |
+| 2個 | バランスタイプ |
+| 3個 | アクティブタイプ |
+
+<Concept title="value は診断用の目印">
+
+画面に表示する文字は日本語で構いません。  
+ただし、JavaScriptで判定するときは、短くて分かりやすい値を使うと扱いやすくなります。
+
+```html
+<option value="active">早起きして出かけたい</option>
+```
+
+この場合、画面には「早起きして出かけたい」と表示されます。  
+JavaScriptで取り出す値は `"active"` です。
 
 </Concept>
 
+<Exercise>
+
+次の選択肢を選んだとき、`q1.value` は何になるでしょうか。
+
+```html
+<select id="q1">
+    <option value="relax">ゆっくり寝たい</option>
+    <option value="active">早起きして出かけたい</option>
+</select>
+```
+
+「早起きして出かけたい」を選んだ場合を考えてください。
+
+<Solution>
+
+`q1.value` は `"active"` になります。  
+表示されている文字ではなく、選ばれた `<option>` の `value` 属性の値が取り出されます。
+
+</Solution>
+
+</Exercise>
+
+</Section>
+
+---
+
+<Section title="HTMLで質問フォームを作る" goal="質問、選択肢、結果表示エリアを用意します。">
+
+3つの質問は、同じ形で作ります。  
+それぞれの `<select>` に `id` を付けて、JavaScriptから取得できるようにします。
+
 <Action title="HTMLを書く">
 
-`<body>` の中に、次のHTMLを用意します。
+`<body>` の中に次のHTMLを書きます。
 
 ```html
 <main class="app">
@@ -239,9 +299,45 @@ button.addEventListener("click", function () {
 
 </Action>
 
+<Action title="CSSとJavaScriptを読み込む">
+
+`index.html` の `<head>` の中に、CSSとJavaScriptの読み込みを書きます。`script` に `defer` を付けると、HTMLを読み込み終えてからJavaScriptが実行されます。
+
+```html
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+```
+
+`style.css` と `script.js` は、このあとのステップで作ります。
+
+</Action>
+
+<Exercise>
+
+JavaScriptから取得する必要がある `id` をすべて書き出してください。
+
+<Solution>
+
+取得する必要がある `id` は次の7つです。
+
+- `q1`
+- `q2`
+- `q3`
+- `diagnoseButton`
+- `resultBox`
+- `resultTitle`
+- `resultComment`
+
+</Solution>
+
+</Exercise>
+
 <Verify title="部品を確認する">
 
-3つの質問と「診断する」ボタン、結果の枠が表示されていれば成功です。この時点ではボタンを押してもまだ結果は変わりません。
+3つの質問、診断ボタン、結果表示エリアが表示されていれば成功です。  
+この時点では、診断ボタンを押してもまだ結果は変わりません。
 
 </Verify>
 
@@ -249,13 +345,13 @@ button.addEventListener("click", function () {
 
 ---
 
-<Section title="CSSで結果ボックスの色を準備する" goal="タイプごとに違う色を `class` で切り替えられるようにします。">
+<Section title="CSSで結果の色を準備する" goal="JavaScriptからクラスを追加するだけで色を変えられるようにします。">
 
-JavaScript側でクラス名を `add` するだけで色を変えられるよう、CSSに `.relax` `.balance` `.active` を用意しておきます。
+結果の色は、JavaScriptで直接色を書くのではなく、CSSのクラスとして用意しておきます。
 
 <Action title="CSSを書く">
 
-`style.css` に次のCSSを追加します。
+`style.css` に次のCSSを書きます。
 
 ```css
 * {
@@ -325,6 +421,18 @@ button {
 
 </Action>
 
+<Concept title="class を切り替える理由">
+
+診断結果によって色を変えたい場合、JavaScriptでCSSのクラスを付け替えると分かりやすくなります。
+
+- のんびりタイプなら `.relax`
+- バランスタイプなら `.balance`
+- アクティブタイプなら `.active`
+
+このように、結果と見た目を対応させます。
+
+</Concept>
+
 <Verify title="見た目を確認する">
 
 白いカードの中に質問とボタン、グレーの結果ボックスが表示されていれば成功です。
@@ -335,52 +443,51 @@ button {
 
 ---
 
-<Section title="JavaScriptで点数を計算する" goal="3つの質問の値を見て、active を選んだ数だけ score を増やします。">
+<Section title="選ばれた答えを読み取る" goal="select.value で、今選ばれている値を取得します。">
 
-`score` という変数を用意して、`q1.value` / `q2.value` / `q3.value` が `"active"` かどうかを `if` で判定します。
+まずは、結果を変える前に、選ばれた値をコンソールで確認します。
 
-<Action title="JavaScriptを書く">
+<Action title="要素を取得する">
 
-次のJavaScriptを追加します。
+`script.js` に次のコードを書きます。
 
 ```js
-const q1 = document.querySelector("#q1");
-const q2 = document.querySelector("#q2");
-const q3 = document.querySelector("#q3");
+const q1 = document.querySelector('#q1');
+const q2 = document.querySelector('#q2');
+const q3 = document.querySelector('#q3');
 
-const button = document.querySelector("#diagnoseButton");
-const resultBox = document.querySelector("#resultBox");
-const resultTitle = document.querySelector("#resultTitle");
-const resultComment = document.querySelector("#resultComment");
+const button = document.querySelector('#diagnoseButton');
+const resultBox = document.querySelector('#resultBox');
+const resultTitle = document.querySelector('#resultTitle');
+const resultComment = document.querySelector('#resultComment');
+```
 
-button.addEventListener("click", function () {
-    let score = 0;
+</Action>
 
-    if (q1.value === "active") {
-        score++;
-    }
+<Action title="ボタンを押したときに値を確認する">
 
-    if (q2.value === "active") {
-        score++;
-    }
+続けて、次のコードを書きます。
 
-    if (q3.value === "active") {
-        score++;
-    }
+```js
+button.addEventListener('click', () => {
+    console.log(q1.value);
+    console.log(q2.value);
+    console.log(q3.value);
 });
 ```
 
 </Action>
 
-<Verify title="動きを確認する">
+<Verify title="値を確認する">
 
-「診断する」ボタンを押しても結果は変わりませんが、`console.log(score);` を一時的に追加すると、active を選んだ数（0〜3）が表示されることを確認できます。
+質問の答えを変えてから「診断する」ボタンを押し、コンソールに `relax` または `active` が表示されれば成功です。
 
 </Verify>
 
-<Recovery title="button が反応しないとき">
+<Recovery title="undefined やエラーが出るとき">
 
-`addEventListener` の `"click"` がクォートで囲まれているか、`#diagnoseButton` がHTML側の `id` と一致しているかを確認してください。
+HTML側の `id` と、JavaScriptの `document.querySelector(...)` の名前が一致しているか確認します。  
+特に `#diagnoseButton` の大文字小文字に注意してください。
 
 </Recovery>
 
@@ -388,35 +495,105 @@ button.addEventListener("click", function () {
 
 ---
 
-<Section title="点数で結果タイトルと色を切り替える" goal="score の値に応じて、結果タイトル・コメント・背景クラスを変えます。">
+<Section title="score を計算する" goal="active を選んだ数だけ点数を増やします。">
 
-`resultBox.className = "result-box";` で前のクラスを消してから、`classList.add(...)` で新しいクラスを足すのがコツです。
+診断結果を決めるために、`score` という変数を使います。  
+最初は0にして、`active` が選ばれていたら1ずつ増やします。
 
-<Concept title="className と classList の使い分け">
+<Action title="score を計算する処理を書く">
 
-`className` に文字列を代入すると、クラスが**丸ごと置き換わります**。前に付いていたクラスを消したいときに使います。`classList.add(...)` はクラスを**1つだけ追加**するので、ベースとなる `result-box` を残したままタイプ別の色クラスを足す用途に向きます。
+クリックイベントの中を次のように書き換えます。
+
+```js
+button.addEventListener('click', () => {
+    let score = 0;
+
+    if (q1.value === 'active') {
+        score++;
+    }
+
+    if (q2.value === 'active') {
+        score++;
+    }
+
+    if (q3.value === 'active') {
+        score++;
+    }
+
+    console.log(score);
+});
+```
+
+</Action>
+
+<Exercise>
+
+3つの質問で、次のように選んだ場合、`score` はいくつになりますか。
+
+| q1 | q2 | q3 |
+| --- | --- | --- |
+| active | relax | active |
+
+<Solution>
+
+`score` は `2` になります。  
+`active` が選ばれているのは q1 と q3 の2つだからです。
+
+</Solution>
+
+</Exercise>
+
+<Verify title="点数を確認する">
+
+3つすべてを active 側にすると `3`、すべて relax 側にすると `0` がコンソールに表示されれば成功です。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="点数で結果を切り替える" goal="score の値に応じて、表示する結果を変えます。">
+
+`score` が計算できたら、次は結果表示です。  
+文字だけでなく、結果ボックスの色も一緒に変えます。
+
+<Concept title="className と classList.add">
+
+結果を切り替えるたびに、前回の色クラスを消す必要があります。  
+そのため、まず `className` で基本クラスだけに戻します。
+
+```js
+resultBox.className = 'result-box';
+```
+
+その後、結果に合うクラスを追加します。
+
+```js
+resultBox.classList.add('active');
+```
 
 </Concept>
 
 <Action title="判定処理を追加する">
 
-`button.addEventListener` の中の末尾に、`if / else if / else` の判定を追加します。
+クリックイベントの中の `console.log(score);` を削除し、次の判定処理を追加します。
 
 ```js
-    resultBox.className = "result-box";
+    resultBox.className = 'result-box';
 
     if (score <= 1) {
-        resultTitle.textContent = "のんびりタイプ";
-        resultComment.textContent = "家でゆっくり過ごすと元気になれそうです。";
-        resultBox.classList.add("relax");
+        resultTitle.textContent = 'のんびりタイプ';
+        resultComment.textContent = '家でゆっくり過ごすと元気になれそうです。';
+        resultBox.classList.add('relax');
     } else if (score === 2) {
-        resultTitle.textContent = "バランスタイプ";
-        resultComment.textContent = "休む時間と遊ぶ時間のバランスを取るのが得意です。";
-        resultBox.classList.add("balance");
+        resultTitle.textContent = 'バランスタイプ';
+        resultComment.textContent = '休む時間と遊ぶ時間のバランスを取るのが得意です。';
+        resultBox.classList.add('balance');
     } else {
-        resultTitle.textContent = "アクティブタイプ";
-        resultComment.textContent = "外に出て動くことでリフレッシュできそうです。";
-        resultBox.classList.add("active");
+        resultTitle.textContent = 'アクティブタイプ';
+        resultComment.textContent = '外に出て動くことでリフレッシュできそうです。';
+        resultBox.classList.add('active');
     }
 ```
 
@@ -424,75 +601,112 @@ button.addEventListener("click", function () {
 
 <Verify title="結果を確認する">
 
-3つの質問で「早起き／外で活動／すぐ行きたい」を全部選ぶと active が3つになり、結果が青系の「アクティブタイプ」に切り替わります。「ゆっくり寝たい／家でのんびり／予定が合えば行く」を全部選ぶと0〜1になり、緑系の「のんびりタイプ」になります。
+次の3パターンを確認してください。
+
+| 選び方 | 期待される結果 |
+| --- | --- |
+| active が0〜1個 | のんびりタイプ |
+| active が2個 | バランスタイプ |
+| active が3個 | アクティブタイプ |
+
+同じ組み合わせで2回押しても色がおかしくならなければ成功です。
 
 </Verify>
-
-<Recovery title="結果ボックスの色が変わらないとき">
-
-`className = "result-box";` があるか確認してください。これを書き忘れると、2回目以降の診断でクラスが積み重なってしまいます。
-
-</Recovery>
 
 </Section>
 
 ---
 
-<Section title="応用：テーマを変えて自分の診断にする" goal="質問・選択肢・結果・色を書き換えて、自分だけの診断アプリに改造します。">
+<Section title="バグ修正チャレンジ" goal="診断アプリで起きやすいミスを直します。">
 
-テーマを変えるときは、`value` の名前と `if` の条件をセットで書き換えるのがポイントです。`active` / `relax` の名前を残したまま内容を入れ替えるより、テーマに合わせて `value` 自体を変えた方が `if` 文が読みやすくなります。
-
-まずは演習1に取り組み、早く終わったら演習-発展に進みます。
-
-### 演習1
+次のコードには、よくあるミスが4つ入っています。
 
 <Exercise>
 
-テーマを「今日のテンション診断」に作り変えてください。質問は3つ、結果は「超高テンション／いつも通り／おだやか」の3種類にします。色も好きな3色に変更してOKです。
+```js
+button.addEventListener('click', () => {
+    let score = 0;
 
-確認するときは、同じ組み合わせで2回押しても結果ボックスの色が重なって表示されないことを見ます（`className = "result-box";` が機能している証拠です）。
+    if (q1.value = 'active') {
+        score++;
+    }
+
+    if (q2.value === active) {
+        score++;
+    }
+
+    if (q3.value === 'active') {
+        score++;
+    }
+
+    resultBox.classList.add('result-box');
+
+    if (score = 2) {
+        resultTitle.textContent = 'バランスタイプ';
+    }
+});
+```
 
 <Solution>
 
+1. `q1.value = 'active'` は代入なので、`q1.value === 'active'` に直す。
+2. `active` がクォートで囲まれていないので、`'active'` に直す。
+3. `resultBox.classList.add('result-box')` では前回の色クラスが消えないので、`resultBox.className = 'result-box';` にする。
+4. `if (score = 2)` も代入なので、`if (score === 2)` に直す。
+
+</Solution>
+
+</Exercise>
+
+</Section>
+
+---
+
+<Section title="改造ミッション" goal="テーマ・質問・結果を変えて、自分だけの診断アプリにします。">
+
+最後は、休日タイプ診断を別のテーマに作り変えます。  
+次の中から1つ選んでください。
+
+| ミッション | 結果例 |
+| --- | --- |
+| 今日のテンション診断 | 超高テンション / いつも通り / おだやか |
+| 勉強スタイル診断 | 集中型 / バランス型 / コツコツ型 |
+| ゲームプレイ診断 | 攻撃型 / サポート型 / 探索型 |
+| おすすめ昼ごはん診断 | がっつり / ふつう / 軽め |
+
+<Exercise>
+
+選んだテーマに合わせて、次の表を先に作ってください。
+
+| 結果 | score の条件 | 表示するコメント | CSSクラス |
+| --- | --- | --- | --- |
+| 例：超高テンション | 5以上 | 今日はアクティブに動けそうです。 | `high-result` |
+
+</Exercise>
+
+<Exercise>
+
+質問を3つ作り、各選択肢の `value` を決めてください。  
+そのあと、HTML、CSS、JavaScriptを書き換えます。
+
+<Solution>
+
+「今日のテンション診断」にする場合は、次のような作り方ができます。
+
 ```html
-<main class="app">
-    <h1>今日のテンション診断</h1>
-    <p>3つの質問に答えて、今の気分をチェックしましょう。</p>
+<h1>今日のテンション診断</h1>
+<p>3つの質問に答えて、今の気分をチェックしましょう。</p>
+```
 
-    <section class="question">
-        <label for="q1">Q1. 今の気分は？</label>
-        <select id="q1">
-            <option value="high">ノリノリ</option>
-            <option value="mid">ふつう</option>
-            <option value="low">ちょっとおだやか</option>
-        </select>
-    </section>
-
-    <section class="question">
-        <label for="q2">Q2. 好きな音楽は？</label>
-        <select id="q2">
-            <option value="high">テンポが速い曲</option>
-            <option value="mid">そのときによる</option>
-            <option value="low">静かな曲</option>
-        </select>
-    </section>
-
-    <section class="question">
-        <label for="q3">Q3. 友達と会いたい？</label>
-        <select id="q3">
-            <option value="high">今すぐ会いたい</option>
-            <option value="mid">空いてたら</option>
-            <option value="low">今日はまったり</option>
-        </select>
-    </section>
-
-    <button id="diagnoseButton">診断する</button>
-
-    <section id="resultBox" class="result-box">
-        <h2 id="resultTitle">診断結果</h2>
-        <p id="resultComment">ボタンを押すと結果が表示されます。</p>
-    </section>
-</main>
+```html
+<section class="question">
+    <label for="q1">Q1. 今の気分は？</label>
+    <select id="q1">
+        <option value="high">ノリノリ</option>
+        <option value="mid">ふつう</option>
+        <option value="low">ちょっとおだやか</option>
+    </select>
+</section>
 ```
 
 ```css
@@ -510,41 +724,41 @@ button.addEventListener("click", function () {
 ```
 
 ```js
-button.addEventListener("click", function () {
+button.addEventListener('click', () => {
     let score = 0;
 
-    if (q1.value === "high") {
+    if (q1.value === 'high') {
         score += 2;
-    } else if (q1.value === "mid") {
+    } else if (q1.value === 'mid') {
         score += 1;
     }
 
-    if (q2.value === "high") {
+    if (q2.value === 'high') {
         score += 2;
-    } else if (q2.value === "mid") {
+    } else if (q2.value === 'mid') {
         score += 1;
     }
 
-    if (q3.value === "high") {
+    if (q3.value === 'high') {
         score += 2;
-    } else if (q3.value === "mid") {
+    } else if (q3.value === 'mid') {
         score += 1;
     }
 
-    resultBox.className = "result-box";
+    resultBox.className = 'result-box';
 
     if (score >= 5) {
-        resultTitle.textContent = "超高テンション";
-        resultComment.textContent = "今日はアクティブに動けそうです。";
-        resultBox.classList.add("high-result");
+        resultTitle.textContent = '超高テンション';
+        resultComment.textContent = '今日はアクティブに動けそうです。';
+        resultBox.classList.add('high-result');
     } else if (score >= 3) {
-        resultTitle.textContent = "いつも通り";
-        resultComment.textContent = "マイペースに過ごせそうです。";
-        resultBox.classList.add("mid-result");
+        resultTitle.textContent = 'いつも通り';
+        resultComment.textContent = 'マイペースに過ごせそうです。';
+        resultBox.classList.add('mid-result');
     } else {
-        resultTitle.textContent = "おだやか";
-        resultComment.textContent = "ゆっくり休むのが合いそうです。";
-        resultBox.classList.add("low-result");
+        resultTitle.textContent = 'おだやか';
+        resultComment.textContent = 'ゆっくり休むのが合いそうです。';
+        resultBox.classList.add('low-result');
     }
 });
 ```
@@ -553,113 +767,22 @@ button.addEventListener("click", function () {
 
 </Exercise>
 
-### 演習-発展1
-
 <Exercise>
 
-質問を4つに増やします。質問が増えると `score` は最大4になるので、結果を分けるしきい値も見直します。次の手順で進めます。
-
-1. HTMLに4つ目の質問セクションを追加する。
-2. JavaScriptで `q4` を取得し、`active` 判定の `if` を1つ足す。
-3. `score` が 0〜4 になるので、3タイプに分かれるよう条件を調整する。
-
-確認するときは、4問すべてで「外で活動する」側を選ぶと `score` が4になり、アクティブタイプになることを見ます。
-
-<Solution>
-
-3つ目の質問の下に、4つ目の質問を追加します。
-
-```html
-<section class="question">
-    <label for="q4">Q4. 連休があったら？</label>
-    <select id="q4">
-        <option value="relax">家でゆっくりしたい</option>
-        <option value="active">どこかへ出かけたい</option>
-    </select>
-</section>
-```
-
-`q4` を取得し、判定を1つ足してから、しきい値を調整します。
-
-```js
-const q4 = document.querySelector("#q4");
-
-button.addEventListener("click", function () {
-    let score = 0;
-
-    if (q1.value === "active") {
-        score++;
-    }
-
-    if (q2.value === "active") {
-        score++;
-    }
-
-    if (q3.value === "active") {
-        score++;
-    }
-
-    if (q4.value === "active") {
-        score++;
-    }
-
-    resultBox.className = "result-box";
-
-    if (score <= 1) {
-        resultTitle.textContent = "のんびりタイプ";
-        resultComment.textContent = "家でゆっくり過ごすと元気になれそうです。";
-        resultBox.classList.add("relax");
-    } else if (score <= 3) {
-        resultTitle.textContent = "バランスタイプ";
-        resultComment.textContent = "休む時間と遊ぶ時間のバランスを取るのが得意です。";
-        resultBox.classList.add("balance");
-    } else {
-        resultTitle.textContent = "アクティブタイプ";
-        resultComment.textContent = "外に出て動くことでリフレッシュできそうです。";
-        resultBox.classList.add("active");
-    }
-});
-```
-
-</Solution>
+余裕がある人は、質問を4問以上に増やしてみましょう。`score` の条件（結果の境目）も合わせて見直します。
 
 </Exercise>
 
-### 演習-発展2
+<Verify title="完成確認">
 
-<Exercise>
+次の条件をすべて満たしていれば完成です。
 
-最初は結果ボックスを隠しておき、「診断する」ボタンを押したときだけ表示します。次の手順で進めます。
+- 質問が3つある
+- 選択肢を変えると結果が変わる
+- 結果が3種類ある
+- 結果ごとに背景色が変わる
+- テーマが最初から最後まで統一されている
 
-1. CSSの `.result-box` に `display: none;` を足して、最初は隠す。
-2. 判定処理の中で、結果ボックスを表示する1行を足す。
-
-確認するときは、ページを開いた直後は結果ボックスが見えず、ボタンを押すと現れることを見ます。
-
-<Solution>
-
-CSSの `.result-box` に `display: none;` を追加します。
-
-```css
-.result-box {
-    margin-top: 24px;
-    padding: 20px;
-    border-radius: 16px;
-    background: #eeeeee;
-    display: none;
-}
-```
-
-判定処理の最後に、結果ボックスを表示する行を足します。
-
-```js
-    resultBox.style.display = "block";
-```
-
-`style.display` に `"block"` を入れると、CSSで隠していた要素を表示できます。
-
-</Solution>
-
-</Exercise>
+</Verify>
 
 </Section>

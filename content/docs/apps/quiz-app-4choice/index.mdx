@@ -3,20 +3,26 @@ title: 4択クイズアプリを作ろう
 authoringMode: 'tutorial'
 ---
 
-問題データを配列で管理し、4つの選択肢ボタンから正解を選ぶクイズアプリを作ります。配列・オブジェクト・関数・イベントを組み合わせて、状態（いま何問目か・正解したか）を管理する流れを学びます。
+4つの選択肢から答えを選ぶクイズアプリを作ります。
 
-<Section title="完成形を確認する" goal="完成したアプリの動作と、全体のおおまかな流れを先に確認します。">
+このページでは、いきなり完成コードを書くのではなく、次の順番でアプリを大きくしていきます。
 
-完成すると、4つの選択肢から1つを選んで「次の問題へ」で進むクイズになります。全問終わると結果が表示され、選択肢はクリックできない状態になります。
+1. 1問だけのクイズを作る
+2. 問題をデータとしてまとめる
+3. 配列から現在の問題を表示する
+4. 正解数や回答済み状態を管理する
+5. 最後に結果を表示する
+6. 自分のクイズに改造する
 
-| 操作 | 画面の変化 |
-| --- | --- |
-| 選択肢ボタンをクリックする | 正解・不正解が表示され、選択肢がクリックできなくなる |
-| 「次の問題へ」ボタンを押す | 次の問題文と選択肢が表示される |
-| 最後の問題を終える | 結果コメントが表示される |
+---
+
+<Section title="今日のミッション" goal="状態を持つアプリを、小さな部品に分けて作ります。">
+
+完成すると、4つの選択肢から1つを選んで進むクイズになります。  
+全問が終わると、正解数が表示されます。
 
 <CodePreview
-  sourceId="quiz-app-4choice-final"
+  sourceId="quiz-app-4choice-final-preview"
   htmlVisible={false}
   cssVisible={false}
   jsVisible={false}
@@ -111,19 +117,19 @@ button {
 ```js
 const questions = [
     {
-        text: "JavaScriptでクリックイベントを登録するメソッドは？",
-        choices: ["querySelector", "addEventListener", "textContent", "console.log"],
-        answer: "addEventListener"
+        text: 'JavaScriptでクリックイベントを登録するメソッドは？',
+        choices: ['querySelector', 'addEventListener', 'textContent', 'console.log'],
+        answer: 'addEventListener'
     },
     {
-        text: "配列の最初の要素を取り出す番号は？",
-        choices: ["0", "1", "2", "3"],
-        answer: "0"
+        text: '配列の最初の要素を取り出す番号は？',
+        choices: ['0', '1', '2', '3'],
+        answer: '0'
     },
     {
-        text: "要素の文字を変更するプロパティは？",
-        choices: ["value", "length", "textContent", "styleSheet"],
-        answer: "textContent"
+        text: '要素の文字を変更するプロパティは？',
+        choices: ['value', 'length', 'textContent', 'styleSheet'],
+        answer: 'textContent'
     }
 ];
 
@@ -131,22 +137,22 @@ let currentIndex = 0;
 let score = 0;
 let answered = false;
 
-const progressText = document.querySelector("#progressText");
-const questionText = document.querySelector("#questionText");
-const messageText = document.querySelector("#messageText");
-const nextButton = document.querySelector("#nextButton");
+const progressText = document.querySelector('#progressText');
+const questionText = document.querySelector('#questionText');
+const messageText = document.querySelector('#messageText');
+const nextButton = document.querySelector('#nextButton');
 
-const choice1 = document.querySelector("#choice1");
-const choice2 = document.querySelector("#choice2");
-const choice3 = document.querySelector("#choice3");
-const choice4 = document.querySelector("#choice4");
+const choice1 = document.querySelector('#choice1');
+const choice2 = document.querySelector('#choice2');
+const choice3 = document.querySelector('#choice3');
+const choice4 = document.querySelector('#choice4');
 
 const choiceButtons = [choice1, choice2, choice3, choice4];
 
 function showQuestion() {
     const question = questions[currentIndex];
 
-    progressText.textContent = currentIndex + 1 + "問目 / " + questions.length + "問中";
+    progressText.textContent = currentIndex + 1 + '問目 / ' + questions.length + '問中';
     questionText.textContent = question.text;
 
     for (let i = 0; i < choiceButtons.length; i++) {
@@ -154,8 +160,8 @@ function showQuestion() {
         choiceButtons[i].disabled = false;
     }
 
-    messageText.textContent = "選択肢を選んでください。";
-    messageText.className = "";
+    messageText.textContent = '選択肢を選んでください。';
+    messageText.className = '';
     answered = false;
 }
 
@@ -168,11 +174,11 @@ function checkAnswer(selectedAnswer) {
 
     if (selectedAnswer === question.answer) {
         score++;
-        messageText.textContent = "正解！";
-        messageText.className = "correct";
+        messageText.textContent = '正解！';
+        messageText.className = 'correct';
     } else {
-        messageText.textContent = "不正解。正解は「" + question.answer + "」です。";
-        messageText.className = "wrong";
+        messageText.textContent = '不正解。正解は「' + question.answer + '」です。';
+        messageText.className = 'wrong';
     }
 
     answered = true;
@@ -183,37 +189,37 @@ function checkAnswer(selectedAnswer) {
 }
 
 function showFinalResult() {
-    progressText.textContent = "終了";
-    questionText.textContent = "結果は " + questions.length + "問中 " + score + "問正解です。";
-    messageText.textContent = "おつかれさまでした。";
+    progressText.textContent = '終了';
+    questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
+    messageText.textContent = 'おつかれさまでした。';
 
     for (let i = 0; i < choiceButtons.length; i++) {
-        choiceButtons[i].textContent = "-";
+        choiceButtons[i].textContent = '-';
         choiceButtons[i].disabled = true;
     }
 
     nextButton.disabled = true;
 }
 
-choice1.addEventListener("click", function () {
+choice1.addEventListener('click', () => {
     checkAnswer(choice1.textContent);
 });
 
-choice2.addEventListener("click", function () {
+choice2.addEventListener('click', () => {
     checkAnswer(choice2.textContent);
 });
 
-choice3.addEventListener("click", function () {
+choice3.addEventListener('click', () => {
     checkAnswer(choice3.textContent);
 });
 
-choice4.addEventListener("click", function () {
+choice4.addEventListener('click', () => {
     checkAnswer(choice4.textContent);
 });
 
-nextButton.addEventListener("click", function () {
+nextButton.addEventListener('click', () => {
     if (answered === false) {
-        messageText.textContent = "先に選択肢を選んでください。";
+        messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
@@ -231,87 +237,387 @@ showQuestion();
 
 </CodePreview>
 
+<Exercise>
+
+完成形を動かして、次のことを確認してください。
+
+1. 選択肢を押すと、正解・不正解が表示される
+2. 答えた後は、同じ問題で2回目の回答ができない
+3. 「次の問題へ」で問題が切り替わる
+4. 最後まで進むと正解数が表示される
+
+<Solution>
+
+このアプリでは、ただ文字を変えるだけでなく、次の状態を管理しています。
+
+| 状態 | 意味 |
+| --- | --- |
+| `currentIndex` | 今、何問目を表示しているか |
+| `score` | 何問正解したか |
+| `answered` | 今の問題にもう答えたか |
+
+</Solution>
+
+</Exercise>
+
 </Section>
 
 ---
 
-<Section title="問題データを配列で用意する" goal="問題文・選択肢・正解を、扱いやすいデータのかたちにまとめます。">
+<Section title="HTMLでクイズ画面を作る" goal="問題文、選択肢、メッセージ、次へボタンを用意します。">
 
-1問 = 1オブジェクトの形にし、3問を配列 `questions` に入れます。`answer` には `choices` の中の**どれかの文字列そのまま**を入れるのがルールです。
+まずは、JavaScriptから書き換える場所をHTMLで用意します。
+
+<Action title="HTMLを書く">
+
+`<body>` の中に次のHTMLを書きます。
+
+```html
+<main class="app">
+    <h1>4択クイズアプリ</h1>
+
+    <section class="quiz-box">
+        <p id="progressText">1問目</p>
+        <h2 id="questionText">問題文が入ります</h2>
+
+        <div class="choices">
+            <button id="choice1">選択肢1</button>
+            <button id="choice2">選択肢2</button>
+            <button id="choice3">選択肢3</button>
+            <button id="choice4">選択肢4</button>
+        </div>
+
+        <p id="messageText">選択肢を選んでください。</p>
+    </section>
+
+    <button id="nextButton">次の問題へ</button>
+</main>
+```
+
+</Action>
+
+<Action title="CSSとJavaScriptを読み込む">
+
+`index.html` の `<head>` の中に、CSSとJavaScriptの読み込みを書きます。`script` に `defer` を付けると、HTMLを読み込み終えてからJavaScriptが実行されます。
+
+```html
+<head>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+```
+
+`style.css` と `script.js` は、このあとのステップで作ります。
+
+</Action>
+
+<Exercise>
+
+JavaScriptで後から文字を書き換える場所をすべて書き出してください。
+
+<Solution>
+
+後から文字を書き換える場所は次の6つです。
+
+- `progressText`
+- `questionText`
+- `choice1`
+- `choice2`
+- `choice3`
+- `choice4`
+- `messageText`
+
+`nextButton` は、クリックされたことを受け取るために取得します。
+
+</Solution>
+
+</Exercise>
+
+<Verify title="部品を確認する">
+
+問題文、4つの選択肢ボタン、メッセージ、「次の問題へ」ボタンが表示されていれば成功です。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="CSSでクイズらしい画面にする" goal="問題エリアと選択肢が見やすい画面にします。">
+
+正解・不正解のメッセージに色を付けられるよう、`.correct` と `.wrong` も用意します。
+
+<Action title="CSSを書く">
+
+`style.css` に次のCSSを書きます。
+
+```css
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f6f7fb;
+    color: #222;
+}
+
+.app {
+    width: min(760px, 92%);
+    margin: 32px auto;
+    padding: 24px;
+    background: white;
+    border-radius: 20px;
+}
+
+.quiz-box {
+    padding: 20px;
+    border-radius: 16px;
+    background: #f0f0f0;
+}
+
+#progressText {
+    font-weight: bold;
+}
+
+#questionText {
+    min-height: 64px;
+}
+
+.choices {
+    display: grid;
+    gap: 12px;
+}
+
+button {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#nextButton {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 999px;
+}
+
+.correct {
+    background: #d8f3dc;
+}
+
+.wrong {
+    background: #f8d7da;
+}
+```
+
+</Action>
+
+<Verify title="見た目を確認する">
+
+グレーの問題エリアの中に、問題文と4つのボタンが表示されていれば成功です。
+
+</Verify>
+
+</Section>
+
+---
+
+<Section title="まずは1問だけ判定する" goal="データ配列を使う前に、正解判定だけ作ります。">
+
+いきなり複数問題にすると難しくなります。  
+まずは、1問だけのクイズとして、クリックした答えを判定します。
+
+<Action title="要素を取得する">
+
+`script.js` に次のコードを書きます。
+
+```js
+const messageText = document.querySelector('#messageText');
+
+const choice1 = document.querySelector('#choice1');
+const choice2 = document.querySelector('#choice2');
+const choice3 = document.querySelector('#choice3');
+const choice4 = document.querySelector('#choice4');
+```
+
+</Action>
+
+<Action title="正解判定を書く">
+
+今回の最初の正解は、2番目のボタンに入っている `addEventListener` です。
+
+```js
+choice1.addEventListener('click', () => {
+    messageText.textContent = '不正解';
+});
+
+choice2.addEventListener('click', () => {
+    messageText.textContent = '正解';
+});
+
+choice3.addEventListener('click', () => {
+    messageText.textContent = '不正解';
+});
+
+choice4.addEventListener('click', () => {
+    messageText.textContent = '不正解';
+});
+```
+
+</Action>
+
+<Verify title="1問だけ動くか確認する">
+
+2番目のボタンを押すと「正解」、それ以外を押すと「不正解」と表示されれば成功です。
+
+</Verify>
+
+<Concept title="ここから改造する理由">
+
+今のコードは、1問だけなら動きます。  
+しかし、問題が増えると、同じようなイベント処理を何度も書くことになります。
+
+そこで次から、問題文・選択肢・正解をデータとしてまとめます。
+
+</Concept>
+
+</Section>
+
+---
+
+<Section title="問題データを配列で用意する" goal="問題文・選択肢・正解を、扱いやすいデータの形にします。">
+
+1問を1つのオブジェクトにします。  
+そして、複数の問題を配列に入れます。
 
 <Concept title="answer は choices のどれかと一致させる">
 
-`answer` を「答えはB」のような説明文にしてしまうと、選んだ文字列と一致しなくなります。判定は `===` の単純比較なので、`choices` のどれかと一字一句同じにしておく必要があります。
+判定は、選んだ文字列と `answer` の文字列を `===` で比較します。  
+そのため、`answer` は `choices` のどれかと一字一句同じにする必要があります。
 
 </Concept>
 
 <Action title="questions配列を書く">
 
-JavaScriptの先頭に次の配列を定義します。
+`script.js` の先頭を、次のコードに書き換えます。
 
 ```js
 const questions = [
     {
-        text: "JavaScriptでクリックイベントを登録するメソッドは？",
-        choices: ["querySelector", "addEventListener", "textContent", "console.log"],
-        answer: "addEventListener"
+        text: 'JavaScriptでクリックイベントを登録するメソッドは？',
+        choices: ['querySelector', 'addEventListener', 'textContent', 'console.log'],
+        answer: 'addEventListener'
     },
     {
-        text: "配列の最初の要素を取り出す番号は？",
-        choices: ["0", "1", "2", "3"],
-        answer: "0"
+        text: '配列の最初の要素を取り出す番号は？',
+        choices: ['0', '1', '2', '3'],
+        answer: '0'
     },
     {
-        text: "要素の文字を変更するプロパティは？",
-        choices: ["value", "length", "textContent", "styleSheet"],
-        answer: "textContent"
+        text: '要素の文字を変更するプロパティは？',
+        choices: ['value', 'length', 'textContent', 'styleSheet'],
+        answer: 'textContent'
     }
 ];
 ```
 
 </Action>
 
-<Verify title="データの形を確認する">
+<Exercise>
 
-`console.log(questions);` を追加すると、配列の中に3つのオブジェクトが入っていて、それぞれ `text` `choices` `answer` を持っていることを確認できます。
+次のデータは正しく動くでしょうか。
 
-</Verify>
+```js
+{
+    text: '配列の最初の番号は？',
+    choices: ['0', '1', '2', '3'],
+    answer: 'ゼロ'
+}
+```
+
+<Solution>
+
+正しく判定できません。  
+`answer` の `'ゼロ'` が `choices` の中にないからです。
+
+この場合は、次のようにします。
+
+```js
+{
+    text: '配列の最初の番号は？',
+    choices: ['0', '1', '2', '3'],
+    answer: '0'
+}
+```
+
+</Solution>
+
+</Exercise>
 
 </Section>
 
 ---
 
-<Section title="状態と要素を取得する" goal="アプリ全体で使う「今何問目か」「正解数」「すでに答えたか」を変数で持っておき、画面のパーツも全部取得します。">
+<Section title="状態と要素を準備する" goal="今の問題番号、正解数、回答済みかどうかを変数で持ちます。">
 
-状態は3つの変数で表現します。`currentIndex` は0から始まる配列の番号、`score` は正解した数、`answered` は「すでに答えてボタンをロックしたか」のフラグです。
+複数問題のクイズでは、アプリが「今どういう状態か」を覚える必要があります。
 
-<Action title="変数と要素取得を書く">
+| 変数 | 役割 |
+| --- | --- |
+| `currentIndex` | 今表示している問題番号 |
+| `score` | 正解数 |
+| `answered` | 今の問題に回答済みかどうか |
 
-配列の下に次のコードを追加します。
+<Action title="状態変数と要素取得を書く">
+
+`questions` 配列の下に、次のコードを書きます。
 
 ```js
 let currentIndex = 0;
 let score = 0;
 let answered = false;
 
-const progressText = document.querySelector("#progressText");
-const questionText = document.querySelector("#questionText");
-const messageText = document.querySelector("#messageText");
-const nextButton = document.querySelector("#nextButton");
+const progressText = document.querySelector('#progressText');
+const questionText = document.querySelector('#questionText');
+const messageText = document.querySelector('#messageText');
+const nextButton = document.querySelector('#nextButton');
 
-const choice1 = document.querySelector("#choice1");
-const choice2 = document.querySelector("#choice2");
-const choice3 = document.querySelector("#choice3");
-const choice4 = document.querySelector("#choice4");
+const choice1 = document.querySelector('#choice1');
+const choice2 = document.querySelector('#choice2');
+const choice3 = document.querySelector('#choice3');
+const choice4 = document.querySelector('#choice4');
 
 const choiceButtons = [choice1, choice2, choice3, choice4];
 ```
 
 </Action>
 
+<Exercise>
+
+`choiceButtons` 配列を作ると、何が便利になるでしょうか。
+
+<Solution>
+
+4つの選択肢ボタンを、`for` 文でまとめて処理できるようになります。
+
+たとえば、4つのボタンの文字をまとめて入れ替えたり、まとめてクリックできない状態にしたりできます。
+
+</Solution>
+
+</Exercise>
+
 <Verify title="取得できているか確認する">
 
-`console.log(choiceButtons.length);` を追加して `4` が出ること、ページを再読み込みしてもエラーが出ないことを確認します。
+一時的に次のコードを追加し、コンソールに `4` と表示されれば成功です。
+
+```js
+console.log(choiceButtons.length);
+```
+
+確認できたら、この行は削除します。
 
 </Verify>
 
@@ -319,15 +625,10 @@ const choiceButtons = [choice1, choice2, choice3, choice4];
 
 ---
 
-<Section title="問題を表示する関数を作る" goal="現在の問題番号に対応する問題文と選択肢を画面に出します。">
+<Section title="現在の問題を表示する関数を作る" goal="currentIndex に対応する問題を画面に表示します。">
 
-`showQuestion` 関数は「問題を出すとき」にいつでも呼べるよう、副作用をまとめておく場所です。`for` 文で4つの選択肢ボタンを順に書き換えます。
-
-<Concept title="for 文でボタンをまとめて更新する">
-
-4つのボタンを1つずつ `choiceButtons[i].textContent = ...` で書き換えると、長くなるので `for` 文でまとめます。`i < choiceButtons.length`（`<=` ではなく `<`）が境界条件で、これを超えると `undefined` アクセスで止まります。
-
-</Concept>
+問題を表示する処理は、最初にも、次の問題に進むときにも使います。  
+そのため、`showQuestion` という関数にまとめます。
 
 <Action title="showQuestion を書く">
 
@@ -335,7 +636,7 @@ const choiceButtons = [choice1, choice2, choice3, choice4];
 function showQuestion() {
     const question = questions[currentIndex];
 
-    progressText.textContent = currentIndex + 1 + "問目 / " + questions.length + "問中";
+    progressText.textContent = currentIndex + 1 + '問目 / ' + questions.length + '問中';
     questionText.textContent = question.text;
 
     for (let i = 0; i < choiceButtons.length; i++) {
@@ -343,35 +644,53 @@ function showQuestion() {
         choiceButtons[i].disabled = false;
     }
 
-    messageText.textContent = "選択肢を選んでください。";
-    messageText.className = "";
+    messageText.textContent = '選択肢を選んでください。';
+    messageText.className = '';
     answered = false;
 }
 ```
 
-最後に `showQuestion();` を1回呼んで、最初の問題を出します。
+</Action>
+
+<Concept title="for 文の境界条件">
+
+配列の番号は0から始まります。  
+4つのボタンがある場合、使う番号は `0`、`1`、`2`、`3` です。
+
+そのため、条件は次のようにします。
+
+```js
+i < choiceButtons.length
+```
+
+`i <= choiceButtons.length` にすると、最後に存在しない5個目を取り出そうとしてエラーになります。
+
+</Concept>
+
+<Action title="最初の問題を表示する">
+
+ファイルの一番下に、次のコードを書きます。
+
+```js
+showQuestion();
+```
 
 </Action>
 
 <Verify title="表示を確認する">
 
-ページを開いたとき「1問目 / 3問中」とJavaScriptクイズの1問目が表示され、4つの選択肢ボタンに `querySelector` `addEventListener` `textContent` `console.log` が入っていれば成功です。
+ページを開いたとき、「1問目 / 3問中」と1問目の問題文・選択肢が表示されれば成功です。
 
 </Verify>
-
-<Recovery title="question.choices[i] が undefined になるとき">
-
-`i <= choiceButtons.length` になっていないか確認してください。`<=` だと `i === 4` のとき配列範囲外になります。`i < choiceButtons.length`（`<`）が正解です。
-
-</Recovery>
 
 </Section>
 
 ---
 
-<Section title="正解・不正解を判定する" goal="押されたボタンの文字列と正解を比べて、score を増やしたりメッセージを表示したりします。">
+<Section title="正解・不正解を判定する関数を作る" goal="選ばれた答えと正解を比べて、結果を表示します。">
 
-すでに答えている状態で再度クリックされても、`answered` フラグで無視します。判定後は4つのボタンを `disabled = true` にして、2重加点と見た目の変化を防ぎます。
+選択肢ボタンが押されたら、そのボタンの文字を `checkAnswer` に渡します。  
+関数の中では、現在の問題の `answer` と比較します。
 
 <Action title="checkAnswer を書く">
 
@@ -385,11 +704,11 @@ function checkAnswer(selectedAnswer) {
 
     if (selectedAnswer === question.answer) {
         score++;
-        messageText.textContent = "正解！";
-        messageText.className = "correct";
+        messageText.textContent = '正解！';
+        messageText.className = 'correct';
     } else {
-        messageText.textContent = "不正解。正解は「" + question.answer + "」です。";
-        messageText.className = "wrong";
+        messageText.textContent = '不正解。正解は「' + question.answer + '」です。';
+        messageText.className = 'wrong';
     }
 
     answered = true;
@@ -402,51 +721,68 @@ function checkAnswer(selectedAnswer) {
 
 </Action>
 
+<Exercise>
+
+最初に次のコードがある理由を説明してください。
+
+```js
+if (answered === true) {
+    return;
+}
+```
+
+<Solution>
+
+同じ問題で2回以上答えられないようにするためです。  
+もしこの処理がないと、正解ボタンを何回も押して `score` を増やせてしまいます。
+
+`return` は、そこで関数の処理を終わらせる命令です。
+
+</Solution>
+
+</Exercise>
+
 <Verify title="判定を確認する">
 
-選択肢ボタンをクリックして、正解なら緑系のメッセージ「正解！」、不正解なら赤系の「不正解。正解は〜」が表示されれば成功です。2回同じボタンを押しても score が増えないことも確認します。
+この時点では、まだ選択肢ボタンにイベントを登録していないため、クリックしても判定は動きません。  
+次のセクションでボタンと `checkAnswer` をつなぎます。
 
 </Verify>
-
-<Recovery title="2回押しで score が増えてしまうとき">
-
-`if (answered === true) { return; }` が関数の一番上にあるか、`=`（代入）ではなく `===`（比較）になっているかを確認してください。`=` だと代入になって、条件が常に真になりバグります。
-
-</Recovery>
 
 </Section>
 
 ---
 
-<Section title="選択肢ボタンにイベントを登録する" goal="4つのボタンが押されたとき、それぞれ自分の文字を引数にして `checkAnswer` を呼びます。">
+<Section title="選択肢ボタンにイベントを登録する" goal="押されたボタンの文字を checkAnswer に渡します。">
 
-ボタンの `textContent` を `checkAnswer` に渡すと、関数側で「正解の文字列」と比較できます。
+それぞれのボタンが押されたとき、自分の `textContent` を `checkAnswer` に渡します。
 
 <Action title="イベント登録を書く">
 
 ```js
-choice1.addEventListener("click", function () {
+choice1.addEventListener('click', () => {
     checkAnswer(choice1.textContent);
 });
 
-choice2.addEventListener("click", function () {
+choice2.addEventListener('click', () => {
     checkAnswer(choice2.textContent);
 });
 
-choice3.addEventListener("click", function () {
+choice3.addEventListener('click', () => {
     checkAnswer(choice3.textContent);
 });
 
-choice4.addEventListener("click", function () {
+choice4.addEventListener('click', () => {
     checkAnswer(choice4.textContent);
 });
 ```
 
 </Action>
 
-<Verify title="イベントを確認する">
+<Verify title="正解判定を確認する">
 
-選択肢ボタンのどれかを押すと、`checkAnswer` が呼ばれてメッセージの色と文章が変わることを確認します。
+選択肢ボタンをクリックして、正解なら「正解！」、不正解なら「不正解。正解は〜」が表示されれば成功です。  
+同じ問題で2回押しても、2回目は反応しないことも確認します。
 
 </Verify>
 
@@ -454,22 +790,25 @@ choice4.addEventListener("click", function () {
 
 ---
 
-<Section title="次の問題へ進む" goal="「次の問題へ」ボタンで `currentIndex` を1つ増やし、最後なら最終結果を表示します。">
+<Section title="次の問題へ進む" goal="回答済みなら次の問題へ進み、最後なら結果を表示します。">
 
-まだ答えていないのに進もうとしたら、警告を出して進まないようにします。これが「先に選択肢を選んでください。」の由来です。
+「次の問題へ」ボタンでは、次の2つを判定します。
 
-<Action title="showFinalResult を書く">
+1. まだ答えていないなら、先に答えるように表示する
+2. 答えているなら、`currentIndex` を1増やして次へ進む
 
-`checkAnswer` の下に、最終結果を表示する関数を定義します。
+<Action title="最終結果を表示する関数を書く">
+
+`checkAnswer` の下に、次の関数を書きます。
 
 ```js
 function showFinalResult() {
-    progressText.textContent = "終了";
-    questionText.textContent = "結果は " + questions.length + "問中 " + score + "問正解です。";
-    messageText.textContent = "おつかれさまでした。";
+    progressText.textContent = '終了';
+    questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
+    messageText.textContent = 'おつかれさまでした。';
 
     for (let i = 0; i < choiceButtons.length; i++) {
-        choiceButtons[i].textContent = "-";
+        choiceButtons[i].textContent = '-';
         choiceButtons[i].disabled = true;
     }
 
@@ -481,12 +820,12 @@ function showFinalResult() {
 
 <Action title="nextButton のイベントを書く">
 
-`showQuestion();` の上に次のコードを追加します。
+`showQuestion();` より上に、次のコードを書きます。
 
 ```js
-nextButton.addEventListener("click", function () {
+nextButton.addEventListener('click', () => {
     if (answered === false) {
-        messageText.textContent = "先に選択肢を選んでください。";
+        messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
@@ -502,164 +841,57 @@ nextButton.addEventListener("click", function () {
 
 </Action>
 
+<Exercise>
+
+3問あるとき、最後の結果を表示するのは `currentIndex` がいくつになったときでしょうか。
+
+<Solution>
+
+`currentIndex` が `3` になったときです。
+
+3問の配列で使える番号は `0`、`1`、`2` です。  
+そのため、`currentIndex < questions.length` が false になったら、もう次の問題はありません。
+
+</Solution>
+
+</Exercise>
+
 <Verify title="最後まで進めるか確認する">
 
-全問正解して「次の問題へ」を3回押すと、最終結果「結果は 3問中 3問正解です。」が表示され、「次の問題へ」ボタンがクリックできなくなります。
+全問回答して「次の問題へ」を押し、最後に「結果は 3問中 ○問正解です。」と表示されれば成功です。  
+最後は「次の問題へ」ボタンが押せなくなります。
 
 </Verify>
-
-<Recovery title="最後の問題で次へ進まなくなる">
-
-`if (currentIndex < questions.length)` の比較で `===` ではなく `<` を使っているか確認してください。3問のとき `currentIndex === 3` で `else` 側に進むのが正しい動作です。
-
-</Recovery>
 
 </Section>
 
 ---
 
-<Section title="応用：改造チャレンジ" goal="動作するクイズアプリを題材に、自分のレベルに合わせて改造します。">
+<Section title="バグ修正チャレンジ" goal="状態管理で起きやすいミスを見つけます。">
 
-まず、コードの中で次の変数や関数が何をしているかを確認します。
-
-| 名前 | 役割 |
-| --- | --- |
-| `questions` | 問題データの配列 |
-| `currentIndex` | 現在の問題番号 |
-| `score` | 正解数 |
-| `answered` | すでに答えたかどうか |
-| `showQuestion` | 問題を画面に表示する関数 |
-| `checkAnswer` | 正解・不正解を判定する関数 |
-| `showFinalResult` | 最後の結果を表示する関数 |
-
-まずは演習1に取り組み、早く終わったら演習-発展に進みます。
-
-### 演習1（データを変える）
+次のコードには、よくあるミスが6つ入っています。  
+`id`、配列番号、比較演算子、関数呼び出し、最終結果の観点で探してください。
 
 <Exercise>
-
-次のうち1つ以上を行います。
-
-- 問題を1問追加する
-- 好きなジャンル（ゲーム／アニメ／雑学／IT用語など）の問題に書き換える
-- 選択肢を自分が好きな言葉に差し替える
-
-`answer` の文字列が `choices` のどれかと一字一句同じになっていることを、最後に必ず確認してください。
-
-</Exercise>
-
-### 演習-発展1（結果メッセージを正解数で変える）
-
-<Exercise>
-
-`showFinalResult` を改造して、正解数によってコメントを3段階に変えます。
-
-- 全問正解：「完璧！」
-- 半分以上正解：「いい感じ！」
-- 半分未満：「もう一度挑戦しよう！」
-
-<Solution>
-
-`showFinalResult` 内の `messageText.textContent = "おつかれさまでした。";` の行を次の3分岐に置き換えます。
 
 ```js
-let comment = "";
-
-if (score === questions.length) {
-    comment = "完璧！";
-} else if (score >= questions.length / 2) {
-    comment = "いい感じ！";
-} else {
-    comment = "もう一度挑戦しよう！";
-}
-
-messageText.textContent = comment;
-```
-
-</Solution>
-
-</Exercise>
-
-### 演習-発展2（もう一度ボタンを追加する）
-
-<Exercise>
-
-全問終わったあと、「もう一度」ボタンを押すと最初から遊べるようにします。
-
-- HTMLに `<button id="restartButton">もう一度</button>` を追加する
-- JavaScriptで `#restartButton` を取得し、クリックで `currentIndex = 0; score = 0; nextButton.disabled = false; showQuestion();` を実行する
-
-<Solution>
-
-```html
-<button id="restartButton">もう一度</button>
-```
-
-```js
-const restartButton = document.querySelector("#restartButton");
-
-restartButton.addEventListener("click", function () {
-    currentIndex = 0;
-    score = 0;
-    nextButton.disabled = false;
-    showQuestion();
-});
-```
-
-余裕があれば、最初は `#restartButton` を非表示にして、最後の結果表示のときだけ `display: block` にするCSSを追加すると、より自然に見えます。
-
-</Solution>
-
-</Exercise>
-
-### 演習-発展3（バグ修正チャレンジ）
-
-<Exercise>
-
-次のコードは、わざと6か所にバグが入っています。`id` 名・変数名・比較演算子・配列の範囲・関数の呼び出しを観点にして探してください。
-
-```js
-const questions = [
-    {
-        text: "JavaScriptでクリックイベントを登録するメソッドは？",
-        choices: ["querySelector", "addEventListener", "textContent", "console.log"],
-        answer: "addEventListener"
-    },
-    {
-        text: "配列の最初の要素を取り出す番号は？",
-        choices: ["0", "1", "2", "3"],
-        answer: "0"
-    }
-];
-
 let currentIndex = 1;
 let score = 0;
 let answered = false;
 
-const progressText = document.querySelector("#progress");
-const questionText = document.querySelector("#questionText");
-const messageText = document.querySelector("#messageText");
-const nextButton = document.querySelector("#nextButton");
-
-const choice1 = document.querySelector("#choice1");
-const choice2 = document.querySelector("#choice2");
-const choice3 = document.querySelector("#choice3");
-const choice4 = document.querySelector("#choice4");
-
-const choiceButtons = [choice1, choice2, choice3, choice4];
+const progressText = document.querySelector('#progress');
+const questionText = document.querySelector('#questionText');
 
 function showQuestion() {
     const question = questions[currentIndex];
 
-    progressText.textContent = currentIndex + 1 + "問目 / " + questions.length + "問中";
+    progressText.textContent = currentIndex + 1 + '問目';
     questionText.textContent = question.text;
 
     for (let i = 0; i <= choiceButtons.length; i++) {
         choiceButtons[i].textContent = question.choices[i];
-        choiceButtons[i].disabled = false;
     }
 
-    messageText.textContent = "選択肢を選んでください。";
     answered = false;
 }
 
@@ -672,52 +904,162 @@ function checkAnswer(selectedAnswer) {
 
     if (selectedAnswer === question.answer) {
         score++;
-        messageText.textContent = "正解！";
-    } else {
-        messageText.textContent = "不正解。正解は「" + question.answer + "」です。";
     }
 
     answered = true;
 }
 
-choice1.addEventListener("click", function () {
-    checkAnswer(choice1.textContent);
-});
-
-choice2.addEventListener("click", function () {
-    checkAnswer(choice2.textContent);
-});
-
-choice3.addEventListener("click", function () {
-    checkAnswer(choice3.textContent);
-});
-
-choice4.addEventListener("click", function () {
-    checkAnswer(choice4.textContent);
-});
-
-nextButton.addEventListener("click", function () {
+nextButton.addEventListener('click', () => {
     currentIndex++;
 
     if (currentIndex < questions.length) {
         showQuestion;
     }
 });
-
-showQuestion();
 ```
 
 <Solution>
 
-1. `currentIndex = 1` になっている → `0` にする（最初の問題から始めるため）。
-2. `#progress` になっている → HTML側が `#progressText` なので `#progressText` に合わせる。
-3. `i <= choiceButtons.length` になっている → `i < choiceButtons.length` にする（配列範囲外アクセスを防ぐ）。
-4. `if (answered = true)` になっている → `if (answered === true)` にする（代入と比較の混同を修正）。
-5. `showQuestion;` になっている → `showQuestion();` にする（関数を実際に呼び出す）。
-6. 最後の問題まで進んだあとに `showFinalResult()` を呼ぶ処理がない → `nextButton` のハンドラに「`else` なら `showFinalResult()` を呼ぶ」を追加する。
+1. `currentIndex = 1` では2問目から始まるため、`0` にする。
+2. `#progress` はHTML側の `id="progressText"` と一致しないため、`#progressText` にする。
+3. `i <= choiceButtons.length` は配列範囲外に進むため、`i < choiceButtons.length` にする。
+4. `if (answered = true)` は代入なので、`if (answered === true)` にする。
+5. `showQuestion;` は関数を呼んでいないため、`showQuestion();` にする。
+6. 最後の問題を終えたときの `else { showFinalResult(); }` がないため、追加する。
 
 </Solution>
 
 </Exercise>
+
+</Section>
+
+---
+
+<Section title="改造ミッション" goal="自分のジャンルの4択クイズに作り変えます。">
+
+最後は、問題データを自分のテーマに変えます。
+
+| テーマ例 | 作りやすい問題 |
+| --- | --- |
+| JavaScript復習クイズ | 授業で扱った用語・記法 |
+| ゲームクイズ | キャラ、アイテム、ステージ |
+| 雑学クイズ | 食べ物、地理、動物 |
+| 学校生活クイズ | 先生、教室、行事 |
+
+<Exercise>
+
+`questions` 配列を、自分のテーマの問題に書き換えてください。  
+最低3問作ります。
+
+条件は次のとおりです。
+
+- 各問題に `text` がある
+- 各問題に4つの `choices` がある
+- `answer` は `choices` のどれかと一字一句同じ
+- 正解が毎回同じ位置にならないようにする
+
+<Solution>
+
+例として、JavaScript復習クイズにする場合は次のようにできます。
+
+```js
+const questions = [
+    {
+        text: 'HTML要素を1つ取得するメソッドは？',
+        choices: ['addEventListener', 'querySelector', 'push', 'random'],
+        answer: 'querySelector'
+    },
+    {
+        text: '配列の要素数を表すプロパティは？',
+        choices: ['length', 'value', 'textContent', 'className'],
+        answer: 'length'
+    },
+    {
+        text: 'クリック時の処理を登録するときに使うイベント名は？',
+        choices: ['hover', 'change', 'click', 'submit'],
+        answer: 'click'
+    }
+];
+```
+
+</Solution>
+
+</Exercise>
+
+<Exercise>
+
+早く終わった人は、`showFinalResult` を改造して、正解数によってコメントを変えてください。
+
+- 全問正解：`完璧！`
+- 半分以上正解：`いい感じ！`
+- 半分未満：`もう一度挑戦しよう！`
+
+<Solution>
+
+`showFinalResult` の中で、`messageText.textContent = 'おつかれさまでした。';` の行を次のように置き換えます。
+
+```js
+let comment = '';
+
+if (score === questions.length) {
+    comment = '完璧！';
+} else if (score >= questions.length / 2) {
+    comment = 'いい感じ！';
+} else {
+    comment = 'もう一度挑戦しよう！';
+}
+
+messageText.textContent = comment;
+```
+
+</Solution>
+
+</Exercise>
+
+<Exercise>
+
+さらに余裕がある人は、「もう一度」ボタンを追加してください。
+
+条件は次のとおりです。
+
+1. HTMLに `<button id="restartButton">もう一度</button>` を追加する
+2. JavaScriptで `restartButton` を取得する
+3. クリック時に `currentIndex`、`score`、`nextButton.disabled` を初期状態に戻す
+4. `showQuestion();` を呼ぶ
+
+<Solution>
+
+```html
+<button id="restartButton">もう一度</button>
+```
+
+```js
+const restartButton = document.querySelector('#restartButton');
+
+restartButton.addEventListener('click', () => {
+    currentIndex = 0;
+    score = 0;
+    nextButton.disabled = false;
+    showQuestion();
+});
+```
+
+より自然にするなら、最初は「もう一度」ボタンを非表示にし、最後の結果表示のときだけ表示します。
+
+</Solution>
+
+</Exercise>
+
+<Verify title="完成確認">
+
+次の条件をすべて満たしていれば完成です。
+
+- 自分のテーマの問題が3問以上ある
+- 各問題に4つの選択肢がある
+- 正解と不正解が正しく判定される
+- 途中で未回答のまま次へ進めない
+- 最後に正解数が表示される
+
+</Verify>
 
 </Section>
