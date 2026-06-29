@@ -530,7 +530,7 @@ drawButton.addEventListener('click', () => {
 
 <Section title="バグ修正チャレンジ" goal="よくあるミスを見つけて、自分で直せるようにします。">
 
-次のコードには、よくあるミスが4つ入っています。  
+次のコードには、よくあるミスが3つ入っています。  
 どこが間違っているか探してください。
 
 ### バグを探そう
@@ -566,8 +566,7 @@ drawButton.addEventListener('click', () => {
 
 1. `document.querySelector('fortune')` は `#` がないため、`document.querySelector('#fortune')` に直す。
 2. `#drawbutton` はHTMLの `id="drawButton"` と大文字小文字が違うため、`#drawButton` に直す。
-3. `result.length` は存在しない変数なので、`results.length` に直す。
-4. `const result = results[index];` より前に `result.length` を使おうとしているため、候補数は `results.length` から取る。
+3. `result.length` は配列ではなく1件のオブジェクトなので `.length` がない。`results.length` に直す。
 
 修正版は次の形です。
 
