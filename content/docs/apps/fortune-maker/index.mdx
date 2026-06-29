@@ -837,21 +837,24 @@ drawButton.addEventListener('click', () => {
 
 <Exercise>
 
-同じ結果が2回続けて出ないようにしてみましょう。直前に出た番号を変数に覚えておき、同じ番号になったら選び直します。
+同じ結果が2回続けて出ないようにしてみましょう。直前に出た番号を変数に覚えておき、同じ番号だったら `if` で番号をずらします。
 
 <Solution>
 
-直前の番号を `lastIndex` に記録し、同じ番号が出たら `do...while` で選び直します。
+直前の番号を `lastIndex` に記録し、同じ番号になったら `if` で1つ進めます。
 
 ```js
 let lastIndex = -1;
 
 drawButton.addEventListener('click', () => {
-    let index;
+    let index = Math.floor(Math.random() * results.length);
 
-    do {
-        index = Math.floor(Math.random() * results.length);
-    } while (index === lastIndex);
+    if (index === lastIndex) {
+        index = index + 1;
+        if (index >= results.length) {
+            index = 0;
+        }
+    }
 
     lastIndex = index;
     const result = results[index];
@@ -861,8 +864,8 @@ drawButton.addEventListener('click', () => {
 });
 ```
 
-`do...while` は「まず1回実行してから条件を確認する」ループです。  
-候補が1種類だと無限ループになるため、`results.length` が 2 以上あることが前提です。
+同じ番号が出たら「1つ次の番号」に変えます。  
+最後の番号より大きくなった場合は `0` に戻します。候補が 2 種類以上あれば動きます。
 
 </Solution>
 
