@@ -684,6 +684,20 @@ button.addEventListener('click', () => {
 | --- | --- | --- | --- |
 | 例：超高テンション | 5以上 | 今日はアクティブに動けそうです。 | `high-result` |
 
+<Solution>
+
+「今日のテンション診断」にする場合は、次のように設計できます。
+
+| 結果 | score の条件 | 表示するコメント | CSSクラス |
+| --- | --- | --- | --- |
+| 超高テンション | 3（全問 active） | 今日はアクティブに動けそうです。 | `high-result` |
+| いつも通り | 1〜2 | マイペースに過ごせそうです。 | `mid-result` |
+| おだやか | 0 | ゆっくり休むのが合いそうです。 | `low-result` |
+
+表を先に完成させてからJavaScriptを書くと、`if` の条件をそのまま使えます。
+
+</Solution>
+
 </Exercise>
 
 ### 演習2
@@ -776,6 +790,52 @@ button.addEventListener('click', () => {
 <Exercise>
 
 余裕がある人は、質問を4問以上に増やしてみましょう。`score` の条件（結果の境目）も合わせて見直します。
+
+<Solution>
+
+4問目のHTMLを追加し、JavaScriptで取得・判定します。
+
+```html
+<section class="question">
+    <label for="q4">Q4. 休日の過ごし方で外出はどのくらい？</label>
+    <select id="q4">
+        <option value="relax">ほとんど家にいる</option>
+        <option value="active">外に出ることが多い</option>
+    </select>
+</section>
+```
+
+```js
+const q4 = document.querySelector('#q4');
+```
+
+クリックイベントの中に判定を追加します。
+
+```js
+if (q4.value === 'active') {
+    score++;
+}
+```
+
+`score` の最大が 4 になるため、結果の境界を見直します。
+
+| active の数 | 結果 |
+| --- | --- |
+| 0〜1個 | のんびりタイプ |
+| 2〜3個 | バランスタイプ |
+| 4個 | アクティブタイプ |
+
+```js
+if (score <= 1) {
+    // のんびりタイプ
+} else if (score <= 3) {
+    // バランスタイプ
+} else {
+    // アクティブタイプ
+}
+```
+
+</Solution>
 
 </Exercise>
 

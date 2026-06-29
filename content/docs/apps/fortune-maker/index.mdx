@@ -652,6 +652,23 @@ const results = [
 早く終わった人は、結果を5個以上に増やしてください。  
 `results.length` を使っているため、クリックイベントの中は変更しなくて大丈夫です。
 
+<Solution>
+
+`results` にオブジェクトを追加するだけです。  
+クリックイベントは `results.length` を使っているため、変更不要です。
+
+```js
+const results = [
+    { name: '大吉', text: '新しいことに挑戦すると、よい発見がありそうです。' },
+    { name: '中吉', text: '落ち着いて進めると、予定どおりに進みそうです。' },
+    { name: '小吉', text: '小さな確認を大切にすると、ミスを防げそうです。' },
+    { name: '末吉', text: '焦らず一歩ずつ進むと、うまくいきそうです。' },
+    { name: '凶', text: '今日はいつもより慎重に。でも大丈夫！' }
+];
+```
+
+</Solution>
+
 </Exercise>
 
 ### 演習-発展2
@@ -670,6 +687,150 @@ const results = [
 
 表示は `fortune.textContent = result.emoji + ' ' + result.name;` のようにします。
 
+<Solution>
+
+各オブジェクトに `emoji` プロパティを追加し、表示の1行を変えます。
+
+```js
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。',
+        emoji: '🎉'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。',
+        emoji: '😊'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。',
+        emoji: '🍀'
+    }
+];
+```
+
+クリックイベントの `fortune.textContent = result.name;` を次のように変えます。
+
+```js
+fortune.textContent = result.emoji + ' ' + result.name;
+```
+
+動かすと次のように絵文字付きで表示されます。
+
+<CodePreview
+  sourceId="fortune-maker-emoji-solution"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  share={false}
+>
+
+```html
+<main class="app">
+    <h1>今日の運勢メーカー</h1>
+    <p class="lead">ボタンを押して、今日の運勢を占いましょう。</p>
+
+    <div class="card">
+        <p id="fortune" class="fortune">まだ占っていません</p>
+        <p id="message" class="message">下のボタンを押してください。</p>
+    </div>
+
+    <button id="drawButton">占う</button>
+</main>
+```
+
+```css
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #f6f1ff;
+    color: #2f2347;
+}
+
+.app {
+    width: min(90%, 420px);
+    margin: 48px auto;
+    text-align: center;
+}
+
+.lead {
+    color: #6b5a84;
+}
+
+.card {
+    margin: 24px 0;
+    padding: 28px;
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(68, 41, 112, 0.18);
+}
+
+.fortune {
+    margin: 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.message {
+    margin-bottom: 0;
+    color: #5d4a76;
+}
+
+button {
+    padding: 12px 28px;
+    border: none;
+    border-radius: 999px;
+    background: #7c3aed;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #6d28d9;
+}
+```
+
+```js
+const fortune = document.querySelector('#fortune');
+const message = document.querySelector('#message');
+const drawButton = document.querySelector('#drawButton');
+
+const results = [
+    {
+        name: '大吉',
+        text: '新しいことに挑戦すると、よい発見がありそうです。',
+        emoji: '🎉'
+    },
+    {
+        name: '中吉',
+        text: '落ち着いて進めると、予定どおりに進みそうです。',
+        emoji: '😊'
+    },
+    {
+        name: '小吉',
+        text: '小さな確認を大切にすると、ミスを防げそうです。',
+        emoji: '🍀'
+    }
+];
+
+drawButton.addEventListener('click', () => {
+    const index = Math.floor(Math.random() * results.length);
+    const result = results[index];
+
+    fortune.textContent = result.emoji + ' ' + result.name;
+    message.textContent = result.text;
+});
+```
+
+</CodePreview>
+
+</Solution>
+
 </Exercise>
 
 ### 演習-発展3
@@ -677,6 +838,33 @@ const results = [
 <Exercise>
 
 同じ結果が2回続けて出ないようにしてみましょう。直前に出た番号を変数に覚えておき、同じ番号になったら選び直します。
+
+<Solution>
+
+直前の番号を `lastIndex` に記録し、同じ番号が出たら `do...while` で選び直します。
+
+```js
+let lastIndex = -1;
+
+drawButton.addEventListener('click', () => {
+    let index;
+
+    do {
+        index = Math.floor(Math.random() * results.length);
+    } while (index === lastIndex);
+
+    lastIndex = index;
+    const result = results[index];
+
+    fortune.textContent = result.name;
+    message.textContent = result.text;
+});
+```
+
+`do...while` は「まず1回実行してから条件を確認する」ループです。  
+候補が1種類だと無限ループになるため、`results.length` が 2 以上あることが前提です。
+
+</Solution>
 
 </Exercise>
 
