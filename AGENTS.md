@@ -12,6 +12,24 @@
 - Before applying any rule updates, present the planned changes first with an ANSI-colored diff-style preview, ask for explicit approval, then make the edits.
 - These tool rules live in tools/tool-rules.md in the compose-agentsmd repository; do not duplicate them in other rule modules.
 
+Source: agent-rules-private/rules/course-teaching-purpose.md
+
+## Course teaching purpose (north star for all metyatech courses)
+
+This module defines the single purpose every metyatech course serves. Treat it
+as the north star when designing or authoring any course content, exercise,
+exam, or lesson structure, across every teaching subject (JavaScript,
+JavaScript応用, プログラミング演習, ゲームプログラミング, ゲーム開発, and any
+future course).
+
+- Treat the terminal goal of every course as: by graduation, the learner can,
+  with confidence, build the things they want or need, on their own. Evaluate
+  course content, sequencing, exercises, and assessment against this goal.
+- Treat the learner's own happiness as the highest-level goal this purpose
+  ultimately serves: the compass above the course goal, not a deliverable.
+- Apply this purpose to every course. When time or session count is insufficient
+  to fully reach it, still aim every course toward it.
+
 Source: agent-rules-private/rules/course-site-metadata.md
 
 ## Course site metadata / sidebar rules
