@@ -1,0 +1,328 @@
+---
+title: 関数前 総復習
+---
+
+関数入門に入る前に、これまで学んだ console.log・変数と代入・prompt・型・比較演算子・if / else if / else・for / break を一通り振り返りましょう。次の授業はこのページの演習がそのまま内容になります。
+
+---
+
+### 演習1
+
+<Exercise>
+
+「おはよう」「こんにちは」「こんばんは」の3つを、それぞれ別の行に出力せよ。ただし、出力する文字は変数に入れて（`let` を使い）、文字列の結合を使って出力すること。
+
+<Solution>
+<CodePreview>
+```javascript
+let aisatsu1 = 'おはよう';
+let aisatsu2 = 'こんにちは';
+let aisatsu3 = 'こんばんは';
+
+console.log(aisatsu1); // 出力: おはよう
+console.log(aisatsu2); // 出力: こんにちは
+console.log(aisatsu3); // 出力: こんばんは
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習2
+
+<Exercise>
+
+`message` という名前の変数を作って「がんばろう」を入れ、その中身を2回出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+let message = 'がんばろう';
+
+console.log(message); // 出力: がんばろう
+console.log(message); // 出力: がんばろう
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習3
+
+<Exercise>
+
+「都道府県を入力して下さい」という内容の `prompt` と、「市区町村を入力して下さい」という内容の `prompt` を出し、それらを合体させて「都道府県 市区町村」の形式（間に半角スペース）で出力せよ。
+
+例）都道府県に「埼玉県」、市区町村に「さいたま市」と入力した場合：`埼玉県 さいたま市`
+
+<Solution>
+<CodePreview>
+```javascript
+let todofuken = prompt('都道府県を入力して下さい');
+let shikuchoson = prompt('市区町村を入力して下さい');
+
+console.log(todofuken + ' ' + shikuchoson);
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習4
+
+<Exercise>
+
+数値を `prompt` で入力させて、その数値を2倍した数を出力せよ。`prompt` で受け取った値は文字列なので、`Number` で数値に変換してから計算すること。
+
+例）`5` を入力した場合：`10` を出力
+
+<Solution>
+<CodePreview>
+```javascript
+let input = prompt('数値を入力してね');
+let num = Number(input);
+
+console.log(num * 2);
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習5
+
+<Exercise>
+
+次の意味を表す条件（`if` の括弧の中に入る部分）のみを書け。`if` 文そのものは書かなくてよい。
+
+例）「Aは10と等しい」→ `A === 10`
+
+1. score が 80 以上
+2. age が 20 未満
+3. n が 1 以上 10 以下
+4. color が `"red"` ではない
+
+<Solution>
+
+1. `score >= 80`
+2. `age < 20`
+3. `n >= 1 && n <= 10`
+4. `color !== 'red'`
+
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習6
+
+<Exercise>
+
+「日本の首都は？」という内容で `prompt` を出し、入力内容が `"東京"` であれば「正解！」、そうでなければ「不正解」と出力せよ。
+
+<Solution>
+<CodePreview>
+```javascript
+let answer = prompt('日本の首都は？');
+
+if (answer === '東京') {
+    console.log('正解！');
+} else {
+    console.log('不正解');
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習7
+
+<Exercise>
+
+「得点を入力してね（0〜100）」という内容で `prompt` を出し、次のルールで3段階に判定して出力せよ。
+
+| 点数 | 出力 |
+| :-: | :-: |
+| 90点以上 | `すごい！` |
+| 70点以上 | `合格` |
+| それ以外 | `もう一歩` |
+
+<Solution>
+<CodePreview>
+```javascript
+let score = Number(prompt('得点を入力してね（0〜100）'));
+
+if (score >= 90) {
+    console.log('すごい！');
+} else if (score >= 70) {
+    console.log('合格');
+} else {
+    console.log('もう一歩');
+}
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習8
+
+<Exercise>
+
+for 文を使って次の2つに答えよ。
+
+1. 「3」「4」「5」「6」「7」「8」「9」「10」をこの順でそれぞれ出力せよ。
+2. 1〜10 までの整数のうち、2と7以外を小さい順に出力せよ。（`!==` を使うこと）
+
+<Solution>
+<CodePreview>
+```javascript
+// 1. 3から10を出力
+for (let i = 3; i <= 10; i++) {
+    console.log(i);
+}
+
+// 2. 1〜10のうち 2と7以外を出力
+for (let i = 1; i <= 10; i++) {
+    if (i !== 2 && i !== 7) {
+        console.log(i);
+    }
+}
+// 出力: 1, 3, 4, 5, 6, 8, 9, 10
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習9
+
+<Exercise>
+
+for 文と `break` を使って、1から順に整数を出力せよ。ただし、値が 15 より大きくなったらそこで繰り返しを終了すること。（結果として 1〜15 が出力される）
+
+<Solution>
+<CodePreview>
+```javascript
+for (let i = 1; i <= 20; i++) {
+    // 15 を超えたらループを終了する
+    if (i > 15) {
+        break;
+    }
+    console.log(i);
+}
+// 出力: 1, 2, 3, …, 15
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習10
+
+<Exercise>
+
+for 文と if 文を組み合わせて、1から20までの整数を順に出力せよ。ただし、3の倍数のときは数ではなく「Fizz」と出力すること。（3の倍数とは3で割った余りが0の数。`i % 3` で余りを計算できる）
+
+<Solution>
+<CodePreview>
+```javascript
+for (let i = 1; i <= 20; i++) {
+    if (i % 3 === 0) {
+        console.log('Fizz');
+    } else {
+        console.log(i);
+    }
+}
+// 出力:
+// 1
+// 2
+// Fizz
+// 4
+// 5
+// Fizz
+// 7
+// 8
+// Fizz
+// 10
+// …（以降も同様に20まで）
+```
+</CodePreview>
+</Solution>
+
+</Exercise>
+
+---
+
+### 演習10-発展
+
+<Exercise>
+
+for 文と if / else if / else を組み合わせて、1から30までの整数を順に出力せよ。ルールは次のとおり。
+
+- 3の倍数のときは「Fizz」
+- そうではなく5の倍数のときは「Buzz」
+- それ以外はその数
+
+（`i % 3` と `i % 5` を使う。3の倍数を先に判定するので、両方の倍数のときは「Fizz」になる）
+
+<Solution>
+<CodePreview>
+```javascript
+for (let i = 1; i <= 30; i++) {
+    if (i % 3 === 0) {
+        console.log('Fizz');
+    } else if (i % 5 === 0) {
+        console.log('Buzz');
+    } else {
+        console.log(i);
+    }
+}
+```
+</CodePreview>
+
+最初の15行の出力は次のようになる。
+
+```
+1
+2
+Fizz
+4
+Buzz
+Fizz
+7
+8
+Fizz
+Buzz
+11
+Fizz
+13
+14
+Fizz
+```
+
+</Solution>
+
+</Exercise>
+
+---
+
+ここまでの内容を一通り振り返りました。次のページから「関数入門」に進みます。

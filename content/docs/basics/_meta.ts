@@ -5,6 +5,7 @@ const meta = {
     'operators-and-conversion': {},
     'conditionals-if-elseif': {},
     'for-loop-break-debug': {},
+    'pre-function-review': {},
     'function-intro': {},
     'function-return': {},
     'object-intro': {},
