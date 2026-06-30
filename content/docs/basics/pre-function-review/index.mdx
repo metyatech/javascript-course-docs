@@ -2,9 +2,7 @@
 title: 関数前 総復習
 ---
 
-これまでに学んだ文法だけで、コンソールで遊べる4桁の「ヒット＆ブロー」を作りましょう。
-演習はすべて同じゲームの続きです。最後まで進めると、10回以内に正解を当てるゲームになります。
-早く完成した人は、発展で遊びやすさと難しさを調整してみましょう。
+これまでに学んだ文法だけで、コンソールで遊べる4桁の「ヒット＆ブロー」を作りましょう。演習はすべて同じゲームの続きです。最後まで進めると、10回以内に正解を当てるゲームになります。
 
 ---
 
@@ -30,9 +28,7 @@ title: 関数前 総復習
 
 <Exercise>
 
-まずは、プレイヤーの予想を受け取れるようにしましょう。正解は今だけ `let secret = '1234';` と固定しておきます。
-
-`prompt` で4文字の入力を受け取り、ちょうど4文字で、すべて `0`〜`9` なら `OK`、そうでなければ `invalid` と出力してください。テストしやすいように、今は正解も表示しておきましょう。
+まずは、プレイヤーの予想を受け取れるようにしましょう。正解は今だけ `let secret = '1234';` と固定しておきます。`prompt` で4文字の入力を受け取り、ちょうど4文字で、すべて `0`〜`9` なら `OK`、そうでなければ `invalid` と出力してください。
 
 <Solution>
 <CodePreview>
@@ -41,20 +37,14 @@ title: 関数前 総復習
     console.log('正解: ' + secret); // 出力: 正解: 1234
     let guess = prompt('4桁の数字を入力してね');
     let valid = guess.length === 4;
-
     for (let i = 0; i < 4; i++) {
         if (guess[i] < '0' || guess[i] > '9') valid = false;
     }
-
-    if (valid === true) {
-        console.log('OK'); // 出力: OK
-    } else {
-        console.log('invalid'); // 出力: invalid
-    }
+    if (valid === true) console.log('OK'); // 出力: OK
+    else console.log('invalid'); // 出力: invalid
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
 ---
@@ -63,9 +53,7 @@ title: 関数前 総復習
 
 <Exercise>
 
-ヒット＆ブローでは、同じ数字を2回使わないことにします。前と同じ変数名・処理を引き続き使い、`guess` の各桁が互いに違うかも確認しましょう。
-
-演習1のコードに、同じ数字が2か所にないかを調べる入れ子の `for` を追加してください。重複があれば `重複` と出力します。
+ヒット＆ブローでは、同じ数字を2回使わないことにします。演習1のコードに、同じ数字が2か所にないかを調べる入れ子の `for` を追加し、`OK`、`invalid`、`重複` のどれかを出力しましょう。
 
 <Solution>
 <CodePreview>
@@ -75,23 +63,18 @@ title: 関数前 総復習
     let guess = prompt('4桁の数字を入力してね');
     let valid = guess.length === 4;
     let duplicate = false;
-
     for (let i = 0; i < 4; i++) {
         if (guess[i] < '0' || guess[i] > '9') valid = false;
         for (let j = i + 1; j < 4; j++) {
             if (guess[i] === guess[j]) duplicate = true;
         }
     }
-
     if (valid === false) console.log('invalid'); // 出力: invalid
     else if (duplicate === true) console.log('重複'); // 出力: 重複
-    else {
-        console.log('OK'); // 出力: OK
-    }
+    else console.log('OK'); // 出力: OK
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
 ---
@@ -100,9 +83,7 @@ title: 関数前 総復習
 
 <Exercise>
 
-さあ、コンピュータに判定させましょう。まずは一番わかりやすい「ヒット」から数えます。
-
-`secret` と `guess` を同じ位置どうしで比べ、数字も場所も合っている個数を `ヒット: N` の形で出力してください。
+次は、予想に対してヒットとブローを数えます。入力が正しく、重複もないときだけ、`guess` の各桁を `secret` の各桁と比べて判定してください。
 
 <Solution>
 <CodePreview>
@@ -112,30 +93,28 @@ title: 関数前 総復習
     let guess = prompt('4桁の数字を入力してね');
     let valid = guess.length === 4;
     let duplicate = false;
-
     for (let i = 0; i < 4; i++) {
         if (guess[i] < '0' || guess[i] > '9') valid = false;
         for (let j = i + 1; j < 4; j++) {
             if (guess[i] === guess[j]) duplicate = true;
         }
     }
-
     if (valid === false) console.log('invalid'); // 出力: invalid
     else if (duplicate === true) console.log('重複'); // 出力: 重複
     else {
         let hit = 0;
+        let blow = 0;
         for (let i = 0; i < 4; i++) {
-            if (secret[i] === guess[i]) hit = hit + 1;
+            for (let j = 0; j < 4; j++) {
+                if (i === j && secret[i] === guess[i]) hit = hit + 1;
+                if (i !== j && secret[j] === guess[i]) blow = blow + 1;
+            }
         }
-        console.log('ヒット: ' + hit);
-        // 出力: ヒット: 2（guess が 1256 のとき）
-        // 出力: ヒット: 0（guess が 4321 のとき）
-        // 出力: ヒット: 4（guess が 1234 のとき）
+        console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow); // 出力: ヒント: ヒット 4、ブロー 0
     }
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
 ---
@@ -144,228 +123,48 @@ title: 関数前 総復習
 
 <Exercise>
 
-ヒットが少ない問題は簡単です。ブローは別の桁を見る必要があるので、`for` を入れ子にしましょう。
-
-`guess` の数字が `secret` のどこかにあるかを全部の組み合わせで見ます。ただし同じ場所ならヒットなので、ブローには入れません。
+最後に、10回まで予想できるゲームにします。演習3までの入力チェックと判定を `for` で10回くり返し、ヒットが4になったら何回目で当たったかを保存して `break` してください。`console.log('正解: ' + secret);` はコメントアウトして、プレイヤーには答えが見えないようにしてください。
 
 <Solution>
 <CodePreview>
 ```javascript
     let secret = '1234';
-    console.log('正解: ' + secret); // 出力: 正解: 1234
-    let guess = prompt('4桁の数字を入力してね');
-    let valid = guess.length === 4;
-    let duplicate = false;
-
-    for (let i = 0; i < 4; i++) {
-        if (guess[i] < '0' || guess[i] > '9') valid = false;
-        for (let j = i + 1; j < 4; j++) {
-            if (guess[i] === guess[j]) duplicate = true;
-        }
-    }
-
-    if (valid === false) console.log('invalid'); // 出力: invalid
-    else if (duplicate === true) console.log('重複'); // 出力: 重複
-    else {
-        let hit = 0;
-        let blow = 0;
-        for (let i = 0; i < 4; i++) {
-            if (secret[i] === guess[i]) hit = hit + 1;
-            for (let j = 0; j < 4; j++) {
-                if (i !== j && guess[i] === secret[j]) blow = blow + 1;
-            }
-        }
-        console.log('ヒット: ' + hit + ', ブロー: ' + blow);
-        // 出力: ヒット: 0, ブロー: 4（guess が 4321 のとき）
-        // 出力: ヒット: 2, ブロー: 0（guess が 1256 のとき）
-        // 出力: ヒット: 0, ブロー: 0（guess が 5678 のとき）
-    }
-```
-</CodePreview>
-</Solution>
-
-</Exercise>
-
----
-
-### 演習5
-
-<Exercise>
-
-数字のままだと味気ないので、ヒットとブローを使ったゲームらしい日本語のヒントにしましょう。
-
-演習4の結果を `ヒント: ヒット N、ブロー M` の形で1行にします。ヒットが4なら、続けて `クリア！` も出力してください。
-
-<Solution>
-<CodePreview>
-```javascript
-    let secret = '1234';
-    console.log('正解: ' + secret); // 出力: 正解: 1234
-    let guess = prompt('4桁の数字を入力してね');
-    let valid = guess.length === 4;
-    let duplicate = false;
-
-    for (let i = 0; i < 4; i++) {
-        if (guess[i] < '0' || guess[i] > '9') valid = false;
-        for (let j = i + 1; j < 4; j++) {
-            if (guess[i] === guess[j]) duplicate = true;
-        }
-    }
-
-    if (valid === false) console.log('invalid'); // 出力: invalid
-    else if (duplicate === true) console.log('重複'); // 出力: 重複
-    else {
-        let hit = 0;
-        let blow = 0;
-        for (let i = 0; i < 4; i++) {
-            if (secret[i] === guess[i]) hit = hit + 1;
-            for (let j = 0; j < 4; j++) {
-                if (i !== j && guess[i] === secret[j]) blow = blow + 1;
-            }
-        }
-        console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow);
-        // 出力: ヒント: ヒット 2、ブロー 0（guess が 1256 のとき）
-        // 出力: ヒント: ヒット 0、ブロー 4（guess が 4321 のとき）
-        // 出力: ヒント: ヒット 4、ブロー 0（guess が 1234 のとき）
-        if (hit === 4) console.log('クリア！'); // 出力: クリア！
-    }
-```
-</CodePreview>
-</Solution>
-
-</Exercise>
-
----
-
-### 演習6
-
-<Exercise>
-
-10回まで挑戦できるようにして、当たったら抜けられるようにしましょう。
-
-演習5までの入力、チェック、ヒット・ブロー計算を `for (let attempt = 1; attempt <= 10; attempt++)` で囲みます。ヒットが4になったら `break` でループを抜け、ループのあとで成功か失敗を出力してください。
-
-<Solution>
-<CodePreview>
-```javascript
-    let secret = '1234';
-    console.log('正解: ' + secret); // 出力: 正解: 1234
-    let hit = 0;
+    // console.log('正解: ' + secret); // プレイヤーには見せない
     let clearAttempt = 0;
-
+    let hit = 0;
     for (let attempt = 1; attempt <= 10; attempt++) {
-        let guess = prompt(attempt + '回目：4桁の数字を入力してね');
+        let guess = prompt('4桁の数字を入力してね');
         let valid = guess.length === 4;
         let duplicate = false;
-
+        hit = 0;
+        let blow = 0;
         for (let i = 0; i < 4; i++) {
             if (guess[i] < '0' || guess[i] > '9') valid = false;
             for (let j = i + 1; j < 4; j++) {
                 if (guess[i] === guess[j]) duplicate = true;
             }
         }
-
         if (valid === false) console.log('invalid'); // 出力: invalid
         else if (duplicate === true) console.log('重複'); // 出力: 重複
         else {
-            hit = 0;
-            let blow = 0;
             for (let i = 0; i < 4; i++) {
-                if (secret[i] === guess[i]) hit = hit + 1;
                 for (let j = 0; j < 4; j++) {
-                    if (i !== j && guess[i] === secret[j]) blow = blow + 1;
+                    if (i === j && secret[i] === guess[i]) hit = hit + 1;
+                    if (i !== j && secret[j] === guess[i]) blow = blow + 1;
                 }
             }
-            console.log(attempt + '回目: ヒント: ヒット ' + hit + '、ブロー ' + blow);
-            if (hit === 4) {
-                clearAttempt = attempt;
-                break;
-            }
+            console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow); // 出力: ヒント: ヒット 4、ブロー 0
+            if (hit === 4) { clearAttempt = attempt; break; }
         }
     }
-
-    if (hit === 4) {
-        console.log('クリア！' + clearAttempt + '回で当てた！');
-    } else {
-        console.log('残念！正解は ' + secret + ' でした');
-    }
-
-    // 成功例（6回目で当たり）
-    // 出力: 1回目: ヒント: ヒット 0、ブロー 0
-    // 出力: 2回目: ヒント: ヒット 1、ブロー 1
-    // 出力: 3回目: ヒント: ヒット 2、ブロー 0
-    // 出力: 4回目: ヒント: ヒット 0、ブロー 4
-    // 出力: 5回目: ヒント: ヒット 3、ブロー 0
-    // 出力: 6回目: ヒント: ヒット 4、ブロー 0
-    // 出力: クリア！6回で当てた！
-    // 失敗例（10回以内に当たらなかった場合）
-    // 出力: 10回目: ヒント: ヒット 1、ブロー 2
-    // 出力: 残念！正解は 1234 でした
+    if (hit === 4) console.log('クリア！' + clearAttempt + '回で当てた！'); // 出力: クリア！1回で当てた！
+    else console.log('残念！正解は ' + secret + ' でした'); // 出力: 残念！正解は 1234 でした
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
----
-
-### 演習7
-
-<Exercise>
-
-もう答えが見えているとゲームになりません。演習6でテスト用に入れていた `console.log(secret)` の行を消すか、`//` を付けてコメントにしましょう。
-
-`secret` の値はコードに残します。消すのは、画面に正解を表示するデバッグ用の行だけです。
-
-<Solution>
-<CodePreview>
-```javascript
-    let secret = '1234';
-    // console.log('正解: ' + secret); // 遊ぶときは隠します。
-    let hit = 0;
-    let clearAttempt = 0;
-
-    for (let attempt = 1; attempt <= 10; attempt++) {
-        let guess = prompt(attempt + '回目：4桁の数字を入力してね');
-        let valid = guess.length === 4;
-        let duplicate = false;
-
-        for (let i = 0; i < 4; i++) {
-            if (guess[i] < '0' || guess[i] > '9') valid = false;
-            for (let j = i + 1; j < 4; j++) {
-                if (guess[i] === guess[j]) duplicate = true;
-            }
-        }
-
-        if (valid === false) console.log('invalid'); // 出力: invalid
-        else if (duplicate === true) console.log('重複'); // 出力: 重複
-        else {
-            hit = 0;
-            let blow = 0;
-            for (let i = 0; i < 4; i++) {
-                if (secret[i] === guess[i]) hit = hit + 1;
-                for (let j = 0; j < 4; j++) {
-                    if (i !== j && guess[i] === secret[j]) blow = blow + 1;
-                }
-            }
-            console.log(attempt + '回目: ヒント: ヒット ' + hit + '、ブロー ' + blow);
-            if (hit === 4) {
-                clearAttempt = attempt;
-                break;
-            }
-        }
-    }
-
-    if (hit === 4) {
-        console.log('クリア！' + clearAttempt + '回で当てた！');
-    } else {
-        console.log('残念！正解は ' + secret + ' でした');
-    }
-```
-</CodePreview>
-</Solution>
-
-</Exercise>
+ここまでのコードで、4桁ヒット＆ブローのゲームが遊べるようになりました。時間に余裕がある人は、続きの発展問題に取り組んでみましょう。
 
 ---
 
@@ -373,60 +172,50 @@ title: 関数前 総復習
 
 <Exercise>
 
-各ターンのヒントと一緒に `あと N 回` を出すと、プレイヤーが作戦を立てやすくなります。残り回数が3回より少なくなったら、続けて `もうすぐです！` と出力してください。
+発展: 任意です。時間に余裕がある人だけ取り組んでみましょう。クリアできなかった回には、残り回数を表示します。残りが3回より少なくなったら、あわせて `もうすぐです！` と出力してください。
 
 <Solution>
 <CodePreview>
 ```javascript
     let secret = '1234';
-    // console.log('正解: ' + secret); // 遊ぶときは隠します。
-    let hit = 0;
+    // console.log('正解: ' + secret); // プレイヤーには見せない
     let clearAttempt = 0;
-
+    let hit = 0;
     for (let attempt = 1; attempt <= 10; attempt++) {
-        let guess = prompt(attempt + '回目：4桁の数字を入力してね');
+        let guess = prompt('4桁の数字を入力してね');
         let valid = guess.length === 4;
         let duplicate = false;
-
+        hit = 0;
+        let blow = 0;
         for (let i = 0; i < 4; i++) {
             if (guess[i] < '0' || guess[i] > '9') valid = false;
             for (let j = i + 1; j < 4; j++) {
                 if (guess[i] === guess[j]) duplicate = true;
             }
         }
-
         if (valid === false) console.log('invalid'); // 出力: invalid
         else if (duplicate === true) console.log('重複'); // 出力: 重複
         else {
-            hit = 0;
-            let blow = 0;
             for (let i = 0; i < 4; i++) {
-                if (secret[i] === guess[i]) hit = hit + 1;
                 for (let j = 0; j < 4; j++) {
-                    if (i !== j && guess[i] === secret[j]) blow = blow + 1;
+                    if (i === j && secret[i] === guess[i]) hit = hit + 1;
+                    if (i !== j && secret[j] === guess[i]) blow = blow + 1;
                 }
             }
-            console.log(attempt + '回目: ヒント: ヒット ' + hit + '、ブロー ' + blow);
-            if (hit === 4) {
-                clearAttempt = attempt;
-                break;
-            } else {
+            console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow); // 出力: ヒント: ヒット 2、ブロー 1
+            if (hit === 4) { clearAttempt = attempt; break; }
+            else {
                 let remaining = 10 - attempt;
-                console.log('あと ' + remaining + ' 回');
-                if (remaining < 3) console.log('もうすぐです！');
+                console.log('あと ' + remaining + ' 回'); // 出力: あと 9 回
+                if (remaining < 3) console.log('もうすぐです！'); // 出力: もうすぐです！
             }
         }
     }
-
-    if (hit === 4) {
-        console.log('クリア！' + clearAttempt + '回で当てた！');
-    } else {
-        console.log('残念！正解は ' + secret + ' でした');
-    }
+    if (hit === 4) console.log('クリア！' + clearAttempt + '回で当てた！'); // 出力: クリア！2回で当てた！
+    else console.log('残念！正解は ' + secret + ' でした'); // 出力: 残念！正解は 1234 でした
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
 ---
@@ -435,65 +224,54 @@ title: 関数前 総復習
 
 <Exercise>
 
-ゲームの最初に難しさを選べるようにしましょう。`3` / `4` / `5` のどれかを入力し、その桁数で最後まで判定します。
-
-数字の `4` と書いていた場所のうち、桁数を表すものを `digitCount` に変えます。入力の文字数チェック、ヒットとブローの `for` の範囲、クリア判定の `hit === 4` を置きかえましょう。
+発展: 任意です。時間に余裕がある人だけ取り組んでみましょう。最初に、3桁、4桁、5桁から難易度を選べるようにし、長さチェック、ループ回数、クリア判定を変えてください。
 
 <Solution>
 <CodePreview>
 ```javascript
-    let digitCount = Number(prompt('難易度を選んでね（3 / 4 / 5）'));
+    let digitCount = Number(prompt('難易度（3 / 4 / 5）'));
     if (digitCount !== 3 && digitCount !== 4 && digitCount !== 5) digitCount = 4;
-    let secret = '123';
-    if (digitCount === 4) secret = '1234';
+    let secret = '1234';
+    if (digitCount === 3) secret = '123';
     else if (digitCount === 5) secret = '12345';
-    let hit = 0;
+    // console.log('正解: ' + secret); // プレイヤーには見せない
     let clearAttempt = 0;
-
+    let hit = 0;
     for (let attempt = 1; attempt <= 10; attempt++) {
-        let guess = prompt(attempt + '回目：' + digitCount + '桁の数字を入力してね');
+        let guess = prompt('数字を入力してね');
         let valid = guess.length === digitCount;
         let duplicate = false;
-
+        hit = 0;
+        let blow = 0;
         for (let i = 0; i < digitCount; i++) {
             if (guess[i] < '0' || guess[i] > '9') valid = false;
             for (let j = i + 1; j < digitCount; j++) {
                 if (guess[i] === guess[j]) duplicate = true;
             }
         }
-
         if (valid === false) console.log('invalid'); // 出力: invalid
         else if (duplicate === true) console.log('重複'); // 出力: 重複
         else {
-            hit = 0;
-            let blow = 0;
             for (let i = 0; i < digitCount; i++) {
-                if (secret[i] === guess[i]) hit = hit + 1;
                 for (let j = 0; j < digitCount; j++) {
-                    if (i !== j && guess[i] === secret[j]) blow = blow + 1;
+                    if (i === j && secret[i] === guess[i]) hit = hit + 1;
+                    if (i !== j && secret[j] === guess[i]) blow = blow + 1;
                 }
             }
-            console.log(attempt + '回目: ヒント: ヒット ' + hit + '、ブロー ' + blow);
-            if (hit === digitCount) {
-                clearAttempt = attempt;
-                break;
-            } else {
+            console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow); // 出力: ヒント: ヒット 3、ブロー 0
+            if (hit === digitCount) { clearAttempt = attempt; break; }
+            else {
                 let remaining = 10 - attempt;
-                console.log('あと ' + remaining + ' 回');
-                if (remaining < 3) console.log('もうすぐです！');
+                console.log('あと ' + remaining + ' 回'); // 出力: あと 8 回
+                if (remaining < 3) console.log('もうすぐです！'); // 出力: もうすぐです！
             }
         }
     }
-
-    if (hit === digitCount) {
-        console.log('クリア！' + clearAttempt + '回で当てた！');
-    } else {
-        console.log('残念！正解は ' + secret + ' でした');
-    }
+    if (hit === digitCount) console.log('クリア！' + clearAttempt + '回で当てた！'); // 出力: クリア！3回で当てた！
+    else console.log('残念！正解は ' + secret + ' でした'); // 出力: 残念！正解は 123 でした
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
 
 ---
@@ -502,71 +280,61 @@ title: 関数前 総復習
 
 <Exercise>
 
-最後に、ゲーム終了時の結果を称号で分類しましょう。3回以内なら `ベテラン`、4〜6回なら `普通`、7回以上でクリアなら `初心者`、当たらなかったら `残念` です。
-
-称号だけで終わると冷たいので、もう一度遊びたくなる短い励ましも添えてください。
+発展: 任意です。時間に余裕がある人だけ取り組んでみましょう。最後に、結果に合わせて称号を表示します。早く当てたとき、ゆっくり当てたとき、当てられなかったときでメッセージを変えてみましょう。
 
 <Solution>
 <CodePreview>
 ```javascript
-    let digitCount = Number(prompt('難易度を選んでね（3 / 4 / 5）'));
+    let digitCount = Number(prompt('難易度（3 / 4 / 5）'));
     if (digitCount !== 3 && digitCount !== 4 && digitCount !== 5) digitCount = 4;
-    let secret = '123';
-    if (digitCount === 4) secret = '1234';
+    let secret = '1234';
+    if (digitCount === 3) secret = '123';
     else if (digitCount === 5) secret = '12345';
-    let hit = 0;
+    // console.log('正解: ' + secret); // プレイヤーには見せない
     let clearAttempt = 0;
-
+    let hit = 0;
     for (let attempt = 1; attempt <= 10; attempt++) {
-        let guess = prompt(attempt + '回目：' + digitCount + '桁の数字を入力してね');
+        let guess = prompt('数字を入力してね');
         let valid = guess.length === digitCount;
         let duplicate = false;
-
+        hit = 0;
+        let blow = 0;
         for (let i = 0; i < digitCount; i++) {
             if (guess[i] < '0' || guess[i] > '9') valid = false;
             for (let j = i + 1; j < digitCount; j++) {
                 if (guess[i] === guess[j]) duplicate = true;
             }
         }
-
         if (valid === false) console.log('invalid'); // 出力: invalid
         else if (duplicate === true) console.log('重複'); // 出力: 重複
         else {
-            hit = 0;
-            let blow = 0;
             for (let i = 0; i < digitCount; i++) {
-                if (secret[i] === guess[i]) hit = hit + 1;
                 for (let j = 0; j < digitCount; j++) {
-                    if (i !== j && guess[i] === secret[j]) blow = blow + 1;
+                    if (i === j && secret[i] === guess[i]) hit = hit + 1;
+                    if (i !== j && secret[j] === guess[i]) blow = blow + 1;
                 }
             }
-            console.log(attempt + '回目: ヒント: ヒット ' + hit + '、ブロー ' + blow);
-            if (hit === digitCount) {
-                clearAttempt = attempt;
-                break;
-            } else {
+            console.log('ヒント: ヒット ' + hit + '、ブロー ' + blow); // 出力: ヒント: ヒット 5、ブロー 0
+            if (hit === digitCount) { clearAttempt = attempt; break; }
+            else {
                 let remaining = 10 - attempt;
-                console.log('あと ' + remaining + ' 回');
-                if (remaining < 3) console.log('もうすぐです！');
+                console.log('あと ' + remaining + ' 回'); // 出力: あと 7 回
+                if (remaining < 3) console.log('もうすぐです！'); // 出力: もうすぐです！
             }
         }
     }
-
     if (hit === digitCount) {
-        console.log('クリア！' + clearAttempt + '回で当てた！');
-        if (clearAttempt <= 3) console.log('称号：ベテラン。読みが鋭い！');
-        else if (clearAttempt <= 6) console.log('称号：普通。いいペースで当てられました！');
-        else console.log('称号：初心者。最後まで考え抜けました！');
+        console.log('クリア！' + clearAttempt + '回で当てた！'); // 出力: クリア！3回で当てた！
+        if (clearAttempt <= 3) console.log('称号：ベテラン。読みが鋭い！'); // 出力: 称号：ベテラン。読みが鋭い！
+        else if (clearAttempt <= 6) console.log('称号：普通。いいペースで当てられました！'); // 出力: 称号：普通。いいペースで当てられました！
+        else console.log('称号：初心者。最後まで考え抜けました！'); // 出力: 称号：初心者。最後まで考え抜けました！
     } else {
-        console.log('残念！正解は ' + secret + ' でした');
-        console.log('称号：残念。次は候補をメモしながら進めよう！');
+        console.log('残念！正解は ' + secret + ' でした'); // 出力: 残念！正解は 12345 でした
+        console.log('称号：残念。次は候補をメモしながら進めよう！'); // 出力: 称号：残念。次は候補をメモしながら進めよう！
     }
 ```
 </CodePreview>
 </Solution>
-
 </Exercise>
-
----
 
 完成！次のページから『関数入門』に進んで、このゲームをもっと整理してみよう。
