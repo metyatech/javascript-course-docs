@@ -192,6 +192,7 @@ function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
     messageText.textContent = 'おつかれさまでした。';
+    messageText.className = '';
 
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = '-';
@@ -237,11 +238,11 @@ showQuestion();
 
 </CodePreview>
 
-### 動かして確認しよう
+### 演習1
 
 <Exercise>
 
-完成形を動かして、次のことを確認してください。
+完成形の動きを観察します。完成形を動かして、次のことを確認してください。
 
 1. 選択肢を押すと、正解・不正解が表示される
 2. 答えた後は、同じ問題で2回目の回答ができない
@@ -313,15 +314,15 @@ showQuestion();
 
 </Action>
 
-### 書き換える場所は？
+### 演習2
 
 <Exercise>
 
-JavaScriptで後から文字を書き換える場所をすべて書き出してください。
+JavaScriptで後から文字を書き換える場所を確認します。書き換える場所をすべて書き出してください。
 
 <Solution>
 
-後から文字を書き換える場所は次の6つです。
+後から文字を書き換える場所は次の7つです。
 
 - `progressText`
 - `questionText`
@@ -530,11 +531,11 @@ const questions = [
 
 </Action>
 
-### このデータは正しい？
+### 演習3
 
 <Exercise>
 
-次のデータは正しく動くでしょうか。
+`answer` と `choices` の対応を確認します。次のデータは正しく動くでしょうか。
 
 ```js
 {
@@ -601,11 +602,11 @@ const choiceButtons = [choice1, choice2, choice3, choice4];
 
 </Action>
 
-### choiceButtons 配列のメリットは？
+### 演習4
 
 <Exercise>
 
-`choiceButtons` 配列を作ると、何が便利になるでしょうか。
+4つのボタンを配列にまとめる理由を確認します。`choiceButtons` 配列を作ると、何が便利になるでしょうか。
 
 <Solution>
 
@@ -729,11 +730,11 @@ function checkAnswer(selectedAnswer) {
 
 </Action>
 
-### このコードの役割は？
+### 演習5
 
 <Exercise>
 
-最初に次のコードがある理由を説明してください。
+同じ問題で2回以上答えられないようにする処理を確認します。最初に次のコードがある理由を説明してください。
 
 ```js
 if (answered === true) {
@@ -816,6 +817,7 @@ function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
     messageText.textContent = 'おつかれさまでした。';
+    messageText.className = '';
 
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = '-';
@@ -851,11 +853,11 @@ nextButton.addEventListener('click', () => {
 
 </Action>
 
-### 最後に結果を表示するのは？
+### 演習6
 
 <Exercise>
 
-3問あるとき、最後の結果を表示するのは `currentIndex` がいくつになったときでしょうか。
+配列の最後まで進んだあとの判定を確認します。3問あるとき、最後の結果を表示するのは `currentIndex` がいくつになったときでしょうか。
 
 <Solution>
 
@@ -881,12 +883,11 @@ nextButton.addEventListener('click', () => {
 
 <Section title="バグ修正チャレンジ" goal="状態管理で起きやすいミスを見つけます。">
 
-次のコードには、よくあるミスが6つ入っています。  
-`id`、配列番号、比較演算子、関数呼び出し、最終結果の観点で探してください。
-
-### バグを探そう
+### 演習7
 
 <Exercise>
+
+状態管理で起きやすいミスを見つけます。次のコードには、よくあるミスが6つ入っています。
 
 ```js
 let currentIndex = 1;
@@ -960,11 +961,11 @@ nextButton.addEventListener('click', () => {
 | 雑学クイズ | 食べ物、地理、動物 |
 | 学校生活クイズ | 先生、教室、行事 |
 
-### 演習1
+### 演習8
 
 <Exercise>
 
-`questions` 配列を、自分のテーマの問題に書き換えてください。  
+自分のテーマの4択クイズに改造します。`questions` 配列を、自分のテーマの問題に書き換えてください。  
 最低3問作ります。
 
 条件は次のとおりです。
@@ -1070,16 +1071,17 @@ restartButton.addEventListener('click', () => {
 
 </Exercise>
 
-<Verify title="完成確認">
+<Checkpoint title="完成確認">
 
 次の条件をすべて満たしていれば完成です。
 
 - 自分のテーマの問題が3問以上ある
 - 各問題に4つの選択肢がある
+- `answer` が `choices` のどれかと一字一句同じになっている
 - 正解と不正解が正しく判定される
 - 途中で未回答のまま次へ進めない
 - 最後に正解数が表示される
 
-</Verify>
+</Checkpoint>
 
 </Section>

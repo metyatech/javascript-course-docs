@@ -177,11 +177,11 @@ button.addEventListener('click', () => {
 
 </CodePreview>
 
-### 動かして確認しよう
+### 演習1
 
 <Exercise>
 
-完成形を動かして、次のことを確認してください。
+完成形の動きを観察します。完成形を動かして、次のことを確認してください。
 
 1. 質問の答えを変えると、結果も変わるか
 2. 同じ答えの組み合わせなら、同じ結果になるか
@@ -226,11 +226,11 @@ JavaScriptで取り出す値は `"active"` です。
 
 </Concept>
 
-### value は何になる？
+### 演習2
 
 <Exercise>
 
-次の選択肢を選んだとき、`q1.value` は何になるでしょうか。
+画面に表示される文字と、JavaScriptで取り出す値の違いを確認します。次の選択肢を選んだとき、`q1.value` は何になるでしょうか。
 
 ```html
 <select id="q1">
@@ -318,11 +318,11 @@ JavaScriptで取り出す値は `"active"` です。
 
 </Action>
 
-### id をすべて書き出そう
+### 演習3
 
 <Exercise>
 
-JavaScriptから取得する必要がある `id` をすべて書き出してください。
+JavaScriptから操作する部品を確認します。JavaScriptから取得する必要がある `id` をすべて書き出してください。
 
 <Solution>
 
@@ -532,11 +532,11 @@ button.addEventListener('click', () => {
 
 </Action>
 
-### score はいくつになる？
+### 演習4
 
 <Exercise>
 
-3つの質問で、次のように選んだ場合、`score` はいくつになりますか。
+`active` の数と `score` の対応を確認します。3つの質問で、次のように選んだ場合、`score` はいくつになりますか。
 
 | q1 | q2 | q3 |
 | --- | --- | --- |
@@ -627,11 +627,11 @@ resultBox.classList.add('active');
 
 <Section title="バグ修正チャレンジ" goal="診断アプリで起きやすいミスを直します。">
 
-次のコードには、よくあるミスが4つ入っています。
-
-### バグを探そう
+### 演習5
 
 <Exercise>
+
+診断アプリで起きやすいミスを見つけます。次のコードには、よくあるミスが4つ入っています。
 
 ```js
 button.addEventListener('click', () => {
@@ -673,26 +673,36 @@ button.addEventListener('click', () => {
 ---
 
 <Section title="改造ミッション" goal="テーマ・質問・結果を変えて、自分だけの診断アプリにします。">
-
 最後は、休日タイプ診断を別のテーマに作り変えます。  
-次の中から1つ選んでください。
+まずは、ここまで作ってきた `relax` / `active` の2種類の値を使う形のまま改造します。
 
 | ミッション | 結果例 |
 | --- | --- |
-| 今日のテンション診断 | 超高テンション / いつも通り / おだやか |
-| 勉強スタイル診断 | 集中型 / バランス型 / コツコツ型 |
-| ゲームプレイ診断 | 攻撃型 / サポート型 / 探索型 |
-| おすすめ昼ごはん診断 | がっつり / ふつう / 軽め |
+| 今日のテンション診断 | おだやか / バランス / アクティブ |
+| 勉強スタイル診断 | コツコツ型 / バランス型 / 集中型 |
+| ゲームプレイ診断 | 探索型 / バランス型 / 攻撃型 |
+| おすすめ昼ごはん診断 | 軽め / ふつう / がっつり |
 
-### 演習1
+### 演習6
 
 <Exercise>
 
-選んだテーマに合わせて、次の表を先に作ってください。
+2種類の選択肢を使う診断アプリに改造します。選んだテーマに合わせて、次の条件を満たす診断を設計してください。
+
+- 質問は3つにする
+- 各質問の選択肢は2つにする
+- 各選択肢の `value` は `relax` または `active` にする
+- `score` は `active` を選んだ数で決める
+- 結果は `score` が 0〜1、2、3 の3段階で分ける
+- 結果ごとのコメントとCSSクラスを決める
+
+まず、次の表を完成させてください。
 
 | 結果 | score の条件 | 表示するコメント | CSSクラス |
 | --- | --- | --- | --- |
-| 例：超高テンション | 5以上 | 今日はアクティブに動けそうです。 | `high-result` |
+| 例：おだやか | 0〜1 | ゆっくり休むのが合いそうです。 | `relax` |
+| 例：バランス | 2 | マイペースに過ごせそうです。 | `balance` |
+| 例：アクティブ | 3 | 今日は元気に動けそうです。 | `active` |
 
 <Solution>
 
@@ -700,31 +710,93 @@ button.addEventListener('click', () => {
 
 | 結果 | score の条件 | 表示するコメント | CSSクラス |
 | --- | --- | --- | --- |
-| 超高テンション | 3（全問 active） | 今日はアクティブに動けそうです。 | `high-result` |
-| いつも通り | 1〜2 | マイペースに過ごせそうです。 | `mid-result` |
-| おだやか | 0 | ゆっくり休むのが合いそうです。 | `low-result` |
+| おだやか | 0〜1 | ゆっくり休むのが合いそうです。 | `relax` |
+| バランス | 2 | 休む時間と動く時間のバランスがよさそうです。 | `balance` |
+| アクティブ | 3 | 今日は元気に動けそうです。 | `active` |
 
-表を先に完成させてからJavaScriptを書くと、`if` の条件をそのまま使えます。
+この設計なら、ここまで作ったJavaScriptの判定条件を大きく変えずに改造できます。
 
 </Solution>
 
 </Exercise>
 
-### 演習2
+### 演習7
 
 <Exercise>
 
-質問を3つ作り、各選択肢の `value` を決めてください。  
-そのあと、HTML、CSS、JavaScriptを書き換えます。
+設計した内容に合わせて、HTML、CSS、JavaScriptを書き換えてください。
+
+変更する場所は次のとおりです。
+
+1. `<h1>` のタイトル
+2. 説明文
+3. 3つの質問文
+4. 各質問の2つの選択肢
+5. 結果タイトル
+6. 結果コメント
+7. 必要に応じたCSSの色
+
+`value` は `relax` と `active` の2種類のままにしてください。
 
 <Solution>
 
-「今日のテンション診断」にする場合は、次のような作り方ができます。
+「今日のテンション診断」にする場合は、たとえば次のように変更できます。
 
 ```html
 <h1>今日のテンション診断</h1>
-<p>3つの質問に答えて、今の気分をチェックしましょう。</p>
+<p>3つの質問に答えて、今のテンションをチェックしましょう。</p>
 ```
+
+```html
+<section class="question">
+    <label for="q1">Q1. 今の気分は？</label>
+    <select id="q1">
+        <option value="relax">落ち着いている</option>
+        <option value="active">元気に動きたい</option>
+    </select>
+</section>
+```
+
+```js
+if (score <= 1) {
+    resultTitle.textContent = 'おだやか';
+    resultComment.textContent = 'ゆっくり休むのが合いそうです。';
+    resultBox.classList.add('relax');
+} else if (score === 2) {
+    resultTitle.textContent = 'バランス';
+    resultComment.textContent = '休む時間と動く時間のバランスがよさそうです。';
+    resultBox.classList.add('balance');
+} else {
+    resultTitle.textContent = 'アクティブ';
+    resultComment.textContent = '今日は元気に動けそうです。';
+    resultBox.classList.add('active');
+}
+```
+
+q2 と q3 も、q1 と同じように質問文と選択肢をテーマに合わせて変更します。
+
+</Solution>
+
+</Exercise>
+
+### 演習-発展1
+
+<Exercise>
+
+余裕がある人は、選択肢を3種類に増やしてみましょう。
+
+3種類にする場合は、次のようにすべての質問で `high` / `mid` / `low` を使います。
+
+- `high` は2点
+- `mid` は1点
+- `low` は0点
+
+この場合、3問の最大点は6点です。  
+そのため、結果の境目も最大点に合わせて見直します。
+
+<Solution>
+
+1つの質問は、たとえば次のように作れます。
 
 ```html
 <section class="question">
@@ -737,69 +809,58 @@ button.addEventListener('click', () => {
 </section>
 ```
 
-```css
-.high-result {
-    background: #ffd6a5;
+JavaScriptでは、q1、q2、q3 のすべてで同じように点数を足します。
+
+```js
+let score = 0;
+
+if (q1.value === 'high') {
+    score += 2;
+} else if (q1.value === 'mid') {
+    score += 1;
 }
 
-.mid-result {
-    background: #caffbf;
+if (q2.value === 'high') {
+    score += 2;
+} else if (q2.value === 'mid') {
+    score += 1;
 }
 
-.low-result {
-    background: #bdb2ff;
+if (q3.value === 'high') {
+    score += 2;
+} else if (q3.value === 'mid') {
+    score += 1;
 }
 ```
 
+結果の分け方は、たとえば次のようにできます。
+
 ```js
-button.addEventListener('click', () => {
-    let score = 0;
-
-    if (q1.value === 'high') {
-        score += 2;
-    } else if (q1.value === 'mid') {
-        score += 1;
-    }
-
-    if (q2.value === 'high') {
-        score += 2;
-    } else if (q2.value === 'mid') {
-        score += 1;
-    }
-
-    if (q3.value === 'high') {
-        score += 2;
-    } else if (q3.value === 'mid') {
-        score += 1;
-    }
-
-    resultBox.className = 'result-box';
-
-    if (score >= 5) {
-        resultTitle.textContent = '超高テンション';
-        resultComment.textContent = '今日はアクティブに動けそうです。';
-        resultBox.classList.add('high-result');
-    } else if (score >= 3) {
-        resultTitle.textContent = 'いつも通り';
-        resultComment.textContent = 'マイペースに過ごせそうです。';
-        resultBox.classList.add('mid-result');
-    } else {
-        resultTitle.textContent = 'おだやか';
-        resultComment.textContent = 'ゆっくり休むのが合いそうです。';
-        resultBox.classList.add('low-result');
-    }
-});
+if (score >= 5) {
+    resultTitle.textContent = '超高テンション';
+    resultComment.textContent = '今日はアクティブに動けそうです。';
+    resultBox.classList.add('active');
+} else if (score >= 3) {
+    resultTitle.textContent = 'いつも通り';
+    resultComment.textContent = 'マイペースに過ごせそうです。';
+    resultBox.classList.add('balance');
+} else {
+    resultTitle.textContent = 'おだやか';
+    resultComment.textContent = 'ゆっくり休むのが合いそうです。';
+    resultBox.classList.add('relax');
+}
 ```
 
 </Solution>
 
 </Exercise>
 
-### 演習-発展1
+### 演習-発展2
 
 <Exercise>
 
-余裕がある人は、質問を4問以上に増やしてみましょう。`score` の条件（結果の境目）も合わせて見直します。
+さらに余裕がある人は、質問を4問以上に増やしてみましょう。  
+質問を増やしたら、JavaScriptで取得する要素と、`score` の条件も合わせて見直します。
 
 <Solution>
 
@@ -819,7 +880,7 @@ button.addEventListener('click', () => {
 const q4 = document.querySelector('#q4');
 ```
 
-クリックイベントの中に判定を追加します。
+クリックイベントの中に、q4 の判定を追加します。
 
 ```js
 if (q4.value === 'active') {
@@ -827,38 +888,23 @@ if (q4.value === 'active') {
 }
 ```
 
-`score` の最大が 4 になるため、結果の境界を見直します。
-
-| active の数 | 結果 |
-| --- | --- |
-| 0〜1個 | のんびりタイプ |
-| 2〜3個 | バランスタイプ |
-| 4個 | アクティブタイプ |
-
-```js
-if (score <= 1) {
-    // のんびりタイプ
-} else if (score <= 3) {
-    // バランスタイプ
-} else {
-    // アクティブタイプ
-}
-```
+4問に増やした場合は、最大点が4点になります。  
+そのため、結果の境目も4問用に見直します。
 
 </Solution>
 
 </Exercise>
 
-<Verify title="完成確認">
+<Checkpoint title="完成確認">
 
 次の条件をすべて満たしていれば完成です。
 
-- 質問が3つある
-- 選択肢を変えると結果が変わる
-- 結果が3種類ある
-- 結果ごとに背景色が変わる
-- テーマが最初から最後まで統一されている
+- 自分のテーマの診断になっている
+- 質問が3つ以上ある
+- 各質問の選択肢と `value` が対応している
+- 選んだ答えによって結果が変わる
+- 結果タイトル、コメント、背景色がテーマに合っている
 
-</Verify>
+</Checkpoint>
 
 </Section>
