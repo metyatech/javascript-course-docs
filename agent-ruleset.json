@@ -1,11 +1,5 @@
 {
-    "source": "github:metyatech/agent-rules",
-    "domains": [],
-    "extra": [
-        "agent-rules-private/rules/course-teaching-purpose.md",
-        "agent-rules-private/rules/course-site-metadata.md",
-        "agent-rules-private/rules/course-site-content-authoring.md",
-        "agent-rules-private/rules/course-site-repository-architecture.md"
-    ],
+    "sources": ["github:metyatech/agent-rules"],
+    "profile": "course-docs",
     "output": "AGENTS.md"
 }
