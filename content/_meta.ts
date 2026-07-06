@@ -9,7 +9,6 @@ const meta = {
         display: 'hidden',
     },
     docs: '学習',
-    exams: '試験',
 };
 
 export default meta;
