@@ -1,13 +1,9 @@
 name: Temporary quiz docs fix
-
 on:
     push:
-        paths:
-            - '.github/workflows/fix-quiz-docs-temp.yml'
-
+        paths: ['.github/workflows/fix-quiz-docs-temp.yml']
 permissions:
     contents: write
-
 jobs:
     fix:
         runs-on: ubuntu-latest
@@ -15,10 +11,9 @@ jobs:
             - uses: actions/checkout@v6
               with:
                   fetch-depth: 0
-
-            - name: Update explanations
-              shell: python
+            - name: Patch and commit
+              shell: bash
               run: |
+                  python - <<'PY'
                   from pathlib import Path
-
-                  path = Path
+                  p = Path
