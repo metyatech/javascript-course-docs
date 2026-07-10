@@ -1,19 +1,9 @@
-name: Temporary quiz docs fix
-on:
-    push:
-        paths: ['.github/workflows/fix-quiz-docs-temp.yml']
-permissions:
-    contents: write
+name: fix
+on: push
+permissions: {contents: write}
 jobs:
-    fix:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v6
-              with:
-                  fetch-depth: 0
-            - name: Patch and commit
-              shell: bash
-              run: |
-                  python - <<'PY'
-                  from pathlib import Path
-                  p = Path
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - run: python .github/fix.py && rm .github/fix.py .github/workflows/fix-quiz-docs-temp.yml && git config user.name bot && git config user.email bot@example.com && git add -A && git commit -m 'docs: explain disabled pseudo-class' && git push
