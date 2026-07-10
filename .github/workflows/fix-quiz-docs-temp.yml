@@ -1,0 +1,20 @@
+name: Temporary quiz docs fix
+
+on:
+    push:
+        paths:
+            - '.github/workflows/fix-quiz-docs-temp.yml'
+
+permissions:
+    contents: write
+
+jobs:
+    fix:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                  fetch-depth: 0
+            - name: Update explanations
+              shell: python
+              run
