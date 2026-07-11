@@ -1,9 +1,0 @@
-name: fix
-on: push
-permissions: {contents: write}
-jobs:
-  fix:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - run: python .github/fix.py && python .github/fix2.py && rm .github/fix.py .github/fix2.py .github/workflows/fix-quiz-docs-temp.yml && git config user.name bot && git config user.email bot@example.com && git add -A && git commit -m 'docs: clarify disabled and display explanations' && git push
