@@ -318,6 +318,9 @@ HTMLでは、JavaScriptから取得する要素に `id` を付けます。
 CSSでは、4つの選択肢ボタンを `display: block` で縦に並べます。  
 「もう一度」ボタンは、最初は `display: none` で非表示にします。
 
+`button:disabled` は、`disabled = true` で押せない状態になったボタンだけを指定する疑似クラスです。  
+このアプリでは、回答後のボタンを少し薄く表示するために使います。
+
 <Action title="HTMLを書く">
 
 `index.html` の `<body>` の中に、次のHTMLを書きます。
@@ -717,7 +720,7 @@ function showQuestion() {
 }
 ```
 
-`display` に `'block'` を入れると表示され、`'none'` を入れると非表示になります。
+`display` に `'none'` を入れると非表示になります。このアプリでは、選択肢エリアと操作ボタンをブロック表示にしているため、再表示するときは `'block'` を入れます。
 
 </Action>
 
