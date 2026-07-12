@@ -1,0 +1,58 @@
+name: Remove quiz WAI-ARIA annotations
+
+on:
+  push:
+    branches:
+      - chore/remove-quiz-wai-aria
+    paths:
+      - .github/workflows/remove-quiz-wai-aria.yml
+
+permissions:
+  contents: write
+
+jobs:
+  edit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: chore/remove-quiz-wai-aria
+
+      - name: Remove WAI-ARIA-specific markup and explanation
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path('content/docs/apps/quiz-app-4choice/index.mdx')
+          text = path.read_text(encoding='utf-8')
+
+          aria = ' aria-live="polite"'
+          explanation = '結果を表示する `messageText` には `aria-live="polite"` を付けます。これは、画面読み上げソフトを使っている人にも、正解・不正解の変化が伝わるようにする指定です。'
+
+          assert text.count(aria) == 2, f'expected 2 aria-live attributes, found {text.count(aria)}'
+          assert text.count(explanation) == 1, f'expected 1 explanation, found {text.count(explanation)}'
+
+          text = text.replace(aria, '')
+          text = text.replace(explanation + '\n\n', '', 1)
+
+          assert 'aria-' not in text
+          assert '読み上げソフト' not in text
+          assert 'role=' not in text
+
+          path.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Verify the targeted diff
+        run: |
+          git diff --check
+          test "$(git diff --numstat -- content/docs/apps/quiz-app-4choice/index.mdx | awk '{print $1}')" = "0"
+          test "$(git diff --numstat -- content/docs/apps/quiz-app-4choice/index.mdx | awk '{print $2}')" = "3"
+          ! grep -nE 'aria-|role=|読み上げソフト' content/docs/apps/quiz-app-4choice/index.mdx
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add content/docs/apps/quiz-app-4choice/index.mdx
+          git commit -m "docs: remove quiz WAI-ARIA annotations"
+          git push origin HEAD:chore/remove-quiz-wai-aria
