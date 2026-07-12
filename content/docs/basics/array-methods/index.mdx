@@ -2,6 +2,18 @@
 title: 配列のメソッド
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 配列のメソッド（push / pop）
 
 ### 今日の学習はこんなところで使うよ
@@ -82,7 +94,11 @@ let fruits = ['りんご', 'みかん'];
 - 出力（取り出した値）: "ぶどう"
 - 出力（配列）: ["りんご", "みかん", "バナナ"]
 
-<Solution>
+<Hint>
+「配列のメソッド / 演習1（push / pop 基本）」では、問題文の「次の配列 fruits を使い、下の手順を上から順に正確に実行し、各手順で指示された通り…」を満たすために、配列へ追加する値と追加後の確認を先に分けて考えましょう。特に `fruits`、`console.log(fruits);`、`console.log("取り出されたもの: " + 値);`、`console.log("残りの配列: " + fruits);` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let fruits = ['りんご', 'みかん'];
@@ -96,7 +112,7 @@ console.log('取り出されたもの: ' + removed); // 出力: "ぶどう"
 console.log('残りの配列: ' + fruits); // 出力: ["りんご","みかん","バナナ"]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ## 配列のメソッド（unshift / shift）
@@ -167,7 +183,11 @@ let colors = ['青', '緑'];
 - 出力（取り出した値）: "赤"
 - 出力（配列）: ["黄", "青", "緑"]
 
-<Solution>
+<Hint>
+「配列のメソッド / 演習2（unshift / shift 基本）」では、問題文の「次の配列 colors を使い、下の手順を上から順に実行し各手順で指示された通りに出力し…」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `colors`、`console.log("取り出されたもの: " + 値);`、`removed`、`.unshift` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let colors = ['青', '緑'];
@@ -181,7 +201,7 @@ console.log('取り出されたもの: ' + removed); // 出力: "赤"
 console.log('残りの配列: ' + colors); // 出力: ["黄","青","緑"]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -224,7 +244,11 @@ let array = [1, 2, 3];
 [2, 3, 4]
 ```
 
-<Solution>
+<Hint>
+「配列のメソッド / 演習3（各要素に1を足す）」では、問題文の「次の開始配列の各要素に 1 を足した配列を作り、出力せよ」を満たすために、配列の各要素を別の値へ変換する処理を先に分けて考えましょう。特に `array`、`result`、`.map`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let array = [1, 2, 3];
@@ -234,7 +258,7 @@ let result = array.map(function (v) {
 console.log(result); // 出力: [2,3,4]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習4（変換）
@@ -254,7 +278,11 @@ let array = [3, 7, 10];
 ["No.3", "No.7", "No.10"]
 ```
 
-<Solution>
+<Hint>
+「配列のメソッド / 演習4（変換）」では、問題文の「次の開始配列を、文字列 "No.値" の配列へ変換して出力せよ」を満たすために、配列の各要素を別の値へ変換する処理を先に分けて考えましょう。特に `array`、`result`、`.map`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let array = [3, 7, 10];
@@ -264,7 +292,7 @@ let result = array.map(function (v) {
 console.log(result); // 出力: ["No.3", "No.7", "No.10"]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -315,7 +343,11 @@ let array2 = ['F', 'G', 'H'];
 ヒント: splice, concat を使うよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習1（配列から要素を取り出して結合）」では、問題文の「次の配列を使い、array1 から "B" と "C" を取り出して array2 の末…」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `array1`、`array2`、`removed`、`.splice` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let array1 = ['A', 'B', 'C', 'D', 'E'];
@@ -328,7 +360,7 @@ console.log(array1); // 出力: ["A","D","E"]
 console.log(array2); // 出力: ["F","G","H","B","C"]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 発展演習2（join で文字列にする）
@@ -352,14 +384,18 @@ let arrayA = ['A', 'B', 'C', 'D', 'E'];
 ヒント: join を使うよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習2（join で文字列にする）」では、問題文の「次の配列を使って、要素を半角スペース区切りでつなげた文字列を1行で出力せよ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `console.log(arrayA.join(" "));`、`arrayA`、`.log`、`.join` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let arrayA = ['A', 'B', 'C', 'D', 'E'];
 console.log(arrayA.join(' ')); // 出力: "A B C D E"
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 発展演習3（数値を昇順にソート）
@@ -383,7 +419,11 @@ let arrayB = [23, 3, 2, 10, 1, 30];
 ヒント: sort に比較関数（a, b の差を返す関数）を渡すよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習3（数値を昇順にソート）」では、問題文の「次の配列を数値の昇順にソートして console.log(arrayB); で出力しなさ…」を満たすために、並べ替えで比較する値を先に分けて考えましょう。特に `console.log(arrayB);`、`sort`、`arrayB`、`.sort` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let arrayB = [23, 3, 2, 10, 1, 30];
@@ -393,7 +433,7 @@ arrayB.sort(function (a, b) {
 console.log(arrayB); // 出力: [1,2,3,10,23,30]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 発展演習4（条件位置以降を fill で埋める）
@@ -417,7 +457,11 @@ let arrayC = [1, 12, 25, 7, 32, 10, 5, 430];
 ヒント: indexOf と fill を使うよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習4（条件位置以降を fill で埋める）」では、問題文の「次の配列から値 25 の位置を見つけ、その位置より後ろ（25 自身は含めない）をすべて …」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `console.log(arrayC);`、`arrayC`、`pos`、`.indexOf` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let arrayC = [1, 12, 25, 7, 32, 10, 5, 430];
@@ -426,7 +470,7 @@ arrayC.fill(0, pos + 1);
 console.log(arrayC); // 出力: [1,12,25,0,0,0,0,0]
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 発展演習5（ソートとフィルター）
@@ -466,7 +510,11 @@ let items = [
 ヒント: filter と reduce を使うよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習5（ソートとフィルター）」では、問題文の「1. 次の items を価格 price の昇順でソートし、ソート結果を次のように 1…」を満たすために、残したい配列要素の条件を先に分けて考えましょう。特に `items`、`drinks`、`sum`、`avg` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let items = [
@@ -496,7 +544,7 @@ let avg = sum / drinks.length;
 console.log('飲料の平均価格: ' + avg);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 発展演習6（検索）
@@ -516,7 +564,11 @@ console.log('飲料の平均価格: ' + avg);
 ヒント: findIndex を使うよ
 :::
 
-<Solution>
+<Hint>
+「配列のメソッド / 発展演習6（検索）」では、問題文の「1. 発展演習5の items に対して、価格が 100 以上 の最初の 飲料 を検索し…」を満たすために、`return` で関数の外へ返す値を先に分けて考えましょう。特に `items`、`idx`、`found`、`.findIndex` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let items = [
@@ -535,5 +587,5 @@ console.log('名前: ' + found.name);
 console.log('価格: ' + found.price);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>

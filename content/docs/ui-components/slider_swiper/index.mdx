@@ -2,6 +2,18 @@
 title: スライダー (Swiper.js)
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 今日の学習はこんなところで使うよ
 
 今日は、スライダーやカルーセルを実装してみましょう。
@@ -201,7 +213,11 @@ let swiper = new Swiper('.swiper', {});
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「スライダー (Swiper.js) / 演習1（基本のスライダー：3枚を横にスワイプ）」では、問題文の「3枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview
   sourceId="演習1_基本"
   htmlVisible={true}
@@ -209,7 +225,7 @@ let swiper = new Swiper('.swiper', {});
   jsVisible={true}
   previewVisible={true}
 />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -274,7 +290,11 @@ let swiper = new Swiper('.swiper', {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「スライダー (Swiper.js) / 演習2（矢印とページネーションを付ける）」では、問題文の「4枚のスライドを横にスワイプできる、次のプレビューのようなスライダーを作成して下さい」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview
   sourceId="演習2_ナビページネーション"
   htmlVisible={true}
@@ -282,7 +302,7 @@ let swiper = new Swiper('.swiper', {
   jsVisible={true}
   previewVisible={true}
 />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -353,7 +373,11 @@ let swiper = new Swiper('.swiper', {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「スライダー (Swiper.js) / 演習2-発展1（自動再生とループ機能）」では、問題文の「5枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `loop: true`、`autoplay: { delay: 3000 }` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview
   sourceId="演習2発展1_自動再生ループ"
   htmlVisible={true}
@@ -367,7 +391,7 @@ let swiper = new Swiper('.swiper', {
 - `loop: true` で最後のスライドの次に最初のスライドに戻ります（ループ再生）。
 - `autoplay: { delay: 3000 }` で3秒（3000ミリ秒）ごとに自動でスライドが切り替わります。
 - これらのオプションを組み合わせることで、ニュースティッカーのような自動循環スライダーが作れます。
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -437,7 +461,11 @@ let swiper = new Swiper('.swiper', {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「スライダー (Swiper.js) / 演習2-発展2（複数枚同時表示）」では、問題文の「6枚のスライドを持つ、次のプレビューのようなスライダーを作成して下さい」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `slidesPerView: 3`、`spaceBetween: 20` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview
   sourceId="演習2発展2_複数枚表示"
   htmlVisible={true}
@@ -451,5 +479,5 @@ let swiper = new Swiper('.swiper', {
 - `slidesPerView: 3` で一度に3枚のスライドを表示します。
 - `spaceBetween: 20` でスライド間のスペースを20pxに設定します。
 - このように複数枚を同時に表示することで、ギャラリーや商品一覧のようなレイアウトが作れます。
-</Solution>
+</Answer>
 </Exercise>

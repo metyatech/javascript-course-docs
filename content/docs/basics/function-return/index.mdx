@@ -2,6 +2,18 @@
 title: 関数（戻り値）
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 # 関数（戻り値）
 
 ## 戻り値とは？
@@ -86,7 +98,11 @@ console.log(add1(99)); // 出力: 100
 25
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習1（2 乗を返す関数）」では、問題文の「整数 n を受け取り、その 2 乗（n × n）を戻り値として返す関数 square(n…」を満たすために、`return` で関数の外へ返す値を先に分けて考えましょう。特に `square(n)`、`square(4)`、`square(5)`、`square` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function square(n) {
@@ -97,7 +113,7 @@ console.log(square(4)); // 出力: 16
 console.log(square(5)); // 出力: 25
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -112,7 +128,11 @@ console.log(square(5)); // 出力: 25
 55
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習1-発展（合計を返す）」では、問題文の「1 から n までの和を計算し、その値を戻り値として返す関数 sum(n) を作り、su…」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `sum(n)`、`sum(10)`、`sum`、`goukei` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function sum(n) {
@@ -125,7 +145,7 @@ function sum(n) {
 console.log(sum(10)); // 出力: 55
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -195,7 +215,11 @@ console.log(userName); // 出力: (ユーザーが入力した文字列)
 4
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習2（最小値）」では、問題文の「2 つの数のうち小さい方を戻り値とする関数 min(a, b) を作れ」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `min(a, b)`、`min(5, 9)`、`min(8, 4)`、`min` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function min(kazu1, kazu2) {
@@ -209,7 +233,7 @@ console.log(min(5, 9)); // 出力: 5
 console.log(min(8, 4)); // 出力: 4
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -225,7 +249,11 @@ console.log(min(8, 4)); // 出力: 4
 奇数
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習2-発展1（偶奇判定の文字列）」では、問題文の「整数 n を受け取り、偶数なら "偶数"、奇数なら "奇数" という文字列を戻り値として…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `parity(n)`、`parity(10)`、`parity(7)`、`parity` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function parity(n) {
@@ -238,7 +266,7 @@ console.log(parity(10)); // 出力: 偶数
 console.log(parity(7)); // 出力: 奇数
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -253,7 +281,11 @@ console.log(parity(7)); // 出力: 奇数
 8
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習2-発展2（最大値）」では、問題文の「3 つの整数 a, b, c の最大値を戻り値として返す関数 max3(a, b, c)…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `max3(a, b, c)`、`max3(3, 8, 5)`、`max3`、`saidaichi` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function max3(kazu1, kazu2, kazu3) {
@@ -269,7 +301,7 @@ function max3(kazu1, kazu2, kazu3) {
 console.log(max3(3, 8, 5)); // 出力: 8
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -294,7 +326,11 @@ FizzBuzz
 16
 ```
 
-<Solution>
+<Hint>
+「関数（戻り値） / 演習2-発展3（FizzBuzz の 1 行判定）」では、問題文の「整数 n を受け取り、次のルールに従って 1 つの文字列を戻り値として返す関数 fizz…」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `fizzbuzz(n)`、`1, 3, 5, 15, 16`、`fizzbuzz`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function fizzbuzz(n) {
@@ -315,7 +351,7 @@ console.log(fizzbuzz(15)); // 出力: FizzBuzz
 console.log(fizzbuzz(16)); // 出力: 16
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 

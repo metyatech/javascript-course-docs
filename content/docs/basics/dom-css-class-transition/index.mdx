@@ -3,6 +3,18 @@ title: クラス切り替えでCSSアニメーション
 sidebar_position: 999
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 今日の学習はこんなところで使うよ
 
 この章では、**要素に付けるクラス名をJavaScriptで切り替えて見た目を変える方法**と、
@@ -114,9 +126,15 @@ boxYoso.addEventListener('click', function () {
     boxYoso.classList.toggle('active');
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習1（transitionなしでクラス切り替え）」では、問題文の「次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `active` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -211,9 +229,15 @@ boxYoso.addEventListener('click', function () {
     boxYoso.classList.toggle('active');
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習2（滑らかになるようにアニメーション化）」では、問題文の「演習1と同じように動作するが、次のプレビューのように、さらにサイズや色の変化が滑らかに見…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `active` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習2" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -327,9 +351,15 @@ cardYoso.addEventListener('mouseleave', function () {
     statusYoso.innerText = '通常';
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習3（hoverで影をつける）」では、問題文の「次のように動作するよう、CSSとJavaScriptを書け（幅や色は自由で良い）」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習3" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -434,9 +464,15 @@ btnYoso.addEventListener('click', function () {
     }
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習4（ON/OFF表示をclassList.containsで切り替える）」では、問題文の「次のプレビューのように動作するよう、HTML/CSS/JavaScriptを書け（幅や色…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `classList.contains` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習4" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -506,7 +542,13 @@ btnYoso.addEventListener('click', function () {
     }
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習-発展1（お気に入りボタン）」では、問題文の「次のプレビューのように動作する、お気に入りボタンを作成せよ」を満たすために、付け外しするクラス名と、切り替えるタイミングを先に分けて考えましょう。特に `active`、`transition: color 0.3s;`、`classList.contains`、`.contains` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展1" />
 
 **解説**:
@@ -515,7 +557,7 @@ btnYoso.addEventListener('click', function () {
 - `active` クラスが付いたときに色が灰色からピンク色に変わります
 - `transition: color 0.3s;` で色の変化が滑らかにアニメーションします
 - `classList.contains` を使って状態を確認し、テキストを切り替えています
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -604,14 +646,20 @@ closeBtnYoso.addEventListener('click', function () {
     showBtnYoso.classList.remove('disabled');
 });
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習-発展2（通知バナー）」では、問題文の「次のプレビューのように動作する、通知バナーを作成せよ」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `display: none;`、`show`、`display: block;`、`disabled` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展2" />
 
 **解説**:
 
 - 最初は `display: none;` で非表示にし、`show` クラスが付くと `display: block;` で表示されます
 - ボタンに `disabled` クラスを付けることで見た目を変え、視覚的に無効状態を表現しています
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -713,14 +761,20 @@ for (let cardYoso of cardYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習-発展3（まずは単純なカード選択）」では、問題文の「最初は、 単一の for...of だけ を使ったシンプルな例に挑戦します」を満たすために、取得するHTML要素と、書き換える表示内容を先に分けて考えましょう。特に `selected`、`querySelectorAll(".card")`、`for...of`、`.card` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展3" />
 
 **解説**:
 
 - `querySelectorAll(".card")` で3つのカードをまとめて取得しています
 - `for...of` の中では「1枚のカード」に対する処理だけを書き、toggle で選択の ON/OFF をしています
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -798,14 +852,20 @@ for (let cardYoso of cardYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習-発展4（単一 for-of でカード選択＋カウント）」では、問題文の「次に、 単一の for...of の中で完結する 少しだけ発展したパターンを練習します」を満たすために、配列から1つずつ取り出す変数と出力順を先に分けて考えましょう。特に `selected`、`for...of`、`.of` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展4" />
 
 **解説**:
 
 - `for...of` の外でカードのまとまりとカウント表示を取得しています
 - クリックされたときに、再び `for...of` を使って「今選択されているカードの数」を数えています
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -905,7 +965,13 @@ for (let questionYoso of questionYosos) {
     });
 }
 ```
-</CodePreview><Solution>
+</CodePreview>
+
+<Hint>
+「クラス切り替えでCSSアニメーション / 演習-発展5（アコーディオン）」では、問題文の「次のプレビューのように動作する、アコーディオンUIを作成せよ」を満たすために、取得するHTML要素と、書き換える表示内容を先に分けて考えましょう。特に `display: none;`、`display: block;`、`querySelectorAll(".question")`、`querySelectorAll(".answer")` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展5" />
 
 **解説**:
@@ -913,7 +979,7 @@ for (let questionYoso of questionYosos) {
 - `display: none;` と `display: block;` で回答の表示・非表示を制御しています
 - `querySelectorAll(".question")` と `querySelectorAll(".answer")` で、それぞれ質問と回答をまとめて取得し、同じ順番の組み合わせとして対応付けています
 - クリックされた質問と同じインデックス番号の回答要素を探すために、ふつうの `for` 文を使っています
-</Solution>
+</Answer>
 </Exercise>
 
 ---

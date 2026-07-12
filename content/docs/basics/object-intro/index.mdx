@@ -2,6 +2,18 @@
 title: オブジェクト入門
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 # オブジェクト
 
 ## オブジェクトとは？
@@ -145,7 +157,11 @@ console.log(console);
 （例えば、名前と、年齢など。値は嘘でも良い）
 2. その後、オブジェクトのプロパティの値にアクセスして、出力せよ。（すべてのプロパティの値を出力すること）
 
-<Solution>
+<Hint>
+「オブジェクト入門 / 演習1」では、問題文の「1. 自分の情報をまとめたオブジェクトを作れ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `{ ... }`、`name`、`age`、`オブジェクト.キー` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 この課題では、オブジェクトを自分で作り、プロパティの値を取り出して出力します。
 
 - まず `{ ... }` でオブジェクトを作り、`name` には文字列、`age` には数値を入れます。
@@ -162,7 +178,7 @@ console.log(me.name);
 console.log(me.age);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -184,7 +200,11 @@ let example = {
 console.log(☆☆☆);
 ```
 
-<Solution>
+<Hint>
+「オブジェクト入門 / 演習1-発展1」では、問題文の「次のexampleオブジェクトの中の奥深くにあるstrプロパティの値にアクセスするプログ…」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `example`、`obj`、`example.obj`、`str` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 ポイントは「入れ子になったオブジェクトから、ドットを使って深く辿る」ことです。
 
 1. いちばん外側は `example`。
@@ -204,7 +224,7 @@ let example = {
 console.log(example.obj.str);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -232,7 +252,11 @@ let dog = {
 };
 ```
 
-<Solution>
+<Hint>
+「オブジェクト入門 / 演習1-発展2」では、問題文の「1. 次のdogオブジェクトのメソッドgreetを呼び出せ」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `${dog.name}です。`、`greet`、`dog.name`、`bark(numberOfBarks)` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 この課題では、オブジェクトの「メソッド」を呼び出します（プロパティの値が関数のもの）。
 
 - `greet` は引数なしの関数で、`dog.name` を使って挨拶文を出力します。
@@ -258,5 +282,5 @@ dog.greet();
 dog.bark(3);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>

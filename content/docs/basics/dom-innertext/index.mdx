@@ -2,6 +2,18 @@
 title: innerText
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 今日の学習はこんなところで使うよ
 
 この章で学ぶ innerText は、ウェブページの文字を JavaScript で書き換える機能です。
@@ -77,9 +89,13 @@ document.querySelector('.info').innerText = '最新情報';
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「innerText / 演習1」では、問題文の「body内が 次のようになっているHTMLファイルに対し、 下の薄灰色にハイライトされて…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -146,7 +162,11 @@ document.querySelector('#container p:last-child').innerText = 'ラスト段落';
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「innerText / 演習1 - 発展」では、問題文の「body内が 次のようになっているHTMLファイルに対し、 下の薄灰色にハイライトされて…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1-発展"/>
-</Solution>
+</Answer>
 </Exercise>

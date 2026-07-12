@@ -3,6 +3,18 @@ title: ドロワーメニュー
 sidebar_position: 999
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## ドロワーメニューとは
 
 ドロワーメニューは、画面の端から引き出すように表示されるメニューです。スマートフォンサイトでよく使われる UI パターンで、ハンバーガーアイコンと組み合わせて実装されることが多いです。
@@ -73,9 +85,13 @@ header {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習1（ヘッダーとハンバーガーアイコンの作成）」では、問題文の「まずは、ヘッダーとハンバーガーアイコンの見た目を作りましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習2（メニューコンテンツの作成）
@@ -165,10 +181,14 @@ header {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習2（メニューコンテンツの作成）」では、問題文の「続いて、ドロワーメニューのメニューコンテンツを作りましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習2"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習3（開閉機能の作成）
@@ -281,10 +301,14 @@ hamBtnYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習3（開閉機能の作成）」では、問題文の「ついに、JavaScript で開閉機能を作りましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習3"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習4（アニメーション化）
@@ -395,10 +419,14 @@ hamBtnYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習4（アニメーション化）」では、問題文の「あとは適切にアニメーションするように調整しましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習4"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展1（オーバーレイ）
@@ -540,10 +568,14 @@ overlayYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習-発展1（オーバーレイ）」では、問題文の「以下のプレビューのように、メニューが開いているときは、ページの内容の上にグレーの半透明の…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展1"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展2（ハンバーガーから×アイコンにアニメーション）
@@ -703,10 +735,14 @@ overlayYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習-発展2（ハンバーガーから×アイコンにアニメーション）」では、問題文の「以下のプレビューのように、メニューを開いたときに、ハンバーガーアイコンが×アイコンに変化…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展2"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展3（ハンバーガーアイコンの長さ調整）
@@ -859,7 +895,11 @@ overlayYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習-発展3（ハンバーガーアイコンの長さ調整）」では、問題文の「先ほどの演習 発展2では、実は×が綺麗な正方形になっていません」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `.png` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 答えは、線の横幅が少し短く、足りないからです。（あるいは別の表現で、線の高さが高すぎる、間隔が広すぎる、などとも言えます）  
 この解答では、ぴったり正方形になるように、もう少し線の width を長くしてあげることにします。
 
@@ -884,7 +924,7 @@ CSS上で24√2 px は、calc(24px \* sqrt(2)) で表すことができます。
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 
 <CodePreview sourceId="演習-発展3"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展4（メニューコンテンツのデザイン調整）
@@ -1053,8 +1093,12 @@ overlayYoso.addEventListener('click', () => {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロワーメニュー / 演習-発展4（メニューコンテンツのデザイン調整）」では、問題文の「以下のプレビューのように、メニューコンテンツのデザインを調整してください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展4"/>
-</Solution>
+</Answer>
 </Exercise>

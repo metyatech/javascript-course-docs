@@ -2,6 +2,18 @@
 title: 演算子と真偽値
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 真偽値型（boolean）
 
 `true`（真）または `false`（偽）の2つの値だけをとる型です。
@@ -54,7 +66,11 @@ console.log("7" !== △);   // true になるように
 console.log(false === □);  // true になるように
 ```
 
-<Solution>
+<Hint>
+「演算子と真偽値 / 演習1」では、問題文の「(1) 次のコードを実行して、それぞれの行がなぜそのように出力されるか考えよ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `〇`、`△`、`□`、`true` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 (1)
 
@@ -75,7 +91,7 @@ console.log(false === false); // 出力: true ← false と false は等しい
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -124,7 +140,11 @@ console.log(8 >= □);    // true になるように
 
 (3) 自然数を `prompt` で入力させて、「10以上」かどうかを判定し、その結果を出力せよ。（10以上なら `true`、それ以外は `false` を出力）
 
-<Solution>
+<Hint>
+「演算子と真偽値 / 演習2」では、問題文の「(1) 次のコードを実行して、結果とそのように出力された理由を一行ごとに答えよ」を満たすために、`prompt` で受け取る値と、その後の比較または計算を先に分けて考えましょう。特に `〇`、`△`、`□`、`true` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 (1)
 
@@ -154,7 +174,7 @@ console.log(num >= 10);
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -224,7 +244,11 @@ console.log(false || false);
 
 例）`3` を入力 → `true`、`7` を入力 → `false`、`12` を入力 → `true`
 
-<Solution>
+<Hint>
+「演算子と真偽値 / 演習3」では、問題文の「(1) 次のコードを実行して、各行の出力結果とその理由を一行ごとに答えよ」を満たすために、`prompt` で受け取る値と、その後の比較または計算を先に分けて考えましょう。特に `prompt`、`true`、`false`、`3` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 (1)
 
@@ -246,7 +270,7 @@ console.log(num <= 5 || num >= 10);
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 ```

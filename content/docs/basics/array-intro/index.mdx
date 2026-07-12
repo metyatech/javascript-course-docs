@@ -2,6 +2,18 @@
 title: 配列入門
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 # 配列
 
 ## 配列とは？
@@ -116,7 +128,11 @@ for (let value of schools) {
 let arr = ['日', '月', '火', '水', '木', '金', '土'];
 ```
 
-<Solution>
+<Hint>
+「配列入門 / 演習1」では、問題文の「配列の要素を for...of 文で先頭から順に取り出し、「日」「月」…「土」と出力せよ」を満たすために、配列から1つずつ取り出す変数と出力順を先に分けて考えましょう。特に `for (let day of arr)`、`console.log(day)`、`day`、`arr` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 `for (let day of arr)` で要素を順に取り出し、`console.log(day)` でそのまま出力します。
 
 <CodePreview>
@@ -127,7 +143,7 @@ for (let day of arr) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -141,7 +157,11 @@ for (let day of arr) {
 let arr = ['日', '月', '火', '水', '木', '金', '土'];
 ```
 
-<Solution>
+<Hint>
+「配列入門 / 演習2」では、問題文の「次の配列を使って、「日曜日」「月曜日」…「土曜日」と出力せよ」を満たすために、配列から1つずつ取り出す変数と出力順を先に分けて考えましょう。特に `for...of`、`for (let day of arr)`、`day`、`"日" + "曜日"` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 配列を先頭から順に取り出すには `for...of` 文が簡単です。
 
 - `for (let day of arr)` で、配列の各要素が順番に `day` に入ります。
@@ -156,7 +176,7 @@ for (let day of arr) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -180,7 +200,11 @@ let arr = [1, 2, 3, 4, 5, 6, 7];
 
 :::
 
-<Solution>
+<Hint>
+「配列入門 / 演習2-発展1」では、問題文の「配列のすべての値の合計と平均を計算して出力せよ」を満たすために、配列から1つずつ取り出す変数と出力順を先に分けて考えましょう。特に `sum`、`for...of`、`sum += num;`、`avg = sum / arr.length` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 合計と平均は「足し込み → 最後に割る」という流れで求めます。
 
 - まず `sum` を 0 で用意します。
@@ -200,7 +224,7 @@ console.log('合計:', sum);
 console.log('平均:', avg);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -218,7 +242,11 @@ let arr = ['a', 'b', 'c', 'd', 'e'];
 for...of 文では先頭から順番にしかループできないため、逆順には回せません。別の方法を考えましょう。
 :::
 
-<Solution>
+<Hint>
+「配列入門 / 演習2-発展2」では、問題文の「次の配列の値を逆順に（後ろから）出力せよ」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `arr.length - 1`、`for (let i = arr.length - 1; i >= 0; i--)`、`i`、`arr[i]` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 配列を逆順に出力するには、最後のインデックスから 0 まで下がるループを使います。
 
 - 配列の最後の位置は `arr.length - 1` です。
@@ -233,7 +261,7 @@ for (let i = arr.length - 1; i >= 0; i--) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -256,7 +284,11 @@ let arr = [189, 409, 408, 101, 163, 347, 109, 402, 166, 493];
 
 :::
 
-<Solution>
+<Hint>
+「配列入門 / 演習2-発展3」では、問題文の「次の配列の最小値を for...of 文を使って求めて出力せよ」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `for...of`、`min`、`num`、`if (num < min)` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 最小値の探索は「いまの最小」を持ちながら順に比べて更新していく方法が基本です。
 
 - まず仮の最小値として、配列の先頭要素を `min` に入れておきます。
@@ -275,7 +307,7 @@ for (let num of arr) {
 console.log(min);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -303,7 +335,11 @@ let tetrisField = [
 
 ![出力例](./img/tetris-exercise-1.png)
 
-<Solution>
+<Hint>
+「配列入門 / 演習2-発展4（1）」では、問題文の「次の配列をその下の図のように出力せよ」を満たすために、配列から1つずつ取り出す変数と出力順を先に分けて考えましょう。特に `|`、`tetrisField`、`row`、`line` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 各行ごとに文字を連結して 1 行ずつ出力します。外側のループで行、内側のループでセルを処理し、行の前後に `|` を付けます。
 
 <CodePreview>
@@ -325,7 +361,7 @@ for (let row of tetrisField) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習2-発展4（2）
@@ -334,7 +370,11 @@ for (let row of tetrisField) {
 
 ![出力例](./img/tetris-exercise-2.png)
 
-<Solution>
+<Hint>
+「配列入門 / 演習2-発展4（2）」では、問題文の「（1）の tetrisField はテトリスというパズルゲームのフィールドを表している」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `isFilledRow(row)`、`for...of`、`popAlignedRows`、`popRow` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 横一列が「■」で埋まった行を削除し、上の行を 1 行ずつ落とす処理を実装します。
 
 処理の流れ
@@ -387,5 +427,5 @@ for (let row of tetrisField) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>

@@ -2,6 +2,18 @@
 title: ポップアップ/ダイアログ/モーダル (Magnific Popup)
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 import christmasChicken from "./img/christmas_chicken.jpg";
 import christmasSnowman from "./img/christmas_snowman.jpg";
 import wholeCake from "./img/whole_cake.jpg";
@@ -118,7 +130,11 @@ $('.image-link').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習1（テキストリンクから画像ポップアップ）」では、問題文の「テキストのリンクをクリックすると、画像がポップアップで表示されるものを作成して下さい」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `<a>`、`href`、`class="image-link"`、`$('.image-link')` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1_テキストリンク画像"/>
 
 **解説**:
@@ -145,7 +161,7 @@ $('.image-link').magnificPopup({
 
 - CSSは一切書かなくても、ライブラリが自動的に見栄えの良いポップアップを作成してくれます
 - `href` に指定した画像が、ポップアップで拡大表示されます
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -188,7 +204,11 @@ $('.image-popup').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習2（画像クリックでポップアップ）」では、問題文の「サムネイル画像をクリックすると、同じ画像が大きくポップアップで表示されるものを作成して下…」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `<a>`、`href`、`<img src>`、`width="200"` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習2_画像ポップアップ"/>
 
 **解説**:
@@ -220,7 +240,7 @@ $('.image-popup').magnificPopup({
 
 - サムネイル画像とポップアップ画像を同じパスにすることで、シンプルな実装が可能です
 - 実務では、サムネイル用の軽量な画像と、ポップアップ用の高画質画像を別々に用意することもあります
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -262,7 +282,11 @@ $('.open-popup').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習3（テキストコンテンツのポップアップ）」では、問題文の「リンクをクリックすると、テキストがポップアップで表示されるものを作成して下さい」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `href="#content"`、`#`、`<div id="content">`、`class="mfp-hide"` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習3_テキスト"/>
 
 **解説**:
@@ -302,7 +326,7 @@ $('.open-popup').magnificPopup({
 
 - この方法を使えば、複雑なHTMLコンテンツもポップアップで表示できます
 - お知らせ、利用規約、フォームなど、様々な用途に応用できます
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -359,7 +383,11 @@ $('.open-modal').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習-発展1（モーダルウィンドウ風のポップアップ）」では、問題文の「リンクをクリックすると、見た目を整えたモーダルウィンドウ風のポップアップが表示されるもの…」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `class="mfp-hide white-popup"`、`mfp-hide`、`white-popup`、`#modal-content` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習発展1_モーダル"/>
 
 **解説**:
@@ -409,7 +437,7 @@ $('.open-modal').magnificPopup({
 
 - Magnific Popupは機能を提供し、デザインは自分で自由にカスタマイズできます
 - この方法で、自社サイトのデザインに合わせたポップアップを作成できます
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -452,7 +480,11 @@ $('.video-popup').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習-発展2（YouTube動画のポップアップ）」では、問題文の「リンクをクリックすると、YouTube動画がポップアップで表示されるものを作成して下さい」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `href`、`type: 'iframe'`、`https://www.youtube.com/watch?v=dQw4w9WgXcQ`、`https://www.youtube.com/embed/dQw4w9WgXcQ` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習発展2_YouTube"/>
 
 **解説**:
@@ -499,7 +531,7 @@ $('.video-popup').magnificPopup({
 - チュートリアル動画
 - プロモーション動画
   など、動画コンテンツをサイトにスマートに組み込めます
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -556,7 +588,11 @@ $('.gallery').magnificPopup({
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「ポップアップ/ダイアログ/モーダル (Magnific Popup) / 演習-発展3（画像ギャラリー）」では、問題文の「複数の画像をギャラリーとして表示し、ポップアップ内で左右の矢印で画像を切り替えられるよう…」を満たすために、ポップアップ対象のセレクタと設定項目を先に分けて考えましょう。特に `<div class="gallery">`、`<a>`、`href`、`delegate: 'a'` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習発展3_ギャラリー"/>
 
 **解説**:
@@ -626,5 +662,5 @@ $('.gallery').magnificPopup({
 
 - ギャラリー内の画像数は自由に増やせます
 - 画像の順番は、HTML内の記述順になります
-</Solution>
+</Answer>
 </Exercise>

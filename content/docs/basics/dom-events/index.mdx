@@ -2,6 +2,18 @@
 title: DOM とイベント
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 JavaScript から HTML の要素を取得して値を読み書きしたり、クリックなどの「出来事」に反応して処理を実行したりする方法を学びます。
 
 ---
@@ -127,10 +139,14 @@ calcBtnYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「DOM とイベント / 演習1」では、問題文の「以下のような料金計算機を作れ」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1"/>
 
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習1-発展
@@ -143,7 +159,11 @@ calcBtnYoso.addEventListener('click', function () {
 
 目標イメージ：プラン・オプション・人数などを変更すると即座に合計金額が表示される
 
-<Solution>
+<Hint>
+「DOM とイベント / 演習1-発展」では、問題文の「(1) 演習1の「計算ボタン無し」バージョンを作れ」を満たすために、イベントを受け取る要素と、イベント後に変える処理を先に分けて考えましょう。特に `input`、`<select>`、`<option>`、`adultYoso` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 (1)
 
@@ -182,5 +202,5 @@ childYoso.addEventListener('input', keisan);
 
 (2) 自由課題のため解答例は省略。
 
-</Solution>
+</Answer>
 </Exercise>

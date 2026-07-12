@@ -3,6 +3,18 @@ title: もっと見る
 sidebar_position: 999
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## もっと見るとは
 
 「もっと見る」は、ブログ記事の概要表示やQ&Aサイトの回答、商品説明など、長い文章を最初は一部だけ表示し、ボタンで全文を表示する場面で使われます。
@@ -181,9 +193,13 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習1（コンテンツの高さ制限）」では、問題文の「以下のプレビューと同じように、コンテンツの高さが110pxに制限されるようにしてください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -302,10 +318,14 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習2（フェードの追加）」では、問題文の「以下のプレビューと同じように、コンテンツの高さを適度に制限し、下部にフェードを重ねてくだ…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、コードの後ろにコメントを書いています。
 <CodePreview sourceId="演習2" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -458,10 +478,14 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習3（開閉機能の作成）」では、問題文の「以下のプレビューと同じように、ボタンをクリックするとコンテンツが開閉するようにしてくださ…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、コードの後ろにコメントを書いています。
 <CodePreview sourceId="演習3" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -624,10 +648,14 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習4（アニメーション化）」では、問題文の「以下のプレビューと同じように、コンテンツの開閉が滑らかにアニメーションするようにしてくだ…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、コードの後ろにコメントを書いています。
 <CodePreview sourceId="演習4" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -805,10 +833,14 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習5（ボタンテキストの切り替え）」では、問題文の「以下のプレビューと同じように、開いているときは「閉じる」、閉じているときは「もっと見る」…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、コードの後ろにコメントを書いています。
 <CodePreview sourceId="演習5" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -936,9 +968,13 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習-発展1（段階的に開く「もっと見る」）」では、問題文の「以下のプレビューと同じように、3段階で開く「もっと見る」を実装してください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展1" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -1047,9 +1083,13 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習-発展2（コンテンツの最後に「もっと見る」ボタンを配置）」では、問題文の「以下のプレビューと同じように、「もっと見る」ボタンをコンテンツの外ではなく、コンテンツ内…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習-発展2" />
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -1175,8 +1215,12 @@ moreYoso.addEventListener('click', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「もっと見る / 演習-発展3（デザイン調整）」では、問題文の「以下のプレビューと同じような見た目に整えてください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、コードの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展3" />
-</Solution>
+</Answer>
 </Exercise>

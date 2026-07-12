@@ -2,6 +2,18 @@
 title: 導入
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 :::note
 このページに入る前に、次の共通基礎を確認してください。
 
@@ -187,7 +199,11 @@ console.log('ううう');
 「おはよう」「こんにちは」「さようなら」の3つを出力せよ。
 ![コンソールの画像](./img/exercise-1.png)
 
-<Solution>
+<Hint>
+「導入 / 演習1」では、問題文の「おはよう」「こんにちは」「さようなら」の3つを出力せよ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 <CodePreview>
 ```html
@@ -209,7 +225,7 @@ console.log('ううう');
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -220,7 +236,11 @@ console.log('ううう');
 「ダブルクォート(“)」「シングルクォート(‘)」の2つを次の画面のように出力せよ。
 ![コンソールの画像](./img/exercise-1-advanced.png)
 
-<Solution>
+<Hint>
+「導入 / 演習1-発展」では、問題文の「ダブルクォート(“)」「シングルクォート(‘)」の2つを次の画面のように出力せよ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 <CodePreview>
 ```html
@@ -241,6 +261,6 @@ console.log('ううう');
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>

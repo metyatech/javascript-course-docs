@@ -3,6 +3,18 @@ title: ドロップダウンメニュー
 sidebar_position: 999
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## ドロップダウンメニューとは
 
 ドロップダウンメニューは、メニュー項目の下に隠されたサブメニューが、クリックやホバーで表示される UI パターンです。ナビゲーションメニューでよく使われ、限られたスペースに多くのリンクを配置できます。
@@ -53,9 +65,13 @@ header {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習1（メニューの基本構造作成）」では、問題文の「まずは、メニューの基本的な見た目を作りましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 <CodePreview sourceId="演習1"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習2（サブメニューの作成）
@@ -119,10 +135,14 @@ header {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習2（サブメニューの作成）」では、問題文の「続いて、メニューの中身を書きましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習2"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習3（開閉機能の作成）
@@ -218,10 +238,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習3（開閉機能の作成）」では、問題文の「ついに、JavaScript で開閉機能を作りましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `visibility`、`visibility: hidden;`、`visibility: visible;` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習3"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習4（アニメーション化）
@@ -305,10 +329,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習4（アニメーション化）」では、問題文の「あとは適切にアニメーションするように調整しましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習4"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展1（デザイン調整）
@@ -426,10 +454,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展1（デザイン調整）」では、問題文の「機能は完成したので、見た目を整えましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。完成例の中で、問題文の条件に対応している行を先に見つけましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展1"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展2（スライドダウンアニメーションの追加）
@@ -552,10 +584,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展2（スライドダウンアニメーションの追加）」では、問題文の「今のアニメーションに、さらに上から降りてくるアニメーションを追加しましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `transform: translateY()` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展2"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展3（スケールアニメーションの追加）
@@ -680,10 +716,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展3（スケールアニメーションの追加）」では、問題文の「演習 発展2 で作ったスライドダウンアニメーションに、さらに拡大アニメーションも追加しま…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `transform`、`transform: translateY(-10px) scale(0.95);`、`transform-origin`、`transform-origin: left top;` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展3"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展4（回転アニメーションの追加）
@@ -806,10 +846,14 @@ ddMenuYoso.addEventListener('mouseleave', function () {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展4（回転アニメーションの追加）」では、問題文の「演習 発展3 で作ったアニメーションに、さらに回転のアニメーションも追加しましょう」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `transform: rotate()`、`deg` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展4"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展5（複数のドロップダウンメニュー対応）
@@ -946,10 +990,14 @@ for (let ddMenuYoso of ddMenuYosos) {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展5（複数のドロップダウンメニュー対応）」では、問題文の「今までは「サービス」メニューだけにドロップダウン機能をつけていましたが、複数のメニュー項…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `querySelectorAll`、`for of 文`、`document.querySelector`、`要素.querySelector` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展5"/>
-</Solution>
+</Answer>
 </Exercise>
 
 ### 演習-発展6（サブメニュー項目の段階的表示）
@@ -1105,8 +1153,12 @@ for (let ddMenuYoso of ddMenuYosos) {
 
 </CodePreview>
 
-<Solution>
+<Hint>
+「ドロップダウンメニュー / 演習-発展6（サブメニュー項目の段階的表示）」では、問題文の「さらに、サブメニューの各項目が順番に左から移動してきながらフェードインするアニメーション…」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `transition-delay`、`:nth-child()`、`.dd-submenu > li:nth-child(1)`、`:nth-child(2)` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 前の演習から増えたり、変わったりしたところだけ、プロパティの後ろにコメントを書いています。
 <CodePreview sourceId="演習-発展6"/>
-</Solution>
+</Answer>
 </Exercise>

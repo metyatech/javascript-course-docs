@@ -2,6 +2,18 @@
 title: for ループ・break・デバッグ
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## ブレークポイント（デバッグ）
 
 プログラムがうまく動かないとき、**ブレークポイント**を使うとどこで何が起きているか確認できます。
@@ -62,7 +74,11 @@ for (let i = 1; i <= 5; i++) {
 3. `「Hello」` を10回出力せよ。
 4. 「1以上の整数を入力してね」という内容で `prompt` を出し、1から入力された整数までを出力せよ。（例）入力が `5` なら `「1」「2」「3」「4」「5」` を出力
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習1」では、問題文の「次の問いを for 文を使って答えよ」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `「1」「2」「3」`、`「0」「1」「2」「3」`、`「Hello」`、`prompt` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 1. 1から3を出力
@@ -87,7 +103,7 @@ for (let i = 1; i <= n; i++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -99,7 +115,11 @@ for (let i = 1; i <= n; i++) {
 1. 「自然数を入力してね」という内容で `prompt` を出し、「Hello」をその回数出力せよ。ただし、3回目だけは「こんにちは！」を出力せよ。
 2. 「自然数を入力してね」という内容で `prompt` を出し、1から入力された整数までの数を順番に出力せよ。ただし、入力された数が10より大きいときは「10以下の数を入れてね」という内容のみ出力して終了すること。
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習1-発展」では、問題文の「次の問いを for 文を使って答えよ」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `prompt`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 1. Hello を n 回出力（3回目だけ「こんにちは！」）
@@ -124,7 +144,7 @@ if (m > 10) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -177,7 +197,11 @@ for 文を使って次の問いを答えよ。
 2. 自分の好きな文字を横方向に10個並べたものを出力せよ。（例：`水水水水水水水水水水`）
 3. 1〜10 までの整数のうち、2と7以外を小さい順に出力せよ。
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習2」では、問題文の「for 文を使って次の問いを答えよ」を満たすために、`&&` で同時に満たす条件式を先に分けて考えましょう。特に `1275`、`水水水水水水水水水水`、`sum`、`result` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 1. 1〜50 の和
@@ -203,7 +227,7 @@ for (let i = 1; i <= 10; i++) {
 // 出力: 1, 3, 4, 5, 6, 8, 9, 10
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -215,7 +239,11 @@ for 文を使って次の問いを答えよ。
 1. 1から10までの整数のうち、3の倍数以外を小さい順に出力せよ。（ヒント：3の倍数とは3で割った余りが0の数。Xを3で割った余りは `X % 3` で計算できる）
 2. `「*****」` を3行出力せよ。ただし `「*****」` も for 文で作ること。（ヒント：for 文の中にさらに for 文を使う）
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習2-発展」では、問題文の「for 文を使って次の問いを答えよ」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `X % 3`、`「*****」`、`row`、`line` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 1. 1〜10 のうち 3 の倍数以外を出力
@@ -243,7 +271,7 @@ for (let row = 1; row <= 3; row++) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -280,7 +308,11 @@ for 文を使って次の問いを答えよ。
 1. 10 から 1 までの整数を、大きい順に出力せよ。（`10`, `9`, `8`, …, `1`）
 2. 1〜9 の奇数を出力せよ。（`1`, `3`, `5`, `7`, `9`）
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習3」では、問題文の「for 文を使って次の問いを答えよ」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `10`、`9`、`8`、`1` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 1. 10から1を大きい順に出力
@@ -294,7 +326,7 @@ for (let i = 1; i <= 9; i += 2) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -305,7 +337,11 @@ for (let i = 1; i <= 9; i += 2) {
 
 例）`5` を入力した場合：`5`、`4`、`3`、`2`、`1` の順に出力
 
-<Solution>
+<Hint>
+「for ループ・break・デバッグ / 演習3-発展」では、問題文の「自然数を入力してね」という内容で prompt を出し、その数から 1 まで、1 ずつ減…」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `prompt`、`5`、`4`、`3` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let n = Number(prompt('自然数を入力してね'));
@@ -316,6 +352,6 @@ for (let i = n; i >= 1; i--) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>

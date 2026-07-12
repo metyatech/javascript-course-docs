@@ -2,6 +2,18 @@
 title: 総復習
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 これまでに学んだ内容（console.log・変数・prompt・型・条件分岐・関数・for 文）を振り返りながら演習します。
 
 ---
@@ -12,7 +24,11 @@ title: 総復習
 
 「おはよう」「こんにちは」「さようなら」の3つを出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習1」では、問題文の「おはよう」「こんにちは」「さようなら」の3つを出力せよ」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 console.log('おはよう');
@@ -20,7 +36,7 @@ console.log('こんにちは');
 console.log('さようなら');
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -32,7 +48,11 @@ console.log('さようなら');
 
 `aisatsu` という名前の変数を作り、「こんにちは」を中に入れて、変数 `aisatsu` の中身を2回出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習2」では、問題文の「aisatsu という名前の変数を作り、「こんにちは」を中に入れて、変数 aisatsu…」を満たすために、`console.log` に渡す値と出力順を先に分けて考えましょう。特に `aisatsu`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let aisatsu = 'こんにちは';
@@ -41,7 +61,7 @@ console.log(aisatsu);
 console.log(aisatsu);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -54,7 +74,11 @@ console.log(aisatsu);
 
 例）都道府県に「埼玉県」、市区町村に「さいたま市」と入力した場合：`埼玉県 さいたま市`
 
-<Solution>
+<Hint>
+「総復習 / 演習3」では、問題文の「都道府県を入力して下さい」という内容の prompt と、「市区町村を入力して下さい」と…」を満たすために、`prompt` で受け取る値と、その後の比較または計算を先に分けて考えましょう。特に `prompt`、`埼玉県 さいたま市`、`todofuken`、`shikuchoson` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let todofuken = prompt('都道府県を入力して下さい');
@@ -64,7 +88,7 @@ console.log(todofuken + ' ' + shikuchoson);
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -90,7 +114,11 @@ let C = 15 + '11'; // 数値 + 文字列 → 文字列型  値: "1511"
 
 「数値を入力して下さい。7足した数を出力します。」という内容の `prompt` を出し、7を足した数を出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習4」では、問題文の「数値を入力して下さい」を満たすために、`prompt` で受け取る値と、その後の比較または計算を先に分けて考えましょう。特に `prompt`、`input`、`num`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let input = prompt('数値を入力して下さい。7足した数を出力します。');
@@ -99,7 +127,7 @@ let num = Number(input);
 console.log(num + 7);
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -110,7 +138,11 @@ console.log(num + 7);
 
 「今日は何日？」という内容で `prompt` を出し、入力内容が `30` なら「正解」を出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習5」では、問題文の「今日は何日？」という内容で prompt を出し、入力内容が 30 なら「正解」を出力せ…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `prompt`、`30`、`input`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let input = prompt('今日は何日？');
@@ -122,7 +154,7 @@ if (n === 30) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -141,14 +173,18 @@ if (n === 30) {
 3. numは8以下
 4. Nは1以上3以下
 
-<Solution>
+<Hint>
+「総復習 / 演習6」では、問題文の「次の意味を表す条件（if の括弧の中の部分）のみを書け」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `if`、`A === 10`、`A !== 7`、`Value > 4` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 1. `A !== 7`
 2. `Value > 4`
 3. `num <= 8`
 4. `N >= 1 && N <= 3`
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -162,7 +198,11 @@ if (n === 30) {
 
 (2) 「出席率は何%？」という内容で `prompt` を出し、入力した数値が0以上100以下であれば「OK」、そうでなければ「エラー」と出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習7」では、問題文の「(1) 「水は英語で？」という内容で prompt を出し、入力内容が "water" …」を満たすために、`&&` で同時に満たす条件式を先に分けて考えましょう。特に `prompt`、`"water"`、`answer`、`input` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 (1)
 
@@ -193,7 +233,7 @@ if (num >= 0 && num <= 100) {
 
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -235,7 +275,11 @@ console.log(kekka); // 出力: 3
 
 入力 `t` に対して、`t - 5` を結果とする関数 `fn` を作れ。
 
-<Solution>
+<Hint>
+「総復習 / 演習8」では、問題文の「入力 t に対して、t 5 を結果とする関数 fn を作れ」を満たすために、`return` で関数の外へ返す値を先に分けて考えましょう。特に `t`、`t - 5`、`fn`、`result` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function fn(t) {
@@ -244,7 +288,7 @@ function fn(t) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -256,7 +300,11 @@ function fn(t) {
 
 演習8の関数 `fn` に対して、`t` に `1` を入れて呼び出した場合と、`5` を入れて呼び出した場合の結果をそれぞれ `console.log` で出力せよ。（1のときは `-4`、5のときは `0` が出れば正解）
 
-<Solution>
+<Hint>
+「総復習 / 演習9」では、問題文の「演習8の関数 fn に対して、t に 1 を入れて呼び出した場合と、5 を入れて呼び出し…」を満たすために、`return` で関数の外へ返す値を先に分けて考えましょう。特に `fn`、`t`、`1`、`5` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 function fn(t) {
@@ -268,7 +316,7 @@ console.log(fn(1)); // 出力: -4
 console.log(fn(5)); // 出力: 0
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -279,7 +327,11 @@ console.log(fn(5)); // 出力: 0
 
 for 文を使って、「3」「4」「5」「6」「7」「8」「9」「10」をこの順でそれぞれ出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習10」では、問題文の「for 文を使って、「3」「4」「5」「6」「7」「8」「9」「10」をこの順でそれぞれ…」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 for (let i = 3; i <= 10; i++) {
@@ -288,7 +340,7 @@ for (let i = 3; i <= 10; i++) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -300,7 +352,11 @@ for (let i = 3; i <= 10; i++) {
 
 for 文を使って、10〜100 の整数の和を求めて出力せよ。
 
-<Solution>
+<Hint>
+「総復習 / 演習11」では、問題文の「for 文を使って、10〜100 の整数の和を求めて出力せよ」を満たすために、`for` の開始値・続ける条件・1回ごとの変化を先に分けて考えましょう。特に `sum`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 // 和を入れておく変数
@@ -313,7 +369,7 @@ for (let i = 10; i <= 100; i++) {
 console.log(sum); // 出力: 5005
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 ```

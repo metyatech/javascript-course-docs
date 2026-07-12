@@ -2,6 +2,18 @@
 title: 関数前 総復習
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ここまでに学んだ文法だけで、コンソールで遊べる「数字あてゲーム」を作ります。
 
 正解の数字は `7` に固定します。プレイヤーが `1`〜`9` の数字を入力すると、正解かどうか、または正解より小さいか大きいかを表示します。最後は、5回まで挑戦できるゲームにします。
@@ -44,7 +56,11 @@ console.log('正解: ' + secret);
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習1」では、問題文の「正解の数字を変数 secret に入れ、プレイヤーの予想を prompt で受け取って変…」を満たすために、`prompt` で受け取る値と、その後の比較または計算を先に分けて考えましょう。特に `secret`、`prompt`、`guess`、`Number(prompt(...))` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -54,7 +70,7 @@ console.log('正解: ' + secret); // 出力: 正解: 7
 console.log('予想: ' + guess); // 入力例: 5 の場合、出力: 予想: 5
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -76,7 +92,11 @@ let guess = Number(prompt('1〜9の数字を入力してね'));
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習2」では、問題文の「入力した数字が正解と同じかどうかを判定しましょう」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `guess`、`secret`、`正解！`、`不正解` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -89,7 +109,7 @@ if (guess === secret) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -117,7 +137,11 @@ let guess = Number(prompt('1〜9の数字を入力してね'));
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習3」では、問題文の「不正解のときに、正解より小さいか大きいかのヒントを出しましょう」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `正解！`、`もっと大きい`、`もっと小さい`、`secret` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -132,7 +156,7 @@ if (guess === secret) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -157,7 +181,11 @@ let guess = Number(prompt('1〜9の数字を入力してね'));
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習4」では、問題文の「入力チェックを追加しましょう」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `guess`、`1`、`9`、`1〜9の数字を入力してね` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -174,7 +202,7 @@ if (guess < 1 || guess > 9) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -201,7 +229,11 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習5」では、問題文の「ここから、5回まで入力できるようにします」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `for`、`1回目`、`2回目`、`secret` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -223,7 +255,7 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -250,7 +282,11 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習6」では、問題文の「正解したら、その時点でゲームを止めましょう」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `break;`、`正解！`、`for`、`secret` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -273,7 +309,7 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -304,7 +340,11 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習7」では、問題文の「5回目まで正解できなかったときに、ゲームオーバーのメッセージを出しましょう」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `1`、`9`、`attempt`、`5` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -331,7 +371,7 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ここまでで、5回まで挑戦できる数字あてゲームが完成しました。時間に余裕がある人は、続きの発展問題に取り組んでみましょう。
@@ -354,7 +394,11 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習-発展1」では、問題文の「発展: 任意です」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `secret`、`attempt`、`guess`、`remaining` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -386,7 +430,7 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -401,7 +445,11 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 
 例: 3回目で正解した場合は、`3回目で正解！` と出力します。
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習-発展2」では、問題文の「発展: 任意です」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `3回目で正解！`、`secret`、`attempt`、`guess` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let secret = 7;
@@ -433,7 +481,7 @@ for (let attempt = 1; attempt <= 5; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 ---
@@ -463,7 +511,11 @@ if (attemptLimit !== 3 && attemptLimit !== 5 && attemptLimit !== 10) {
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「関数前 総復習 / 演習-発展3」では、問題文の「発展: 任意です」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `3`、`5`、`10`、`attemptLimit` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let attemptLimit = Number(prompt('挑戦回数を選んでね（3 / 5 / 10）'));
@@ -501,7 +553,7 @@ for (let attempt = 1; attempt <= attemptLimit; attempt++) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 </Exercise>
 
 完成！次のページから「関数入門」に進んで、処理のまとまりに名前を付けて再利用する方法を学びましょう。

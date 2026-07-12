@@ -1,7 +1,18 @@
 ---
 title: 4択クイズアプリを作ろう
-authoringMode: 'tutorial'
 ---
+
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
 
 4つの選択肢から答えを選び、最後に正解数が表示されるクイズアプリを作ります。
 
@@ -286,7 +297,11 @@ showQuestion();
 5. 最後まで進むと正解数が表示される
 6. 「もう一度」を押すと、1問目・0点から再開する
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習1」では、問題文の「完成形を動かし、次のすべてを確認してください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `currentIndex`、`score`、`answered` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 このアプリは、画面の文字を変えるだけではなく、次の3つを変数で覚えています。
 
@@ -298,7 +313,7 @@ showQuestion();
 
 この3つの値が変わることで、表示する問題、得点、ボタンを押せるかどうかが変化します。
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -588,7 +603,11 @@ let questions = [
 
 正しい数値を入れたあと、正解が `length` になることを説明できれば成功です。
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習2」では、問題文の「次の問題では、正解は4番目の選択肢です」を満たすために、取得するHTML要素と、書き換える表示内容を先に分けて考えましょう。特に `answerIndex`、`length`、`3`、`0` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 入れる数値は `3` です。
 
@@ -602,7 +621,7 @@ let questions = [
 }
 ```
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -742,7 +761,11 @@ showQuestion();
 
 1問目の3番目の選択肢である `textContent` が、3番目のボタンに表示されることを説明できれば成功です。
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習3」では、問題文の「showQuestion の for 文で i が 2 のとき、次の2つを答えてください」を満たすために、問題文の条件と完成例で変わる値を先に分けて考えましょう。特に `showQuestion`、`for`、`i`、`2` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 `i` が `2` のときは、次の処理になります。
 
@@ -755,7 +778,7 @@ choiceButtons[2].textContent = question.choices[2];
 
 1問目では `question.choices[2]` が `textContent` なので、3番目のボタンに `textContent` と表示されます。
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -965,7 +988,11 @@ restartButton.addEventListener('click', function () {
 - 正解の位置が毎回同じにならない
 - 実際に全問を操作し、表示と得点が正しいことを確認する
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習4」では、問題文の「questions 配列を、自分のテーマの4択クイズへ書き換えてください」を満たすために、イベントを受け取る要素と、イベント後に変える処理を先に分けて考えましょう。特に `questions`、`choices`、`answerIndex`、`1` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 例として、JavaScriptの復習クイズを作る場合は次のようにできます。
 
@@ -991,7 +1018,7 @@ let questions = [
 
 1問目は2番目、2問目は1番目、3問目は3番目が正解なので、`answerIndex` は順に `1`、`0`、`2` です。
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -1007,7 +1034,11 @@ let questions = [
 - 正解・不正解のどちらでも説明が表示される
 - 次の問題へ進むと、前の説明が残らない
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習-発展1」では、問題文の「各問題に、正解を説明する explanation プロパティを追加してください」を満たすために、期待する見た目に必要なCSSプロパティを先に分けて考えましょう。特に `explanation`、`checkAnswer`、`showQuestion`、`messageText.textContent` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 問題データに `explanation` を追加します。
 
@@ -1028,7 +1059,7 @@ messageText.textContent = messageText.textContent + ' ' + question.explanation;
 
 `showQuestion` では、すでに `messageText.textContent` を「選択肢を選んでください。」へ戻しているため、次の問題へ進むと前の説明は残りません。
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -1044,7 +1075,11 @@ messageText.textContent = messageText.textContent + ' ' + question.explanation;
 
 3種類すべての結果になる回答を試し、コメントが条件どおりに変われば成功です。
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習-発展2」では、問題文の「結果画面のコメントを、正解数によって次のように変えてください」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `showFinalResult`、`messageText.textContent = 'おつかれさまでした。';`、`comment`、`.length` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 `showFinalResult` の中で、表示するコメントを決めます。
 
@@ -1064,7 +1099,7 @@ messageText.textContent = comment;
 
 このコードを、現在の `messageText.textContent = 'おつかれさまでした。';` と置き換えます。
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -1151,7 +1186,11 @@ nextButton.addEventListener('click', function () {
 });
 ```
 
-<Solution>
+<Hint>
+「4択クイズアプリを作ろう / 演習-発展3」では、問題文の「次のコードには、意図的なミスが6個あります」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `currentIndex = 1`、`0`、`id="progressText"`、`'#progress'` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 6個のミスは次のとおりです。
 
@@ -1162,7 +1201,7 @@ nextButton.addEventListener('click', function () {
 5. `if (answered = true)` は代入なので、`if (answered === true)` にする
 6. `showQuestion;` は関数を呼び出していないため、`showQuestion();` にする
 
-</Solution>
+</Answer>
 
 </Exercise>
 

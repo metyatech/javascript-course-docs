@@ -2,6 +2,18 @@
 title: 条件分岐（if / else if）
 ---
 
+import Exercise, { QuickCheck } from '@metyatech/exercise/client';
+
+export const Hint = Object.assign((props) => props.children, {
+    __exerciseHint: true,
+    displayName: 'ExerciseHint',
+});
+
+export const Answer = Object.assign((props) => props.children, {
+    __exerciseAnswer: true,
+    displayName: 'ExerciseAnswer',
+});
+
 ## 条件分岐とは？
 
 条件によって実行する処理を切り替えることを**条件分岐**といいます。
@@ -29,6 +41,32 @@ if (answer === '富士山') {
 ```
 </CodePreview>
 
+### if文のQuickCheck
+
+<QuickCheck>
+
+次のコードでは何が表示されますか？
+
+```javascript
+let answer = 'Python';
+
+if (answer === 'JavaScript') {
+    console.log('正解');
+}
+```
+
+<Hint>
+`answer === 'JavaScript'` が `true` と `false` のどちらになるか確認しましょう。
+</Hint>
+
+<Answer>
+何も表示されません。
+
+`answer` には `'Python'` が入っているため、条件は `false` です。波括弧の中の処理は実行されません。
+</Answer>
+
+</QuickCheck>
+
 ---
 
 ### 演習1
@@ -36,7 +74,11 @@ if (answer === '富士山') {
 
 「この授業は何言語の授業？」という質問を `prompt` で出し、入力内容が `"JavaScript"` なら `「正解」` を出力せよ。（不正解の場合は何も起こらない）
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習1」では、問題文の「この授業は何言語の授業？」という質問を prompt で出し、入力内容が "JavaSc…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `prompt`、`"JavaScript"`、`「正解」`、`answer` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let answer = prompt('この授業は何言語の授業？');
@@ -47,7 +89,7 @@ if (answer === 'JavaScript') {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -57,7 +99,11 @@ if (answer === 'JavaScript') {
 
 「JavaScriptのファイルの拡張子は？」という質問を `prompt` で出し、入力内容が `"js"` または `".js"` の場合に「正解」と出力せよ。（不正解の場合は何も起こらない）
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習1-発展」では、問題文の「JavaScriptのファイルの拡張子は？」という質問を prompt で出し、入力内容…」を満たすために、`||` でつなぐ複数の条件式を先に分けて考えましょう。特に `prompt`、`"js"`、`".js"`、`answer` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let answer = prompt('JavaScriptのファイルの拡張子は？');
@@ -67,7 +113,7 @@ if (answer === 'js' || answer === '.js') {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -123,7 +169,11 @@ console.log("よくがんばりました。");
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習: インデントを直そう」では、問題文の「以下のJavaScriptコードは、インデントが全くされておらず非常に読みにくい状態です」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `{ }`、`score`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 <CodePreview>
 ```javascript
@@ -135,7 +185,7 @@ if (score >= 80) {
 ```
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -163,7 +213,11 @@ console.log("入場できます。");
 ```
 </CodePreview>
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習-発展: 入れ子のインデントを直そう」では、問題文の「波括弧 { } の中にさらに波括弧 { } がある場合（入れ子・ネスト）は、インデントを…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `{ }`、`age`、`hasTicket`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 
 <CodePreview>
 ```javascript
@@ -180,7 +234,7 @@ if (age >= 18) {
 
 </CodePreview>
 
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -210,6 +264,34 @@ if (input === 'hello') {
 ```
 </CodePreview>
 
+### if...else文のQuickCheck
+
+<QuickCheck>
+
+次のコードでは何が表示されますか？
+
+```javascript
+let input = 'goodbye';
+
+if (input === 'hello') {
+    console.log('helloだね');
+} else {
+    console.log('helloじゃないよ');
+}
+```
+
+<Hint>
+`input === 'hello'` が `false` の場合、`if` と `else` のどちらが実行されるか確認しましょう。
+</Hint>
+
+<Answer>
+`helloじゃないよ` と表示されます。
+
+条件が `false` なので、`else` の波括弧内が実行されます。
+</Answer>
+
+</QuickCheck>
+
 ---
 
 ### 演習2
@@ -217,7 +299,11 @@ if (input === 'hello') {
 
 「世界一高い山は？」という内容で `prompt` を出し、入力内容が `"エベレスト"` であれば `「正解！」`、そうでなければ `「不正解」` と出力せよ。
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習2」では、問題文の「世界一高い山は？」という内容で prompt を出し、入力内容が "エベレスト" であれ…」を満たすために、`if` の条件式と、条件が成り立ったときの処理を先に分けて考えましょう。特に `prompt`、`"エベレスト"`、`「正解！」`、`「不正解」` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let answer = prompt('世界一高い山は？');
@@ -230,7 +316,7 @@ if (answer === 'エベレスト') {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -240,7 +326,11 @@ if (answer === 'エベレスト') {
 
 「1〜9の数値を入力してね」という内容で `prompt` を出し、あらかじめ決めた3つの数値（例：2、5、7）のときは「あたり」、それ以外のときは「はずれ」を出力せよ。（3つの数値は自分で好きに設定してよい）
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習2-発展」では、問題文の「1〜9の数値を入力してね」という内容で prompt を出し、あらかじめ決めた3つの数値…」を満たすために、`||` でつなぐ複数の条件式を先に分けて考えましょう。特に `prompt`、`num`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let num = Number(prompt('1〜9の数値を入力してね'));
@@ -253,7 +343,7 @@ if (num === 2 || num === 5 || num === 7) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -287,6 +377,64 @@ if (number >= 100) {
 ```
 </CodePreview>
 
+### else if文のQuickCheck 1
+
+<QuickCheck>
+
+次のコードでは何が表示されますか？
+
+```javascript
+let number = 75;
+
+if (number >= 100) {
+    console.log('100以上');
+} else if (number >= 50) {
+    console.log('50以上100未満');
+} else {
+    console.log('50未満');
+}
+```
+
+<Hint>
+上から順番に条件を確認し、最初に `true` になる条件を探しましょう。
+</Hint>
+
+<Answer>
+`50以上100未満` と表示されます。
+
+`number >= 100` は `false` ですが、`number >= 50` は `true` です。そのため、2つ目の処理が実行されます。
+</Answer>
+
+</QuickCheck>
+
+### else if文のQuickCheck 2
+
+<QuickCheck>
+
+次のコードでは何が表示されますか？
+
+```javascript
+let number = 120;
+
+if (number >= 50) {
+    console.log('50以上');
+} else if (number >= 100) {
+    console.log('100以上');
+}
+```
+
+<Hint>
+両方の条件が `true` になる場合でも、`else if` は上から順番に判定します。
+</Hint>
+
+<Answer>
+`50以上` と表示されます。
+
+最初の `number >= 50` が `true` になった時点で、その処理が実行されます。後ろの `else if` は判定されません。
+</Answer>
+
+</QuickCheck>
+
 ---
 
 ### 演習3
@@ -301,7 +449,11 @@ if (number >= 100) {
 | 60〜79点 | `C` |
 | それ以外 | `E` |
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習3」では、問題文の「テストの点数（0〜100）を prompt で入力させて、次のルールで結果を出力せよ」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `prompt`、`A`、`B`、`C` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let score = Number(prompt('点数を入力してね（0〜100）'));
@@ -318,7 +470,7 @@ if (score >= 90) {
 ```
 
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 
@@ -328,7 +480,11 @@ if (score >= 90) {
 
 2つの数値を `prompt` で入力させて、両方が同じ数値なら `「同じです」` と出力し、違う数値なら大きい方の数を出力せよ。
 
-<Solution>
+<Hint>
+「条件分岐（if / else if） / 演習3-発展」では、問題文の「2つの数値を prompt で入力させて、両方が同じ数値なら 「同じです」 と出力し、違…」を満たすために、`if` / `else if` の判定順を先に分けて考えましょう。特に `prompt`、`「同じです」`、`.log` がどの値・要素を表すか確認してから書き始めましょう。
+</Hint>
+
+<Answer>
 <CodePreview>
 ```javascript
 let a = Number(prompt('1つ目の数を入力してね'));
@@ -343,7 +499,7 @@ if (a === b) {
 }
 ```
 </CodePreview>
-</Solution>
+</Answer>
 
 </Exercise>
 ```
