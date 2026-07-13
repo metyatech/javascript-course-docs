@@ -300,7 +300,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 <Action title="HTMLをコピーする">
 
 `index.html` の `<body>` の中に、次のHTMLをコピーして貼り付けます。  
-ボタンは1つだけ用意し、表示する文字をJavaScriptで切り替えます。
+画面下の操作ボタンは1つだけ用意し、表示する文字をJavaScriptで切り替えます。
 
 ```html
 <main class="app">
@@ -432,7 +432,7 @@ button:disabled {
 
 ---
 
-<Section title="問題データを用意する" goal="問題文、選択肢、正解の位置を配列とオブジェクトでまとめます。">
+<Section title="問題データを用意する" goal="問題文、選択肢、正解のインデックスを配列とオブジェクトでまとめます。">
 
 1問分のデータは、次の3つのプロパティを持つオブジェクトにします。
 
@@ -486,7 +486,7 @@ let questions = [
 
 <Hint>
 
-配列の位置は、1番目から順に `0`、`1`、`2`、`3` と数えます。
+配列のインデックスは、1番目から順に `0`、`1`、`2`、`3` と数えます。
 
 </Hint>
 
@@ -562,8 +562,8 @@ let choiceButtons = [choice1, choice2, choice3, choice4];
 | `questions[0].text` | 1問目の問題文 |
 | `questions[0].choices[2]` | 1問目の3番目の選択肢 |
 
-画面に表示する問題番号は、人が数える番号に合わせて `currentIndex + 1` にします。  
-選択肢は、同じ `i` を使って `i` 番目のボタンへ `i` 番目の文字を表示します。
+画面に表示する問題番号は、人が数える番号に合わせる必要があります。  
+選択肢は、`for` 文のカウンター変数を使って、ボタンと選択肢を順番に対応させます。
 
 ### 演習1
 
@@ -648,7 +648,7 @@ function showQuestion() {
 
 <Hint>
 
-`choiceButtons[i]` と `question.choices[i]` の `i` には同じ値が入ります。1問目のデータの `choices` 配列を見て、位置 `2` に何が入っているか確認してください。
+`choiceButtons[i]` と `question.choices[i]` の `i` には同じ値が入ります。1問目のデータの `choices` 配列を見て、インデックス `2` に何が入っているか確認してください。
 
 </Hint>
 
@@ -679,7 +679,7 @@ choiceButtons[2].textContent = question.choices[2];
 
 ---
 
-<Section title="選ばれた答えを判定する" goal="選んだ位置と正解の位置を比べ、得点とメッセージを更新します。">
+<Section title="選ばれた答えを判定する" goal="選んだインデックスと正解のインデックスを比べ、得点とメッセージを更新します。">
 
 ### 演習2
 
@@ -688,7 +688,7 @@ choiceButtons[2].textContent = question.choices[2];
 選ばれた答えを判定する `checkAnswer` 関数を作ります。
 
 この関数には、押された選択肢のインデックスを `selectedIndex` として渡します。  
-`selectedIndex` と `question.answerIndex` が同じなら正解です。
+`selectedIndex` と正解のインデックスを比べて、正解か不正解かを判定します。
 
 次の2か所の `___` を完成させてください。
 
@@ -711,13 +711,13 @@ function checkAnswer(selectedIndex) {
 
 <Hint label="ヒント1">
 
-`selectedIndex` は「選んだ位置」、`question` の中には「正解の位置」が入っています。正解かどうかの判定は、この2つの位置を比べることです。
+`selectedIndex` は「選んだインデックス」、`question` の中には「正解のインデックス」が入っています。正解かどうかの判定は、この2つのインデックスを比べることです。
 
 </Hint>
 
 <Hint label="ヒント2">
 
-不正解のとき表示する「正解の文章」は、`choices` 配列から取り出します。取り出すときの位置（インデックス）は、すでに `question` のプロパティとして持っています。
+不正解のとき表示する「正解の文章」は、`choices` 配列から取り出します。取り出すときのインデックスは、すでに `question` のプロパティとして持っています。
 
 </Hint>
 
@@ -738,7 +738,7 @@ function checkAnswer(selectedIndex) {
 }
 ```
 
-`selectedIndex` は選んだ位置、`question.answerIndex` は正解の位置です。
+`selectedIndex` は選んだインデックス、`question.answerIndex` は正解のインデックスです。
 
 </Answer>
 
@@ -748,7 +748,7 @@ function checkAnswer(selectedIndex) {
 
 <Exercise>
 
-4つのボタンから、押された位置を `checkAnswer` 関数へ渡します。次の4か所の `___` を完成させてください。
+4つのボタンから、押されたインデックスを `checkAnswer` 関数へ渡します。次の4か所の `___` を完成させてください。
 
 ```js
 choice1.addEventListener('click', function () {
@@ -801,7 +801,7 @@ choice4.addEventListener('click', function () {
 });
 ```
 
-ボタンの順番と配列のインデックスを同じにすると、選んだ位置と正解の位置を比較できます。
+ボタンの順番と配列のインデックスを同じにすると、選んだインデックスと正解のインデックスを比較できます。
 
 </Answer>
 
@@ -1071,8 +1071,8 @@ actionButton.textContent = '次の問題へ';
 
 <Exercise>
 
-結果画面では、`currentIndex` が `questions.length` と同じになっています。  
-この状態でボタンが押された場合は、問題番号と得点を戻して最初からやり直します。
+結果画面でボタンが押された場合に、最初からやり直す処理を追加します。  
+「今が結果画面かどうか」を判定する条件と、リセットする変数を考えてください。
 
 演習5で作った `actionButton` のイベント処理を、次のコードへ置き換えてください。  
 追加した3か所の `___` を完成させます。
@@ -1199,14 +1199,14 @@ actionButton.addEventListener('click', function () {
 - 問題を3問以上作る
 - 各問題に4つの選択肢がある
 - 問題文と正解が事実として正しい
-- `answerIndex` が正解の位置と一致している
-- 正解の位置が毎回同じにならない
+- `answerIndex` が正解のインデックスと一致している
+- 正解のインデックスが毎回同じにならない
 - 全問を操作し、表示と得点が正しいことを確認する
 
 <Hint>
 
 変更するのは、各問題の `text`、`choices`、`answerIndex` です。  
-選択肢を並べ替えたときは、正解の位置を `0` から数え直します。
+選択肢を並べ替えたときは、正解のインデックスを `0` から数え直します。
 
 </Hint>
 
@@ -1235,7 +1235,7 @@ actionButton.addEventListener('click', function () {
 - 自分の問題が3問以上ある
 - 各問題に選択肢が4つある
 - 問題文と正解が事実として正しい
-- `answerIndex` と正解の位置が一致している
+- `answerIndex` と正解のインデックスが一致している
 
 </Checkpoint>
 
@@ -1327,17 +1327,3 @@ messageText.textContent = comment;
 
 </Section>
 
----
-
-<Section title="クイズアプリの仕組みを整理する" goal="問題データ、進み具合、画面の更新のつながりを確認します。">
-
-このクイズアプリは、次の流れで動きます。
-
-1. `questions` から、`currentIndex` に対応する問題を取り出す
-2. `showQuestion` で問題文と選択肢を表示する
-3. ボタンから `selectedIndex` を `checkAnswer` へ渡す
-4. `answerIndex` と比較して、得点、メッセージ、ボタンの状態を更新する
-5. `currentIndex` を増やし、次の問題または結果を表示する
-6. 結果画面では同じボタンを「もう一度」に変え、押されたら `currentIndex` と `score` を `0` へ戻す
-
-</Section>
