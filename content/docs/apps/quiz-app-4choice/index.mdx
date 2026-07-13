@@ -32,7 +32,7 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
         <p id="progressText">1問目</p>
         <h2 id="questionText">問題文が入ります</h2>
 
-        <div id="choices" class="choices">
+        <div id="choices">
             <button id="choice1">選択肢1</button>
             <button id="choice2">選択肢2</button>
             <button id="choice3">選択肢3</button>
@@ -83,7 +83,7 @@ body {
     min-height: 64px;
 }
 
-.choices button {
+#choices button {
     display: block;
     width: 100%;
     margin-top: 12px;
@@ -288,6 +288,19 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 
 </Action>
 
+<Action title="CSSとJavaScriptを読み込む">
+
+`index.html` の `<head>` の中に、次の2行を追加します。
+
+```html
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+```
+
+`defer` を付けると、HTMLの読み込みが終わったあとでJavaScriptが実行されます。
+
+</Action>
+
 <Action title="HTMLをコピーする">
 
 `index.html` の `<body>` の中に、次のHTMLをコピーして貼り付けます。  
@@ -301,7 +314,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
         <p id="progressText">1問目</p>
         <h2 id="questionText">問題文が入ります</h2>
 
-        <div id="choices" class="choices">
+        <div id="choices">
             <button id="choice1">選択肢1</button>
             <button id="choice2">選択肢2</button>
             <button id="choice3">選択肢3</button>
@@ -315,19 +328,6 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
     <button id="restartButton" class="hidden">もう一度</button>
 </main>
 ```
-
-</Action>
-
-<Action title="CSSとJavaScriptを読み込む">
-
-`index.html` の `<head>` の中に、次の2行を追加します。
-
-```html
-<link rel="stylesheet" href="style.css">
-<script src="script.js" defer></script>
-```
-
-`defer` を付けると、HTMLの読み込みが終わったあとでJavaScriptが実行されます。
 
 </Action>
 
@@ -371,7 +371,7 @@ body {
     min-height: 64px;
 }
 
-.choices button {
+#choices button {
     display: block;
     width: 100%;
     margin-top: 12px;
