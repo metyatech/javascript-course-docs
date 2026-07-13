@@ -916,10 +916,30 @@ answered = false;
 
 </Action>
 
-次の問題へ進むときは、`currentIndex` を1増やします。
+<Action title="結果を表示する関数を書く">
+
+全問終了後の結果画面を表示する関数を作ります。  
+`checkAnswer` 関数の下に、次の関数を追加してください。
+
+```js
+function showFinalResult() {
+    progressText.textContent = '終了';
+    questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
+    choices.classList.add('hidden');
+    messageText.textContent = 'おつかれさまでした。';
+    actionButton.textContent = 'もう一度';
+}
+```
+
+この関数では、選択肢を `hidden` クラスで非表示にし、画面下の操作ボタンの文字を「もう一度」へ変えています。
+
+</Action>
+
+このあとの演習5では、`currentIndex` を1増やして「次の問題」へ進む処理を作ります。  
+そのとき、「次の問題」があるかどうかを判定する必要があります。
 
 - `currentIndex < questions.length` なら、表示する問題が残っている
-- `currentIndex` が `questions.length` と同じなら、次の問題はない
+- `currentIndex` が `questions.length` と同じなら、「次の問題」はない
 
 ### 理解確認3
 
@@ -944,25 +964,6 @@ answered = false;
 </Answer>
 
 </QuickCheck>
-
-<Action title="結果を表示する関数を書く">
-
-結果画面では、選択肢に `hidden` クラスを付けて非表示にします。  
-同じボタンの文字を「もう一度」へ変更します。
-
-`checkAnswer` 関数の下に、次の関数を追加します。
-
-```js
-function showFinalResult() {
-    progressText.textContent = '終了';
-    questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
-    choices.classList.add('hidden');
-    messageText.textContent = 'おつかれさまでした。';
-    actionButton.textContent = 'もう一度';
-}
-```
-
-</Action>
 
 ### 演習5
 
