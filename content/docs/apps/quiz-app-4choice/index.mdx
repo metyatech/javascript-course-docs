@@ -606,11 +606,16 @@ showQuestion();
 - 1問目の問題文が表示される
 - 4つの選択肢が順番どおりに表示される
 
-<Hint>
+<Hint label="ヒント1">
 
-- 問題番号は `currentIndex` に `1` を足します。
-- 問題文は `question.text` です。
-- `i` 番目の選択肢は `question.choices[i]` です。
+`question` には1問分のデータが入っています。セクション冒頭の表を見返して、問題文と選択肢がどのプロパティに入っているか確認してください。
+
+</Hint>
+
+<Hint label="ヒント2">
+
+- 問題番号は「人が数える番号」にする必要があります。`currentIndex` が `0` のとき、画面に表示する番号は何でしょうか？
+- `for` 文のカウンター変数 `i` は、ボタンの番号と選択肢の番号の両方に使えます。
 
 </Hint>
 
@@ -643,7 +648,7 @@ function showQuestion() {
 
 <Hint>
 
-インデックス `2` は、3番目の要素です。
+`choiceButtons[i]` と `question.choices[i]` の `i` には同じ値が入ります。1問目のデータの `choices` 配列を見て、位置 `2` に何が入っているか確認してください。
 
 </Hint>
 
@@ -704,10 +709,15 @@ function checkAnswer(selectedIndex) {
 
 完成した関数を `showQuestion` 関数の下へ追加します。
 
-<Hint>
+<Hint label="ヒント1">
 
-- 正解かどうかは、`selectedIndex` と `question.answerIndex` を比較します。
-- 正解の文章は、`question.choices` の正解位置にあります。
+`selectedIndex` は「選んだ位置」、`question` の中には「正解の位置」が入っています。正解かどうかの判定は、この2つの位置を比べることです。
+
+</Hint>
+
+<Hint label="ヒント2">
+
+不正解のとき表示する「正解の文章」は、`choices` 配列から取り出します。取り出すときの位置（インデックス）は、すでに `question` のプロパティとして持っています。
 
 </Hint>
 
@@ -767,8 +777,7 @@ choice4.addEventListener('click', function () {
 
 <Hint>
 
-1番目から4番目のボタンへ、順番に `0`、`1`、`2`、`3` を渡します。  
-正解と不正解を両方確認するときは、ページを再読み込みします。
+各ボタンは選択肢の何番目に対応していますか？ `choice1` は1番目の選択肢、`choice2` は2番目の選択肢…と対応しています。配列のインデックスが何番から始まるか思い出してください。
 
 </Hint>
 
@@ -835,17 +844,17 @@ choice4.addEventListener('click', function () {
 - 回答後は4つの選択肢を押せない
 - 同じ問題で `score` が2回以上増えない
 
-<Hint>
+<Hint label="ヒント1">
 
-4つのボタンを押せなくする処理は、次の形です。
+- ボタンを押せなくするには、ボタンの `disabled` プロパティを使います。
+- CSSの `.correct` や `.wrong` を適用するには、どうやってクラスを付けるか思い出してください。
 
-```js
-for (let i = 0; i < choiceButtons.length; i++) {
-    choiceButtons[i].disabled = true;
-}
-```
+</Hint>
 
-クラスを付けるときは、`classList.add` を使います。
+<Hint label="ヒント2">
+
+- ボタンは4つあり、全部に同じ処理をするときは `for` 文と `choiceButtons` 配列を使います。
+- 正解のボタンは `choiceButtons[question.answerIndex]` で特定できます。不正解のボタンは `choiceButtons[selectedIndex]` です。
 
 </Hint>
 
@@ -988,10 +997,16 @@ actionButton.addEventListener('click', function () {
 - 前の問題で付いた色とメッセージが残らない
 - 3問目の次は結果画面になり、ボタンの文字が「もう一度」に変わる
 
-<Hint>
+<Hint label="ヒント1">
 
-- 回答前の `answered` は `false` です。
-- 次の問題があれば `showQuestion`、なければ `showFinalResult` を呼び出します。
+- 最初の `if` 文は「まだ回答していない場合」に進めないようにするガードです。`answered` の初期値は何でしたか？
+- 2つ目の `if` 文の条件は、理解確認3で考えた「まだ次の問題がある」条件と同じです。
+
+</Hint>
+
+<Hint label="ヒント2">
+
+`if` の中と `else` の中で呼ぶのは、すでに作ってある2つの関数です。「問題を表示する関数」と「結果を表示する関数」のどちらを、どちらの場合に呼びますか？
 
 </Hint>
 
@@ -1093,10 +1108,15 @@ actionButton.addEventListener('click', function () {
 - 得点が0点へ戻る
 - ボタンの文字が「次の問題へ」に戻る
 
-<Hint>
+<Hint label="ヒント1">
 
-全問終了後の `currentIndex` は `questions.length` と同じです。  
-再スタート時は `currentIndex` と `score` を `0` へ戻します。
+「もう一度」ボタンが押されたかどうかを判定するには、全問終了後にしかなりえない `currentIndex` の値を使います。演習5で、最後の問題のあとにこの変数がどうなるか確認してください。
+
+</Hint>
+
+<Hint label="ヒント2">
+
+最初からやり直すため、最初の状態に戻したい変数は2つあります。セクション「クイズの進み具合を変数で覚える」の表で、それぞれの「最初の値」を確認してください。
 
 </Hint>
 
@@ -1234,7 +1254,7 @@ actionButton.addEventListener('click', function () {
 
 <Hint>
 
-1問分のオブジェクトへ `explanation` を追加し、回答結果のあとへ `question.explanation` を付け加えます。
+問題データに新しいプロパティを追加するのは、既存のプロパティ（`text` や `choices`）と同じ書き方です。追加したプロパティを、回答後のメッセージに文字列結合で付け足してみてください。
 
 </Hint>
 
