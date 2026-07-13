@@ -2,17 +2,7 @@
 title: 4択クイズアプリを作ろう
 ---
 
-import Exercise, { QuickCheck } from '@metyatech/exercise/client';
-
-export const Hint = Object.assign((props) => props.children, {
-    __exerciseHint: true,
-    displayName: 'ExerciseHint',
-});
-
-export const Answer = Object.assign((props) => props.children, {
-    __exerciseAnswer: true,
-    displayName: 'ExerciseAnswer',
-});
+import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
 
 4つの選択肢から答えを選び、最後に正解数が表示されるクイズアプリを作ります。
 
