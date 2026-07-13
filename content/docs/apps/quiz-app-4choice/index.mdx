@@ -7,7 +7,7 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
 4つの選択肢から答えを選び、最後に正解数を表示するクイズアプリを作ります。
 
 完成形を確認したあと、JavaScriptを少しずつ追加して仕組みを作ります。  
-演習1〜7が基本課題です。発展演習は、時間に余裕があれば取り組みます。
+演習1〜8が基本課題です。発展演習は、時間に余裕があれば取り組みます。
 
 ---
 
@@ -935,46 +935,103 @@ function showFinalResult() {
 
 </Action>
 
-このあとの演習5では、`currentIndex` を1増やして「次の問題」へ進む処理を作ります。  
-そのとき、「次の問題」があるかどうかを判定する必要があります。
-
-- `currentIndex < questions.length` なら、表示する問題が残っている
-- `currentIndex` が `questions.length` と同じなら、「次の問題」はない
-
-### 理解確認3
-
-<QuickCheck>
-
-3問あるクイズで、最後の問題のあとに `currentIndex` が `3` になりました。  
-「まだ次の問題がある」と判定する条件は、次のどちらですか。理由も答えてください。
-
-- `currentIndex < questions.length`
-- `currentIndex <= questions.length`
-
-<Hint>
-
-3問の配列で使えるインデックスは `0`、`1`、`2` です。
-
-</Hint>
-
-<Answer>
-
-`currentIndex < questions.length` です。`3` は配列のインデックスにないため、次の問題はありません。
-
-</Answer>
-
-</QuickCheck>
+完成形では、「次の問題へ」を押すと次の問題に切り替わりました。この処理をまず演習5で作ります。
 
 ### 演習5
 
 <Exercise>
 
-「次の問題へ」ボタンで、次の問題または結果画面を表示する処理を作ります。  
-次の4か所の `___` を完成させてください。
+「次の問題へ」ボタンが押されたときに、次の問題に切り替わる処理を作ります。  
+回答前にボタンが押されたときは進めないようにするガード処理も追加します。
+
+次の2か所の `___` を完成させてください。
 
 ```js
 actionButton.addEventListener('click', function () {
     if (answered === ___) {
+        messageText.textContent = '先に選択肢を選んでください。';
+        return;
+    }
+
+    currentIndex++;
+    ___();
+});
+```
+
+完成した処理を、選択肢ボタンのイベント処理（`choice1`〜`choice4`）より下、`showQuestion();` より上へ追加します。
+
+ページを再読み込みし、次の3点を確認してください。
+
+- 回答前は次の問題へ進めない
+- 回答後は2問目、3問目へ進める
+- 問題が切り替わるときに、前のアラートや選択肢の色が消え、新しい問題が表示される
+
+<Hint label="ヒント1">
+
+回答前の `answered` は `false` です。
+
+</Hint>
+
+<Hint label="ヒント2">
+
+インデックスを増やしたあとに呼び出すのは、画面に問題や選択肢を表示する関数です。
+
+</Hint>
+
+<Answer>
+
+```js
+actionButton.addEventListener('click', function () {
+    if (answered === false) {
+        messageText.textContent = '先に選択肢を選んでください。';
+        return;
+    }
+
+    currentIndex++;
+    showQuestion();
+});
+```
+
+回答前は `return` で処理を終了させます。回答済みの場合は `currentIndex` を増やしてから `showQuestion()` を呼び出し、次の問題と選択肢を表示します。
+
+</Answer>
+
+</Exercise>
+
+ひとまず問題が切り替わるようになりましたが、このままでは問題があります。実際に試してみましょう。
+
+<Verify title="3問目のあとに動作させてみる">
+
+実装したクイズを最後まで進めてみてください。
+
+1. 1問目、2問目を回答して「次の問題へ」を押す
+2. 3問目に回答する
+3. 3問目の回答後に、もう一度「次の問題へ」を押す
+
+最後のボタンを押したときに、画面の表示がおかしくなったり、画面が動かなくなったりする（エラーになる）ことを確認してください。
+
+</Verify>
+
+### なぜ壊れてしまったのか？
+
+このクイズアプリには問題データが3問しかありません。
+`questions` 配列で使えるインデックスは `0`（1問目）、`1`（2問目）、`2`（3問目）の3つだけです。
+
+しかし、3問目の後にさらにボタンを押すと、 `currentIndex` が `3` に増えてしまいます。
+すると JavaScript は存在しない `questions[3]` を使おうとしてエラーになり、画面が動かなくなってしまいます。
+
+そうならないために、全問終わったときは次の問題に進むのではなく、**代わりに結果画面を出す**ように修正する必要があります。
+
+### 演習6
+
+<Exercise>
+
+演習5で作った `actionButton` のイベント処理を書き換えて、次の問題が残っているかどうかで条件分岐するようにします。
+次の3か所の `___` を完成させてください。
+
+```js
+actionButton.addEventListener('click', function () {
+    if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
@@ -989,26 +1046,20 @@ actionButton.addEventListener('click', function () {
 });
 ```
 
-完成した処理を、選択肢のイベント処理より下、`showQuestion();` より上へ追加します。
+ページを再読み込みし、次の2点を確認してください。
 
-次の5点を確認してください。
-
-- 回答前は次の問題へ進めない
-- 回答後は2問目、3問目へ進める
-- 次の問題では選択肢をもう一度押せる
-- 前の問題で付いた色とメッセージが残らない
-- 3問目の次は結果画面になり、ボタンの文字が「もう一度」に変わる
+- 3問目を回答したあとにボタンを押すと、結果画面（「終了」）に変わる
+- 結果画面では選択肢が消え、一番下のボタンが「もう一度」に変わる
 
 <Hint label="ヒント1">
 
-- 最初の `if` 文は「まだ回答していない場合」に進めないようにするガードです。`answered` の初期値は何でしたか？
-- 2つ目の `if` 文の条件は、理解確認3で考えた「まだ次の問題がある」条件と同じです。
+3問の配列で使えるインデックスは `0`〜`2` です。`currentIndex` が `3` のとき（`questions.length` と同じ数値のとき）は問題がないため、それより小さい（未満の）場合だけ次の問題を表示します。
 
 </Hint>
 
 <Hint label="ヒント2">
 
-`if` の中と `else` の中で呼ぶのは、すでに作ってある2つの関数です。「問題を表示する関数」と「結果を表示する関数」のどちらを、どちらの場合に呼びますか？
+`if` の中と `else` の中で、問題を表示する関数（`showQuestion`）と結果を表示する関数（`showFinalResult`）を使い分けます。
 
 </Hint>
 
@@ -1031,20 +1082,19 @@ actionButton.addEventListener('click', function () {
 });
 ```
 
-回答前は `return` で処理を終えます。回答後は問題番号を進め、問題が残っていれば次の問題、なければ結果を表示します。
+`currentIndex` が `questions.length` より小さい場合は `showQuestion()` で次の問題を表示し、同じかそれ以上になった場合は `showFinalResult()` で結果画面を表示します。
 
 </Answer>
 
 </Exercise>
 
-<Recovery title="次の問題へ進めない場合">
+<Recovery title="次の問題へ進めない、または結果画面にならない場合">
 
 次の箇所を確認してください。
 
-1. 回答時に `answered = true` にしているか
-2. `currentIndex++` が条件分岐より前にあるか
-3. 条件が `currentIndex < questions.length` になっているか
-4. `showQuestion();` と `showFinalResult();` に括弧が付いているか
+1. 比較する条件が `currentIndex < questions.length` になっているか
+2. `showQuestion();` と `showFinalResult();` に括弧が付いているか
+3. `currentIndex++` の位置が条件判定より前になっているか
 
 </Recovery>
 
@@ -1069,14 +1119,14 @@ actionButton.textContent = '次の問題へ';
 
 </Action>
 
-### 演習6
+### 演習7
 
 <Exercise>
 
 結果画面でボタンが押された場合に、最初からやり直す処理を追加します。  
 「今が結果画面かどうか」を判定する条件と、リセットする変数を考えてください。
 
-演習5で作った `actionButton` のイベント処理を、次のコードへ置き換えてください。  
+演習6で作った `actionButton` のイベント処理を、次のコードへ置き換えてください。  
 追加した3か所の `___` を完成させます。
 
 ```js
@@ -1112,7 +1162,7 @@ actionButton.addEventListener('click', function () {
 
 <Hint label="ヒント1">
 
-「もう一度」ボタンが押されたかどうかを判定するには、全問終了後にしかなりえない `currentIndex` の値を使います。演習5で、最後の問題のあとにこの変数がどうなるか確認してください。
+「もう一度」ボタンが押されたかどうかを判定するには、全問終了後にしかなりえない `currentIndex` の値を使います。演習6で、最後の問題のあとにこの変数がどうなるか確認してください。
 
 </Hint>
 
@@ -1186,7 +1236,7 @@ actionButton.addEventListener('click', function () {
 
 <Section title="自分の4択クイズに改造する" goal="questions配列を書き換え、自分で考えた問題を出題します。">
 
-### 演習7
+### 演習8
 
 <Exercise>
 
