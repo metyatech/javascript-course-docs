@@ -145,10 +145,12 @@ let questions = [
     }
 ];
 
+// クイズの進み具合を管理する変数
 let currentIndex = 0;
 let score = 0;
 let answered = false;
 
+// HTML要素を取得
 let progressText = document.querySelector('#progressText');
 let questionText = document.querySelector('#questionText');
 let choices = document.querySelector('#choices');
@@ -162,12 +164,15 @@ let choice4 = document.querySelector('#choice4');
 
 let choiceButtons = [choice1, choice2, choice3, choice4];
 
+// 現在の問題と選択肢を画面に表示する関数
 function showQuestion() {
     let question = questions[currentIndex];
 
+    // 問題番号と問題文の表示
     progressText.textContent = (currentIndex + 1) + '問目 / ' + questions.length + '問中';
     questionText.textContent = question.text;
 
+    // 4つの選択肢ボタンに文字と状態をセットする
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = question.choices[i];
         choiceButtons[i].disabled = false;
@@ -175,22 +180,27 @@ function showQuestion() {
         choiceButtons[i].classList.remove('wrong');
     }
 
+    // 選択肢の表示とメッセージを回答前に戻す
     choices.classList.remove('hidden');
     messageText.textContent = '選択肢を選んでください。';
     actionButton.textContent = '次の問題へ';
     answered = false;
 }
 
+// 選んだ答えを判定して画面を更新する関数
 function checkAnswer(selectedIndex) {
     let question = questions[currentIndex];
     answered = true;
 
+    // 回答後はすべてのボタンを押せなくする
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].disabled = true;
     }
 
+    // 正解のボタンを緑色にする
     choiceButtons[question.answerIndex].classList.add('correct');
 
+    // 正解・不正解でメッセージとスコアを変える
     if (selectedIndex === question.answerIndex) {
         score++;
         messageText.textContent = '正解！';
@@ -201,6 +211,7 @@ function checkAnswer(selectedIndex) {
     }
 }
 
+// クイズ終了時の結果画面を表示する関数
 function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
@@ -209,6 +220,7 @@ function showFinalResult() {
     actionButton.textContent = 'もう一度';
 }
 
+// 選択肢がクリックされたときの処理
 choice1.addEventListener('click', function () {
     checkAnswer(0);
 });
@@ -225,7 +237,9 @@ choice4.addEventListener('click', function () {
     checkAnswer(3);
 });
 
+// 次へ進む、またはリスタートするボタンの処理
 actionButton.addEventListener('click', function () {
+    // 結果画面の場合は、最初からやり直す
     if (currentIndex === questions.length) {
         currentIndex = 0;
         score = 0;
@@ -233,13 +247,16 @@ actionButton.addEventListener('click', function () {
         return;
     }
 
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
 
+    // 次の問題が残っているかで表示する画面を変える
     if (currentIndex < questions.length) {
         showQuestion();
     } else {
@@ -517,6 +534,7 @@ let questions = [
 `questions` 配列の下に、次のコードを追加します。
 
 ```js
+// クイズの進み具合を管理する変数
 let currentIndex = 0;
 let score = 0;
 let answered = false;
@@ -529,6 +547,7 @@ let answered = false;
 3つの変数の下に、次のコードを追加します。
 
 ```js
+// HTML要素を取得
 let progressText = document.querySelector('#progressText');
 let questionText = document.querySelector('#questionText');
 let choices = document.querySelector('#choices');
@@ -580,12 +599,15 @@ let choiceButtons = [choice1, choice2, choice3, choice4];
 次の3か所の `___` を完成させてください。
 
 ```js
+// 現在の問題と選択肢を画面に表示する関数
 function showQuestion() {
     let question = questions[currentIndex];
 
+    // 問題番号と問題文の表示
     progressText.textContent = ___ + '問目 / ' + questions.length + '問中';
     questionText.textContent = ___;
 
+    // 4つの選択肢ボタンに文字をセットする
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = ___;
     }
@@ -622,12 +644,15 @@ showQuestion();
 <Answer>
 
 ```js
+// 現在の問題と選択肢を画面に表示する関数
 function showQuestion() {
     let question = questions[currentIndex];
 
+    // 問題番号と問題文の表示
     progressText.textContent = (currentIndex + 1) + '問目 / ' + questions.length + '問中';
     questionText.textContent = question.text;
 
+    // 4つの選択肢ボタンに文字をセットする
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = question.choices[i];
     }
@@ -693,10 +718,12 @@ choiceButtons[2].textContent = question.choices[2];
 次の2か所の `___` を完成させてください。
 
 ```js
+// 選んだ答えを判定して画面を更新する関数
 function checkAnswer(selectedIndex) {
     let question = questions[currentIndex];
     answered = true;
 
+    // 正解・不正解でメッセージとスコアを変える
     if (___) {
         score++;
         messageText.textContent = '正解！';
@@ -725,10 +752,12 @@ function checkAnswer(selectedIndex) {
 <Answer>
 
 ```js
+// 選んだ答えを判定して画面を更新する関数
 function checkAnswer(selectedIndex) {
     let question = questions[currentIndex];
     answered = true;
 
+    // 正解・不正解でメッセージとスコアを変える
     if (selectedIndex === question.answerIndex) {
         score++;
         messageText.textContent = '正解！';
@@ -752,6 +781,7 @@ function checkAnswer(selectedIndex) {
 4つのボタンから、押されたインデックスを `checkAnswer` 関数へ渡します。次の4か所の `___` を完成させてください。
 
 ```js
+// 選択肢がクリックされたときの処理
 choice1.addEventListener('click', function () {
     checkAnswer(___);
 });
@@ -785,6 +815,7 @@ choice4.addEventListener('click', function () {
 <Answer>
 
 ```js
+// 選択肢がクリックされたときの処理
 choice1.addEventListener('click', function () {
     checkAnswer(0);
 });
@@ -862,16 +893,20 @@ choice4.addEventListener('click', function () {
 <Answer>
 
 ```js
+// 選んだ答えを判定して画面を更新する関数
 function checkAnswer(selectedIndex) {
     let question = questions[currentIndex];
     answered = true;
 
+    // 回答後はすべてのボタンを押せなくする
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].disabled = true;
     }
 
+    // 正解のボタンを緑色にする
     choiceButtons[question.answerIndex].classList.add('correct');
 
+    // 正解・不正解でメッセージとスコアを変える
     if (selectedIndex === question.answerIndex) {
         score++;
         messageText.textContent = '正解！';
@@ -902,6 +937,7 @@ function checkAnswer(selectedIndex) {
 `showQuestion` の `for` 文へ、次の3行を追加します。
 
 ```js
+// 選択肢の状態を回答前に戻す
 choiceButtons[i].disabled = false;
 choiceButtons[i].classList.remove('correct');
 choiceButtons[i].classList.remove('wrong');
@@ -910,6 +946,7 @@ choiceButtons[i].classList.remove('wrong');
 `for` 文の下へ、次の2行を追加します。
 
 ```js
+// メッセージなどを回答前に戻す
 messageText.textContent = '選択肢を選んでください。';
 answered = false;
 ```
@@ -922,6 +959,7 @@ answered = false;
 `checkAnswer` 関数の下に、次の関数を追加してください。
 
 ```js
+// クイズ終了時の結果画面を表示する関数
 function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
@@ -947,12 +985,15 @@ function showFinalResult() {
 次の2か所の `___` を完成させてください。
 
 ```js
+// 次へ進むボタンの処理
 actionButton.addEventListener('click', function () {
+    // まだ回答していない場合は進めない
     if (answered === ___) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
     ___();
 });
@@ -981,12 +1022,15 @@ actionButton.addEventListener('click', function () {
 <Answer>
 
 ```js
+// 次へ進むボタンの処理
 actionButton.addEventListener('click', function () {
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
     showQuestion();
 });
@@ -1030,14 +1074,18 @@ actionButton.addEventListener('click', function () {
 次の3か所の `___` を完成させてください。
 
 ```js
+// 次へ進むボタンの処理
 actionButton.addEventListener('click', function () {
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
 
+    // 次の問題が残っているかで表示する画面を変える
     if (currentIndex ___ questions.length) {
         ___();
     } else {
@@ -1066,14 +1114,18 @@ actionButton.addEventListener('click', function () {
 <Answer>
 
 ```js
+// 次へ進むボタンの処理
 actionButton.addEventListener('click', function () {
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
 
+    // 次の問題が残っているかで表示する画面を変える
     if (currentIndex < questions.length) {
         showQuestion();
     } else {
@@ -1130,7 +1182,9 @@ actionButton.textContent = '次の問題へ';
 追加した3か所の `___` を完成させます。
 
 ```js
+// 次へ進む、またはリスタートするボタンの処理
 actionButton.addEventListener('click', function () {
+    // 結果画面の場合は、最初からやり直す
     if (currentIndex === ___) {
         currentIndex = ___;
         score = ___;
@@ -1138,13 +1192,16 @@ actionButton.addEventListener('click', function () {
         return;
     }
 
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
 
+    // 次の問題が残っているかで表示する画面を変える
     if (currentIndex < questions.length) {
         showQuestion();
     } else {
@@ -1175,7 +1232,9 @@ actionButton.addEventListener('click', function () {
 <Answer>
 
 ```js
+// 次へ進む、またはリスタートするボタンの処理
 actionButton.addEventListener('click', function () {
+    // 結果画面の場合は、最初からやり直す
     if (currentIndex === questions.length) {
         currentIndex = 0;
         score = 0;
@@ -1183,13 +1242,16 @@ actionButton.addEventListener('click', function () {
         return;
     }
 
+    // まだ回答していない場合は進めない
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
     }
 
+    // 次の問題へ進む
     currentIndex++;
 
+    // 次の問題が残っているかで表示する画面を変える
     if (currentIndex < questions.length) {
         showQuestion();
     } else {
@@ -1326,6 +1388,7 @@ actionButton.addEventListener('click', function () {
 `checkAnswer` で結果の文字を設定したあとに、次のコードを追加します。
 
 ```js
+// 正解・不正解の説明を追加
 messageText.textContent = messageText.textContent + ' ' + question.explanation;
 ```
 
@@ -1358,6 +1421,7 @@ messageText.textContent = messageText.textContent + ' ' + question.explanation;
 `showFinalResult` の中で、表示するコメントを決めます。
 
 ```js
+// スコアに応じてコメントを変える
 let comment = '';
 
 if (score === questions.length) {
