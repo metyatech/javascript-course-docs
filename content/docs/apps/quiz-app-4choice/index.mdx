@@ -42,8 +42,7 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
         <p id="messageText">選択肢を選んでください。</p>
     </section>
 
-    <button id="nextButton">次の問題へ</button>
-    <button id="restartButton" class="hidden">もう一度</button>
+    <button id="actionButton">次の問題へ</button>
 </main>
 ```
 
@@ -106,8 +105,7 @@ button:disabled {
     opacity: 0.75;
 }
 
-#nextButton,
-#restartButton {
+#actionButton {
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
@@ -155,8 +153,7 @@ let progressText = document.querySelector('#progressText');
 let questionText = document.querySelector('#questionText');
 let choices = document.querySelector('#choices');
 let messageText = document.querySelector('#messageText');
-let nextButton = document.querySelector('#nextButton');
-let restartButton = document.querySelector('#restartButton');
+let actionButton = document.querySelector('#actionButton');
 
 let choice1 = document.querySelector('#choice1');
 let choice2 = document.querySelector('#choice2');
@@ -180,8 +177,7 @@ function showQuestion() {
 
     choices.classList.remove('hidden');
     messageText.textContent = '選択肢を選んでください。';
-    nextButton.classList.remove('hidden');
-    restartButton.classList.add('hidden');
+    actionButton.textContent = '次の問題へ';
     answered = false;
 }
 
@@ -210,8 +206,7 @@ function showFinalResult() {
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
     choices.classList.add('hidden');
     messageText.textContent = 'おつかれさまでした。';
-    nextButton.classList.add('hidden');
-    restartButton.classList.remove('hidden');
+    actionButton.textContent = 'もう一度';
 }
 
 choice1.addEventListener('click', function () {
@@ -230,7 +225,14 @@ choice4.addEventListener('click', function () {
     checkAnswer(3);
 });
 
-nextButton.addEventListener('click', function () {
+actionButton.addEventListener('click', function () {
+    if (currentIndex === questions.length) {
+        currentIndex = 0;
+        score = 0;
+        showQuestion();
+        return;
+    }
+
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
@@ -245,12 +247,6 @@ nextButton.addEventListener('click', function () {
     }
 });
 
-restartButton.addEventListener('click', function () {
-    currentIndex = 0;
-    score = 0;
-    showQuestion();
-});
-
 showQuestion();
 ```
 
@@ -262,8 +258,8 @@ showQuestion();
 
 1. 回答前に「次の問題へ」を押し、問題が進まないことを確認する
 2. 1回目は全問正解し、正解の選択肢が緑色になることと、回答後に選択肢を押せないことを確認する
-3. 結果が「3問中3問正解」になることを確認する
-4. 「もう一度」を押し、1問目・0点から再開することを確認する
+3. 結果が「3問中3問正解」になり、同じボタンの文字が「もう一度」に変わることを確認する
+4. 「もう一度」を押し、1問目・0点から再開して、ボタンの文字が「次の問題へ」に戻ることを確認する
 5. 2回目は全問不正解にし、選んだ選択肢が赤色、正解が緑色になり、結果が「3問中0問正解」になることを確認する
 
 すべて確認できれば成功です。
@@ -304,7 +300,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 <Action title="HTMLをコピーする">
 
 `index.html` の `<body>` の中に、次のHTMLをコピーして貼り付けます。  
-「もう一度」ボタンには、最初は非表示にするため `hidden` クラスを付けています。
+ボタンは1つだけ用意し、表示する文字をJavaScriptで切り替えます。
 
 ```html
 <main class="app">
@@ -324,8 +320,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
         <p id="messageText">選択肢を選んでください。</p>
     </section>
 
-    <button id="nextButton">次の問題へ</button>
-    <button id="restartButton" class="hidden">もう一度</button>
+    <button id="actionButton">次の問題へ</button>
 </main>
 ```
 
@@ -394,8 +389,7 @@ button:disabled {
     opacity: 0.75;
 }
 
-#nextButton,
-#restartButton {
+#actionButton {
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
@@ -540,8 +534,7 @@ let progressText = document.querySelector('#progressText');
 let questionText = document.querySelector('#questionText');
 let choices = document.querySelector('#choices');
 let messageText = document.querySelector('#messageText');
-let nextButton = document.querySelector('#nextButton');
-let restartButton = document.querySelector('#restartButton');
+let actionButton = document.querySelector('#actionButton');
 
 let choice1 = document.querySelector('#choice1');
 let choice2 = document.querySelector('#choice2');
@@ -551,7 +544,8 @@ let choice4 = document.querySelector('#choice4');
 let choiceButtons = [choice1, choice2, choice3, choice4];
 ```
 
-4つの選択肢ボタンを配列にまとめると、`for` 文で順番に処理できます。
+`actionButton` は、表示する文字を変えて「次の問題へ」と「もう一度」の両方に使います。  
+4つの選択肢ボタンは配列にまとめ、`for` 文で順番に処理します。
 
 </Action>
 
@@ -891,7 +885,7 @@ function checkAnswer(selectedIndex) {
 
 <Section title="次の問題または結果を表示する" goal="回答後に問題番号を進め、次の問題または結果画面を表示します。">
 
-次の問題を表示する前に、ボタンとメッセージを回答前の状態へ戻します。
+次の問題を表示する前に、選択肢とメッセージを回答前の状態へ戻します。
 
 <Action title="showQuestionに次の問題の準備を追加する">
 
@@ -943,7 +937,8 @@ answered = false;
 
 <Action title="結果を表示する関数を書く">
 
-表示・非表示は、`hidden` クラスを追加・削除して切り替えます。
+結果画面では、選択肢に `hidden` クラスを付けて非表示にします。  
+同じボタンの文字を「もう一度」へ変更します。
 
 `checkAnswer` 関数の下に、次の関数を追加します。
 
@@ -953,8 +948,7 @@ function showFinalResult() {
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
     choices.classList.add('hidden');
     messageText.textContent = 'おつかれさまでした。';
-    nextButton.classList.add('hidden');
-    restartButton.classList.remove('hidden');
+    actionButton.textContent = 'もう一度';
 }
 ```
 
@@ -967,7 +961,7 @@ function showFinalResult() {
 次のイベント処理にある4か所の `___` を完成させてください。
 
 ```js
-nextButton.addEventListener('click', function () {
+actionButton.addEventListener('click', function () {
     if (answered === ___) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
@@ -991,7 +985,7 @@ nextButton.addEventListener('click', function () {
 - 回答後は2問目、3問目へ進める
 - 次の問題では選択肢をもう一度押せる
 - 前の問題で付いた色とメッセージが残らない
-- 3問目の次は結果画面になる
+- 3問目の次は結果画面になり、ボタンの文字が「もう一度」に変わる
 
 <Hint>
 
@@ -1003,7 +997,7 @@ nextButton.addEventListener('click', function () {
 <Answer>
 
 ```js
-nextButton.addEventListener('click', function () {
+actionButton.addEventListener('click', function () {
     if (answered === false) {
         messageText.textContent = '先に選択肢を選んでください。';
         return;
@@ -1040,19 +1034,21 @@ nextButton.addEventListener('click', function () {
 
 ---
 
-<Section title="もう一度遊べるようにする" goal="問題番号と得点をリセットし、結果画面から1問目へ戻します。">
+<Section title="同じボタンでもう一度遊ぶ" goal="結果画面のボタンで、問題番号と得点をリセットして1問目へ戻ります。">
 
-結果画面から戻るときは、`showQuestion` でクイズ画面を再表示します。
+結果画面では `currentIndex` が `questions.length` と同じになっています。  
+この状態でボタンを押したときは、次の問題へ進まず、最初からやり直します。
 
 <Action title="showQuestionに表示を戻す処理を追加する">
 
-`showQuestion` の `for` 文の下へ、次の3行を追加します。
+`showQuestion` の `for` 文の下へ、次の2行を追加します。
 
 ```js
 choices.classList.remove('hidden');
-nextButton.classList.remove('hidden');
-restartButton.classList.add('hidden');
+actionButton.textContent = '次の問題へ';
 ```
+
+これで、再スタート時に選択肢を再表示し、ボタンの文字を元へ戻せます。
 
 </Action>
 
@@ -1060,42 +1056,75 @@ restartButton.classList.add('hidden');
 
 <Exercise>
 
-次の再スタート処理にある3か所の `___` を完成させてください。
+演習5で作った `actionButton` のイベント処理を、次のコードへ置き換えてください。  
+追加した3か所の `___` を完成させます。
 
 ```js
-restartButton.addEventListener('click', function () {
-    currentIndex = ___;
-    score = ___;
-    ___();
+actionButton.addEventListener('click', function () {
+    if (currentIndex === ___) {
+        currentIndex = ___;
+        score = ___;
+        showQuestion();
+        return;
+    }
+
+    if (answered === false) {
+        messageText.textContent = '先に選択肢を選んでください。';
+        return;
+    }
+
+    currentIndex++;
+
+    if (currentIndex < questions.length) {
+        showQuestion();
+    } else {
+        showFinalResult();
+    }
 });
 ```
 
-完成した処理を、`nextButton` のイベント処理の下、`showQuestion();` より上へ追加します。
-
 次の4点を確認してください。
 
+- 結果画面でボタンの文字が「もう一度」になる
 - 「もう一度」を押すと1問目へ戻る
 - 得点が0点へ戻る
-- 選択肢と「次の問題へ」が再表示される
-- 「もう一度」が非表示になる
+- ボタンの文字が「次の問題へ」に戻る
 
 <Hint>
 
-`currentIndex` と `score` を `0` へ戻してから、問題を表示する関数を呼び出します。
+全問終了後の `currentIndex` は `questions.length` と同じです。  
+再スタート時は `currentIndex` と `score` を `0` へ戻します。
 
 </Hint>
 
 <Answer>
 
 ```js
-restartButton.addEventListener('click', function () {
-    currentIndex = 0;
-    score = 0;
-    showQuestion();
+actionButton.addEventListener('click', function () {
+    if (currentIndex === questions.length) {
+        currentIndex = 0;
+        score = 0;
+        showQuestion();
+        return;
+    }
+
+    if (answered === false) {
+        messageText.textContent = '先に選択肢を選んでください。';
+        return;
+    }
+
+    currentIndex++;
+
+    if (currentIndex < questions.length) {
+        showQuestion();
+    } else {
+        showFinalResult();
+    }
 });
 ```
 
-`showQuestion()` が、選択肢、メッセージ、ボタンの表示も回答前の状態へ戻します。
+最初の `if` 文は、結果画面でボタンが押された場合だけ実行されます。  
+問題番号と得点を戻してから `showQuestion()` を呼び出し、そこで選択肢とボタンの文字も元へ戻します。
 
 </Answer>
 
@@ -1111,7 +1140,7 @@ restartButton.addEventListener('click', function () {
 - 正解と不正解が色で分かる
 - 3問を順番に表示できる
 - 最後に正解数が表示される
-- 「もう一度」で1問目・0点から再開できる
+- 同じボタンで1問目・0点から再開できる
 
 </Checkpoint>
 
@@ -1119,9 +1148,10 @@ restartButton.addEventListener('click', function () {
 
 次の箇所を確認してください。
 
-1. `currentIndex` と `score` を両方 `0` へ戻しているか
-2. 再スタート処理で `showQuestion();` を呼び出しているか
-3. `showQuestion` で選択肢と2つのボタンの表示を戻しているか
+1. 全問終了後を `currentIndex === questions.length` で判定しているか
+2. `currentIndex` と `score` を両方 `0` へ戻しているか
+3. 再スタート時に `showQuestion();` を呼び出しているか
+4. `showQuestion` で `hidden` クラスを外し、ボタンの文字を戻しているか
 
 </Recovery>
 
@@ -1284,6 +1314,6 @@ messageText.textContent = comment;
 3. ボタンから `selectedIndex` を `checkAnswer` へ渡す
 4. `answerIndex` と比較して、得点、メッセージ、ボタンの状態を更新する
 5. `currentIndex` を増やし、次の問題または結果を表示する
-6. 再スタート時は `currentIndex` と `score` を `0` へ戻す
+6. 結果画面では同じボタンを「もう一度」に変え、押されたら `currentIndex` と `score` を `0` へ戻す
 
 </Section>
