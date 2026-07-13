@@ -43,7 +43,7 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
     </section>
 
     <button id="nextButton">次の問題へ</button>
-    <button id="restartButton">もう一度</button>
+    <button id="restartButton" class="hidden">もう一度</button>
 </main>
 ```
 
@@ -108,13 +108,12 @@ button:disabled {
 
 #nextButton,
 #restartButton {
-    display: block;
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
 }
 
-#restartButton {
+.hidden {
     display: none;
 }
 
@@ -175,13 +174,14 @@ function showQuestion() {
     for (let i = 0; i < choiceButtons.length; i++) {
         choiceButtons[i].textContent = question.choices[i];
         choiceButtons[i].disabled = false;
-        choiceButtons[i].className = '';
+        choiceButtons[i].classList.remove('correct');
+        choiceButtons[i].classList.remove('wrong');
     }
 
-    choices.style.display = 'block';
+    choices.classList.remove('hidden');
     messageText.textContent = '選択肢を選んでください。';
-    nextButton.style.display = 'block';
-    restartButton.style.display = 'none';
+    nextButton.classList.remove('hidden');
+    restartButton.classList.add('hidden');
     answered = false;
 }
 
@@ -193,13 +193,13 @@ function checkAnswer(selectedIndex) {
         choiceButtons[i].disabled = true;
     }
 
-    choiceButtons[question.answerIndex].className = 'correct';
+    choiceButtons[question.answerIndex].classList.add('correct');
 
     if (selectedIndex === question.answerIndex) {
         score++;
         messageText.textContent = '正解！';
     } else {
-        choiceButtons[selectedIndex].className = 'wrong';
+        choiceButtons[selectedIndex].classList.add('wrong');
         let correctAnswer = question.choices[question.answerIndex];
         messageText.textContent = '不正解。正解は「' + correctAnswer + '」です。';
     }
@@ -208,10 +208,10 @@ function checkAnswer(selectedIndex) {
 function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
-    choices.style.display = 'none';
+    choices.classList.add('hidden');
     messageText.textContent = 'おつかれさまでした。';
-    nextButton.style.display = 'none';
-    restartButton.style.display = 'block';
+    nextButton.classList.add('hidden');
+    restartButton.classList.remove('hidden');
 }
 
 choice1.addEventListener('click', function () {
@@ -290,7 +290,8 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 
 <Action title="HTMLをコピーする">
 
-`index.html` の `<body>` の中に、次のHTMLをコピーして貼り付けます。
+`index.html` の `<body>` の中に、次のHTMLをコピーして貼り付けます。  
+「もう一度」ボタンには、最初は非表示にするため `hidden` クラスを付けています。
 
 ```html
 <main class="app">
@@ -311,7 +312,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
     </section>
 
     <button id="nextButton">次の問題へ</button>
-    <button id="restartButton">もう一度</button>
+    <button id="restartButton" class="hidden">もう一度</button>
 </main>
 ```
 
@@ -395,13 +396,12 @@ button:disabled {
 
 #nextButton,
 #restartButton {
-    display: block;
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
 }
 
-#restartButton {
+.hidden {
     display: none;
 }
 
@@ -851,7 +851,7 @@ for (let i = 0; i < choiceButtons.length; i++) {
 }
 ```
 
-クラスを付けるときは、ボタンの `className` にクラス名を入れます。
+クラスを付けるときは、`classList.add` を使います。
 
 </Hint>
 
@@ -866,13 +866,13 @@ function checkAnswer(selectedIndex) {
         choiceButtons[i].disabled = true;
     }
 
-    choiceButtons[question.answerIndex].className = 'correct';
+    choiceButtons[question.answerIndex].classList.add('correct');
 
     if (selectedIndex === question.answerIndex) {
         score++;
         messageText.textContent = '正解！';
     } else {
-        choiceButtons[selectedIndex].className = 'wrong';
+        choiceButtons[selectedIndex].classList.add('wrong');
         let correctAnswer = question.choices[question.answerIndex];
         messageText.textContent = '不正解。正解は「' + correctAnswer + '」です。';
     }
@@ -895,11 +895,12 @@ function checkAnswer(selectedIndex) {
 
 <Action title="showQuestionに次の問題の準備を追加する">
 
-`showQuestion` の `for` 文へ、次の2行を追加します。
+`showQuestion` の `for` 文へ、次の3行を追加します。
 
 ```js
 choiceButtons[i].disabled = false;
-choiceButtons[i].className = '';
+choiceButtons[i].classList.remove('correct');
+choiceButtons[i].classList.remove('wrong');
 ```
 
 `for` 文の下へ、次の2行を追加します。
@@ -942,16 +943,18 @@ answered = false;
 
 <Action title="結果を表示する関数を書く">
 
+表示・非表示は、`hidden` クラスを追加・削除して切り替えます。
+
 `checkAnswer` 関数の下に、次の関数を追加します。
 
 ```js
 function showFinalResult() {
     progressText.textContent = '終了';
     questionText.textContent = '結果は ' + questions.length + '問中 ' + score + '問正解です。';
-    choices.style.display = 'none';
+    choices.classList.add('hidden');
     messageText.textContent = 'おつかれさまでした。';
-    nextButton.style.display = 'none';
-    restartButton.style.display = 'block';
+    nextButton.classList.add('hidden');
+    restartButton.classList.remove('hidden');
 }
 ```
 
@@ -1046,9 +1049,9 @@ nextButton.addEventListener('click', function () {
 `showQuestion` の `for` 文の下へ、次の3行を追加します。
 
 ```js
-choices.style.display = 'block';
-nextButton.style.display = 'block';
-restartButton.style.display = 'none';
+choices.classList.remove('hidden');
+nextButton.classList.remove('hidden');
+restartButton.classList.add('hidden');
 ```
 
 </Action>
