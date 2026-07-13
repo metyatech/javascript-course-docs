@@ -1,0 +1,26 @@
+name: One-time quiz wording cleanup
+
+on:
+  push:
+    paths:
+      - .github/workflows/one-time-quiz-wording-cleanup.yml
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Streamline quiz lesson wording
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+          import re
+
+          path =
