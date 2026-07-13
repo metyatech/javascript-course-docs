@@ -704,16 +704,10 @@ function checkAnswer(selectedIndex) {
 
 完成した関数を `showQuestion` 関数の下へ追加します。
 
-次の条件を満たせば成功です。
-
-- 正解したときだけ `score` が増える
-- 不正解の場合は正解の文字を表示できる
-- 回答すると `answered` が `true` になる
-
 <Hint>
 
 - 正解かどうかは、`selectedIndex` と `question.answerIndex` を比較します。
-- 正解の文字は、`question.choices` の正解位置にあります。
+- 正解の文章は、`question.choices` の正解位置にあります。
 
 </Hint>
 
@@ -769,7 +763,7 @@ choice4.addEventListener('click', function () {
 ページを再読み込みし、次の2点を確認してください。
 
 - 2番目の選択肢を押すと「正解！」と表示される
-- それ以外を押すと、不正解と正解の文字が表示される
+- それ以外を押すと、不正解と正解の文章が表示される
 
 <Hint>
 
