@@ -565,6 +565,10 @@ let choiceButtons = [choice1, choice2, choice3, choice4];
 画面に表示する問題番号は、人が数える番号に合わせて `currentIndex + 1` にします。  
 選択肢は、同じ `i` を使って `i` 番目のボタンへ `i` 番目の文字を表示します。
 
+### 演習1
+
+<Exercise>
+
 問題が変わるたびに同じ表示処理を使えるよう、現在の問題を表示する処理を `showQuestion` 関数にまとめます。
 
 この関数では、次の3つを画面へ表示します。
@@ -573,11 +577,6 @@ let choiceButtons = [choice1, choice2, choice3, choice4];
 2. 現在の問題文
 3. 4つの選択肢
 
-### 演習1
-
-<Exercise>
-
-現在の問題を画面へ表示する `showQuestion` 関数を作ります。  
 次の3か所の `___` を完成させてください。
 
 ```js
@@ -677,14 +676,16 @@ choiceButtons[2].textContent = question.choices[2];
 
 <Section title="選ばれた答えを判定する" goal="選んだ位置と正解の位置を比べ、得点とメッセージを更新します。">
 
-`checkAnswer` 関数には、押された選択肢のインデックスを `selectedIndex` として渡します。  
-`selectedIndex` と `question.answerIndex` が同じなら正解です。
-
 ### 演習2
 
 <Exercise>
 
-次の `checkAnswer` 関数にある2か所の `___` を完成させてください。
+選ばれた答えを判定する `checkAnswer` 関数を作ります。
+
+この関数には、押された選択肢のインデックスを `selectedIndex` として渡します。  
+`selectedIndex` と `question.answerIndex` が同じなら正解です。
+
+次の2か所の `___` を完成させてください。
 
 ```js
 function checkAnswer(selectedIndex) {
@@ -824,9 +825,6 @@ choice4.addEventListener('click', function () {
 4つのボタンの `disabled` を `true` にして、押せない状態へ変えます。
 
 CSSの `button:disabled` は、`disabled = true` になったボタンだけに適用されます。
-
-- 正解のボタンには `correct` クラスを付ける
-- 不正解の場合は、選んだボタンに `wrong` クラスを付ける
 
 ### 演習4
 
@@ -968,7 +966,8 @@ function showFinalResult() {
 
 <Exercise>
 
-次のイベント処理にある4か所の `___` を完成させてください。
+「次の問題へ」ボタンで、次の問題または結果画面を表示する処理を作ります。  
+次の4か所の `___` を完成させてください。
 
 ```js
 actionButton.addEventListener('click', function () {
@@ -1046,8 +1045,7 @@ actionButton.addEventListener('click', function () {
 
 <Section title="同じボタンでもう一度遊ぶ" goal="結果画面のボタンで、問題番号と得点をリセットして1問目へ戻ります。">
 
-結果画面では `currentIndex` が `questions.length` と同じになっています。  
-この状態でボタンを押したときは、次の問題へ進まず、最初からやり直します。
+再スタートするときは、`showQuestion` でクイズ画面を元に戻します。
 
 <Action title="showQuestionに表示を戻す処理を追加する">
 
@@ -1065,6 +1063,9 @@ actionButton.textContent = '次の問題へ';
 ### 演習6
 
 <Exercise>
+
+結果画面では、`currentIndex` が `questions.length` と同じになっています。  
+この状態でボタンが押された場合は、問題番号と得点を戻して最初からやり直します。
 
 演習5で作った `actionButton` のイベント処理を、次のコードへ置き換えてください。  
 追加した3か所の `___` を完成させます。
@@ -1171,14 +1172,15 @@ actionButton.addEventListener('click', function () {
 
 <Section title="自分の4択クイズに改造する" goal="questions配列を書き換え、自分で考えた問題を出題します。">
 
-処理はそのまま使い、`questions` 配列の中身を自分のテーマへ変更します。  
-ゲーム、食べ物、地理、動物、学校生活、JavaScriptの復習などから、答えが事実として決まるテーマを選びます。
-
 ### 演習7
 
 <Exercise>
 
-`questions` 配列を、自分のテーマの4択クイズへ書き換えてください。
+完成した処理はそのまま使い、`questions` 配列の中身を自分のテーマへ変更します。
+
+ゲーム、食べ物、地理、動物、学校生活、JavaScriptの復習などから、答えが事実として決まるテーマを選んでください。
+
+`questions` 配列を、選んだテーマの4択クイズへ書き換えてください。
 
 次の条件をすべて満たせば成功です。
 
