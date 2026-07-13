@@ -29,9 +29,11 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
     <h1>4択クイズアプリ</h1>
 
     <section class="quiz-box">
+        <!-- クイズの進行状況と問題文 -->
         <p id="progressText">1問目</p>
         <h2 id="questionText">問題文が入ります</h2>
 
+        <!-- 4つの選択肢 -->
         <div id="choices">
             <button id="choice1">選択肢1</button>
             <button id="choice2">選択肢2</button>
@@ -39,14 +41,17 @@ import Exercise, { QuickCheck, Hint, Answer } from '@metyatech/exercise/client';
             <button id="choice4">選択肢4</button>
         </div>
 
+        <!-- 正解・不正解などのメッセージ -->
         <p id="messageText">選択肢を選んでください。</p>
     </section>
 
+    <!-- 次へ進む、またはリスタートするボタン -->
     <button id="actionButton">次の問題へ</button>
 </main>
 ```
 
 ```css
+/* 基本のリセットと全体のスタイル */
 * {
     box-sizing: border-box;
 }
@@ -58,6 +63,7 @@ body {
     color: #222222;
 }
 
+/* アプリの枠組み */
 .app {
     width: 92%;
     max-width: 760px;
@@ -74,6 +80,7 @@ body {
     background: #f0f0f0;
 }
 
+/* テキストのスタイル */
 #progressText {
     font-weight: bold;
 }
@@ -82,12 +89,14 @@ body {
     min-height: 64px;
 }
 
+/* 選択肢ボタンのレイアウト */
 #choices button {
     display: block;
     width: 100%;
     margin-top: 12px;
 }
 
+/* ボタン共通のスタイル */
 button {
     padding: 14px;
     border: 2px solid transparent;
@@ -105,21 +114,27 @@ button:disabled {
     opacity: 0.75;
 }
 
+/* 画面下の操作ボタン */
 #actionButton {
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
 }
 
+/* --- JavaScriptで付け外しするクラス --- */
+
+/* 要素を非表示にする */
 .hidden {
     display: none;
 }
 
+/* 正解の色 */
 .correct {
     background: #ccebd3;
     color: #123b1d;
 }
 
+/* 不正解の色 */
 .wrong {
     background: #f3c8cc;
     color: #50151b;
@@ -306,6 +321,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 `index.html` の `<head>` の中に、次の2行を追加します。
 
 ```html
+<!-- CSSとJavaScriptの読み込み -->
 <link rel="stylesheet" href="style.css">
 <script src="script.js" defer></script>
 ```
@@ -324,9 +340,11 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
     <h1>4択クイズアプリ</h1>
 
     <section class="quiz-box">
+        <!-- クイズの進行状況と問題文 -->
         <p id="progressText">1問目</p>
         <h2 id="questionText">問題文が入ります</h2>
 
+        <!-- 4つの選択肢 -->
         <div id="choices">
             <button id="choice1">選択肢1</button>
             <button id="choice2">選択肢2</button>
@@ -334,9 +352,11 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
             <button id="choice4">選択肢4</button>
         </div>
 
+        <!-- 正解・不正解などのメッセージ -->
         <p id="messageText">選択肢を選んでください。</p>
     </section>
 
+    <!-- 次へ進む、またはリスタートするボタン -->
     <button id="actionButton">次の問題へ</button>
 </main>
 ```
@@ -348,6 +368,7 @@ HTMLとCSSはコピーして使います。JavaScriptは空の状態から作り
 `style.css` に次のCSSをコピーして貼り付けます。
 
 ```css
+/* 基本のリセットと全体のスタイル */
 * {
     box-sizing: border-box;
 }
@@ -359,6 +380,7 @@ body {
     color: #222222;
 }
 
+/* アプリの枠組み */
 .app {
     width: 92%;
     max-width: 760px;
@@ -375,6 +397,7 @@ body {
     background: #f0f0f0;
 }
 
+/* テキストのスタイル */
 #progressText {
     font-weight: bold;
 }
@@ -383,12 +406,14 @@ body {
     min-height: 64px;
 }
 
+/* 選択肢ボタンのレイアウト */
 #choices button {
     display: block;
     width: 100%;
     margin-top: 12px;
 }
 
+/* ボタン共通のスタイル */
 button {
     padding: 14px;
     border: 2px solid transparent;
@@ -406,21 +431,27 @@ button:disabled {
     opacity: 0.75;
 }
 
+/* 画面下の操作ボタン */
 #actionButton {
     width: 100%;
     margin-top: 20px;
     border-radius: 999px;
 }
 
+/* --- JavaScriptで付け外しするクラス --- */
+
+/* 要素を非表示にする */
 .hidden {
     display: none;
 }
 
+/* 正解の色 */
 .correct {
     background: #ccebd3;
     color: #123b1d;
 }
 
+/* 不正解の色 */
 .wrong {
     background: #f3c8cc;
     color: #50151b;
