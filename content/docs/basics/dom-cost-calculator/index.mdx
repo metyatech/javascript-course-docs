@@ -2,8 +2,6 @@
 title: JavaScriptで料金計算機を動かそう
 ---
 
-import Exercise, { Hint, Answer } from '@metyatech/exercise/client';
-
 <Section
     title="まず動かしてみよう"
     goal="人数を入力して計算ボタンを押すと、合計が変わることを確認します。"
@@ -65,54 +63,15 @@ button.addEventListener('click', function () {
 </Section>
 
 <Section
-    title="使う書き方は3つだけ"
-    goal="HTMLの部品を取得し、内容を読み、ボタンを押したときに表示を書き換えられるようになります。"
+    title="一緒に料金計算機を作ろう"
+    goal="HTMLの部品を取得し、ボタンを押したときに料金を計算して表示できるようになります。"
 >
 
-### 1. HTMLの部品を取得する
-
-```javascript
-let adult = document.querySelector('#adult');
-```
-
-`document.querySelector('#adult')`で、`id="adult"`が付いたHTMLの部品を取得します。
-
-### 2. `.value`で内容を読む・書き換える
-
-```javascript
-adult.value
-```
-
-`.value`を付けると、入力欄に入っている内容を読めます。
-
-```javascript
-total.value = 1000;
-```
-
-`.value`へ代入すると、入力欄に表示されている内容を書き換えられます。
-
-### 3. ボタンを押したときに処理する
-
-```javascript
-button.addEventListener('click', function () {
-    // ボタンを押したときの処理
-});
-```
-
-**計算**ボタンを押したとき、`{`と`}`の間に書いた処理が実行されます。
-
-</Section>
-
-<Section
-    title="料金計算機を作ろう"
-    goal="入力欄の人数を読み、ボタンを押したときに合計欄を書き換えます。"
->
-
-ここでは、講師と一緒にHTMLとJavaScriptを上から1行ずつ書いて完成させます。
+講師と一緒に、HTMLとJavaScriptを上から順番に書きます。
 
 ### HTMLを書く
 
-次のHTMLを用意します。大人、子供、計算ボタン、合計欄にそれぞれ`id`が付いています。
+まず、完成したHTMLを用意します。
 
 ```html
 <p>大人1人500円、子供1人300円です。</p>
@@ -140,61 +99,75 @@ button.addEventListener('click', function () {
 <script src="index.js"></script>
 ```
 
+それぞれの名前は次の部品を表します。
+
+- `adult`：大人の入力欄
+- `child`：子供の入力欄
+- `button`：計算ボタン
+- `total`：合計欄
+- 最後の`script`で`index.js`を読み込みます
+
 ### JavaScriptを書く
 
-次の順番で、コードを1つずつ追加します。
+次の順番で、講師と一緒に`index.js`へ追加します。
 
 ### 1. 大人の入力欄を取得する
-
-大人の入力欄を`adult`に入れます。
 
 ```javascript
 let adult = document.querySelector('#adult');
 ```
 
-### 2. 子供の入力欄を取得する
+`id="adult"`の入力欄を取得し、`adult`という名前で使えるようにします。
 
-子供の入力欄を`child`に入れます。
+### 2. 子供の入力欄を取得する
 
 ```javascript
 let child = document.querySelector('#child');
 ```
 
-### 3. 計算ボタンを取得する
+同じように、子供の入力欄を`child`という名前で使えるようにします。
 
-計算ボタンを`button`に入れます。
+### 3. 計算ボタンを取得する
 
 ```javascript
 let button = document.querySelector('#button');
 ```
 
-### 4. 合計欄を取得する
+`id="button"`の計算ボタンを取得し、`button`という名前で使えるようにします。
 
-合計欄を`total`に入れます。
+### 4. 合計欄を取得する
 
 ```javascript
 let total = document.querySelector('#total');
 ```
 
-### 5. ボタンが押されたときの処理を書く
+`id="total"`の合計欄を取得し、`total`という名前で使えるようにします。
 
-`button`に`addEventListener`を書き、ボタンを押したときに処理を実行します。
+ここまで書いたら、入力欄の内容を読む書き方を確認します。`adult.value`は大人の入力欄の内容、`child.value`は子供の入力欄の内容です。`total.value`へ代入すると、合計欄の表示を書き換えられます。
+
+### 5. ボタンを押したときの処理を書く
 
 ```javascript
 button.addEventListener('click', function () {
-    // ボタンを押したときの処理
+
 });
 ```
 
-### 6. 合計欄へ計算結果を代入する
+先ほど取得した`button`が押されたとき、`{`と`}`の間に書いた処理が実行されます。
 
-`{`と`}`の間に、計算式をそのまま`total.value`へ代入します。
+### 6. 料金を計算して合計欄へ表示する
+
+波括弧の中へ次を追加します。
 
 ```javascript
 total.value = adult.value * 500 + child.value * 300;
 ```
 
-6段階をつなげた完成形は次のとおりです。
+大人の人数に500、子供の人数に300を掛けて足し、結果を合計欄へ表示します。
+
+### 完成したindex.js
+
+最後に、完成した`index.js`を確認します。
 
 ```javascript
 let adult = document.querySelector('#adult');
@@ -207,64 +180,7 @@ button.addEventListener('click', function () {
 });
 ```
 
-大人の入力欄に`1`、子供の入力欄に`2`を入力して、**計算**を押します。
-
-<Verify>合計欄が`1100`になれば完成です。</Verify>
-
-### 演習1
-
-<Exercise>
-
-HTMLとJavaScriptを手元のファイルに書き、料金計算機を完成させましょう。大人に`1`、子供に`2`を入力して**計算**を押し、合計が`1100`になれば完了です。
-
-<Hint>4つの部品を`document.querySelector`で取得してから、`button.addEventListener('click', function () { ... });`の中へ計算式を書きます。</Hint>
-
-<Answer>
-
-完成コードは次のとおりです。
-
-```html
-<p>大人1人500円、子供1人300円です。</p>
-
-<p>
-    大人
-    <input id="adult" type="number" value="0">
-    人
-</p>
-
-<p>
-    子供
-    <input id="child" type="number" value="0">
-    人
-</p>
-
-<button id="button">計算</button>
-
-<p>
-    合計
-    <input id="total" value="0">
-    円
-</p>
-
-<script src="index.js"></script>
-```
-
-```javascript
-let adult = document.querySelector('#adult');
-let child = document.querySelector('#child');
-let button = document.querySelector('#button');
-let total = document.querySelector('#total');
-
-button.addEventListener('click', function () {
-    total.value = adult.value * 500 + child.value * 300;
-});
-```
-
-入力欄の内容を読み、計算結果を合計欄へ代入しています。
-
-</Answer>
-
-</Exercise>
+大人の入力欄に`1`、子供の入力欄に`2`を入力して、**計算**を押します。合計欄が`1100`になれば完成です。
 
 <Recovery title="動かないとき">
 
