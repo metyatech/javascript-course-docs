@@ -8,6 +8,7 @@ const meta = {
     'pre-function-review': {},
     'function-intro': {},
     'function-return': {},
+    'dom-cost-calculator': {},
     'object-intro': {},
     'array-intro': {},
     'array-methods': {},
