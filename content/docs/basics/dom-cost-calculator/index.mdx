@@ -20,8 +20,8 @@ JavaScriptからHTMLの部品を扱うための仕組みをDOMと呼びます。
 
 <CodePreview
   sourceId="dom-cost-calculator-complete"
-  htmlVisible={true}
-  jsVisible={true}
+  htmlVisible={false}
+  jsVisible={false}
   previewVisible={true}
   share={false}
 >
@@ -269,7 +269,22 @@ let numOfAdultsElem = document.querySelector('#num-of-adults');
 
 <Action>
 
-大人の入力欄を取得したあと、`.value`をコンソールへ表示します。
+HTML側の入力欄には、最初から`3`が入っています。`numOfAdultsElem`は入力欄そのものです。`numOfAdultsElem.value`は、その入力欄に現在表示されている`3`を読み取ります。
+
+<CodePreview
+  sourceId="dom-cost-calculator-value-read"
+  htmlVisible={true}
+  jsVisible={true}
+  previewVisible={true}
+  share={false}
+>
+```html
+<p>
+    大人
+    <input id="num-of-adults" type="number" min="0" value="3">
+    人
+</p>
+```
 
 ```javascript
 let numOfAdultsElem = document.querySelector('#num-of-adults');
@@ -277,7 +292,9 @@ let numOfAdultsElem = document.querySelector('#num-of-adults');
 console.log(numOfAdultsElem.value);
 ```
 
-大人の人数を入力してから実行し、入力した内容がコンソールに表示されることを確認します。
+</CodePreview>
+
+コンソールに`3`が表示されれば確認完了です。
 
 </Action>
 
@@ -289,7 +306,22 @@ console.log(numOfAdultsElem.value);
 
 <Action>
 
-合計欄を取得し、`.value`へ`1000`を代入します。
+実行前は合計欄に`0`が表示されています。合計欄を取得し、`.value`へ`1000`を代入します。
+
+<CodePreview
+  sourceId="dom-cost-calculator-value-write"
+  htmlVisible={true}
+  jsVisible={true}
+  previewVisible={true}
+  share={false}
+>
+```html
+<p>
+    合計金額
+    <input id="total-price" type="text" value="0" readonly>
+    円
+</p>
+```
 
 ```javascript
 let totalPriceElem = document.querySelector('#total-price');
@@ -297,10 +329,14 @@ let totalPriceElem = document.querySelector('#total-price');
 totalPriceElem.value = 1000;
 ```
 
+</CodePreview>
+
+`.value`は内容を読むだけでなく、代入によって表示を書き換えられます。
+
 </Action>
 
 <Verify>
-合計欄に表示されていた`0`が`1000`へ変わります。
+プレビュー上の合計欄が`0`から`1000`へ書き換わります。
 </Verify>
 
 | 書き方 | 動作 |
