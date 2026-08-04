@@ -1,0 +1,638 @@
+---
+title: JavaScriptでお絵かきしてみよう
+---
+
+import Exercise, { Hint, Answer } from '@metyatech/exercise/client';
+
+HTMLには、JavaScriptから線、図形、文字を直接描くための`<canvas>`要素があります。この描画領域と、描くための機能一式をCanvasと呼びます。
+
+前半はクリック位置に円を描くところまで全員で進めます。後半は、円以外に何を描くかを各自で選んで試します。
+
+<Section title="完成例を操作する" goal="クリックした位置に図形が残る完成例を観察します。">
+
+完成例では、暗い画面をクリックすると、クリックした位置に円、四角形、星が描かれます。同時に、画面中央からクリック位置まで線が伸びます。
+
+画面をクリックして、描かれた図形を確認してください。
+
+<CodePreview
+  sourceId="canvas-drawing-final-preview"
+  htmlVisible={false}
+  cssVisible={false}
+  jsVisible={false}
+  previewVisible={true}
+  share={false}
+>
+
+```html
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScriptでお絵かき</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
+```
+
+```css
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #07111f;
+}
+
+body::after {
+    content: '画面をクリックしてください';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 24px;
+    font-family: sans-serif;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+canvas {
+    display: block;
+}
+```
+
+```js
+const canvas = document.querySelector('#canvas');
+const context = canvas.getContext('2d');
+
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+
+canvas.addEventListener('click', (event) => {
+    const size = Math.random() * 40 + 10;
+    const hue = Math.random() * 360;
+
+    context.beginPath();
+    context.arc(
+        event.clientX,
+        event.clientY,
+        size,
+        0,
+        Math.PI * 2
+    );
+    context.fillStyle = `hsl(${hue} 100% 65%)`;
+    context.fill();
+
+    context.fillStyle = `hsl(${(hue + 60) % 360} 100% 65%)`;
+    context.fillRect(
+        event.clientX - size,
+        event.clientY - size,
+        size * 2,
+        size * 2
+    );
+
+    context.beginPath();
+    context.moveTo(canvas.width / 2, canvas.height / 2);
+    context.lineTo(event.clientX, event.clientY);
+    context.strokeStyle = `hsl(${(hue + 120) % 360} 100% 75%)`;
+    context.lineWidth = size / 8;
+    context.stroke();
+
+    context.font = `${size * 2}px sans-serif`;
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillStyle = `hsl(${(hue + 180) % 360} 100% 75%)`;
+    context.fillText('★', event.clientX, event.clientY);
+});
+```
+
+</CodePreview>
+
+<Checkpoint title="観察ポイント">
+
+- 暗い画面をクリックすると、クリックした位置に図形が残る
+- 画面中央からクリック位置まで線が描かれる
+- クリックするたびに、色や大きさが変わる
+
+</Checkpoint>
+
+</Section>
+
+<Section title="今回の流れ" goal="Canvasを用意して、クリック位置へ円を描くまでの順番を確認します。">
+
+次の順番で進めます。
+
+```text
+Canvasを用意する
+    ↓
+座標を指定して円を描く
+    ↓
+クリックした位置を取得する
+    ↓
+クリック位置に円を描く
+    ↓
+円以外の描き方も試す
+```
+
+前半の共通部分は、クリック位置への円描画までです。四角形、線、文字、ランダムな色や大きさは後半の演習で試します。
+
+<Checkpoint title="進め方の確認">
+
+- 前半で円を描くところまで完成させる
+- 後半は好きな演習を1つ以上選ぶ
+
+</Checkpoint>
+
+</Section>
+
+<Section title="3つのファイルを用意する" goal="新しいフォルダにHTML、CSS、JavaScriptの3ファイルを作ります。">
+
+新しい`canvas-drawing`フォルダを作り、その中に次の3ファイルを用意します。
+
+```text
+canvas-drawing/
+├── index.html
+├── style.css
+└── script.js
+```
+
+まず、`index.html`に次の内容を書きます。
+
+`<script>`の`defer`は、HTMLを読み終えてからJavaScriptを実行する指定です。Canvas要素を用意してからJavaScriptが動くように、`defer`を付けます。
+
+```html
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScriptでお絵かき</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
+</html>
+```
+
+次に、`style.css`に次の内容を書きます。
+
+```css
+body {
+    margin: 0;
+    overflow: hidden;
+    background-color: #07111f;
+}
+
+canvas {
+    display: block;
+}
+```
+
+- `margin: 0`は、ブラウザが最初から付ける余白をなくします。
+- `overflow: hidden`は、Canvasの外側にスクロールバーが出ないようにします。
+- `display: block`は、Canvasの下に余分な隙間ができないようにします。
+
+`script.js`は空のまま作っておきます。次のSectionから、JavaScriptを少しずつ追加します。
+
+<Verify>
+3つのファイルが同じ`canvas-drawing`フォルダの中にあり、`index.html`を開くと暗い画面が表示されます。
+</Verify>
+
+<Checkpoint title="ファイルの確認">
+
+- `index.html`、`style.css`、`script.js`の3ファイルがある
+- `index.html`から`style.css`と`script.js`を読み込んでいる
+- HTMLの`<canvas id="canvas">`が1つある
+
+</Checkpoint>
+
+</Section>
+
+<Section title="Canvasと描画用機能を取得する" goal="HTMLのCanvas要素と、Canvasに描くための機能一式をJavaScriptから取得します。">
+
+HTMLのCanvas要素を取得しただけでは、図形は描けません。Canvasに描くための機能一式も取得します。
+
+`document`は、現在開いているHTML文書を表します。`document.querySelector('#canvas')`は、HTMLから`id="canvas"`が付いたCanvas要素を取得します。`#canvas`の`#`は、idを探す目印です。
+
+`getContext('2d')`は、横方向と縦方向の座標を使って平面図形を描く機能一式を取得します。`context`は、Canvasに描くための道具一式を入れる変数です。
+
+`script.js`に次の2行を入力します。
+
+```js
+const canvas = document.querySelector('#canvas');
+const context = canvas.getContext('2d');
+```
+
+<Verify>
+ページを開いてもコンソールにエラーが出ず、Canvasに描く準備ができています。
+</Verify>
+
+<Checkpoint title="取得したものの確認">
+
+- `canvas`にHTMLのCanvas要素が入っている
+- `context`にCanvasへ描くための機能一式が入っている
+
+</Checkpoint>
+
+</Section>
+
+<Section title="Canvasを表示領域と同じ大きさにする" goal="Canvasをブラウザの表示領域いっぱいに広げます。">
+
+Canvasの初期サイズは、幅300、高さ150です。このままだと、ブラウザの表示領域より小さいCanvasにだけ描くことになります。
+
+次の言葉は、HTML文書と表示領域の大きさを読むために使います。
+
+- `document`：現在開いているHTML文書
+- `document.documentElement`：文書全体を表す`<html>`要素
+- `clientWidth`：表示領域の横幅
+- `clientHeight`：表示領域の高さ
+
+`canvas.width`はCanvasの描画領域の横幅、`canvas.height`は描画領域の高さです。この2つに表示領域の大きさを代入します。
+
+`context`を取得するコードの下に、次の2行を入力します。
+
+```js
+canvas.width = document.documentElement.clientWidth;
+canvas.height = document.documentElement.clientHeight;
+```
+
+<Verify>
+ページを開くと、Canvasがブラウザの表示領域いっぱいに広がり、外側にスクロールバーが表示されません。
+</Verify>
+
+<Checkpoint title="サイズの確認">
+
+- Canvasの幅に表示領域の横幅を設定している
+- Canvasの高さに表示領域の高さを設定している
+- サイズを設定するコードが、図形を描くコードより前にある
+
+</Checkpoint>
+
+</Section>
+
+<Section title="Canvasの座標を知る" goal="Canvasの左上を基準に、図形を置く座標を読めるようになります。">
+
+Canvasの座標は、左上が基準です。
+
+```text
+(0, 0) ─────────→ x
+  │
+  │
+  ↓
+  y
+```
+
+- 左上が`(0, 0)`です。
+- 右へ進むほどx座標が増えます。
+- 下へ進むほどy座標が増えます。
+- Canvasの図形は、座標で位置を指定します。
+
+たとえば、`(300, 200)`は、左から300、上から200進んだ位置です。次は、この座標を円の中心として使います。
+
+<Checkpoint title="座標の確認">
+
+- Canvasの左上が`(0, 0)`である
+- 右方向がx座標、下方向がy座標である
+- 図形を置く位置をx座標とy座標で指定できる
+
+</Checkpoint>
+
+</Section>
+
+<Section title="固定位置に円を描く" goal="指定した座標を中心に、Canvasへ円を1つ描きます。">
+
+円を描く前に、使う命令の役割を確認します。
+
+- `beginPath()`：新しい図形を描き始めます。
+- `arc()`：円または円弧の形を作ります。
+- `arc(中心のx, 中心のy, 半径, 開始角度, 終了角度)`の順に値を指定します。
+- 第1引数は中心のx座標、第2引数は中心のy座標、第3引数は半径です。
+- 第4引数は描き始める角度、第5引数は描き終わる角度です。
+- JavaScriptでは円周率を`Math.PI`で取得できます。一周は`Math.PI * 2`です。
+- `fillStyle`：図形を塗りつぶす色を指定します。
+- `fill()`：作成した形を実際に塗ります。
+
+固定位置の円を作るため、`canvas.height`を設定したコードの下に次を入力します。
+
+```js
+context.beginPath();
+context.arc(300, 200, 30, 0, Math.PI * 2);
+context.fillStyle = '#ff4d6d';
+context.fill();
+```
+
+<Verify>
+ページを開くと、左上から右へ300、下へ200進んだ位置を中心に、赤い円が表示されます。
+</Verify>
+
+<Checkpoint title="円の確認">
+
+- `arc()`に中心のx座標、中心のy座標、半径、開始角度、終了角度を渡している
+- `Math.PI * 2`で一周分の円を作っている
+- `fill()`で円が画面に表示されている
+
+</Checkpoint>
+
+</Section>
+
+<Section title="クリックした位置に円を描く" goal="クリックした位置を取得して、その場所に円を残します。">
+
+固定位置に円を描いたコードを削除し、次のクリックイベントへ置き換えます。これで、決まった場所ではなくクリックした場所へ円を描けます。
+
+クリックイベントの`event`には、クリックしたときの情報が入っています。
+
+- `event.clientX`：表示領域の左端からクリック位置までの横方向の距離
+- `event.clientY`：表示領域の上端からクリック位置までの縦方向の距離
+
+`canvas.addEventListener('click', ...)`は、Canvasがクリックされたときに、指定した処理を実行します。クリックが起きるたびに、`event`からその位置を読み取ります。
+
+次のコードを入力します。
+
+```js
+canvas.addEventListener('click', (event) => {
+    context.beginPath();
+    context.arc(
+        event.clientX,
+        event.clientY,
+        30,
+        0,
+        Math.PI * 2
+    );
+    context.fillStyle = '#ff4d6d';
+    context.fill();
+});
+```
+
+画面内の複数箇所をクリックしてください。同じクリックイベントの中で新しい円を描くので、前に描いた円は消えません。
+
+<Verify>
+複数箇所をクリックすると、それぞれのクリック位置に円が残ります。
+</Verify>
+
+<Recovery title="円が表示されないとき">
+
+- 症状：クリックしても円が表示されない場合は、次を順番に確認してください。
+- 原因候補：HTMLの`id="canvas"`とJavaScriptの`'#canvas'`が一致しているか確認します。
+- 原因候補：`<script>`に`defer`が付いているか確認します。
+- 原因候補：`getContext('2d')`の`2d`が文字列になっているか確認します。
+- 修正：開発者ツールのコンソールにエラーがあれば、表示された行を確認して直します。
+- 修正：Canvasの幅と高さを設定するコードが、円を描くコードより前にあるか確認します。
+
+</Recovery>
+
+<Checkpoint title="共通部分の完成確認">
+
+- クリックした位置に円が描かれる
+- 複数回クリックしても、前の円が残る
+- コンソールにエラーが表示されていない
+
+</Checkpoint>
+
+</Section>
+
+<Section title="後半の演習" goal="円以外の描き方を選び、クリック位置に新しい図形を描きます。">
+
+残り時間は、次の演習から好きなものを1つ以上選びます。各演習は独立しており、現在のクリックイベント内の描画処理を置き換えて試せます。
+
+`fillRect()`は、四角形を作って塗る命令です。次の順番で4つの値を指定します。
+
+```text
+fillRect(左上のx, 左上のy, 横幅, 高さ)
+```
+
+`fillRect()`は左上の位置を基準にするため、クリック位置を四角形の中心にするには、左上の位置を計算します。`30`は横幅60の半分、`20`は高さ40の半分です。
+
+### 演習1：四角形
+
+<Exercise>
+
+現在のクリックイベント内の描画処理を、クリック位置を中心とする幅60、高さ40の四角形を描く処理へ置き換えます。クリックした場所に青い四角形が表示されれば成功です。
+
+<Hint>
+`fillRect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
+</Hint>
+
+<Answer>
+
+`event.clientX - 30`と`event.clientY - 20`で左上の位置を作ります。横幅60と高さ40を指定すると、クリック位置が四角形の中心になります。
+
+```js
+canvas.addEventListener('click', (event) => {
+    context.fillStyle = '#4cc9f0';
+    context.fillRect(
+        event.clientX - 30,
+        event.clientY - 20,
+        60,
+        40
+    );
+});
+```
+
+</Answer>
+
+</Exercise>
+
+線を描くために、次の命令を使います。
+
+- `beginPath()`：新しい線を描き始めます。
+- `moveTo()`：線の開始位置を決めます。
+- `lineTo()`：線の終了位置を決めます。
+- `strokeStyle`：線の色を指定します。
+- `lineWidth`：線の太さを指定します。
+- `stroke()`：作成した線を実際に描きます。
+
+### 演習2：線
+
+<Exercise>
+
+現在のクリックイベント内の描画処理を、画面中央からクリック位置まで線を描く処理へ置き換えます。画面中央とクリック位置が線でつながれば成功です。
+
+<Hint>
+`moveTo()`にCanvasの幅と高さを使った中央の座標を渡し、`lineTo()`に`event.clientX`と`event.clientY`を渡します。
+</Hint>
+
+<Answer>
+
+`canvas.width / 2`と`canvas.height / 2`で画面中央を作り、クリック位置を線の終点にします。
+
+```js
+canvas.addEventListener('click', (event) => {
+    context.beginPath();
+    context.moveTo(
+        canvas.width / 2,
+        canvas.height / 2
+    );
+    context.lineTo(
+        event.clientX,
+        event.clientY
+    );
+    context.strokeStyle = '#ffd166';
+    context.lineWidth = 4;
+    context.stroke();
+});
+```
+
+</Answer>
+
+</Exercise>
+
+文字を描くために、次の命令と設定を使います。
+
+- `font`：文字の大きさとフォントを指定します。
+- `textAlign = 'center'`：指定したx座標を文字の横方向の中心にします。
+- `textBaseline = 'middle'`：指定したy座標を文字の縦方向の中心にします。
+- `fillText()`：指定した文字を座標に描きます。
+
+### 演習3：文字や絵文字
+
+<Exercise>
+
+現在のクリックイベント内の描画処理を、クリック位置に星を描く処理へ置き換えます。星がクリック位置を中心に表示されれば成功です。星は好きな文字、名前、絵文字へ変更して構いません。
+
+<Hint>
+`font`で文字の大きさを決め、`textAlign`と`textBaseline`でクリック位置が文字の中心になるようにしてから、`fillText()`で文字と座標を指定します。
+</Hint>
+
+<Answer>
+
+`textAlign`と`textBaseline`を設定すると、指定した座標が文字の中心になります。`'★'`を好きな文字や絵文字へ変更して試してください。
+
+```js
+canvas.addEventListener('click', (event) => {
+    context.font = '48px sans-serif';
+    context.textAlign = 'center';
+    context.textBaseline = 'middle';
+    context.fillStyle = '#ffd166';
+    context.fillText(
+        '★',
+        event.clientX,
+        event.clientY
+    );
+});
+```
+
+</Answer>
+
+</Exercise>
+
+この演習は任意です。既習の`Math.random()`を使って、クリックするたびに色と大きさが変わる円を描きます。
+
+コードを書く前に、次の値の意味を確認します。
+
+- `Math.random() * 40 + 10`は、10以上50未満の値です。`size`には円の半径を入れます。
+- HSLの色相は0以上360未満で一周します。`hue`には色相を入れます。
+- `hsl(色相 彩度 明度)`で色を指定できます。ここでは彩度を`100%`、明度を`65%`にします。
+
+### 演習-発展1：色と大きさをランダムにする
+
+<Exercise>
+
+任意で、現在のクリックイベント内の描画処理を、色と大きさがランダムに変わる円を描く処理へ置き換えます。クリックするたびに、色と円の大きさが変われば成功です。
+
+<Hint>
+まず`size`と`hue`を作り、`size`を円の半径、`hue`を`hsl()`の色相に使います。円を描く流れは、固定位置の円と同じです。
+</Hint>
+
+<Answer>
+
+`Math.random() * 40 + 10`で半径を、`Math.random() * 360`で色相を毎回作ります。`hsl()`の色相に`hue`を入れると、クリックごとに色が変わります。
+
+```js
+canvas.addEventListener('click', (event) => {
+    const size = Math.random() * 40 + 10;
+    const hue = Math.random() * 360;
+
+    context.beginPath();
+    context.arc(
+        event.clientX,
+        event.clientY,
+        size,
+        0,
+        Math.PI * 2
+    );
+    context.fillStyle = `hsl(${hue} 100% 65%)`;
+    context.fill();
+});
+```
+
+</Answer>
+
+</Exercise>
+
+この演習は任意です。次の候補から1つ選び、複数の描き方を組み合わせます。
+
+- 円と小さな円を組み合わせて顔を描く
+- 円と四角形を組み合わせてロボットを描く
+- 中央から線を何本も描いて静止した花火模様を作る
+- 絵文字を並べてスタンプ帳を作る
+- ランダムな円と四角形で抽象画を作る
+
+### 演習-発展2：描き方を組み合わせる
+
+<Exercise>
+
+任意で、現在のクリックイベント内の描画処理を、クリック位置を中心とした顔またはロボットを描く処理へ置き換えます。`arc()`と`fillRect()`を組み合わせ、クリックした場所を中心に形が表示されれば成功です。
+
+<Hint>
+ロボットを選ぶ場合は、`fillRect()`で体や目を作り、`arc()`で頭を作ります。どちらも、クリック位置からx座標とy座標を計算して配置します。
+</Hint>
+
+<Answer>
+
+次は、`arc()`で頭、`fillRect()`で体と目を描くロボットの例です。新しいCanvas APIは使わず、ここまでに説明した命令だけを組み合わせています。
+
+```js
+canvas.addEventListener('click', (event) => {
+    context.fillStyle = '#4cc9f0';
+    context.fillRect(
+        event.clientX - 45,
+        event.clientY,
+        90,
+        70
+    );
+
+    context.beginPath();
+    context.arc(
+        event.clientX,
+        event.clientY - 35,
+        35,
+        0,
+        Math.PI * 2
+    );
+    context.fillStyle = '#ffd166';
+    context.fill();
+
+    context.fillStyle = '#07111f';
+    context.fillRect(
+        event.clientX - 14,
+        event.clientY - 45,
+        8,
+        8
+    );
+    context.fillRect(
+        event.clientX + 6,
+        event.clientY - 45,
+        8,
+        8
+    );
+});
+```
+
+</Answer>
+
+</Exercise>
+
+<Checkpoint title="演習の完成確認">
+
+- 円以外の描き方を1つ以上試した
+- 選んだ演習の図形がクリック位置に表示される
+- 任意の演習は、必要に応じて複数の描き方を組み合わせている
+
+</Checkpoint>
+
+</Section>
