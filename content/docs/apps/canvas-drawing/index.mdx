@@ -76,15 +76,11 @@ canvas.addEventListener('click', (event) => {
     const hue = Math.random() * 360;
 
     context.beginPath();
-    context.arc(
-        event.clientX,
-        event.clientY,
-        size,
-        0,
-        Math.PI * 2
-    );
-    context.fillStyle = `hsl(${hue} 100% 65%)`;
-    context.fill();
+    context.moveTo(canvas.width / 2, canvas.height / 2);
+    context.lineTo(event.clientX, event.clientY);
+    context.strokeStyle = `hsl(${(hue + 120) % 360} 100% 75%)`;
+    context.lineWidth = size / 8;
+    context.stroke();
 
     context.fillStyle = `hsl(${(hue + 60) % 360} 100% 65%)`;
     context.fillRect(
@@ -95,11 +91,15 @@ canvas.addEventListener('click', (event) => {
     );
 
     context.beginPath();
-    context.moveTo(canvas.width / 2, canvas.height / 2);
-    context.lineTo(event.clientX, event.clientY);
-    context.strokeStyle = `hsl(${(hue + 120) % 360} 100% 75%)`;
-    context.lineWidth = size / 8;
-    context.stroke();
+    context.arc(
+        event.clientX,
+        event.clientY,
+        size,
+        0,
+        Math.PI * 2
+    );
+    context.fillStyle = `hsl(${hue} 100% 65%)`;
+    context.fill();
 
     context.font = `${size * 2}px sans-serif`;
     context.textAlign = 'center';
@@ -397,7 +397,7 @@ canvas.addEventListener('click', (event) => {
 
 <Section title="後半の演習" goal="円以外の描き方を選び、クリック位置に新しい図形を描きます。">
 
-残り時間は、次の演習から好きなものを1つ以上選びます。各演習は独立しており、現在のクリックイベント内の描画処理を置き換えて試せます。
+残り時間は、次の演習から好きなものを1つ以上選びます。各演習は独立しており、現在のクリックイベント全体を、各解答に掲載されているクリックイベント全体へ置き換えて試します。
 
 `fillRect()`は、四角形を作って塗る命令です。次の順番で4つの値を指定します。
 
@@ -411,7 +411,7 @@ fillRect(左上のx, 左上のy, 横幅, 高さ)
 
 <Exercise>
 
-現在のクリックイベント内の描画処理を、クリック位置を中心とする幅60、高さ40の四角形を描く処理へ置き換えます。クリックした場所に青い四角形が表示されれば成功です。
+現在のクリックイベント全体を、クリック位置を中心とする幅60、高さ40の四角形を描くクリックイベントへ置き換えます。クリックした場所に青い四角形が表示されれば成功です。
 
 <Hint>
 `fillRect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
@@ -450,7 +450,7 @@ canvas.addEventListener('click', (event) => {
 
 <Exercise>
 
-現在のクリックイベント内の描画処理を、画面中央からクリック位置まで線を描く処理へ置き換えます。画面中央とクリック位置が線でつながれば成功です。
+現在のクリックイベント全体を、画面中央からクリック位置まで線を描くクリックイベントへ置き換えます。画面中央とクリック位置が線でつながれば成功です。
 
 <Hint>
 `moveTo()`にCanvasの幅と高さを使った中央の座標を渡し、`lineTo()`に`event.clientX`と`event.clientY`を渡します。
@@ -492,7 +492,7 @@ canvas.addEventListener('click', (event) => {
 
 <Exercise>
 
-現在のクリックイベント内の描画処理を、クリック位置に星を描く処理へ置き換えます。星がクリック位置を中心に表示されれば成功です。星は好きな文字、名前、絵文字へ変更して構いません。
+現在のクリックイベント全体を、クリック位置に星を描くクリックイベントへ置き換えます。星がクリック位置を中心に表示されれば成功です。星は好きな文字、名前、絵文字へ変更して構いません。
 
 <Hint>
 `font`で文字の大きさを決め、`textAlign`と`textBaseline`でクリック位置が文字の中心になるようにしてから、`fillText()`で文字と座標を指定します。
@@ -532,7 +532,7 @@ canvas.addEventListener('click', (event) => {
 
 <Exercise>
 
-任意で、現在のクリックイベント内の描画処理を、色と大きさがランダムに変わる円を描く処理へ置き換えます。クリックするたびに、色と円の大きさが変われば成功です。
+任意で、現在のクリックイベント全体を、色と大きさがランダムに変わる円を描くクリックイベントへ置き換えます。クリックするたびに、色と円の大きさが変われば成功です。
 
 <Hint>
 まず`size`と`hue`を作り、`size`を円の半径、`hue`を`hsl()`の色相に使います。円を描く流れは、固定位置の円と同じです。
@@ -576,7 +576,7 @@ canvas.addEventListener('click', (event) => {
 
 <Exercise>
 
-任意で、現在のクリックイベント内の描画処理を、クリック位置を中心とした顔またはロボットを描く処理へ置き換えます。`arc()`と`fillRect()`を組み合わせ、クリックした場所を中心に形が表示されれば成功です。
+任意で、現在のクリックイベント全体を、クリック位置を中心とした顔またはロボットを描くクリックイベントへ置き換えます。`arc()`と`fillRect()`を組み合わせ、クリックした場所を中心に形が表示されれば成功です。
 
 <Hint>
 ロボットを選ぶ場合は、`fillRect()`で体や目を作り、`arc()`で頭を作ります。どちらも、クリック位置からx座標とy座標を計算して配置します。
