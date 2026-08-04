@@ -2,6 +2,8 @@
 title: JavaScriptで料金計算機を動かそう
 ---
 
+import Exercise, { Hint, Answer } from '@metyatech/exercise/client';
+
 <Section
     title="まず動かしてみよう"
     goal="人数を入力して計算ボタンを押すと、合計が変わることを確認します。"
@@ -181,6 +183,118 @@ button.addEventListener('click', function () {
 ```
 
 大人の入力欄に`1`、子供の入力欄に`2`を入力して、**計算**を押します。合計欄が`1100`になれば完成です。
+
+</Section>
+
+<Section
+    title="演習してみよう"
+    goal="学んだ書き方を組み合わせて、料金計算機へ新しい機能を追加します。"
+>
+
+### 演習1 リセットボタンを追加しよう
+
+<Exercise>
+
+一緒に完成させた料金計算機へ、リセット機能を追加しましょう。料金計算機全体を最初から作り直さず、完成している料金計算機へ次の追加だけを行います。
+
+料金計算機に「リセット」ボタンを追加します。リセットボタンを押すと、大人、子供、合計のすべてが`0`に戻るようにします。
+
+計算ボタンの後へ、次のHTMLを追加します。
+
+```html
+<button id="reset">リセット</button>
+```
+
+次に、`id="reset"`のボタンを取得し、クリックされたときに3つの`.value`へ`0`を代入する処理を、既存の計算ボタンのイベントより後へ追加します。
+
+大人に`2`、子供に`3`を入力して、**計算**を押します。次に**リセット**を押し、大人、子供、合計がすべて`0`になれば完成です。
+
+<Hint>
+
+`reset`ボタンを`document.querySelector`で取得します。そのあと、クリックイベントの中で`adult.value`、`child.value`、`total.value`へ`0`を代入します。
+
+</Hint>
+
+<Answer>
+
+HTMLでは、計算ボタンの後へ次を追加します。
+
+```html
+<button id="reset">リセット</button>
+```
+
+JavaScriptでは、既存の`adult`、`child`、`button`、`total`を宣言した後に`reset`を追加します。リセットイベントは、既存の計算ボタンのイベントより後へ追加します。
+
+```javascript
+let reset = document.querySelector('#reset');
+
+reset.addEventListener('click', function () {
+    adult.value = 0;
+    child.value = 0;
+    total.value = 0;
+});
+```
+
+</Answer>
+
+</Exercise>
+
+### 演習-発展1 幼児料金を追加しよう
+
+<Exercise>
+
+演習1が終わり、さらに時間が余ったときだけ取り組みましょう。幼児1人100円の入力欄を追加し、幼児料金も合計へ加えます。
+
+子供の入力欄の後へ、次のHTMLを追加します。新しいIDと変数名には`baby`を使い、ハイフンを含むIDは使いません。
+
+```html
+<p>
+    幼児
+    <input id="baby" type="number" value="0">
+    人
+</p>
+```
+
+次に、幼児の入力欄を取得し、合計式へ幼児料金を追加します。
+
+大人`1`、子供`2`、幼児`3`を入力して、合計が`1400`になれば完成です。
+
+```text
+500 + 600 + 300 = 1400
+```
+
+<Hint>
+
+`id="baby"`の入力欄を取得します。合計式へ`baby.value * 100`を足してください。
+
+</Hint>
+
+<Answer>
+
+次の変数を、既存の入力欄の変数を宣言した後へ追加します。
+
+```javascript
+let baby = document.querySelector('#baby');
+```
+
+現在の短い1行の計算式を、次の複数行の式へ置き換えます。
+
+```javascript
+total.value =
+    adult.value * 500 +
+    child.value * 300 +
+    baby.value * 100;
+```
+
+演習1のリセットボタンも追加済みの場合は、リセット処理へ次の1行も追加します。
+
+```javascript
+baby.value = 0;
+```
+
+</Answer>
+
+</Exercise>
 
 <Recovery title="動かないとき">
 
