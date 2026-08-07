@@ -161,8 +161,6 @@ canvas-drawing/
 
 まず、`index.html`に次の内容を書きます。
 
-`<script>`の`defer`は、HTMLを読み終えてからJavaScriptを実行する指定です。Canvas要素を用意してからJavaScriptが動くように、`defer`を付けます。
-
 ```html
 <!doctype html>
 <html lang="ja">
@@ -193,10 +191,6 @@ canvas {
 }
 ```
 
-- `margin: 0`は、ブラウザが最初から付ける余白をなくします。
-- `overflow: hidden`は、Canvasの外側にスクロールバーが出ないようにします。
-- `display: block`は、Canvasの下に余分な隙間ができないようにします。
-
 `script.js`は空のまま作っておきます。次のSectionから、JavaScriptを少しずつ追加します。
 
 <Verify>
@@ -215,11 +209,7 @@ canvas {
 
 <Section title="Canvasと描画用機能を取得する" goal="HTMLのCanvas要素と、Canvasに描くための機能一式をJavaScriptから取得します。">
 
-HTMLのCanvas要素を取得しただけでは、図形は描けません。Canvasに描くための機能一式も取得します。
-
-`document`は、現在開いているHTML文書を表します。`document.querySelector('#canvas')`は、HTMLから`id="canvas"`が付いたCanvas要素を取得します。`#canvas`の`#`は、idを探す目印です。
-
-`getContext('2d')`は、横方向と縦方向の座標を使って平面図形を描く機能一式を取得します。`context`は、Canvasに描くための道具一式を入れる変数です。
+Canvas要素を取得し、Canvasに描くための機能を取得します。
 
 `script.js`に次の2行を入力します。
 
@@ -227,6 +217,8 @@ HTMLのCanvas要素を取得しただけでは、図形は描けません。Canv
 const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
 ```
+
+`getContext('2d')`は、横方向と縦方向の座標を使って平面図形を描く機能一式を取得します。`context`は、Canvasに描くための道具一式を入れる変数です。
 
 <Verify>
 ページを開いてもコンソールにエラーが出ず、Canvasに描く準備ができています。
@@ -243,14 +235,9 @@ const context = canvas.getContext('2d');
 
 <Section title="Canvasを表示領域と同じ大きさにする" goal="Canvasをブラウザの表示領域いっぱいに広げます。">
 
-Canvasの初期サイズは、幅300、高さ150です。このままだと、ブラウザの表示領域より小さいCanvasにだけ描くことになります。
+Canvasの初期サイズは幅300、高さ150です。今回はブラウザの表示領域いっぱいを描画に使います。
 
-次の言葉は、HTML文書と表示領域の大きさを読むために使います。
-
-- `document`：現在開いているHTML文書
-- `document.documentElement`：文書全体を表す`<html>`要素
-- `clientWidth`：表示領域の横幅
-- `clientHeight`：表示領域の高さ
+`document.documentElement`は`<html>`要素です。`clientWidth`と`clientHeight`で表示領域の幅と高さを取得できます。
 
 `canvas.width`はCanvasの描画領域の横幅、`canvas.height`は描画領域の高さです。この2つに表示領域の大きさを代入します。
 
@@ -348,8 +335,6 @@ context.fill();
 
 - `event.clientX`：表示領域の左端からクリック位置までの横方向の距離
 - `event.clientY`：表示領域の上端からクリック位置までの縦方向の距離
-
-`canvas.addEventListener('click', ...)`は、Canvasがクリックされたときに、指定した処理を実行します。クリックが起きるたびに、`event`からその位置を読み取ります。
 
 次のコードを入力します。
 
@@ -520,7 +505,7 @@ canvas.addEventListener('click', (event) => {
 
 </Exercise>
 
-この演習は任意です。既習の`Math.random()`を使って、クリックするたびに色と大きさが変わる円を描きます。
+この演習では、クリックするたびに色と大きさが変わる円を描きます。
 
 コードを書く前に、次の値の意味を確認します。
 
