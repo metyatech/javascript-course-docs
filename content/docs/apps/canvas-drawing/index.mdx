@@ -4,7 +4,7 @@ title: JavaScriptでお絵かきしてみよう
 
 import Exercise, { Hint, Answer } from '@metyatech/exercise/client';
 
-HTMLには、JavaScriptから線、図形、文字を直接描くための`<canvas>`要素があります。この描画領域と、描くための機能一式をCanvasと呼びます。
+HTMLの`<canvas>`要素は、JavaScriptから線、図形、文字を描ける領域です。この仕組みをCanvasと呼びます。
 
 前半はクリック位置に円を描くところまで全員で進めます。後半は、円以外に何を描くかを各自で選んで試します。
 
@@ -218,7 +218,7 @@ const canvas = document.querySelector('#canvas');
 const context = canvas.getContext('2d');
 ```
 
-`getContext('2d')`は、横方向と縦方向の座標を使って平面図形を描く機能一式を取得します。`context`は、Canvasに描くための道具一式を入れる変数です。
+`getContext('2d')`で、Canvasに2次元の図形を描くための機能を取得します。取得したものを`context`に入れています。
 
 <Verify>
 ページを開いてもコンソールにエラーが出ず、Canvasに描く準備ができています。
@@ -237,9 +237,7 @@ const context = canvas.getContext('2d');
 
 Canvasの初期サイズは幅300、高さ150です。今回はブラウザの表示領域いっぱいを描画に使います。
 
-`document.documentElement`は`<html>`要素です。`clientWidth`と`clientHeight`で表示領域の幅と高さを取得できます。
-
-`canvas.width`はCanvasの描画領域の横幅、`canvas.height`は描画領域の高さです。この2つに表示領域の大きさを代入します。
+`document.documentElement.clientWidth`と`document.documentElement.clientHeight`で、ブラウザに表示されている部分の幅と高さを取得します。その値をCanvasの`width`と`height`に設定します。
 
 `context`を取得するコードの下に、次の2行を入力します。
 
@@ -353,7 +351,7 @@ canvas.addEventListener('click', (event) => {
 });
 ```
 
-画面内の複数箇所をクリックしてください。同じクリックイベントの中で新しい円を描くので、前に描いた円は消えません。
+画面内の複数箇所をクリックしてください。Canvasは、新しく図形を描いても、それまで描いたものは自動では消えません。そのため、クリックするたびに円が追加されます。
 
 <Verify>
 複数箇所をクリックすると、それぞれのクリック位置に円が残ります。
@@ -389,8 +387,6 @@ canvas.addEventListener('click', (event) => {
 ```text
 fillRect(左上のx, 左上のy, 横幅, 高さ)
 ```
-
-`fillRect()`は左上の位置を基準にするため、クリック位置を四角形の中心にするには、左上の位置を計算します。`30`は横幅60の半分、`20`は高さ40の半分です。
 
 ### 演習1：四角形
 
@@ -561,7 +557,7 @@ canvas.addEventListener('click', (event) => {
 
 <Exercise>
 
-任意で、現在のクリックイベント全体を、クリック位置を中心とした顔またはロボットを描くクリックイベントへ置き換えます。`arc()`と`fillRect()`を組み合わせ、クリックした場所を中心に形が表示されれば成功です。
+任意で、上の候補から1つ選び、ここまで使った描き方を組み合わせて作ります。クリックした場所に作ったものが表示されれば成功です。
 
 <Hint>
 ロボットを選ぶ場合は、`fillRect()`で体や目を作り、`arc()`で頭を作ります。どちらも、クリック位置からx座標とy座標を計算して配置します。
