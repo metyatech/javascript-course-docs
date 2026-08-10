@@ -82,13 +82,15 @@ canvas.addEventListener('click', (event) => {
     context.lineWidth = size / 8;
     context.stroke();
 
-    context.fillStyle = `hsl(${(hue + 60) % 360} 100% 65%)`;
-    context.fillRect(
+    context.beginPath();
+    context.rect(
         event.clientX - size,
         event.clientY - size,
         size * 2,
         size * 2
     );
+    context.fillStyle = `hsl(${(hue + 60) % 360} 100% 65%)`;
+    context.fill();
 
     context.beginPath();
     context.arc(
@@ -293,14 +295,18 @@ Canvasの座標は、左上が基準です。
 
 円を描く前に、使う命令の役割を確認します。
 
-- `beginPath()`：新しい図形を描き始めます。
-- `arc()`：円または円弧の形を作ります。
+Canvasでは、まず「パス」という図形の形を作り、そのあとで塗ったり線を描いたりします。
+
+`arc()`や後で使う`rect()`、`moveTo()`、`lineTo()`などは、パスに形を作るための命令です。形を作っただけではまだ塗られず、`fill()`や`stroke()`を実行すると実際に描かれます。
+
+- `beginPath()`：それまで作っていたパスを空にして、新しいパスを作り始めます。
+- `arc()`：現在のパスに円または円弧の形を追加します。
 - `arc(中心のx, 中心のy, 半径, 開始角度, 終了角度)`の順に値を指定します。
 - 第1引数は中心のx座標、第2引数は中心のy座標、第3引数は半径です。
 - 第4引数は描き始める角度、第5引数は描き終わる角度です。
 - JavaScriptでは円周率を`Math.PI`で取得できます。一周は`Math.PI * 2`です。
 - `fillStyle`：図形を塗りつぶす色を指定します。
-- `fill()`：作成した形を実際に塗ります。
+- `fill()`：現在のパスを塗りつぶして、実際に画面へ描きます。
 
 固定位置の円を作るため、`canvas.height`を設定したコードの下に次を入力します。
 
@@ -382,10 +388,22 @@ canvas.addEventListener('click', (event) => {
 
 残り時間は、次の演習から好きなものを1つ以上選びます。各演習は独立しており、現在のクリックイベント全体を、各解答に掲載されているクリックイベント全体へ置き換えて試します。
 
-`fillRect()`は、四角形を作って塗る命令です。次の順番で4つの値を指定します。
+`rect()`は、現在のパスに四角形を追加する命令です。次の順番で4つの値を指定します。
 
 ```text
-fillRect(左上のx, 左上のy, 横幅, 高さ)
+rect(左上のx, 左上のy, 横幅, 高さ)
+```
+
+円と同じく、次の流れで描きます。
+
+```text
+beginPath()
+↓
+rect()
+↓
+fillStyle
+↓
+fill()
 ```
 
 ### 演習1：四角形
@@ -395,22 +413,24 @@ fillRect(左上のx, 左上のy, 横幅, 高さ)
 現在のクリックイベント全体を、クリック位置を中心とする幅60、高さ40の四角形を描くクリックイベントへ置き換えます。クリックした場所に青い四角形が表示されれば成功です。
 
 <Hint>
-`fillRect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
+`rect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
 </Hint>
 
 <Answer>
 
-`event.clientX - 30`と`event.clientY - 20`で左上の位置を作ります。横幅60と高さ40を指定すると、クリック位置が四角形の中心になります。
+`event.clientX - 30`と`event.clientY - 20`で左上の位置を作ります。横幅60と高さ40を指定すると、クリック位置が四角形の中心になります。`beginPath()`で新しいパスを作り、`rect()`で四角形を追加してから、`fill()`で塗りつぶします。
 
 ```js
 canvas.addEventListener('click', (event) => {
-    context.fillStyle = '#4cc9f0';
-    context.fillRect(
+    context.beginPath();
+    context.rect(
         event.clientX - 30,
         event.clientY - 20,
         60,
         40
     );
+    context.fillStyle = '#4cc9f0';
+    context.fill();
 });
 ```
 
@@ -420,12 +440,12 @@ canvas.addEventListener('click', (event) => {
 
 線を描くために、次の命令を使います。
 
-- `beginPath()`：新しい線を描き始めます。
-- `moveTo()`：線の開始位置を決めます。
-- `lineTo()`：線の終了位置を決めます。
+- `beginPath()`：それまでのパスを空にして、新しいパスを作り始めます。
+- `moveTo()`：現在のパスの開始位置を決めます。
+- `lineTo()`：現在のパスに、指定した位置までの線を追加します。
 - `strokeStyle`：線の色を指定します。
 - `lineWidth`：線の太さを指定します。
-- `stroke()`：作成した線を実際に描きます。
+- `stroke()`：現在のパスを線として実際に描きます。
 
 ### 演習2：線
 
@@ -560,22 +580,24 @@ canvas.addEventListener('click', (event) => {
 任意で、上の候補から1つ選び、ここまで使った描き方を組み合わせて作ります。クリックした場所に作ったものが表示されれば成功です。
 
 <Hint>
-ロボットを選ぶ場合は、`fillRect()`で体や目を作り、`arc()`で頭を作ります。どちらも、クリック位置からx座標とy座標を計算して配置します。
+ロボットを選ぶ場合は、`rect()`で体や目の形を作り、`arc()`で頭の形を作ります。どちらも、クリック位置からx座標とy座標を計算して配置します。
 </Hint>
 
 <Answer>
 
-次は、`arc()`で頭、`fillRect()`で体と目を描くロボットの例です。新しいCanvas APIは使わず、ここまでに説明した命令だけを組み合わせています。
+次は、`arc()`で頭、`rect()`で体と目の形を作るロボットの例です。新しいCanvas APIは使わず、ここまでに説明した命令だけを組み合わせています。
 
 ```js
 canvas.addEventListener('click', (event) => {
-    context.fillStyle = '#4cc9f0';
-    context.fillRect(
+    context.beginPath();
+    context.rect(
         event.clientX - 45,
         event.clientY,
         90,
         70
     );
+    context.fillStyle = '#4cc9f0';
+    context.fill();
 
     context.beginPath();
     context.arc(
@@ -588,19 +610,21 @@ canvas.addEventListener('click', (event) => {
     context.fillStyle = '#ffd166';
     context.fill();
 
-    context.fillStyle = '#07111f';
-    context.fillRect(
+    context.beginPath();
+    context.rect(
         event.clientX - 14,
         event.clientY - 45,
         8,
         8
     );
-    context.fillRect(
+    context.rect(
         event.clientX + 6,
         event.clientY - 45,
         8,
         8
     );
+    context.fillStyle = '#07111f';
+    context.fill();
 });
 ```
 
