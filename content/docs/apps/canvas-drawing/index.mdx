@@ -297,16 +297,18 @@ Canvasの座標は、左上が基準です。
 
 Canvasで円や四角形、線などを描くときは、まず「パス」という形を作り、そのあとで塗ったり線を描いたりします。
 
-`context.arc()`や後で使う`context.rect()`、`context.moveTo()`、`context.lineTo()`などは、パスに形を作るための命令です。形を作っただけではまだ塗られず、`context.fill()`や`context.stroke()`を実行すると実際に描かれます。
+ここからは説明を読みやすくするため、文章中では`context.`を省略して`arc()`のように表記します。実際のコードでは`context.arc()`のように書きます。
 
-- `context.beginPath()`：それまで作っていたパスを空にして、新しいパスを作り始めます。
-- `context.arc()`：現在のパスに円または円弧の形を追加します。
+`arc()`や後で使う`rect()`、`moveTo()`、`lineTo()`などは、パスに形を作るための命令です。形を作っただけではまだ塗られず、`fill()`や`stroke()`を実行すると実際に描かれます。
+
+- `beginPath()`：それまで作っていたパスを空にして、新しいパスを作り始めます。
+- `arc()`：現在のパスに円または円弧の形を追加します。
 - `context.arc(中心のx, 中心のy, 半径, 開始角度, 終了角度)`の順に値を指定します。
 - 第1引数は中心のx座標、第2引数は中心のy座標、第3引数は半径です。
 - 第4引数は描き始める角度、第5引数は描き終わる角度です。
 - JavaScriptでは円周率を`Math.PI`で取得できます。一周は`Math.PI * 2`です。
-- `context.fillStyle`：図形を塗りつぶす色を指定します。
-- `context.fill()`：現在のパスを塗りつぶして、実際に画面へ描きます。
+- `fillStyle`：図形を塗りつぶす色を指定します。
+- `fill()`：現在のパスを塗りつぶして、実際に画面へ描きます。
 
 固定位置の円を作るため、`canvas.height`を設定したコードの下に次を入力します。
 
@@ -323,9 +325,9 @@ context.fill();
 
 <Checkpoint title="円の確認">
 
-- `context.arc()`に中心のx座標、中心のy座標、半径、開始角度、終了角度を渡している
+- `arc()`に中心のx座標、中心のy座標、半径、開始角度、終了角度を渡している
 - `Math.PI * 2`で一周分の円を作っている
-- `context.fill()`で円が画面に表示されている
+- `fill()`で円が画面に表示されている
 
 </Checkpoint>
 
@@ -388,7 +390,7 @@ canvas.addEventListener('click', (event) => {
 
 残り時間は、次の演習から好きなものを1つ以上選びます。各演習は独立しており、現在のクリックイベント全体を、各解答に掲載されているクリックイベント全体へ置き換えて試します。
 
-`context.rect()`は、現在のパスに四角形を追加する命令です。次の順番で4つの値を指定します。
+`rect()`は、現在のパスに四角形を追加する命令です。次の順番で4つの値を指定します。
 
 ```text
 context.rect(左上のx, 左上のy, 横幅, 高さ)
@@ -397,13 +399,13 @@ context.rect(左上のx, 左上のy, 横幅, 高さ)
 円と同じく、次の流れで描きます。
 
 ```text
-context.beginPath()
+beginPath()
 ↓
-context.rect()
+rect()
 ↓
-context.fillStyle
+fillStyle
 ↓
-context.fill()
+fill()
 ```
 
 ### 演習1：四角形
@@ -413,12 +415,12 @@ context.fill()
 現在のクリックイベント全体を、クリック位置を中心とする幅60、高さ40の四角形を描くクリックイベントへ置き換えます。クリックした場所に青い四角形が表示されれば成功です。
 
 <Hint>
-`context.rect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
+`rect()`の最初の2つの値は左上の位置です。クリック位置から横幅の半分と高さの半分を引くと、クリック位置を四角形の中心にできます。
 </Hint>
 
 <Answer>
 
-`event.clientX - 30`と`event.clientY - 20`で左上の位置を作ります。横幅60と高さ40を指定すると、クリック位置が四角形の中心になります。`context.beginPath()`で新しいパスを作り、`context.rect()`で四角形を追加してから、`context.fill()`で塗りつぶします。
+`event.clientX - 30`と`event.clientY - 20`で左上の位置を作ります。横幅60と高さ40を指定すると、クリック位置が四角形の中心になります。`beginPath()`で新しいパスを作り、`rect()`で四角形を追加してから、`fill()`で塗りつぶします。
 
 ```js
 canvas.addEventListener('click', (event) => {
@@ -440,9 +442,9 @@ canvas.addEventListener('click', (event) => {
 
 線を描くために、次の命令を使います。
 
-- `context.beginPath()`：それまでのパスを空にして、新しいパスを作り始めます。
+- `beginPath()`：それまでのパスを空にして、新しいパスを作り始めます。
 
-`context.moveTo()`は、パスの開始位置を指定します。次の形で書きます。
+`moveTo()`は、パスの開始位置を指定します。次の形で書きます。
 
 ```text
 context.moveTo(x, y)
@@ -454,7 +456,7 @@ context.moveTo(100, 80);
 
 この例では、`(100, 80)`を開始位置にします。
 
-`context.lineTo()`は、現在の位置から指定した座標までの線をパスに追加します。次の形で書きます。
+`lineTo()`は、現在の位置から指定した座標までの線をパスに追加します。次の形で書きます。
 
 ```text
 context.lineTo(x, y)
@@ -470,20 +472,20 @@ context.lineTo(300, 200);
 context.strokeStyle = '#ffd166';
 ```
 
-`context.strokeStyle`には、線の色を指定します。
+`strokeStyle`には、線の色を指定します。
 
 ```js
 context.lineWidth = 4;
 ```
 
-`context.lineWidth`には、線の太さを数値で指定します。
+`lineWidth`には、線の太さを数値で指定します。
 この例では太さを4にしています。
 
 ```js
 context.stroke();
 ```
 
-`context.stroke()`を実行すると、作ったパスが設定した色と太さの線として実際に描かれます。
+`stroke()`を実行すると、作ったパスが設定した色と太さの線として実際に描かれます。
 
 ### 演習2：線
 
@@ -492,7 +494,7 @@ context.stroke();
 現在のクリックイベント全体を、画面中央からクリック位置まで線を描くクリックイベントへ置き換えます。画面中央とクリック位置が線でつながれば成功です。
 
 <Hint>
-`context.moveTo()`にCanvasの幅と高さを使った中央の座標を渡し、`context.lineTo()`に`event.clientX`と`event.clientY`を渡します。
+`moveTo()`にCanvasの幅と高さを使った中央の座標を渡し、`lineTo()`に`event.clientX`と`event.clientY`を渡します。
 </Hint>
 
 <Answer>
@@ -522,7 +524,7 @@ canvas.addEventListener('click', (event) => {
 
 文字を描くために、次の設定と命令を使います。
 
-`context.font`には、文字の大きさとフォントをまとめて指定します。
+`font`には、文字の大きさとフォントをまとめて指定します。
 
 ```js
 context.font = '48px sans-serif';
@@ -530,7 +532,7 @@ context.font = '48px sans-serif';
 
 この例では、文字の大きさを48px、フォントを`sans-serif`にしています。
 
-`context.textAlign`には、文字を横方向のどこを基準にするかを指定します。今回の演習では、クリック位置を文字の中央にするため、次のように指定します。
+`textAlign`には、文字を横方向のどこを基準にするかを指定します。今回の演習では、クリック位置を文字の中央にするため、次のように指定します。
 
 ```js
 context.textAlign = 'center';
@@ -544,7 +546,7 @@ context.textAlign = 'center';
 
 日本語や英語を通常の左から右へ書く場合は、`start`は左側、`end`は右側になります。
 
-`context.textBaseline`には、文字を縦方向のどこを基準にするかを指定します。今回の演習では、クリック位置を文字の中央にするため、次のように指定します。
+`textBaseline`には、文字を縦方向のどこを基準にするかを指定します。今回の演習では、クリック位置を文字の中央にするため、次のように指定します。
 
 ```js
 context.textBaseline = 'middle';
@@ -566,7 +568,7 @@ context.textBaseline = 'middle';
 - `'bottom'`：下側を基準にする
 - `'hanging'`、`'alphabetic'`、`'ideographic'`：ほかの基準線として選べる
 
-`context.fillText()`は、第1引数の文字を、第2・第3引数で指定した座標に描きます。次の形で書きます。
+`fillText()`は、第1引数の文字を、第2・第3引数で指定した座標に描きます。次の形で書きます。
 
 ```text
 context.fillText(文字, x, y)
@@ -582,17 +584,17 @@ context.fillText('★', 300, 200);
 
 <Exercise>
 
-今回の星は図形を作るのではなく、`'★'`という文字を`context.fillText()`で描きます。
+今回の星は図形を作るのではなく、`'★'`という文字を`fillText()`で描きます。
 
 現在のクリックイベント全体を、クリック位置に`'★'`という文字を描くクリックイベントへ置き換えます。星がクリック位置を中心に表示されれば成功です。`'★'`は好きな文字、名前、絵文字へ変更して構いません。
 
 <Hint>
-`context.font`で文字の大きさを決め、`context.textAlign`と`context.textBaseline`でクリック位置が文字の中心になるようにしてから、`context.fillText()`で文字と座標を指定します。
+`font`で文字の大きさを決め、`textAlign`と`textBaseline`でクリック位置が文字の中心になるようにしてから、`fillText()`で文字と座標を指定します。
 </Hint>
 
 <Answer>
 
-`context.textAlign`と`context.textBaseline`を設定すると、指定した座標が文字の中心になります。`'★'`を好きな文字や絵文字へ変更して試してください。
+`textAlign`と`textBaseline`を設定すると、指定した座標が文字の中心になります。`'★'`を好きな文字や絵文字へ変更して試してください。
 
 ```js
 canvas.addEventListener('click', (event) => {
@@ -620,7 +622,7 @@ canvas.addEventListener('click', (event) => {
 hsl(色相 彩度 明度)
 ```
 
-Canvasでは、`context.fillStyle`にHSLの色を指定できます。
+Canvasでは、`fillStyle`にHSLの色を指定できます。
 
 ```js
 context.fillStyle = 'hsl(200 100% 65%)';
