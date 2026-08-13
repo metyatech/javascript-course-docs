@@ -568,6 +568,14 @@ context.textBaseline = 'middle';
 - `'bottom'`：下側を基準にする
 - `'hanging'`、`'alphabetic'`、`'ideographic'`：ほかの基準線として選べる
 
+文字を塗る色は、図形と同じく`fillStyle`で指定します。
+
+```js
+context.fillStyle = '#ffd166';
+```
+
+この例では、文字を黄色にしています。
+
 `fillText()`は、第1引数の文字を、第2・第3引数で指定した座標に描きます。次の形で書きます。
 
 ```text
