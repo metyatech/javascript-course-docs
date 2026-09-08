@@ -7,4 +7,5 @@ export const siteConfig = {
         'https://github.com/metyatech/javascript-course-docs/tree/master',
     description: 'JavaScriptの基礎から実践まで',
     faviconHref: '/img/favicon.ico',
+    ogImageUrl: 'https://javascript-course-docs.vercel.app/img/ogp.png',
 } as const;
