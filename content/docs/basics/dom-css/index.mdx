@@ -71,22 +71,17 @@ _セレクタ_ _（参考：_ [https://saruwakakun.com/html-css/reference/select
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対して、 _下の薄灰色にハイライトされている5つの要素を_ _1つずつ、_ _JavaScript_ _の_ _document.querySelector_ _で取得_ して console.log で出力せよ。
 
-```html
-// highlight-next-line
+```html {1,3,6,8,11}
 <h1>見出し</h1>
 
-// highlight-next-line
 <p>これは段落1です。</p>
 <p>これは段落2です。</p>
 
-// highlight-next-line
 <p id="main">段落3 ここがメイン</p>
 
-// highlight-next-line
 <p class="raberu">段落4 ラベルA</p>
 <p class="raberu">段落5 ラベルB</p>
 <div class="hako">
-    // highlight-next-line
     <p>ボックス内の段落1</p>
     <p>ボックス内の段落2</p>
 </div>
@@ -150,20 +145,18 @@ console.log(document.querySelector('.hako p')); // 出力: <p>ボックス内の
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている2つの要素を_ _1つずつ、_ _JavaScript_ _の_ _document.querySelector_ _で取得_ して console.log で出力せよ。
 
-```html
+```html {6,12}
 <div class="moodaru open">
     <p>モーダルウィンドウ</p>
 </div>
 
 <div class="dorowa open">
-    // highlight-next-line
     <button class="botan">ボタン1</button>
     <p>開いているドロワー内の段落</p>
 </div>
 
 <div class="dorowa">
     <button class="botan">ボタン2</button>
-    // highlight-next-line
     <p>開いていないドロワー内の段落</p>
 </div>
 ```
@@ -272,16 +265,13 @@ document.querySelector('p').style.backgroundColor = 'lightblue';
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている3つの要素を_ _1つずつ、_ _JavaScript_ _で_ 右のコメントで書かれた指示の通りに変更せよ。
 
-```html
-// highlight-next-line
+```html {1,3,7}
 <h1 class="taitoru">今日の天気</h1>
 <!-- 文字色を「青色」にせよ -->
-// highlight-next-line
 <p>晴れのちくもり</p>
 <!-- 背景色を「黄色」にせよ -->
 
 <div class="hako">
-    // highlight-next-line
     <p>最高気温 18度</p>
     <!-- 文字サイズを「80px」にせよ -->
 </div>
@@ -334,37 +324,25 @@ document.querySelector('.hako p').style.fontSize = '80px';
 <Exercise>
 **body内が** 次のようになっているHTMLファイルに対し、 _下の薄灰色にハイライトされている6つの要素を_ _1つずつ、_ _JavaScript_ _で_ コメントで書かれた指示の通りに変更せよ。
 
-```html
-<!-- highlight-next-line -->
+```html {1-2,4-5,8-9,12-13,15-16,18-19}
 <!-- 文字色を赤にせよ -->
-<!-- highlight-next-line -->
 <h1 class="taitoru">お知らせ</h1>
 <div class="hako">
-    <!-- highlight-next-line -->
     <!-- 要素を非表示にせよ -->
-    <!-- highlight-next-line -->
     <p class="messeji">このメッセージは非表示にせよ</p>
     <p class="messeji">このメッセージは消さないでよい</p>
 
-    <!-- highlight-next-line -->
     <!-- 背景: オレンジ / 文字: 白 / サイズ: 20px -->
-    <!-- highlight-next-line -->
     <p class="notice">この部分には3つの装飾を加えよ</p>
     <p>この段落には何もしない</p>
 
-    <!-- highlight-next-line -->
     <!-- 文字を太字にせよ -->
-    <!-- highlight-next-line -->
     <p class="tyuui">重要：内容を強調せよ</p>
 
-    <!-- highlight-next-line -->
     <!-- 幅/高さ 60px / 背景: skyblue / 円にせよ -->
-    <!-- highlight-next-line -->
     <div class="maru"></div>
 
-    <!-- highlight-next-line -->
     <!-- 不透明度を 20% にせよ -->
-    <!-- highlight-next-line -->
     <p class="usui">詳細はこちらをご確認ください</p>
 </div>
 ```
