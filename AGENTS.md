@@ -15,10 +15,21 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/education/course-purpose
 
 # Course Teaching Purpose
 
-- Treat the terminal goal of every course as: by graduation, the learner can, with confidence, build the things they want or need, on their own.
-- Evaluate course content, sequencing, exercises, lesson structure, quizzes, and exams against that goal.
-- Treat the learner's own happiness as the highest-level goal this purpose ultimately serves.
-- Apply this purpose to every course, even when time or session count is insufficient to fully reach it.
+- Adopt this normative educational purpose: learners enjoy learning with a
+  positive outlook while increasing what they can actually do, and use what
+  they learn to think, create, and continue learning for themselves.
+- Treat this purpose as the system's value judgment, not a unique educational
+  purpose established by empirical research.
+- Use learning-science evidence to judge means, side effects, and boundary
+  conditions for pursuing this purpose.
+- Define terminal course outcomes as increased independence in thinking,
+  judging, building, solving, and learning within the course's domain.
+- For technical or creative courses, interpret building the things learners
+  want or need with increasing independence as a concrete domain outcome.
+- Evaluate content, sequencing, learning activities, and assessments against
+  the purpose and intended outcomes, even when course time is insufficient to
+  fully reach them.
+- Do not equate enjoyment with ease or rigor with unnecessary frustration.
 
 Source: github:metyatech/agent-rules@HEAD/rules/domains/education/question-authoring.md
 
@@ -57,9 +68,16 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/education/question-autho
   file names, message strings, instructor-assigned labels, example-specific
   constants, placements, and outputs. Replace them with generic role-based
   wording while preserving the taught technical distinction.
-- Questions, prompts, options, answers, scoring criteria, and explanations MUST NOT introduce, require, or casually reference untaught concepts, features, parameters, APIs, syntax, techniques, tools, or extension-only content unless the user explicitly requests extension-level assessment.
-- Scoring criteria (also called rubric criteria) are the individual bullet items of a question's `## Scoring` section, each describing one thing the answer must demonstrate.
-- The number of scoring criteria and their ordering determine the assessment manifest `points` array: the `points` length MUST equal the criterion count, and each `points` entry maps to the criterion at the same index.
+- Questions, prompts, options, answers, scoring criteria, and explanations MUST
+  NOT introduce, require, or casually reference untaught concepts, features,
+  parameters, APIs, syntax, techniques, tools, or extension-only content unless
+  the user explicitly requests extension-level assessment.
+- Scoring criteria (also called rubric criteria) are the individual bullet items
+  of a question's `## Scoring` section, each describing one thing the answer
+  must demonstrate.
+- The number of scoring criteria and their ordering determine the assessment
+  manifest `points` array: the `points` length MUST equal the criterion count,
+  and each `points` entry maps to the criterion at the same index.
 - Questions MUST have a single defensible answer, or explicitly state the
   accepted answer range.
 - Multiple-choice distractors MUST be plausible, close to the correct answer,
@@ -97,11 +115,29 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   `<Verify>`, `<QuickCheck>`, `<Checkpoint>`, `<Exercise>`, `<Evidence>`,
   `<Hint>`, `<Answer>`, and `<Recovery>`. `<Instruction>` and `<ProblemSolving>`
   are Learning System stage markers, not general-purpose containers.
-- A top-level `<Section>` MUST declare `goal`.
+- Section `goal` is optional learner-facing orientation at every depth,
+  including Event-bearing Sections; its presence is not Evidence.
 - Learner-facing HTML examples MUST use normal HTML void elements without
   XHTML-style trailing slashes, such as `<input>` rather than `<input />`. This
   applies to HTML code fences and sample/complete files, not MDX/JSX components.
 - Course docs MUST NOT use `<Solution>` or `authoringMode`.
+
+## Research provenance
+
+- Classify pedagogical claims by provenance before turning them into rules:
+  - `R` — supported in the same direction by multiple independent studies or
+    research syntheses within relevant boundary conditions.
+  - `S` — a multi-study research synthesis whose inference chain is explicit
+    and uses only research-supported premises.
+  - `L` — a local, normative, product, authoring, or platform decision.
+  - `U` — unresolved by the available research.
+- Do not promote a claim to `R` or `S` by combining one research result with
+  unaudited design intuition. For `S`, the supporting studies and inference
+  chain MUST be traceable in the tutorial-authoring research foundation.
+- `U` items MUST NOT become pedagogical authoring rules merely to fill a design
+  gap. Gather more evidence or keep the choice explicitly local/experimental.
+- Keep `L` contracts explicit; strict enforcement does not make a local rule a
+  scientific finding.
 
 ## Learning System contract
 
@@ -136,13 +172,21 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   Follow the platform metadata contract without inventing an agent-side semantic
   test for whether an Event qualifies.
 
-## Tasks, evidence, and closure
+## Tasks and aligned evidence
 
-- Exercise and QuickCheck tasks MUST present the problem, then one or more
-  `<Hint>` blocks, then exactly one `<Answer>` block. Hints MUST NOT reveal the
-  answer first and MUST use material already covered in this or a guaranteed
-  earlier lesson. Answers MUST explain why they are correct and address a likely
-  misconception only when one genuinely exists.
+- Exercise and QuickCheck tasks MUST present the problem, then zero or more
+  `<Hint>` blocks, then exactly one `<Answer>` block.
+- The first Hint SHOULD avoid unnecessarily revealing the answer immediately.
+  Multiple Hints MAY become progressively stronger or more explicit.
+- Hints SHOULD default to material already covered in this or a guaranteed
+  earlier lesson. Hints MAY explicitly teach new information; they MUST NOT
+  require unfamiliar information as already known without explaining it.
+- Answers MUST provide feedback that lets learners understand correctness.
+  Answers MAY be concise for simple, self-explanatory tasks when additional
+  explanation adds no learning value. Explain the reasoning or address a likely
+  misconception when it helps the learner; do not invent a misconception.
+- When present, Hints MUST be non-empty direct children of the task before its
+  final Answer; they MAY provide progressively stronger support.
 - Exercise is a task/container format, not a learning phase. Near-copy and
   routine application tasks MAY use `<Exercise>`; the component name alone does
   not make a task transfer.
@@ -153,11 +197,16 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   `retrieval`, or `transfer`.
 - Do not infer evidence kind from a component name. `<Recovery>` is not an
   Evidence surface. `<Evidence>` supplies a binding; it is not assessment UI.
-- A transfer task MUST require selecting and adapting a learned principle under
-  different conditions. Changing only values, names, or materials in a near-copy
-  is not transfer.
-- Each substantive learning goal MUST have an aligned closure that can test it.
-  Choose closure based on needed evidence: `<Verify>` for observable state,
+- For the local Course Docs `phase="transfer"`, use a deliberately strict
+  operational criterion: the learner MUST select and adapt a learned principle
+  under meaningfully changed conditions. Changing only values, names, or
+  materials in a near-copy does not satisfy this local phase criterion.
+  This is a Course Docs contract, not a universal scientific definition of
+  transfer; research also studies near transfer under smaller changes.
+- Design appropriate evidence for Unit objectives at suitable points in the
+  Event/course progression; do not require Section-local closure.
+  Choose assessment surfaces based on needed evidence: `<Verify>` for
+  observable state,
   `<QuickCheck>` for retrieval or understanding, `<Checkpoint>` for a
   multi-condition milestone, or `<Exercise>` for application or transfer tasks.
   This is a selection guide; component type alone does not determine evidence
@@ -170,34 +219,112 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   a note; do not describe that note as an enforced build failure.
 - Do not impose a fixed page-wide order for QuickCheck, Exercise, and extension
   exercises; place tasks where they support the learner's progression.
-- Exercise headings MUST use `### 演習N` for standard exercises and `### 演習-発展N`
-  for extension exercises. Exercise statements MUST give the expected result,
+- Exercise headings SHOULD identify the task; numbering is optional, for
+  example `### 演習1：価格だけ色を変える`. Extension headings MUST make the
+  extension task explicit. Exercise statements MUST give the expected result,
   success criteria, and enough context to start without guessing. Extension
   exercises MUST be optional and not required for base lesson completion.
 
 ## Learner-facing explanations and guidance
 
-- Introduce concepts when the learner needs them. A `<Concept>` MUST focus on
-  one concept and include only information needed for imminent first use. First
-  use MAY be an Action, Section, Verify, QuickCheck, or Exercise. Roughly 2–5
-  sentences or one short table is preferred; 6+ sentences SHOULD trigger review
-  for multiple concepts or reference material, not automatic rejection.
-- Write so a learner reading once from the top can understand each idea without
-  backtracking: establish the need or context, name and explain the concept,
-  then use it (`Need / Context → Name + meaning → Use`). Do not rely on an
-  unexplained concept as already known.
+- A `<Concept>` SHOULD focus on conceptual knowledge needed to understand or
+  perform a current or near learning activity. Near-first-use placement is a
+  default; earlier pre-training, summary, retrieval, or reference contexts MAY
+  be appropriate. Sentence counts are review triggers for mixed concepts or
+  reference detail, not preferred lengths, hard limits, or research thresholds.
+- Do not rely on an unexplained concept as already known. Explain the
+  characteristics or relations the learner must understand before an activity
+  depends on that understanding; do not impose a fixed local sequence for doing
+  so.
 - A new term may first appear in a heading or title; its name alone does not
   introduce the concept. When first named there, the heading/title and its
-  immediately following explanation MUST work together to make the meaning
-  explicit before the learner is expected to use it. Do not assume the learner
-  already knows the term. Prefer `Need / Context → Name + meaning → Use` while
-  allowing the name to appear before its explanation. Do not require a glossary
-  or predefine every term.
+  explanation MUST make the meaning explicit before understanding of the term
+  is required. Do not assume the learner already knows it or require a glossary
+  before every first textual appearance. Headings SHOULD predict the task,
+  topic, or capability.
 - Exact literal values, identifiers, and metaphors may appear before their
   meaning is explained; explain them before relying on the learner to know what
-  they mean. Judge cold-read clarity by whether a learner reading downward from
-  the start can understand the current material without going back, not by
-  whether every string appeared only after a prior definition.
+  they mean. Use cold-read review to detect accidental difficulty: unexplained
+  prerequisites, ambiguous instructions, missing state, unnecessary backtracking,
+  undefined assumptions, terminology gaps, and visual/prose mismatches.
+- As a Course Docs research synthesis, review whether a learner-facing
+  heading, its immediate explanation, the task statement, and relevant UI cues
+  ask for the same learner action at the same stage. Treat a mismatch as a
+  learner-facing defect when it leaves the learner unsure whether to look,
+  write, choose, fix, try, check, answer, or create. Natural paraphrases are
+  fine when they describe the same action; do not enforce identical words.
+  Multiple actions are fine when their order is explicit and each stage is
+  clear. Cold-read question: “この見出しを読んで learner が予想する次の行動と、実際に次に要求される行動は一致しているか”
+  This is a Course Docs research synthesis from heading/signaling, coherence,
+  and consistent task-action mapping evidence; it is not a directly tested rule
+  about particular verb pairs.
+- Review sequence / discourse continuity as a broader cold-read question than
+  learner-action consistency. Especially in novice-oriented initial
+  instruction, make it clear from the learner's current state why the next
+  topic, operation, or concept appears now. A concise bridge may connect a
+  learner goal, an observed result, a limitation of the current method, the
+  need for a next concept or operation, or an explicit transition. Do not make
+  learners infer a logical bridge that the material can state briefly.
+  Cold-read questions:
+  - “この部分は、直前まで読んだ learner にとって『なぜ今この話？』にならないか”
+  - “新しい概念・道具・操作は、その必要性が生じてから導入されているか”
+  - “見出しだけ先に読んだとき、learner state より先の結論へ飛んでいないか”
+  - “前の結果 → 次の説明・操作の因果や目的が自然につながっているか”
+  This is a bounded research synthesis for novice initial instruction, not a
+  requirement to add transitions between every paragraph or to maximize
+  coherence for every learner. Preserve intentional
+  inference in retrieval and problem-solving activities; do not impose this as
+  a universal high-coherence rule for learners with substantial prior knowledge.
+- Keep an explanation needed for a later QuickCheck or operation on the main
+  instructional path rather than relying only on a Hint, collapsed content, or
+  optional callout. Keep mutually dependent operations, results, and
+  explanations close enough to integrate without unnecessary search or split
+  attention. Do not impose a fixed ordering among them unless the intended
+  learning activity itself requires one.
+- Review learner-facing orientation (including page introductions, prerequisite
+  callouts, objective summaries, Section goals, previews, and sequence
+  announcements) for concrete value to the current activity, structure, or
+  decision at that point. Rework or remove candidates that only restate a
+  heading or adjacent prose, a guaranteed course sequence, a canonical Unit
+  objective, or information the learner cannot yet use. This review does not
+  reject objectives or advance organizers. Klauer (1984) found that presenting
+  behavioral objectives, learning directions, or questions before instructional
+  text improved goal-relevant learning, reduced goal-irrelevant learning, and
+  slightly improved overall learning; effects depended on text/task conditions
+  ([Klauer, 1984](https://doi.org/10.3102/00028312021002323)). Hamilton (1985)
+  provides a context-sensitive framework for evaluating adjunct questions and
+  objectives that accounts for text structure and learner characteristics; it
+  is not direct evidence that objectives are effective
+  ([Hamilton, 1985](https://doi.org/10.3102/00346543055001047)). Advance
+  organizers may facilitate learning and retention
+  ([Luiten, Ames, & Ackerson, 1980](https://doi.org/10.3102/00028312017002211)).
+- A term may appear in orientation or a heading before it is explained. If the
+  learner needs its meaning to understand or act, explain it before relying on
+  that understanding; a name-only list is not pre-training. Mayer's multimedia
+  pre-training principle concerns learning the names and characteristics of
+  main concepts before a complex multimedia lesson. Applying it to Course Docs
+  text/code tutorials by explaining a needed relation before an activity depends
+  on it is a bounded application, not a finding directly established by Mayer.
+  Use pre-training when the later activity needs it; do not require explanation
+  before every first appearance or pre-training in every lesson.
+- Prior knowledge being important does not make a prerequisite callout useful
+  on every page. In a guaranteed linear progression, do not add one mechanically
+  when it adds no actionable preparation, re-entry, or recovery value; retain it
+  when it helps learners make a relevant decision or act on a real use.
+- Preserve intended retrieval effort, problem solving, decision making,
+  productive struggle, and changed-condition transfer during cold-read review.
+- When a task is intended to elicit retrieval or learner generation, the
+  learner-visible prompt and default pre-attempt material MUST NOT reveal the
+  target response or a decisive cue in a way that removes the intended
+  retrieval or generation before the learner's first attempt. If the response
+  is deliberately supplied as worked or guided instruction, do not count that
+  attempt as evidence of unaided retrieval or generation. This narrow principle
+  is supported by research on classroom retrieval practice and the generation
+  effect ([Agarwal, Nunes, & Blunt, 2021](https://doi.org/10.1007/s10648-021-09595-9);
+  [Bertsch, Pesta, Wiscott, & McDaniel, 2007](https://doi.org/10.3758/BF03193441));
+  it does not prescribe withholding answers in other task types.
+- Prioritize clarity over brevity; retain needed causal relations, UI/state
+  correspondence, action purpose, state transitions, and term meanings.
 - Introduce only concepts and elements learners will use or engage with; do not
   add later-use realism without a learning need.
 - Before choosing representation or assistance, identify whether the intended
@@ -208,6 +335,16 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   for spatial UI/layout information, code or CodePreview for code authoring,
   text for short non-spatial operations, and diagrams/visuals for structural
   relationships. Do not add images merely because a step is operational.
+- Make genuinely important, task-relevant information visually distinctive and
+  limit competing emphasis so the signal remains informative. Do not infer an
+  exact colour, border, radius, or size from signaling research.
+- Use proximity, common region, alignment, or other grouping cues to communicate
+  real semantic grouping when learners must integrate related information.
+  Treat the exact visual encoding as a local design choice unless directly
+  supported by applicable evidence.
+- Keep task-action mappings and cues consistent when they represent the same
+  meaning or operation. Do not treat surface uniformity by itself as a learning
+  principle.
 - Treat one `<Action>` as one coherent learner action episode toward an
   immediate sub-goal. It MAY contain a short, locally unified sequence (for
   example, click → open menu → hover → choose) when splitting each click would
@@ -226,6 +363,16 @@ Source: github:metyatech/agent-rules@HEAD/rules/domains/course-docs/authoring.md
   worked or guided support before substantial independent construction. Fade,
   retain, or restore assistance based on established prior knowledge and learner
   performance; do not use a fixed second-time/third-time rule.
+- Aim for appropriate assistance for the learner, performance, and goal;
+  guidance minimization is not an objective.
+- Design meaningful learner processing such as retrieval, explanation,
+  prediction, comparison, selection, organization, debugging, adaptation, or
+  creation where the outcome needs it; do not require it on every job-aid or
+  initial-performance-only page.
+- Support positive engagement through authentic relevance, meaningful challenge,
+  visible progress, competence-supportive feedback, or meaningful choice and
+  learner control when useful; do not impose all of these as a checklist.
+- Do not invent relevance or add choice solely for its own sake.
 - Learner-facing prose MUST NOT contain author-facing audience descriptions such
   as `受講者は〜`, `学習者は〜`, or `初学者向け` when they do not help perform the task.
   Rewrite these as direct task prose. Do not ban `ユーザー` when it refers to a real
